@@ -3,6 +3,15 @@ import { useEngine, useSim } from '../../store/sim';
 import { ESCENARIOS, type Engine } from '../../sim/engine';
 import { PARAM_DEFS, type ParamDef } from '../../sim/params';
 import { fmt } from '../common/util';
+import { getIdioma, t } from '../../i18n';
+import { ESCENARIOS_EN, GRUPOS_PARAM_EN, PARAMS_EN } from '../../i18n/sim';
+
+const en = () => getIdioma() === 'en';
+const etiqueta = (d: ParamDef) => (en() ? PARAMS_EN[d.key]?.label ?? d.label : d.label);
+const notaParam = (d: ParamDef) => (en() && d.nota ? PARAMS_EN[d.key]?.nota ?? d.nota : d.nota);
+const grupo = (g: string) => (en() ? GRUPOS_PARAM_EN[g] ?? g : g);
+const escNombre = (x: { id: string; nombre: string }) => (en() ? ESCENARIOS_EN[x.id]?.nombre ?? x.nombre : x.nombre);
+const escDesc = (x: { id: string; descripcion: string }) => (en() ? ESCENARIOS_EN[x.id]?.descripcion ?? x.descripcion : x.descripcion);
 
 interface Ejercicio {
   id: string;
@@ -40,18 +49,18 @@ function FilaParam({ e, d }: { e: Engine; d: ParamDef }) {
   return (
     <tr>
       <td>
-        {d.label}
-        {d.nota && <div className="dim" style={{ fontSize: '0.76rem' }}>{d.nota}</div>}
+        {etiqueta(d)}
+        {d.nota && <div className="dim" style={{ fontSize: '0.76rem' }}>{notaParam(d)}</div>}
       </td>
-      <td><span className={`badge ${d.estado}`}>{d.estado === 'A_CONFIRMAR' ? 'A confirmar' : d.estado === 'SUPUESTO' ? 'Supuesto' : 'Documento'}</span></td>
+      <td><span className={`badge ${d.estado}`}>{d.estado === 'A_CONFIRMAR' ? t('A confirmar') : d.estado === 'SUPUESTO' ? t('Supuesto') : t('Documento')}</span></td>
       <td>
         {d.bool ? (
-          <input type="checkbox" id={`p-${d.key}`} checked={!!v} onChange={(ev) => aplicar(ev.target.checked ? 1 : 0)} aria-label={d.label} />
+          <input type="checkbox" id={`p-${d.key}`} checked={!!v} onChange={(ev) => aplicar(ev.target.checked ? 1 : 0)} aria-label={etiqueta(d)} />
         ) : (
           <input
             type="number"
             id={`p-${d.key}`}
-            aria-label={d.label}
+            aria-label={etiqueta(d)}
             value={txt ?? String(v)}
             min={d.min}
             max={d.max}
@@ -65,7 +74,7 @@ function FilaParam({ e, d }: { e: Engine; d: ParamDef }) {
       </td>
       <td className="dim" style={{ fontSize: '0.8rem' }}>{d.unit}</td>
       <td className="n dim" style={{ fontSize: '0.8rem' }}>{d.bool ? '' : `${fmt(d.min, d.min % 1 ? 3 : 0)}–${fmt(d.max, d.max % 1 ? 3 : 0)}`}</td>
-      <td>{cambiado && <button className="btn small" onClick={() => aplicar(d.nominal)}>Nominal {d.bool ? (d.nominal ? 'sí' : 'no') : d.nominal}</button>}</td>
+      <td>{cambiado && <button className="btn small" onClick={() => aplicar(d.nominal)}>{t('Nominal')} {d.bool ? (d.nominal ? t('sí') : t('no')) : d.nominal}</button>}</td>
     </tr>
   );
 }
@@ -81,43 +90,43 @@ export function Config() {
   return (
     <div className="screen">
       <div className="screen-head">
-        <h2>Escenarios, fallas y parámetros</h2>
-        <p>Escenario actual: <b>{ESCENARIOS.find((x) => x.id === e.escenario)?.nombre}</b>. Cargar un escenario reinicia la simulación.</p>
+        <h2>{t('Escenarios, fallas y parámetros')}</h2>
+        <p>{t('Escenario actual:')} <b>{escNombre(ESCENARIOS.find((x) => x.id === e.escenario) ?? ESCENARIOS[0])}</b>. {t('Cargar un escenario reinicia la simulación.')}</p>
       </div>
       <div className="grid g3">
         {ESCENARIOS.map((x) => (
           <div key={x.id} className="card stack">
-            <h3>{x.nombre}{x.id === e.escenario && <span className="pill on">actual</span>}</h3>
-            <p className="muted" style={{ margin: 0, fontSize: '0.88rem' }}>{x.descripcion}</p>
+            <h3>{escNombre(x)}{x.id === e.escenario && <span className="pill on">{t('actual')}</span>}</h3>
+            <p className="muted" style={{ margin: 0, fontSize: '0.88rem' }}>{escDesc(x)}</p>
             {confirmar === x.id ? (
               <div className="confirm">
-                <span>Se pierde el estado actual.</span>
-                <button className="btn primary small" onClick={() => { cargar(x.id); setConfirmar(null); }}>Cargar</button>
-                <button className="btn small" onClick={() => cargar(x.id, e.params)}>Cargar con mis parámetros</button>
-                <button className="btn small" onClick={() => setConfirmar(null)}>Cancelar</button>
+                <span>{t('Se pierde el estado actual.')}</span>
+                <button className="btn primary small" onClick={() => { cargar(x.id); setConfirmar(null); }}>{t('Cargar')}</button>
+                <button className="btn small" onClick={() => cargar(x.id, e.params)}>{t('Cargar con mis parámetros')}</button>
+                <button className="btn small" onClick={() => setConfirmar(null)}>{t('Cancelar')}</button>
               </div>
             ) : (
-              <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setConfirmar(x.id)}>Cargar escenario</button>
+              <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setConfirmar(x.id)}>{t('Cargar escenario')}</button>
             )}
           </div>
         ))}
       </div>
 
       <div className="card">
-        <h3>Inyección de fallas</h3>
+        <h3>{t('Inyección de fallas')}</h3>
         <div className="scroll-x">
           <table className="t">
-            <thead><tr><th>Falla</th><th>Qué debería pasar</th><th>Estado</th></tr></thead>
+            <thead><tr><th>{t('Falla')}</th><th>{t('Qué debería pasar')}</th><th>{t('Estado')}</th></tr></thead>
             <tbody>
               {EJERCICIOS.map((x) => {
                 const act = x.activo(e);
                 return (
                   <tr key={x.id} className={act ? 'act' : ''}>
-                    <td>{x.titulo}</td>
-                    <td className="muted" style={{ fontSize: '0.85rem' }}>{x.efecto}</td>
+                    <td>{t(x.titulo)}</td>
+                    <td className="muted" style={{ fontSize: '0.85rem' }}>{t(x.efecto)}</td>
                     <td>
                       <button className={`btn small ${act ? 'danger' : ''}`} onClick={() => accion((en) => (act ? x.limpiar(en) : x.aplicar(en)))}>
-                        {act ? 'Quitar falla' : 'Aplicar'}
+                        {act ? t('Quitar falla') : t('Aplicar')}
                       </button>
                     </td>
                   </tr>
@@ -126,18 +135,18 @@ export function Config() {
             </tbody>
           </table>
         </div>
-        <div className="note" style={{ marginTop: 6 }}>Más fallas por equipo (fines de carrera, deriva de transmisores, no arranca, filtro de aire tapado) en cada faceplate.</div>
+        <div className="note" style={{ marginTop: 6 }}>{t('Más fallas por equipo (fines de carrera, deriva de transmisores, no arranca, filtro de aire tapado) en cada faceplate.')}</div>
       </div>
 
       <div className="card">
-        <h3>Parámetros editables <span className="badge A_CONFIRMAR">{nAC} a confirmar</span> <span className="badge SUPUESTO">{nSup} supuestos</span></h3>
-        <p className="muted" style={{ margin: '0 0 8px', fontSize: '0.88rem' }}>Los cambios se aplican en vivo. Los valores marcados "A confirmar" tienen contradicciones entre documentos; los "Supuesto" no figuran en ellos y se eligieron para que el modelo sea coherente.</p>
+        <h3>{t('Parámetros editables')} <span className="badge A_CONFIRMAR">{t('{n} a confirmar', { n: nAC })}</span> <span className="badge SUPUESTO">{t('{n} supuestos', { n: nSup })}</span></h3>
+        <p className="muted" style={{ margin: '0 0 8px', fontSize: '0.88rem' }}>{t('Los cambios se aplican en vivo. Los valores marcados "A confirmar" tienen contradicciones entre documentos; los "Supuesto" no figuran en ellos y se eligieron para que el modelo sea coherente.')}</p>
         {grupos.map((g) => (
           <details key={g} open={g.startsWith('Filosofía')} style={{ marginBottom: 8 }}>
-            <summary>{g}</summary>
+            <summary>{grupo(g)}</summary>
             <div className="scroll-x">
               <table className="t">
-                <thead><tr><th>Parámetro</th><th>Estado</th><th>Valor</th><th>Unidad</th><th className="n">Rango</th><th /></tr></thead>
+                <thead><tr><th>{t('Parámetro')}</th><th>{t('Estado')}</th><th>{t('Valor')}</th><th>{t('Unidad')}</th><th className="n">{t('Rango')}</th><th /></tr></thead>
                 <tbody>{PARAM_DEFS.filter((d) => d.group === g).map((d) => <FilaParam key={d.key} e={e} d={d} />)}</tbody>
               </table>
             </div>

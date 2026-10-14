@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { equipos, instrumentos, valvulas, electrico, type Json } from '../../data';
 import faltantes from '../../../docs/FALTANTES.md?raw';
+import faltantesEn from '../../../docs/FALTANTES.en.md?raw';
+import { getIdioma, t, td } from '../../i18n';
 import { useSim } from '../../store/sim';
 import { Ficha } from '../Faceplate';
 
@@ -33,24 +35,24 @@ export function Datos() {
   const qq = q.trim().toLowerCase();
   const filtro = <T,>(arr: T[]) => (qq ? arr.filter((x) => JSON.stringify(x).toLowerCase().includes(qq)) : arr);
   const listas: Record<Exclude<Vista, 'pendientes'>, { tag: string; titulo: string; obj: Record<string, Json | undefined>; abrir?: () => void }[]> = {
-    equipos: filtro(equipos).map((x) => ({ tag: x.tag, titulo: x.nombre, obj: x, abrir: x.tag.match(/AG|BL|CM/) ? () => seleccionar({ tipo: 'motor', tag: x.tag }) : x.tag.match(/TK-3001[56]/) ? () => seleccionar({ tipo: 'tanque', tag: x.tag }) : undefined })),
-    instrumentos: filtro(instrumentos).map((x) => ({ tag: x.tag, titulo: String(x.servicio ?? x.tipo ?? ''), obj: x, abrir: () => seleccionar({ tipo: 'instrumento', tag: x.tag }) })),
-    valvulas: filtro(valvulas).map((x) => ({ tag: x.tag, titulo: x.descripcion, obj: x, abrir: x.senales ? () => (x.tag.startsWith('FV') ? seleccionar({ tipo: 'fic' }) : seleccionar({ tipo: 'valvula', tag: x.tag })) : undefined })),
-    cargas: filtro(electrico.cargas).map((x) => ({ tag: x.tag, titulo: x.desc, obj: x as unknown as Record<string, Json> })),
+    equipos: filtro(equipos).map((x) => ({ tag: x.tag, titulo: td(x.nombre), obj: x, abrir: x.tag.match(/AG|BL|CM/) ? () => seleccionar({ tipo: 'motor', tag: x.tag }) : x.tag.match(/TK-3001[56]/) ? () => seleccionar({ tipo: 'tanque', tag: x.tag }) : undefined })),
+    instrumentos: filtro(instrumentos).map((x) => ({ tag: x.tag, titulo: td(String(x.servicio ?? x.tipo ?? '')), obj: x, abrir: () => seleccionar({ tipo: 'instrumento', tag: x.tag }) })),
+    valvulas: filtro(valvulas).map((x) => ({ tag: x.tag, titulo: td(x.descripcion), obj: x, abrir: x.senales ? () => (x.tag.startsWith('FV') ? seleccionar({ tipo: 'fic' }) : seleccionar({ tipo: 'valvula', tag: x.tag })) : undefined })),
+    cargas: filtro(electrico.cargas).map((x) => ({ tag: x.tag, titulo: td(x.desc), obj: x as unknown as Record<string, Json> })),
   };
   return (
     <div className="screen">
       <div className="screen-head">
-        <h2>Fichas técnicas</h2>
-        <div className="seg" role="tablist" aria-label="Tipo de dato">
-          {([['equipos', `Equipos (${equipos.length})`], ['instrumentos', `Instrumentos (${instrumentos.length})`], ['valvulas', `Válvulas (${valvulas.length})`], ['cargas', `Cargas (${electrico.cargas.length})`], ['pendientes', 'Pendientes']] as const).map(([k, t]) => (
+        <h2>{t('Fichas técnicas')}</h2>
+        <div className="seg" role="tablist" aria-label={t('Tipo de dato')}>
+          {([['equipos', t('Equipos ({n})', { n: equipos.length })], ['instrumentos', t('Instrumentos ({n})', { n: instrumentos.length })], ['valvulas', t('Válvulas ({n})', { n: valvulas.length })], ['cargas', t('Cargas ({n})', { n: electrico.cargas.length })], ['pendientes', t('Pendientes')]] as const).map(([k, t]) => (
             <button key={k} role="tab" aria-selected={vista === k} aria-pressed={vista === k} onClick={() => setVista(k)}>{t}</button>
           ))}
         </div>
-        {vista !== 'pendientes' && <input type="search" id="datos-buscar" placeholder="Buscar" value={q} onChange={(ev) => setQ(ev.target.value)} />}
+        {vista !== 'pendientes' && <input type="search" id="datos-buscar" placeholder={t('Buscar')} value={q} onChange={(ev) => setQ(ev.target.value)} />}
       </div>
       {vista === 'pendientes' ? (
-        <div className="card"><Markdown texto={faltantes} /></div>
+        <div className="card"><Markdown texto={getIdioma() === 'en' ? faltantesEn : faltantes} /></div>
       ) : (
         <div className="stack">
           {listas[vista].map((x) => (
@@ -58,18 +60,18 @@ export function Datos() {
               <summary className="row" style={{ display: 'flex' }}>
                 <span className="mono" style={{ fontWeight: 600 }}>{x.tag}</span>
                 <span className="muted" style={{ flex: 1, minWidth: 0 }}>{x.titulo}</span>
-                {tieneAC(x.obj) && <span className="badge A_CONFIRMAR">A confirmar</span>}
+                {tieneAC(x.obj) && <span className="badge A_CONFIRMAR">{t('A confirmar')}</span>}
               </summary>
               <div style={{ marginTop: 8 }} className="stack">
                 <Ficha datos={x.obj} excluir={['tag']} />
-                {x.abrir && <button className="btn small" style={{ alignSelf: 'flex-start' }} onClick={x.abrir}>Abrir faceplate en vivo</button>}
+                {x.abrir && <button className="btn small" style={{ alignSelf: 'flex-start' }} onClick={x.abrir}>{t('Abrir faceplate en vivo')}</button>}
               </div>
             </details>
           ))}
-          {listas[vista].length === 0 && <p className="empty">Sin resultados para "{q}".</p>}
+          {listas[vista].length === 0 && <p className="empty">{t('Sin resultados para "{q}".', { q })}</p>}
         </div>
       )}
-      {vista !== 'pendientes' && <div className="note">Los valores provienen de los JSON del paquete (data/); la columna fuente indica el documento de origen.</div>}
+      {vista !== 'pendientes' && <div className="note">{t('Los valores provienen de los JSON del paquete (data/); la columna fuente indica el documento de origen.')}</div>}
     </div>
   );
 }

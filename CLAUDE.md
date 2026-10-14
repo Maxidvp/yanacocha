@@ -95,3 +95,4 @@ por el operador (escenarios 410 / 1472 / 1771 / 2032 / 2386 m³/h de la tabla de
 Implementado según este documento (ver `README.md`). Comandos: `npm run dev`, `npm test`, `npm run build`, `npm run build:single`.
 - Mantener los tests en verde (`npm test`) y el typecheck (`npm run typecheck`) antes de commitear.
 - Todo parámetro nuevo que no salga de los documentos va en `src/sim/params.ts` con estado `SUPUESTO` o `A_CONFIRMAR`.
+- Versión en inglés en la ruta `/en` (`src/i18n/`): todo texto visible nuevo se envuelve con `t()` (interfaz), `td()` (valores de `data/`) o `ts()` (textos de la simulación) y lleva su traducción; `tests/i18n.test.ts` lo verifica.

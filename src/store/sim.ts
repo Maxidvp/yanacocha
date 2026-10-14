@@ -4,6 +4,7 @@ import { create } from 'zustand';
 import { Engine } from '../sim/engine';
 import type { ComandoHMI } from '../sim/plc/plc';
 import type { Params } from '../sim/params';
+import { getIdioma, rutaIdioma, setIdiomaGlobal, idiomaDeRuta, type Idioma } from '../i18n';
 
 export type Pantalla =
   | 'resumen' | 'filtros' | 'rotativos' | 'electrico' | 'calidad' | 'planta' | 'io' | 'alarmas' | 'tendencias' | 'config' | 'datos';
@@ -22,9 +23,11 @@ interface SimState {
   corriendo: boolean;
   velocidad: number;
   pantalla: Pantalla;
+  idioma: Idioma;
   filtroSel: number;
   seleccion: Seleccion | null;
   setPantalla: (p: Pantalla) => void;
+  setIdioma: (i: Idioma) => void;
   setFiltro: (i: number) => void;
   seleccionar: (s: Seleccion | null) => void;
   setCorriendo: (v: boolean) => void;
@@ -62,11 +65,19 @@ export const useSim = create<SimState>((set, get) => ({
   corriendo: true,
   velocidad: 10,
   pantalla: pantallaInicial,
+  idioma: getIdioma(),
   filtroSel: 0,
   seleccion: null,
   setPantalla: (pantalla) => {
     guardar('pantalla', pantalla);
     set({ pantalla });
+  },
+  setIdioma: (idioma) => {
+    setIdiomaGlobal(idioma);
+    // servida en / o /en: la ruta refleja el idioma (sin recargar, la simulación sigue)
+    const ruta = rutaIdioma(idioma);
+    if (ruta && typeof history !== 'undefined') history.pushState(null, '', ruta);
+    set({ idioma });
   },
   setFiltro: (filtroSel) => set({ filtroSel }),
   seleccionar: (seleccion) => set({ seleccion }),
@@ -96,6 +107,18 @@ export const useSim = create<SimState>((set, get) => ({
 export function useEngine(): Engine {
   useSim((s) => s.version);
   return useSim((s) => s.engine);
+}
+
+if (typeof window !== 'undefined') {
+  setIdiomaGlobal(getIdioma());
+  // atrás/adelante del navegador entre / y /en
+  window.addEventListener('popstate', () => {
+    const i = idiomaDeRuta(location.pathname);
+    if (i !== useSim.getState().idioma) {
+      setIdiomaGlobal(i);
+      useSim.setState({ idioma: i });
+    }
+  });
 }
 
 // ---- Lazo de tiempo real ----

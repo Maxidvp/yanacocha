@@ -23,14 +23,20 @@ Corre entero en el navegador: modelo de proceso, capa de I/O y "PLC" con la filo
 ```bash
 npm install
 npm run dev          # http://localhost:5173
-npm test             # 38 tests: secuencia de 17 pasos, consistencia filosofía/SOE/C&E, bypass, PID e integración
+npm test             # tests: secuencia de 17 pasos, consistencia filosofía/SOE/C&E, bypass, PID e integración
 npm run build        # dist/
 npm run build:single # dist-single/index.html autocontenido (un solo archivo)
 ```
 Atajos: F1–F11 cambian de pantalla, Esc cierra el faceplate.
 
+## Idiomas
+La raíz `/` muestra la consola en castellano; **`/en`** la muestra en inglés (interfaz, datos de los JSON, alarmas, eventos, parámetros y pendientes). El selector ES/EN de la barra superior cambia de ruta sin reiniciar la simulación.
+- `src/i18n/` – `t()` textos de interfaz (`textos/*.ts`), `td()` valores de `data/*.json` (`datos.ts` + `datos_gen.ts`), `ts()` textos que genera la simulación (`sim.ts`).
+- `tests/i18n.test.ts` verifica que todo texto nuevo tenga traducción: al agregar un texto en castellano hay que agregar su entrada en inglés.
+- `docs/FALTANTES.en.md` es la versión en inglés de los pendientes.
+
 ## Deploy (Firebase Hosting)
-Publicado en **https://yanacocha-awtp.web.app** (proyecto Firebase `yanacocha-awtp`).
+Publicado en **https://yanacocha-awtp.web.app** (castellano) y **https://yanacocha-awtp.web.app/en** (inglés), proyecto Firebase `yanacocha-awtp`.
 
 Cada push a `main` o a `claude/friendly-babbage-owfywt` ejecuta `.github/workflows/firebase-hosting.yml`: instala dependencias, corre typecheck y tests, compila y despliega `dist/` en Firebase Hosting.
 - Requiere el secreto de repositorio `FIREBASE_SERVICE_ACCOUNT` con el JSON de una cuenta de servicio con rol *Firebase Hosting Admin*. El project ID se lee del JSON.
@@ -42,6 +48,7 @@ Cada push a `main` o a `claude/friendly-babbage-owfywt` ejecuta `.github/workflo
 - `src/sim/process/` – modelo de proceso (ver `docs/MODELO.md`).
 - `src/sim/io/` – tabla de I/O con escalado 4–20 mA (NAMUR NE43) y forzados.
 - `src/sim/plc/` – secuencias de filtros, lógica maestra, FY/FIC-603, duty/standby, alarmas y C&E. Lee y escribe solo I/O.
+- `src/i18n/` – castellano (fuente) e inglés (`/en`).
 - `src/ui/` – HMI (React + SVG + canvas). El estado de la UI vive en Zustand, separado del motor de simulación.
 
 ## Supuestos y pendientes
