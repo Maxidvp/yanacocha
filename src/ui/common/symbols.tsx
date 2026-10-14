@@ -172,3 +172,42 @@ export function Frontera({ x, y, texto, sub, dir = 'r' }: { x: number; y: number
     </g>
   );
 }
+
+/**
+ * Agitador visto de costado: eje, impulsores de paletas inclinadas y remolino en el líquido.
+ * Gira (animación) mientras el motor tiene velocidad; el período sigue a la velocidad del motor.
+ */
+export function AgitadorSym({ x, yTop, impulsores, velocidad, ancho = 36 }: { x: number; yTop: number; impulsores: number[]; velocidad: number; ancho?: number }) {
+  const marcha = velocidad > 0.02;
+  const periodo = 0.7 / Math.max(velocidad, 0.12);
+  const w = ancho / 2;
+  const yFondo = Math.max(...impulsores);
+  return (
+    <g>
+      <line x1={x} x2={x} y1={yTop} y2={yFondo} stroke="var(--tank-wall)" strokeWidth={2} />
+      {impulsores.map((y, k) => (
+        <g key={k} transform={`translate(${x},${y})`}>
+          {marcha && <ellipse className="agit-remolino" rx={w + 12} ry={11} style={{ animationDuration: `${periodo * 1.8}s` }} />}
+          <g className={marcha ? 'agit-rotor' : undefined} style={marcha ? { animationDuration: `${periodo}s` } : undefined}>
+            <polygon points={`${-w},-6 -3,-2 -3,3 ${-w},-1`} fill="var(--tank-wall)" />
+            <polygon points={`${w},6 3,2 3,-3 ${w},1`} fill="var(--tank-wall)" />
+          </g>
+          <rect x={-3} y={-4} width={6} height={8} rx={1.5} fill="var(--tank-wall)" />
+        </g>
+      ))}
+    </g>
+  );
+}
+
+/** Agitador visto en planta: paletas que giran bajo el símbolo del motor. */
+export function AgitadorPlantaSym({ x, y, r, velocidad }: { x: number; y: number; r: number; velocidad: number }) {
+  const marcha = velocidad > 0.02;
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <g className={marcha ? 'agit-top' : undefined} style={marcha ? { animationDuration: `${1.4 / Math.max(velocidad, 0.12)}s` } : undefined}>
+        <path d={`M ${-r} -2.5 L ${r} 2.5 L ${r} -2.5 L ${-r} 2.5 Z`} fill="var(--tank-wall)" opacity={0.75} />
+        <path d={`M -2.5 ${-r} L 2.5 ${r} L -2.5 ${r} L 2.5 ${-r} Z`} fill="var(--tank-wall)" opacity={0.75} />
+      </g>
+    </g>
+  );
+}

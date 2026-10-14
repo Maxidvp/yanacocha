@@ -377,7 +377,13 @@ input[type='range'] { accent-color: var(--accent); }
 .flow.water { stroke: var(--panel); }
 .flow.air, .flow.chem, .flow.regen, .flow.waste { stroke: var(--panel); }
 @keyframes flow { to { stroke-dashoffset: -12; } }
-@media (prefers-reduced-motion: reduce) { .flow { animation: none; } .bubbles circle { animation: none !important; } }
+/* agitadores: paletas que giran (vista lateral) y remolino del líquido */
+.agit-rotor { transform-box: fill-box; transform-origin: center; animation: agit-giro 0.7s ease-in-out infinite; }
+@keyframes agit-giro { 0% { transform: scaleX(1); } 50% { transform: scaleX(-1); } 100% { transform: scaleX(1); } }
+.agit-remolino { fill: none; stroke: var(--panel); stroke-width: 1.6; stroke-dasharray: 7 9; opacity: 0.75; animation: flow 1.2s linear infinite; }
+.agit-top { transform-box: fill-box; transform-origin: center; animation: agit-planta 1.4s linear infinite; }
+@keyframes agit-planta { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .flow, .agit-rotor, .agit-remolino, .agit-top { animation: none; } .bubbles circle { animation: none !important; } }
 .st-on { fill: var(--on); }
 .st-off { fill: var(--off); }
 .st-trip { fill: var(--trip); }

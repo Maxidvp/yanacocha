@@ -2,7 +2,7 @@ import { layout, filtrosEquipo, type FuncionValvula, type LayoutItem } from '../
 import { useEngine, useSim } from '../../store/sim';
 import type { Engine } from '../../sim/engine';
 import { CONST_PLANTA } from '../../sim/process/plant';
-import { Clic } from '../common/symbols';
+import { AgitadorPlantaSym, Clic } from '../common/symbols';
 import { estadoMotor, estadoValvula, fmt, LETRAS } from '../common/util';
 import { Inst } from './Resumen';
 
@@ -38,6 +38,7 @@ function Item({ e, it }: { e: Engine; it: LayoutItem }) {
     case 'agitador':
       return (
         <Clic s={{ tipo: 'motor', tag: it.tag }} titulo={it.tag}>
+          <AgitadorPlantaSym x={x} y={y} r={it.tag.endsWith('30006') ? 15 : 22} velocidad={pl.motor(it.tag).velocidad} />
           <circle cx={x} cy={y} r={8} className={`st-${estadoMotor(e, it.tag)} hl`} stroke="var(--tank-wall)" />
           <text x={x} y={y + 3.5} textAnchor="middle" style={{ fill: '#fff', fontSize: 9, fontWeight: 700 }}>M</text>
         </Clic>

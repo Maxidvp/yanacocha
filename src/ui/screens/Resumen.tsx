@@ -1,7 +1,7 @@
 import { filtrosEquipo, type FuncionValvula } from '../../data';
 import { useEngine, useSim } from '../../store/sim';
 import { CONST_PLANTA } from '../../sim/process/plant';
-import { BombaExtSym, EquipoRotSym, Frontera, InstrumentoSym, Pipe, TanqueSym, ValvulaControlSym, ValvulaSym } from '../common/symbols';
+import { AgitadorSym, BombaExtSym, EquipoRotSym, Frontera, InstrumentoSym, Pipe, TanqueSym, ValvulaControlSym, ValvulaSym } from '../common/symbols';
 import { estadoMotor, estadoValvula, fmt, LETRAS } from '../common/util';
 import type { Engine } from '../../sim/engine';
 
@@ -166,8 +166,8 @@ export function Resumen() {
             )}
             <text className="t-val" x={245} y={yVert + 26} textAnchor="middle">{fmt(pl.L15, 0)} mm</text>
           </TanqueSym>
-          <line x1={245} x2={245} y1={70} y2={318} stroke="var(--tank-wall)" strokeWidth={2} />
-          <path d="M 228 318 L 262 326 M 228 326 L 262 318" stroke="var(--tank-wall)" strokeWidth={3} />
+          {/* AG-30006: 2 impulsores (1524 / 1778 mm según datasheet) */}
+          <AgitadorSym x={245} yTop={70} impulsores={[262, 326]} velocidad={pl.motor('16045-AG-30006').velocidad} />
           <EquipoRotSym x={245} y={56} tag="16045-AG-30006" estado={estadoMotor(e, '16045-AG-30006')} letra="M" r={13} />
           <text className="t-tag" x={265} y={52}>AG-30006</text>
           {pl.qRebalse15 > 1 && <text x={186} y={84} style={{ fontSize: 11, fill: 'var(--crit)', fontWeight: 700 }}>REBALSE {fmt(pl.qRebalse15, 0)} m³/h</text>}
@@ -221,8 +221,7 @@ export function Resumen() {
           <text className="t-xs" x={1290} y={708} textAnchor="middle">(por otros)</text>
           <Pipe d="M 1330 600 H 1400" fluido="water" activa={pl.qSumidero > 1} ancho={5} />
           <TanqueSym x={1400} y={440} w={140} h={300} frac={L16frac} tag="16045-TK-30016" label="TK-30016 · 216 m³ (por otros)" />
-          <line x1={1470} x2={1470} y1={420} y2={690} stroke="var(--tank-wall)" strokeWidth={2} />
-          <path d="M 1452 690 L 1488 698 M 1452 698 L 1488 690" stroke="var(--tank-wall)" strokeWidth={3} />
+          <AgitadorSym x={1470} yTop={420} impulsores={[694]} velocidad={pl.motor('16045-AG-30007').velocidad} ancho={42} />
           <EquipoRotSym x={1470} y={418} tag="16045-AG-30007" estado={estadoMotor(e, '16045-AG-30007')} letra="M" r={13} />
           <text className="t-tag" x={1490} y={414}>AG-30007</text>
           <text className="t-val" x={1470} y={520} textAnchor="middle">{fmt(pl.L16, 0)} mm</text>
