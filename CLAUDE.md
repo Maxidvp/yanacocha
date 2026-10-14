@@ -22,7 +22,9 @@ cargalos desde los JSON.
 | `data/proceso_y_logica.json` | **Filosofía de control rev005**: base de diseño, flujo, bypass FIC/FY-603, compresores, soplantes, agitadores, secuencia de filtros de 17 pasos con matriz de válvulas, parámetros T03…T16/K03/K06/K09, Hold/Resume, lógica maestra |
 | `data/alarmas.json` | Lista de alarmas analógicas (con retardos y condición de activación) y digitales (falla al arrancar, ZAO/ZAC) |
 | `data/causa_efecto.json` | Matriz causa-efecto (disparos T con reset del operador) |
-| `docs/FALTANTES.md` | Contradicciones entre documentos y datos que siguen faltando |
+| `data/layout.json` | Posiciones (m) de equipos e instrumentos digitalizadas del layout 26442-ST3-J2-16045-00001 h.11/12 |
+| `docs/FALTANTES.md` | Contradicciones entre documentos, datos que siguen faltando y hallazgos del simulador |
+| `docs/MODELO.md` | Ecuaciones y supuestos del modelo de proceso implementado |
 
 Los parámetros de la filosofía (T03…T16, K03/K06/K09) y todo valor marcado **A CONFIRMAR** deben quedar
 como **parámetros editables** en la pantalla de configuración (con nominal/mín/máx), no hardcodeados, y la
@@ -87,3 +89,8 @@ por el operador (escenarios 410 / 1472 / 1771 / 2032 / 2386 m³/h de la tabla de
 ## Orden de trabajo sugerido
 1. Cargar y tipar los JSON (`src/data/`), 2. Modelo de proceso + I/O, 3. Lógica PLC,
 4. HMI resumen y detalle de filtro, 5. Resto de pantallas, 6. Escenarios de falla.
+
+## Estado de la implementación
+Implementado según este documento (ver `README.md`). Comandos: `npm run dev`, `npm test`, `npm run build`, `npm run build:single`.
+- Mantener los tests en verde (`npm test`) y el typecheck (`npm run typecheck`) antes de commitear.
+- Todo parámetro nuevo que no salga de los documentos va en `src/sim/params.ts` con estado `SUPUESTO` o `A_CONFIRMAR`.
