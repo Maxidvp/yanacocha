@@ -23,14 +23,14 @@ Corre entero en el navegador: modelo de proceso, capa de I/O y "PLC" con la filo
 ```bash
 npm install
 npm run dev          # http://localhost:5173
-npm test             # 32 tests: secuencia de 17 pasos, bypass, PID e integración
+npm test             # 38 tests: secuencia de 17 pasos, consistencia filosofía/SOE/C&E, bypass, PID e integración
 npm run build        # dist/
 npm run build:single # dist-single/index.html autocontenido (un solo archivo)
 ```
 Atajos: F1–F11 cambian de pantalla, Esc cierra el faceplate.
 
 ## Arquitectura
-- `data/` – fuente de verdad (JSON del paquete + `layout.json` digitalizado del plano de ubicación).
+- `data/` – fuente de verdad (JSON del paquete, `soe.json` de la C&E rev002 y `layout.json` digitalizado del plano de ubicación).
 - `src/sim/process/` – modelo de proceso (ver `docs/MODELO.md`).
 - `src/sim/io/` – tabla de I/O con escalado 4–20 mA (NAMUR NE43) y forzados.
 - `src/sim/plc/` – secuencias de filtros, lógica maestra, FY/FIC-603, duty/standby, alarmas y C&E. Lee y escribe solo I/O.

@@ -8,6 +8,7 @@ import procesoRaw from '../../data/proceso_y_logica.json';
 import alarmasRaw from '../../data/alarmas.json';
 import causaEfectoRaw from '../../data/causa_efecto.json';
 import layoutRaw from '../../data/layout.json';
+import soeRaw from '../../data/soe.json';
 
 export type Json = string | number | boolean | null | Json[] | { [k: string]: Json };
 
@@ -125,8 +126,26 @@ export interface AlarmaAnalogicaDef {
 }
 
 export interface CausaEfecto {
+  linea: number;
   causa: string;
+  instrumento: string;
+  alarma_impresa: string;
+  pid: string;
+  nota?: string;
   efectos: Record<string, 'T' | 'X'>;
+}
+
+export type EstadoSOE = 'O' | 'Cl' | 'X' | 'ON' | 'Off' | 'ST' | 'SP';
+export interface PasoSOE {
+  paso: number;
+  nombre: string;
+  preset: string;
+  preset_s: number | null;
+  entrada_m3h: number;
+  aire_Nm3h: number;
+  retrolavado_m3h: number;
+  valvulas: Record<string, EstadoSOE>;
+  comunes: Record<string, EstadoSOE>;
 }
 
 export interface LayoutItem {
@@ -216,10 +235,22 @@ export const alarmas = alarmasRaw as unknown as {
 };
 export const causaEfecto = causaEfectoRaw as unknown as {
   fuente: string;
+  estado: string;
   leyenda: Record<string, string>;
   efectos: Record<string, string>;
+  efectos_detalle: Record<string, { columna: number; descripcion_original: string; tag: string; pid: string; nota?: string }>;
   causas: CausaEfecto[];
+  notas_originales: string[];
   nota: string;
+};
+export const soe = soeRaw as unknown as {
+  fuente: string;
+  columnas: { valvulas: Record<string, string>; comunes: Record<string, string>; caudales: Record<string, string> };
+  leyenda: Record<string, string>;
+  pasos: PasoSOE[];
+  hold: { nombre: string; valvulas: Record<string, EstadoSOE>; comunes: Record<string, EstadoSOE> };
+  notas_originales: string[];
+  diferencias_con_filosofia: string[];
 };
 export const layout = layoutRaw as unknown as { _fuente: string; _nota: string; cota_planta_m: number; ancho_m: number; alto_m: number; areas: LayoutArea[] };
 

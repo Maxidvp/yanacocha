@@ -133,7 +133,8 @@ export class PLC {
     }
     def('AIT-160305442', 'H', 'Conductividad salida TK-30015 – alta (SP por Bechtel)', 30, 'Proceso');
     def('AIT-160305442', 'HH', 'Conductividad salida TK-30015 – muy alta (SP por Bechtel)', 5, 'Proceso');
-    for (const n of ['HH', 'H', 'L', 'LL']) def('LIT-160305276', n, `Nivel TK-30016 – ${nivelTxt[n]} (SP por Bechtel)`, 5, 'Proceso');
+    for (const n of ['HH', 'H', 'L', 'LL']) def('LIT-160305276', n, `Nivel TK-30016 – ${nivelTxt[n]} (SP por Bechtel)`, retardoAlarma(an['LIT-160305276'], n), 'Proceso');
+    for (const n of ['HH', 'H', 'L', 'LL']) def('AIT-160305288', n, `pH TK-30016 – ${nivelTxt[n]} (SP por Bechtel)`, retardoAlarma(an['AIT-160305288'], n), 'Proceso');
     filtrosEquipo.forEach((f, i) => {
       const d = instrumentoPorTag(f.transmisor_nivel)?.alarmas as Record<string, unknown> | undefined;
       const ret = (d?.retardo_s ?? {}) as Record<string, number>;
@@ -309,7 +310,7 @@ export class PLC {
       const sufijo = fe.transmisor_nivel.split('-')[1];
       const ctx: CtxFiltro = {
         dt, p, litEU: lit.eu, litMala: lit.mala,
-        lahh: this.alarmas.activa(`LAHH-${sufijo}`), lal: this.alarmas.activa(`LAL-${sufijo}`),
+        lahh: this.alarmas.activa(`${p.lavado_por_LAH ? 'LAH' : 'LAHH'}-${sufijo}`), lal: this.alarmas.activa(`LAL-${sufijo}`),
         zso, zsc, discrepancia: disc, todos: this.filtros,
         soplanteDisponible, soplanteEnMarcha, bombaBWDisponible: bwAvl, bombaBWEnMarcha: bwRun, caudalBWAlarma,
         bombaRegenDisponible: regenAvl, bombaRegenEnMarcha: regenRun, nivelSumideroRegen: this.pv['EXT-LI-TK30038'].eu,
@@ -439,6 +440,7 @@ export class PLC {
     nivel('FIT-160305603', { H: num(an['FIT-160305603'].H, 768), L: num(an['FIT-160305603'].L, 235) }, 1280, { L: !fvAbierta });
     nivel('AIT-160305442', { H: p.ait442_H, HH: p.ait442_HH }, p.ait442_max);
     nivel('LIT-160305276', { HH: p.lit276_HH, H: p.lit276_H, L: p.lit276_L, LL: p.lit276_LL }, 11500);
+    nivel('AIT-160305288', { HH: p.ait288_HH, H: p.ait288_H, L: p.ait288_L, LL: p.ait288_LL }, 14);
     this.filtros.forEach((f, i) => {
       const tag = filtrosEquipo[i].transmisor_nivel;
       const inh = !!p.inhibir_alarmas_nivel_lavado && !(f.paso >= 2 && f.paso <= 4);

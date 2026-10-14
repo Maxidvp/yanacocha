@@ -271,13 +271,13 @@
         },
         {
           "tag": "16045-TK-30038",
-          "label": "TK-30038 sumidero regeneración",
+          "label": "TK-30038 (por otros)",
           "kind": "sumidero",
           "x": 53.8,
           "y": 13.1,
           "w": 11.0,
           "h": 10.0,
-          "nota": "Por otros. Contiene PU-30169/30170 (bombas de regeneración, confirma los tags de la filosofía frente a la SOE)"
+          "nota": "Por otros. Contiene PU-30169/30170: la filosofía las llama bombas de regeneración y la C&E rev002, bombas de dosificación de ácido; la SOE da PU-30212/30213 para regeneración. Identificación A CONFIRMAR."
         },
         {
           "tag": "16045-PU-30170",
@@ -285,7 +285,7 @@
           "kind": "bomba",
           "x": 53.6,
           "y": 12.7,
-          "nota": "Regeneración, por otros"
+          "nota": "Por otros – función A CONFIRMAR (regeneración según filosofía; dosificación de ácido según C&E)"
         },
         {
           "tag": "16045-PU-30169",
@@ -293,7 +293,7 @@
           "kind": "bomba",
           "x": 56.4,
           "y": 13.4,
-          "nota": "Regeneración, por otros"
+          "nota": "Por otros – función A CONFIRMAR (regeneración según filosofía; dosificación de ácido según C&E)"
         },
         {
           "tag": "16045-TK-30039",

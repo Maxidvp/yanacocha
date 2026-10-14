@@ -17,7 +17,7 @@ export interface CtxFiltro {
   p: Params;
   litEU: number;
   litMala: boolean;
-  /** LAHH del filtro activa (con su retardo) */
+  /** Alarma de nivel alto que pide lavado (LAHH según filosofía o LAH según C&E) activa */
   lahh: boolean;
   /** LAL del filtro activa */
   lal: boolean;
@@ -255,7 +255,7 @@ export class SecuenciaFiltro {
       case 3: {
         const t03 = p.T03_servicio_desde_ultimo_lavado_min * 60;
         if (ctx.lahh) {
-          this.ultimoMotivoLavado = 'LAHH nivel de filtro';
+          this.ultimoMotivoLavado = `${p.lavado_por_LAH ? 'LAH' : 'LAHH'} nivel de filtro`;
           this.irA(4);
         } else if (this.tServicioLavado >= t03) {
           this.ultimoMotivoLavado = 'T03 vencido';

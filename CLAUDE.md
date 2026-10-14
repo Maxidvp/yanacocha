@@ -21,7 +21,8 @@ cargalos desde los JSON.
 | `data/electrico.json` | Lista de cargas, tensiones, tablero de instrumentos, JBs, estaciones locales |
 | `data/proceso_y_logica.json` | **Filosofía de control rev005**: base de diseño, flujo, bypass FIC/FY-603, compresores, soplantes, agitadores, secuencia de filtros de 17 pasos con matriz de válvulas, parámetros T03…T16/K03/K06/K09, Hold/Resume, lógica maestra |
 | `data/alarmas.json` | Lista de alarmas analógicas (con retardos y condición de activación) y digitales (falla al arrancar, ZAO/ZAC) |
-| `data/causa_efecto.json` | Matriz causa-efecto (disparos T con reset del operador) |
+| `data/causa_efecto.json` | Matriz causa-efecto (disparos T con reset del operador) – verificada contra el original (Training Manual pág. 57) |
+| `data/soe.json` | Sequence of Operations Chart de la C&E rev002 (Training Manual pág. 58): válvulas, equipos comunes, presets y caudales por paso |
 | `data/layout.json` | Posiciones (m) de equipos e instrumentos digitalizadas del layout 26442-ST3-J2-16045-00001 h.11/12 |
 | `docs/FALTANTES.md` | Contradicciones entre documentos, datos que siguen faltando y hallazgos del simulador |
 | `docs/MODELO.md` | Ecuaciones y supuestos del modelo de proceso implementado |

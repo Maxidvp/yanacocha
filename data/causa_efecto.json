@@ -1,5 +1,6 @@
 {
-  "fuente": "P-00260-PD-PCE-cause&effect-C(EAST) rev002 (en Training Manual)",
+  "fuente": "P-00260-PD-PCE-cause&effect-C(EAST) rev002 (21-Jul-2025), 26443-220-V1A-MLF0-00153 – Training Manual P-00260-PD-PCE-trainingmanual-C(EAST), pág. 57",
+  "estado": "VERIFICADA contra la matriz original: las 15 causas y sus efectos coinciden con la reconstrucción anterior.",
   "leyenda": {
     "T": "disparo, requiere reset del operador",
     "X": "inicia acción"
@@ -16,99 +17,41 @@
     "E12": "Paran bombas de retrolavado 16045-PU-30407/30408",
     "E13": "Paran compresores 16045-CM-30011/30012"
   },
+  "efectos_detalle": {
+    "E1": { "columna": 1, "descripcion_original": "RO Permeate Pumps Stop", "tag": "16045-PU-30084/30085/30214", "pid": "26442-ST3-M6-16045-04007 (by others)" },
+    "E2": { "columna": 2, "descripcion_original": "HDS Transfer Pumps Stop", "tag": "16045-PU-30401/30402", "pid": "26442-ST3-M6-16045-05003 (by others)" },
+    "E3": { "columna": 3, "descripcion_original": "Primary TW Tank Agitator Stop", "tag": "10645-AG-30006", "pid": "26443-220-V1A-MLF0-00062 (Sheet 7 of 12)", "nota": "10645 es errata de 16045" },
+    "E4": { "columna": 4, "descripcion_original": "Acid Dosing Stops (by others)", "tag": "16045-PU-30169/30170", "pid": "26443-220-V1A-MLF0-00062 (Sheet 7 of 12)", "nota": "La filosofía usa PU-30169/30170 para las bombas de REGENERACIÓN – A CONFIRMAR" },
+    "E5": { "columna": 5, "descripcion_original": "Caustic Dosing Stop (by others)", "tag": "16045-PU-30210/30211", "pid": "26443-220-V1A-MLF0-00062 (Sheet 7 of 12)" },
+    "E6": { "columna": 6, "descripcion_original": "AMF unit to Backwash Required (ref. Note 2)", "tag": "10645-FL-30035", "pid": "26443-220-V1A-MLF0-00062 (Sheet 8 of 12)" },
+    "E7": { "columna": 7, "descripcion_original": "AMF unit to Backwash Required (ref. Note 2)", "tag": "10645-FL-30036", "pid": "26443-220-V1A-MLF0-00062 (Sheet 9 of 12)" },
+    "E8": { "columna": 8, "descripcion_original": "AMF unit to Backwash Required (ref. Note 2)", "tag": "10645-FL-30037", "pid": "26443-220-V1A-MLF0-00062 (Sheet 10 of 12)" },
+    "E9": { "columna": 9, "descripcion_original": "AMF unit to Backwash Required (ref. Note 2)", "tag": "10645-FL-30038", "pid": "26443-220-V1A-MLF0-00062 (Sheet 11 of 12)" },
+    "E10": { "columna": 10, "descripcion_original": "Active Media Filter Air Scour Blowers Stop", "tag": "16045-BL-30008/3009", "pid": "26443-220-V1A-MLF0-00062 (Sheet 8 of 12)" },
+    "E11": { "columna": 11, "descripcion_original": "Secondary TW Tank Agitator Stop", "tag": "10645-AG-30007", "pid": "26443-220-V1A-MLF0-00062 (Sheet 12 of 12)" },
+    "E12": { "columna": 12, "descripcion_original": "Active Media Filter Backwash Pumps Stop", "tag": "16045-PU-30407/30408", "pid": "26442-ST3-M6-16045-05008 (By others)" },
+    "E13": { "columna": 13, "descripcion_original": "Primary TW Mixing Tank Compressor Stop", "tag": "16045-CM-30006/30005", "pid": "26443-220-V1A-MLF0-00062 (Sheet 7 of 14)", "nota": "El P&ID y la lista de cargas usan CM-30011/30012 – errata probable en la C&E" }
+  },
   "causas": [
-    {
-      "causa": "LAHH-160305601 nivel TK primario muy alto",
-      "efectos": {
-        "E1": "T",
-        "E2": "T"
-      }
-    },
-    {
-      "causa": "LAL-160305601 nivel TK primario bajo",
-      "efectos": {
-        "E3": "T"
-      }
-    },
-    {
-      "causa": "AAHH-160305442 conductividad efluente TK primario muy alta",
-      "efectos": {
-        "E1": "T",
-        "E2": "T"
-      }
-    },
-    {
-      "causa": "AAHH-160305600 pH muy alto",
-      "efectos": {
-        "E5": "T"
-      }
-    },
-    {
-      "causa": "AALL-160305600 pH muy bajo",
-      "efectos": {
-        "E4": "T"
-      }
-    },
-    {
-      "causa": "FAHH-160305602 caudal aire compresores muy alto",
-      "efectos": {
-        "E13": "T"
-      }
-    },
-    {
-      "causa": "FALL-160305602 caudal aire compresores muy bajo",
-      "efectos": {
-        "E13": "T"
-      }
-    },
-    {
-      "causa": "FAHH-160305607 caudal aire soplantes muy alto",
-      "efectos": {
-        "E10": "T"
-      }
-    },
-    {
-      "causa": "FALL-160305607 caudal aire soplantes muy bajo",
-      "efectos": {
-        "E10": "T"
-      }
-    },
-    {
-      "causa": "LAHH-160305604 nivel filtro 30035",
-      "efectos": {
-        "E6": "X"
-      }
-    },
-    {
-      "causa": "LAHH-160305615 nivel filtro 30036",
-      "efectos": {
-        "E7": "X"
-      }
-    },
-    {
-      "causa": "LAHH-160305623 nivel filtro 30037",
-      "efectos": {
-        "E8": "X"
-      }
-    },
-    {
-      "causa": "LAHH-160305631 nivel filtro 30038",
-      "efectos": {
-        "E9": "X"
-      }
-    },
-    {
-      "causa": "LAL-160305276 nivel TK secundario bajo",
-      "efectos": {
-        "E11": "T"
-      }
-    },
-    {
-      "causa": "LALL-160305276 nivel TK secundario muy bajo",
-      "efectos": {
-        "E12": "T"
-      }
-    }
+    { "linea": 1, "causa": "LAHH-160305601 nivel TK primario muy alto", "instrumento": "LIT-160305601", "alarma_impresa": "LAHH-160305601", "pid": "26443-220-V1A-MLF0-00062 (Sheet 7 of 12)", "efectos": { "E1": "T", "E2": "T" } },
+    { "linea": 2, "causa": "LAL-160305601 nivel TK primario bajo", "instrumento": "LIT-160305601", "alarma_impresa": "LAL-160305601", "pid": "26443-220-V1A-MLF0-00062 (Sheet 7 of 12)", "efectos": { "E3": "T" } },
+    { "linea": 3, "causa": "AAHH-160305442 conductividad efluente TK primario muy alta", "instrumento": "AIT-160305442", "alarma_impresa": "AAHH-160305442", "pid": "26443-220-V1A-MLF0-00063 (Sheet 7 of 14)", "efectos": { "E1": "T", "E2": "T" } },
+    { "linea": 4, "causa": "AAHH-160305600 pH muy alto", "instrumento": "AIT-160305600", "alarma_impresa": "AAHH-160305600", "pid": "26443-220-V1A-MLF0-00062 (Sheet 7 of 12)", "efectos": { "E5": "T" } },
+    { "linea": 5, "causa": "AALL-160305600 pH muy bajo", "instrumento": "AIT-160305600", "alarma_impresa": "AALL-160305600", "pid": "26443-220-V1A-MLF0-00062 (Sheet 7 of 12)", "efectos": { "E4": "T" } },
+    { "linea": 6, "causa": "FAHH-160305602 caudal aire compresores muy alto", "instrumento": "FIT-160305602", "alarma_impresa": "FAHH-160305602", "pid": "26443-220-V1A-MLF0-00063 (Sheet 7 of 12)", "efectos": { "E13": "T" } },
+    { "linea": 7, "causa": "FALL-160305602 caudal aire compresores muy bajo", "instrumento": "FIT-160305602", "alarma_impresa": "FALL-160305602", "pid": "26443-220-V1A-MLF0-00063 (Sheet 7 of 12)", "efectos": { "E13": "T" } },
+    { "linea": 8, "causa": "FAHH-160305607 caudal aire soplantes muy alto", "instrumento": "FIT-160305607", "alarma_impresa": "FAL-160305607", "nota": "La matriz imprime FAL-160305607 en la fila High-High (errata)", "pid": "26443-220-V1A-MLF0-00062 (Sheet 8 of 12)", "efectos": { "E10": "T" } },
+    { "linea": 9, "causa": "FALL-160305607 caudal aire soplantes muy bajo", "instrumento": "FIT-160305607", "alarma_impresa": "FAL-160305607", "nota": "La matriz imprime FAL en la fila Low-Low", "pid": "26443-220-V1A-MLF0-00062 (Sheet 8 of 12)", "efectos": { "E10": "T" } },
+    { "linea": 10, "causa": "LAHH-160305604 nivel filtro 30035", "instrumento": "LIT-160305604", "alarma_impresa": "LAH-160305604", "nota": "Descripción 'Level High-High' pero la alarma impresa es LAH (1613 mm); la filosofía usa LAHH (1763 mm)", "pid": "26443-220-V1A-MLF0-00062 (Sheet 8 of 12)", "efectos": { "E6": "X" } },
+    { "linea": 11, "causa": "LAHH-160305615 nivel filtro 30036", "instrumento": "LIT-160305615", "alarma_impresa": "LAH-160305615", "pid": "26443-220-V1A-MLF0-00062 (Sheet 9 of 12)", "efectos": { "E7": "X" } },
+    { "linea": 12, "causa": "LAHH-160305623 nivel filtro 30037", "instrumento": "LIT-160305623", "alarma_impresa": "LAH160-305623", "pid": "26443-220-V1A-MLF0-00062 (Sheet 10 of 12)", "efectos": { "E8": "X" } },
+    { "linea": 13, "causa": "LAHH-160305631 nivel filtro 30038", "instrumento": "LIT-160305631", "alarma_impresa": "LAH-160305631", "pid": "26443-220-V1A-MLF0-00062 (Sheet 11 of 12)", "efectos": { "E9": "X" } },
+    { "linea": 14, "causa": "LAL-160305276 nivel TK secundario bajo", "instrumento": "LIT-160305276", "alarma_impresa": "LAL-160305276", "pid": "26443-220-V1A-MLF0-00062 (Sheet 12 of 12)", "efectos": { "E11": "T" } },
+    { "linea": 15, "causa": "LALL-160305276 nivel TK secundario muy bajo", "instrumento": "LIT-160305276", "alarma_impresa": "LALL-160305276", "pid": "26443-220-V1A-MLF0-00062 (Sheet 12of 12)", "efectos": { "E12": "T" } }
   ],
-  "nota": "Asignación causa→efecto reconstruida desde el texto del PDF (columnas no legibles en texto plano): VERIFICAR contra la matriz original. La matriz cita LAH (no LAHH) en filtros; la filosofía usa LAHH para 'Backwashing Required'."
+  "notas_originales": [
+    "X = Action is intiated upon Cause. T = trip which must be reset by the operator",
+    "Reference Active Media Filter Sequence of Operations chart in the last tab of this Cause & Effect document"
+  ],
+  "nota": "Verificada contra el original. Erratas del documento: prefijo 10645 por 16045; filas 8/9 imprimen FAL-160305607 para HH y LL; filas 10–13 dicen 'High-High' pero imprimen LAH; compresores como CM-30006/30005; bombas PU-30169/30170 asignadas a dosificación de ácido."
 }

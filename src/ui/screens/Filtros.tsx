@@ -1,4 +1,4 @@
-import { filtrosEquipo, proceso, COLUMNA_SECUENCIA, FUNCIONES_VALVULA, type FuncionValvula } from '../../data';
+import { filtrosEquipo, proceso, soe, COLUMNA_SECUENCIA, FUNCIONES_VALVULA, type FuncionValvula } from '../../data';
 import { useEngine, useSim } from '../../store/sim';
 import type { Engine } from '../../sim/engine';
 import { CONST_PLANTA } from '../../sim/process/plant';
@@ -153,9 +153,28 @@ function Matriz({ e, i }: { e: Engine; i: number }) {
               </tr>
             );
           })}
+          {Object.entries(soe.columnas.comunes).map(([k, txt]) => (
+            <tr key={k}>
+              <td style={{ fontSize: '0.8rem' }}>{txt.replace(/ \(by others\)/, ' (otros)')}</td>
+              {soe.pasos.map((p) => {
+                const v = p.comunes[k];
+                return <td key={p.paso} className={`${v === 'ON' || v === 'ST' || v === 'O' ? 'o' : 'c'}${p.paso === s.paso ? ' cur' : ''}`} style={{ fontSize: '0.72rem' }}>{v === 'Off' || v === 'Cl' ? '·' : v}</td>;
+              })}
+              <td />
+            </tr>
+          ))}
           <tr>
-            <td>Equipos</td>
-            {SECUENCIA.map((p) => <td key={p.paso} className={`c${p.paso === s.paso ? ' cur' : ''}`} style={{ fontSize: '0.7rem' }} title={Object.entries(p.equipos).map(([k, v]) => `${k}: ${v}`).join(', ')}>{Object.keys(p.equipos).length ? '●' : ''}</td>)}
+            <td style={{ fontSize: '0.8rem' }}>Preset SOE / filosofía</td>
+            {soe.pasos.map((p) => {
+              const pf = SECUENCIA.find((x) => x.paso === p.paso)?.timer?.match(/(\d+) ?(s|min)/);
+              const filo = pf ? Number(pf[1]) * (pf[2] === 'min' ? 60 : 1) : null;
+              const difiere = p.preset_s !== null && filo !== null && p.preset_s !== filo;
+              return (
+                <td key={p.paso} className={p.paso === s.paso ? 'cur' : ''} style={{ fontSize: '0.68rem', textAlign: 'center', color: difiere ? 'var(--crit)' : 'var(--ink-3)' }} title={difiere ? `SOE ${p.preset} ≠ filosofía ${filo} s` : p.preset}>
+                  {p.preset_s === null ? '' : p.preset_s >= 3600 ? `${p.preset_s / 60}m` : p.preset_s}{difiere ? `/${filo}` : ''}
+                </td>
+              );
+            })}
             <td />
           </tr>
         </tbody>
@@ -290,9 +309,9 @@ export function Filtros() {
       </div>
 
       <div className="card">
-        <h3>Matriz de válvulas de la secuencia (filosofía rev005) · columna resaltada = paso actual</h3>
+        <h3>Matriz de la secuencia (filosofía rev005 + SOE de la C&amp;E rev002) · columna resaltada = paso actual</h3>
         <Matriz e={e} i={i} />
-        <div className="note" style={{ marginTop: 6 }}>{NOMBRE_FN.SEVI} (SEVI) · {NOMBRE_FN.SEVO} (SEVO) · {NOMBRE_FN.BWI} (BWI) · {NOMBRE_FN.BWO} (BWO) · {NOMBRE_FN.AIRI} (AIRI) · {NOMBRE_FN.RI} (RI) · {NOMBRE_FN.FRO}</div>
+        <div className="note" style={{ marginTop: 6 }}>Válvulas idénticas en filosofía y SOE. En rojo los presets que difieren (T13, T14: se usa la filosofía). ST/SP = comando de marcha/parada al MCC; X = depende de los otros filtros. {NOMBRE_FN.SEVI} (SEVI) · {NOMBRE_FN.SEVO} (SEVO) · {NOMBRE_FN.BWI} (BWI) · {NOMBRE_FN.BWO} (BWO) · {NOMBRE_FN.AIRI} (AIRI) · {NOMBRE_FN.RI} (RI) · {NOMBRE_FN.FRO}</div>
       </div>
 
       <div className="grid g2">

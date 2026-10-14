@@ -1,5 +1,5 @@
 {
-  "fuente": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+  "fuente": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (26443-220-V1A-MLF0-00155/00156) – Training Manual págs. 87–88",
   "analogicas": {
     "FIT-160305602": {
       "HH": 385,
@@ -68,6 +68,29 @@
         "HH": 5,
         "H": 30
       },
+      "alcance": "por otros"
+    },
+    "LIT-160305276": {
+      "HH": "por Bechtel",
+      "H": "por Bechtel",
+      "L": "por Bechtel",
+      "LL": "por Bechtel",
+      "retardo_s": {
+        "HH": 3,
+        "H": 5,
+        "L": 5,
+        "LL": 3
+      },
+      "activa": "Always",
+      "alcance": "por otros"
+    },
+    "AIT-160305288": {
+      "HH": "por Bechtel",
+      "H": "por Bechtel",
+      "L": "por Bechtel",
+      "LL": "por Bechtel",
+      "retardo_s": 15,
+      "activa": "Always",
       "alcance": "por otros"
     }
   },
@@ -399,5 +422,20 @@
       "retardo_s": 15
     }
   ],
-  "nota": "Setpoints y retardos ajustables por ingeniería. La alarm list tiene descripciones AIRI/BWO cruzadas (610↔614); usar tags del P&ID rev003+."
+  "nota": "Setpoints y retardos ajustables por ingeniería. La alarm list tiene descripciones AIRI/BWO cruzadas (610↔614); usar tags del P&ID rev003+. Verificado contra págs. 87–88 del Training Manual: setpoints, retardos y condiciones de activación coinciden; se agregaron AIT-160305288 y LIT-160305276 (SP por Bechtel).",
+  "filtros_nivel_pct": {
+    "HH": 63,
+    "H": 58,
+    "L": 10,
+    "LL": 5,
+    "normal": "39 % (1100 mm) a 53 % (1500 mm)",
+    "nota": "Los % del alarm list implican un span de ~2800 mm; el índice de instrumentos da rango 0–2980 mm. La nota c del alarm list remite a 26443-220-V1A-MLF0-00196 (EAST Radar Level Indicating Transmitter) para el rango de calibración."
+  },
+  "erratas_digitales": [
+    "Las líneas 13–14/27–28/41–42/55–56 llaman 'Air Inlet' a HV-160305610/618/626/634 y las 21–22/35–36/49–50/63–64 'Backwash Outlet' a HV-160305614/622/630/638 (cruzado respecto del P&ID rev005 y la I/O list)",
+    "Línea 24: ZSC-160305616 con alarma ZAC-160305608",
+    "Línea 30: ZSC-160305619 con alarma ZAC-160305611",
+    "Líneas 35–36: ZSO/ZSC-160305622 con alarmas ZAO/ZAC-160305614",
+    "Línea 43: ZSO-160305627 con alarma ZAO-160305611"
+  ]
 }

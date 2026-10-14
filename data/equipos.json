@@ -421,7 +421,8 @@
     "presion_barg": 2.0,
     "succion": "TK-30016",
     "comando": "PCS por secuencia (paso 10)",
-    "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual)"
+    "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual)",
+    "nota": "C&E rev002 efecto 12 confirma PU-30407/30408 (P&ID 26442-ST3-M6-16045-05008); la SOE las cita como PU-30263/302364 (errata)."
   },
   {
     "tag": "16045-PU-30169/30170",
@@ -430,7 +431,7 @@
     "caudal_m3h": 137,
     "succion": "Sumidero de regeneración",
     "comando": "Pasos 12–13",
-    "nota": "La SOE las cita como 16045-PU-30212/30213 – A CONFIRMAR",
+    "nota": "A CONFIRMAR: la SOE las cita como 16045-PU-30212/30213 y la C&E rev002 asigna PU-30169/30170 a la dosificación de ácido (efecto 4).",
     "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual)"
   },
   {

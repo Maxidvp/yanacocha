@@ -90,6 +90,15 @@ describe('Integración', () => {
     expect(e.planta.filtros[0].valvulas.SEVI.pos).toBe(0);
   });
 
+  test('lavado_por_LAH: el filtro pide lavado al superar 1613 mm (LAH) sin llegar a LAHH', () => {
+    const e = new Engine('normal');
+    e.setParam('lavado_por_LAH', 1);
+    e.io.forzar('LIT-160305604', 4 + (16 * 1700) / 2980);
+    e.avanzar(10);
+    expect(e.plc.filtros[0].paso).toBeGreaterThanOrEqual(4);
+    expect(e.plc.filtros[0].ultimoMotivoLavado).toMatch(/^LAH /);
+  });
+
   test('forzado de una entrada: el PLC ve el valor forzado', () => {
     const e = new Engine('normal');
     e.io.forzar('LIT-160305604', 4 + (16 * 1800) / 2980);

@@ -14,7 +14,7 @@ export function Alarmas() {
     const pr = { ALTA: 0, MEDIA: 1, BAJA: 2 };
     return Number(a.reconocida) - Number(b.reconocida) || pr[a.def.prioridad] - pr[b.def.prioridad] || (b.tActivacion ?? 0) - (a.tActivacion ?? 0);
   });
-  const efectos = Object.keys(causaEfecto.efectos);
+  const efectosCols = Object.keys(causaEfecto.efectos_detalle);
   const disparosActivos = Object.values(e.plc.disparos).filter((d) => d.activo);
   return (
     <div className="screen">
@@ -72,22 +72,41 @@ export function Alarmas() {
       {vista === 'ce' && (
         <div className="stack">
           <div className="note">
-            Matriz {causaEfecto.fuente}. T = disparo enclavado hasta reset del operador · X = inicia acción. Celda roja = efecto disparado; fondo rosado = causa activa. {causaEfecto.nota}
+            <span className="pill on">Verificada</span> {causaEfecto.fuente}. {causaEfecto.estado} T = disparo enclavado hasta reset del operador · X = inicia acción. Celda roja = efecto disparado; fondo rosado = causa activa.
           </div>
           <div className="scroll-x card">
             <table className="t ce">
               <thead>
-                <tr><th>Causa</th>{efectos.map((ef) => <th key={ef} title={causaEfecto.efectos[ef]}>{ef}</th>)}</tr>
+                <tr>
+                  <th>#</th>
+                  <th>Causa</th>
+                  <th>Instrumento</th>
+                  <th>Alarma (impresa)</th>
+                  {efectosCols.map((ef) => (
+                    <th key={ef} title={`${causaEfecto.efectos_detalle[ef]?.descripcion_original} · ${causaEfecto.efectos_detalle[ef]?.tag}`} style={{ textAlign: 'center' }}>
+                      {causaEfecto.efectos_detalle[ef]?.columna ?? ef}
+                    </th>
+                  ))}
+                </tr>
               </thead>
               <tbody>
                 {causaEfecto.causas.map((c) => {
                   const id = c.causa.split(' ')[0];
                   const activa = A.activa(id);
                   return (
-                    <tr key={c.causa}>
-                      <td style={{ textAlign: 'left', fontFamily: 'var(--font-ui)' }} className={activa ? 'on-cause' : ''}>{c.causa}</td>
-                      {efectos.map((ef) => {
-                        const v = c.efectos[ef] ?? (ef === 'E6-E9' ? (['E6', 'E7', 'E8', 'E9'].map((x) => c.efectos[x]).find(Boolean) ?? '') : '');
+                    <tr key={c.linea}>
+                      <td className="mono">{c.linea}</td>
+                      <td style={{ textAlign: 'left', fontFamily: 'var(--font-ui)' }} className={activa ? 'on-cause' : ''}>
+                        {c.causa.replace(id, '').trim()}
+                        {c.nota && <div className="dim" style={{ fontSize: '0.74rem' }}>{c.nota}</div>}
+                      </td>
+                      <td className="mono" style={{ textAlign: 'left' }}>{c.instrumento}</td>
+                      <td className="mono" style={{ textAlign: 'left' }}>
+                        {c.alarma_impresa}
+                        {c.alarma_impresa !== id && <div className="dim" style={{ fontSize: '0.72rem' }}>sim: {id}</div>}
+                      </td>
+                      {efectosCols.map((ef) => {
+                        const v = c.efectos[ef] ?? '';
                         const disp = v === 'T' && e.plc.disparos[ef]?.activo && e.plc.disparos[ef]?.causa === c.causa;
                         return <td key={ef} className={disp ? 'tripped' : activa && v ? 'on-cause' : ''}>{v}</td>;
                       })}
@@ -99,23 +118,32 @@ export function Alarmas() {
           </div>
           <div className="card">
             <h3>Efectos</h3>
-            <table className="t">
-              <thead><tr><th>Efecto</th><th>Acción</th><th>Estado</th><th>Causa</th><th>Desde</th></tr></thead>
-              <tbody>
-                {Object.entries(causaEfecto.efectos).map(([ef, txt]) => {
-                  const d = e.plc.disparos[ef];
-                  return (
-                    <tr key={ef}>
-                      <td className="mono">{ef}</td>
-                      <td>{txt}</td>
-                      <td>{d ? (d.activo ? <span className="pill trip">Disparado</span> : <span className="pill on">Normal</span>) : <span className="pill info">Acción X</span>}</td>
-                      <td>{d?.causa ?? ''}</td>
-                      <td className="mono">{d?.t !== null && d?.t !== undefined ? tiempoSim(d.t) : ''}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <div className="scroll-x">
+              <table className="t">
+                <thead><tr><th>#</th><th>Efecto (original)</th><th>Tag</th><th>P&amp;ID</th><th>Estado</th><th>Causa</th><th>Desde</th></tr></thead>
+                <tbody>
+                  {efectosCols.map((ef) => {
+                    const det = causaEfecto.efectos_detalle[ef];
+                    const d = e.plc.disparos[ef];
+                    return (
+                      <tr key={ef}>
+                        <td className="mono">{det?.columna}</td>
+                        <td>
+                          {det?.descripcion_original}
+                          {det?.nota && <div style={{ fontSize: '0.74rem' }}>{/A CONFIRMAR|errata probable/i.test(det.nota) ? <span className="badge A_CONFIRMAR">A confirmar</span> : <span className="badge DOC">Errata</span>} {det.nota}</div>}
+                        </td>
+                        <td className="mono" style={{ fontSize: '0.8rem' }}>{det?.tag}</td>
+                        <td className="dim" style={{ fontSize: '0.78rem' }}>{det?.pid}</td>
+                        <td>{d ? (d.activo ? <span className="pill trip">Disparado</span> : <span className="pill on">Normal</span>) : <span className="pill info">Acción X</span>}</td>
+                        <td>{d?.causa ?? ''}</td>
+                        <td className="mono">{d?.t !== null && d?.t !== undefined ? tiempoSim(d.t) : ''}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <div className="note" style={{ marginTop: 6 }}>{causaEfecto.nota}</div>
           </div>
         </div>
       )}

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { proceso, COLUMNA_SECUENCIA, FUNCIONES_VALVULA } from '../src/data';
+import { proceso, soe, causaEfecto, COLUMNA_SECUENCIA, FUNCIONES_VALVULA } from '../src/data';
 import { defaultParams } from '../src/sim/params';
 import { SecuenciaFiltro, matrizPaso, type CtxFiltro, type Valvulas } from '../src/sim/plc/filterSeq';
 
@@ -43,6 +43,41 @@ describe('Matriz de válvulas de la secuencia', () => {
       const m = matrizPaso(s.paso);
       for (const fn of FUNCIONES_VALVULA) expect(m[fn], `paso ${s.paso} ${fn}`).toBe(s.valvulas[COLUMNA_SECUENCIA[fn]] === 'O');
     }
+  });
+});
+
+describe('Consistencia entre documentos', () => {
+  test('la SOE de la C&E rev002 tiene la misma matriz de válvulas que la filosofía rev005', () => {
+    expect(soe.pasos).toHaveLength(17);
+    for (const s of soe.pasos) {
+      const m = matrizPaso(s.paso);
+      for (const fn of FUNCIONES_VALVULA) expect(s.valvulas[COLUMNA_SECUENCIA[fn]] === 'O', `paso ${s.paso} ${fn}`).toBe(m[fn]);
+    }
+    expect(Object.values(soe.hold.valvulas).every((v) => v === 'Cl')).toBe(true);
+  });
+
+  test('presets: solo T13 y T14 difieren entre SOE y filosofía', () => {
+    const p = defaultParams();
+    const filo: Record<number, number> = { 3: p.T03_servicio_desde_ultimo_lavado_min * 60, 6: p.T06_s, 7: p.T07_s, 8: p.T08_s, 9: p.T09_s, 10: p.T10_s, 11: p.T11_s, 12: p.T12_s, 13: p.T13_s, 14: p.T14_s, 15: p.T15_s, 16: p.T16_s };
+    const difieren = soe.pasos.filter((s) => s.preset_s !== null && filo[s.paso] !== s.preset_s).map((s) => s.paso);
+    expect(difieren).toEqual([13, 14]);
+  });
+
+  test('equipos comunes de la SOE coinciden con los pedidos de la secuencia', () => {
+    const fila = (n: number) => soe.pasos.find((s) => s.paso === n)!.comunes;
+    expect(fila(7).soplantes).toBe('ST');
+    expect(fila(8).drenaje_soplantes).toBe('O');
+    expect(fila(10).bombas_retrolavado).toBe('ON');
+    expect([fila(12).bombas_regeneracion, fila(13).bombas_regeneracion]).toEqual(['ON', 'ON']);
+    expect(fila(13).bombas_naocl).toBe('ON');
+    for (const s of soe.pasos.filter((x) => x.paso >= 5 && x.paso !== 8)) expect(s.comunes.drenaje_soplantes).toBe('Cl');
+  });
+
+  test('matriz causa-efecto: 15 causas, 13 efectos, disparos T y acciones X', () => {
+    expect(causaEfecto.causas).toHaveLength(15);
+    expect(Object.keys(causaEfecto.efectos_detalle)).toHaveLength(13);
+    const x = causaEfecto.causas.filter((c) => Object.values(c.efectos).includes('X')).map((c) => c.linea);
+    expect(x).toEqual([10, 11, 12, 13]);
   });
 });
 
@@ -161,6 +196,16 @@ describe('Secuencia de filtro – recorrido completo de los 17 pasos', () => {
     estado.lit = 1700;
     correr(1 + p.T10_s + p.T11_s + 2);
     expect(f.paso).toBe(15);
+  });
+
+  test('con lavado_por_LAH el motivo registra LAH (interpretación de la C&E)', () => {
+    const { f, estado, correr } = banco(3);
+    const q = { ...p, lavado_por_LAH: 1 };
+    Object.assign(p, q);
+    estado.lahh = true;
+    correr(0.5);
+    expect(f.ultimoMotivoLavado).toMatch(/^LAH /);
+    Object.assign(p, { lavado_por_LAH: 0 });
   });
 
   test('LAHH en servicio pasa a Backwashing Required; K03 marca regeneración', () => {

@@ -1,0 +1,71 @@
+{
+  "fuente": "Active Media Filters Sequence of Operations Chart – última hoja de P-00260-PD-PCE-cause&effect-C(EAST) rev002 (26443-220-V1A-MLF0-00153), Training Manual pág. 58",
+  "columnas": {
+    "valvulas": {
+      "SEVI": "SEVI (Service Inlet) HV-160305608/16/24/32",
+      "RI": "RI (Regen Inlet) HV-160305609/17/25/33",
+      "BWO": "BWO (Backwash Outlet) HV-160305614/22/30/38",
+      "RO/RW": "RO/RW (Rinse Outlet/ Regen Waste) HV-160305611/19/27/35",
+      "BWI": "BWI (Back Wash Inlet) HV-160305612/20/28/36",
+      "SEVO": "SEVO (Service Outlet) HV-160305613/21/29/37",
+      "AIRI": "AIRI (Air Inlet) HV-160305610/18/26/34"
+    },
+    "comunes": {
+      "bombas_retrolavado": "Active Media Filter Backwash Pumps 16045-PU-30263/302364 (by others)",
+      "bombas_naocl": "Sodium Hypochlorite Pumps 16045-PU-30236/30237 (by others)",
+      "bombas_regeneracion": "Active Media Filter Regeneration Pumps 16045-PU-30212/30213 (by others)",
+      "soplantes": "Air Scour Blowers 16045-BL-30008/30009",
+      "drenaje_soplantes": "Air Scour Blowers Drain valve HV-160305639"
+    },
+    "caudales": {
+      "entrada_m3h": "Active Media Filter Inlet Flow (m3/h)",
+      "aire_Nm3h": "Air Scour Flow FIT-160305014 (Nm3/h)",
+      "retrolavado_m3h": "Backwash Flow (by others) (m3/h)"
+    }
+  },
+  "leyenda": {
+    "O": "Valve Open command",
+    "Cl": "Valve Closed command",
+    "ST": "Start Command to MCC (by others)",
+    "SP": "Stop Command to MCC (by others)",
+    "ON/OFF": "Motor & Motor Control by others",
+    "X": "Status of device is dependent on other Active Media units' status or sequence step"
+  },
+  "pasos": [
+    { "paso": 0, "nombre": "Offline", "preset": "N/A", "preset_s": null, "entrada_m3h": 0, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "X", "bombas_naocl": "X", "bombas_regeneracion": "X", "soplantes": "X", "drenaje_soplantes": "X" } },
+    { "paso": 1, "nombre": "Standby", "preset": "N/A", "preset_s": null, "entrada_m3h": 0, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "X", "bombas_naocl": "X", "bombas_regeneracion": "X", "soplantes": "X", "drenaje_soplantes": "X" } },
+    { "paso": 2, "nombre": "Service Pending", "preset": "N/A", "preset_s": null, "entrada_m3h": 0, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "X", "bombas_naocl": "X", "bombas_regeneracion": "X", "soplantes": "X", "drenaje_soplantes": "X" } },
+    { "paso": 3, "nombre": "Service", "preset": "1440 min", "preset_s": 86400, "entrada_m3h": 443, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "O", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "O", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "X", "bombas_naocl": "X", "bombas_regeneracion": "X", "soplantes": "X", "drenaje_soplantes": "X" } },
+    { "paso": 4, "nombre": "Backwashing Required", "preset": "N/A", "preset_s": null, "entrada_m3h": 443, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "O", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "O", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "X", "bombas_naocl": "X", "bombas_regeneracion": "X", "soplantes": "X", "drenaje_soplantes": "X" } },
+    { "paso": 5, "nombre": "Backwashing Pending", "preset": "N/A", "preset_s": null, "entrada_m3h": 0, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "SP", "drenaje_soplantes": "Cl" } },
+    { "paso": 6, "nombre": "Drain Down", "preset": "900 secs.", "preset_s": 900, "entrada_m3h": 0, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "O", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "SP", "drenaje_soplantes": "Cl" } },
+    { "paso": 7, "nombre": "Air Scour", "preset": "600 secs.", "preset_s": 600, "entrada_m3h": 0, "aire_Nm3h": 2688, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "O" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "ST", "drenaje_soplantes": "Cl" } },
+    { "paso": 8, "nombre": "Dwell", "preset": "180 secs.", "preset_s": 180, "entrada_m3h": 0, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "SP", "drenaje_soplantes": "O" } },
+    { "paso": 9, "nombre": "Refill", "preset": "540 secs.", "preset_s": 540, "entrada_m3h": 443, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "O", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "SP", "drenaje_soplantes": "Cl" } },
+    { "paso": 10, "nombre": "Backwash", "preset": "600 secs.", "preset_s": 600, "entrada_m3h": 0, "aire_Nm3h": 0, "retrolavado_m3h": 1562, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "O", "RO/RW": "Cl", "BWI": "O", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "ON", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "SP", "drenaje_soplantes": "Cl" } },
+    { "paso": 11, "nombre": "Settle", "preset": "180 secs.", "preset_s": 180, "entrada_m3h": 0, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "SP", "drenaje_soplantes": "Cl" } },
+    { "paso": 12, "nombre": "Recirculation", "preset": "60 secs.", "preset_s": 60, "entrada_m3h": 137, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "O", "BWO": "Cl", "RO/RW": "O", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "ON", "soplantes": "SP", "drenaje_soplantes": "Cl" } },
+    { "paso": 13, "nombre": "Regeneration", "preset": "1800 secs.", "preset_s": 1800, "entrada_m3h": 137, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "O", "BWO": "Cl", "RO/RW": "O", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "ON", "bombas_regeneracion": "ON", "soplantes": "SP", "drenaje_soplantes": "Cl" } },
+    { "paso": 14, "nombre": "Regeneration Completed", "preset": "60 secs.", "preset_s": 60, "entrada_m3h": 0, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "SP", "drenaje_soplantes": "Cl" } },
+    { "paso": 15, "nombre": "Fast Rinse", "preset": "300 secs.", "preset_s": 300, "entrada_m3h": 443, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "O", "RI": "Cl", "BWO": "Cl", "RO/RW": "O", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "SP", "drenaje_soplantes": "Cl" } },
+    { "paso": 16, "nombre": "Sequence Completed", "preset": "10 secs.", "preset_s": 10, "entrada_m3h": 0, "aire_Nm3h": 0, "retrolavado_m3h": 0, "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "SP", "drenaje_soplantes": "Cl" } }
+  ],
+  "hold": { "nombre": "Hold", "preset": "N/A", "valvulas": { "SEVI": "Cl", "RI": "Cl", "BWO": "Cl", "RO/RW": "Cl", "BWI": "Cl", "SEVO": "Cl", "AIRI": "Cl" }, "comunes": { "bombas_retrolavado": "Off", "bombas_naocl": "Off", "bombas_regeneracion": "Off", "soplantes": "SP", "drenaje_soplantes": "Cl" } },
+  "notas_originales": [
+    "All times and flows are approximate and are adjustable during startup.",
+    "Sequence applies to any of the the four (4) Active Media Filter units (10645-FL-30035/36/37/38)",
+    "O = Valve Open command ; Cl = Valve Closed command ; ST = Start Command to MCC (by others); SP= Stop Command to MCC (by others); ON/OFF = Motor & Motor Control by others",
+    "X = Status of device is dependent on other Active Media units' status or sequence step",
+    "Reference Project Doc. No. 26443-220-V1A-MLF0-00149 (P-00260-PD-PCE-control_philosophy (WEST) for details of Active Media Filter sequence",
+    "Sequence of Operations document is intended only as a quick reference guide for the actions in Active Media Filter sequence",
+    "Flow rates are given as reference only and are not controlled through PCS controllers. Flow rates will be adjusted during commissioning"
+  ],
+  "diferencias_con_filosofia": [
+    "T13 Regeneration: SOE 1800 s vs filosofía rev005 900 s",
+    "T14 Regeneration Completed: SOE 60 s vs filosofía rev005 300 s",
+    "Columnas BWO y AIRI con tags cruzados respecto del P&ID rev005 (BWO = HV-160305610/18/26/34 y AIRI = HV-160305614/22/30/38 en el P&ID)",
+    "Bombas: retrolavado PU-30263/302364 (P&ID y C&E: PU-30407/30408); regeneración PU-30212/30213 (filosofía: PU-30169/30170)",
+    "Caudal de aire etiquetado FIT-160305014 (el instrumento es FIT-160305607)",
+    "La nota 5 remite a la filosofía de la planta WEST"
+  ]
+}
