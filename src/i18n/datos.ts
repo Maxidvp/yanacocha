@@ -13,6 +13,13 @@ export const DATOS_EN: Record<string, string> = {
   'Presión descarga BL-30009': 'BL-30009 discharge pressure',
   '127 (138 en PRV)': '127 (138 at PRV)',
   motor: 'motor',
+  'P-00260-DW-AE-001P-C-EAST (estación de bypass FV-160305603)': 'P-00260-DW-AE-001P-C-EAST (FV-160305603 bypass station)',
+  'Aguas arriba de la estación FIT-160305603 / FV-160305603 (aislamiento de entrada)': 'Upstream of the FIT-160305603 / FV-160305603 station (inlet isolation)',
+  'Entre VBF-309704 y FIT-160305603 (drenaje de ½″)': 'Between VBF-309704 and FIT-160305603 (½″ drain)',
+  'Entre FV-160305603 y VBF-309708 (drenaje de ½″)': 'Between FV-160305603 and VBF-309708 (½″ drain)',
+  'Aguas abajo de la estación FIT-160305603 / FV-160305603 (aislamiento de salida)': 'Downstream of the FIT-160305603 / FV-160305603 station (outlet isolation)',
+  'Línea paralela de 24″ que rodea VBF-309704, FIT-160305603, FV-160305603 y VBF-309708': 'Parallel 24″ line bypassing VBF-309704, FIT-160305603, FV-160305603 and VBF-309708',
+  'Asignación al soplante por numeración consecutiva del tren de descarga (VCH, PI, VBF) – A CONFIRMAR con el P&ID': 'Assigned to the blower by the consecutive numbering of the discharge train (VCH, PI, VBF) – TO BE CONFIRMED with the P&ID',
   MANUAL: 'MANUAL',
 };
 

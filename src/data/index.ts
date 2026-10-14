@@ -73,6 +73,9 @@ export interface Valvula {
   senales?: Record<string, string>;
   rio?: string;
   estado_inicial?: string;
+  /** equipo al que pertenece (válvulas manuales de soplantes y compresores) */
+  equipo?: string;
+  ubicacion_en_proceso?: string;
   [k: string]: Json | undefined;
 }
 

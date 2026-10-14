@@ -83,6 +83,17 @@ export class Soplante {
   pDescarga = 0;
   tDescarga: number;
   kW = 0;
+  /** caudal aliviado por la PSV propia (descarga bloqueada), Nm³/h */
+  qPSV = 0;
+  /** retención VCH abierta (pasa caudal al colector) */
+  retencionAbierta = false;
+  /** lectura del manómetro local (con aislamiento y venteo), kPag */
+  piLectura = 0;
+  /** válvulas manuales del tren de descarga (valvulas.json → equipo) */
+  vDescarga: string | null = null;
+  vRetencion: string | null = null;
+  vAislPI: string | null = null;
+  vDrenPI: string | null = null;
   constructor(readonly motor: Motor, readonly psv: string, readonly pi: string, tAmb: number) {
     this.tDescarga = tAmb;
   }
@@ -173,6 +184,8 @@ export class Planta {
   pH15medido = 6.5;
   // ---- caudales principales (m³/h) ----
   qRO = 0; qHDS = 0; qEntrada = 0; qAFiltros = 0; qBypass = 0; qRebalse15 = 0; qDrenaje15 = 0;
+  /** estación de bypass: rama FIT/FV (VBF-309704/708), rodeo VBF-309709, drenajes VBA-309705/707, FIT-160305603 */
+  qBypassFV = 0; qBypass709 = 0; qDrenajeBypass = 0; qFIT603 = 0;
   qFiltrada = 0; qSumidero = 0; qHDS16 = 0;
   cFiltrada: Calidad = calidadVacia();
   cSumidero: Calidad = calidadVacia();
@@ -236,6 +249,16 @@ export class Planta {
       new Soplante(this.motores.get('16045-BL-30008')!, 'PSV-160305618', 'PI-160305605', tAmb),
       new Soplante(this.motores.get('16045-BL-30009')!, 'PSV-160305622', 'PI-160305606', tAmb),
     ];
+    // tren de descarga de cada soplante según la lista de válvulas
+    for (const s of this.soplantes) {
+      for (const v of valvulas) {
+        if (v.funcion !== 'MANUAL') continue;
+        if (v.equipo === s.motor.tag && v.tag.includes('-VCH-')) s.vRetencion = v.tag;
+        else if (v.equipo === s.motor.tag && v.tag.includes('-VBF-')) s.vDescarga = v.tag;
+        else if (v.descripcion === `Aislamiento ${s.pi}`) s.vAislPI = v.tag;
+        else if (v.descripcion === `Drenaje ${s.pi}`) s.vDrenPI = v.tag;
+      }
+    }
     this.filtros = filtrosEquipo.map((f, i) => {
       const vs = {} as Record<FuncionValvula, ValvulaOnOff>;
       for (const fn of FUNCIONES_VALVULA) vs[fn] = this.valvulasOnOff.get(f.valvulas[fn])!;
@@ -364,12 +387,21 @@ export class Planta {
     const acept = this.filtros.map((f) => f.valvulas.SEVI.apertura * 1400 * Math.min(1, Math.max(0, (ALTO_FILTRO_MM - 100 - f.h) / 300)));
     const aceptTot = acept.reduce((a, b) => a + b, 0);
     this.qAFiltros = Math.min(qVert, aceptTot);
-    const by1 = this.manuales['16045-VBF-309704'] && this.manuales['16045-VBF-309708'];
+    // estación de bypass (P&ID): VBF-309704 → VBA-309705 → FIT-160305603 → FV-160305603 → VBA-309707 → VBF-309708;
+    // VBF-309709 rodea toda la estación (ese caudal no lo mide la FIT ni lo controla la FV)
+    const m = this.manuales;
     const cabeza = Math.sqrt(Math.max(0, this.L15 / 1000 + 0.75) / (L_NORMAL_TK15 / 1000 + 0.75));
-    this.qBypass = (by1 ? Math.min(Q_FV_MAX, Q_FV_MAX * this.fv603.fraccionCv) * cabeza : 0) + (this.manuales['16045-VBF-309709'] ? 1300 * cabeza : 0);
+    this.qBypassFV = m['16045-VBF-309704'] && m['16045-VBF-309708'] ? Math.min(Q_FV_MAX, Q_FV_MAX * this.fv603.fraccionCv) * cabeza : 0;
+    this.qBypass709 = m['16045-VBF-309709'] ? 1300 * cabeza : 0;
+    // drenajes de ½″: con la carga del TK (VBF-309704 abierta); el de aguas abajo de la FV solo si la FV deja pasar
+    const dren705 = m['16045-VBA-309705'] && m['16045-VBF-309704'] ? p.q_drenaje_bypass_m3h * cabeza : 0;
+    const dren707 = m['16045-VBA-309707'] && m['16045-VBF-309704'] && this.fv603.fraccionCv > 0.001 ? p.q_drenaje_bypass_m3h * cabeza : 0;
+    this.qDrenajeBypass = dren705 + dren707;
+    this.qFIT603 = this.qBypassFV + dren707;
+    this.qBypass = this.qBypassFV + this.qBypass709;
     this.qRebalse15 = this.L15 > p.tk15_rebalse_mm ? 20000 * ((this.L15 - p.tk15_rebalse_mm) / 1000) ** 1.5 : 0;
     this.qDrenaje15 = this.manuales['16045-VBF-309703'] ? 250 * Math.sqrt(Math.max(0, this.L15) / L_NORMAL_TK15) : 0;
-    const qSalida15 = this.qAFiltros + this.qBypass + this.qRebalse15 + this.qDrenaje15;
+    const qSalida15 = this.qAFiltros + this.qBypass + this.qRebalse15 + this.qDrenaje15 + this.qDrenajeBypass;
     this.L15 += ((this.qEntrada - qSalida15) / A_TK15) * (1000 / 3600) * dt;
     this.L15 = Math.min(TK15.H * 1000, Math.max(0, this.L15));
 
@@ -543,15 +575,18 @@ export class Planta {
     for (const s of this.soplantes) {
       const correa = this.fallas.correaRota[s.motor.tag];
       s.q = correa ? 0 : Q_AIRE_SOPLANTE * s.motor.velocidad;
-      qTot += s.q;
+      // descarga manual cerrada: el soplante trabaja contra su PSV (no aporta al colector)
+      const descargaAbierta = s.vDescarga ? (this.manuales[s.vDescarga] ?? true) : true;
+      s.qPSV = descargaAbierta ? 0 : s.q;
+      s.retencionAbierta = descargaAbierta && s.q > 1;
+      if (descargaAbierta) qTot += s.q;
     }
-    const manualOk = (this.manuales['16045-VBF-309717'] ?? true) || (this.manuales['16045-VBF-309713'] ?? true);
     const hv639 = this.valvulasOnOff.get('HV-160305639')!;
     const pStat = this.filtros.map((f) => Math.max(0, ((f.h - 300) / 1000) * 9.81));
     const flujo = (pr: number) => {
       let airi = 0;
       this.filtros.forEach((f, i) => {
-        airi += manualOk ? C_AIRE * f.valvulas.AIRI.apertura * Math.sqrt(Math.max(0, pr - pStat[i])) : 0;
+        airi += C_AIRE * f.valvulas.AIRI.apertura * Math.sqrt(Math.max(0, pr - pStat[i]));
       });
       const v639 = 80 * hv639.apertura * Math.sqrt(Math.max(0, pr));
       const psv = Math.max(0, pr - p.psv_soplante_kPag) * 4000;
@@ -572,18 +607,23 @@ export class Planta {
     this.pAireSoplado += ((pr - this.pAireSoplado) * dt) / 1.5;
     const fl = flujo(this.pAireSoplado);
     const escala = qTot > 1 && fl.tot > 0 ? qTot / fl.tot : 0;
-    this.qAirePSVsoplantes = fl.psv * escala;
+    this.qAirePSVsoplantes = fl.psv * escala + this.soplantes.reduce((a, s) => a + s.qPSV, 0);
     this.qAire639 = fl.v639 * escala;
     let airiTot = 0;
     this.filtros.forEach((f, i) => {
-      f.qAire = manualOk && qTot > 1 ? C_AIRE * f.valvulas.AIRI.apertura * Math.sqrt(Math.max(0, this.pAireSoplado - pStat[i])) * escala : 0;
+      f.qAire = qTot > 1 ? C_AIRE * f.valvulas.AIRI.apertura * Math.sqrt(Math.max(0, this.pAireSoplado - pStat[i])) * escala : 0;
       airiTot += f.qAire;
     });
     this.qAireSoplado = airiTot + this.qAire639;
     const T1 = tAmb + 273.15;
     for (const s of this.soplantes) {
       const corriendo = s.motor.velocidad > 0.05;
-      s.pDescarga = corriendo ? this.pAireSoplado : 0;
+      s.pDescarga = !corriendo ? 0 : s.qPSV > 1 ? p.psv_soplante_kPag + 2 * (s.qPSV / Q_AIRE_SOPLANTE) : this.pAireSoplado;
+      // manómetro local: aislamiento abierto y venteo cerrado → lee; aislado → presión atrapada; venteado → 0
+      const aisl = s.vAislPI ? (this.manuales[s.vAislPI] ?? true) : true;
+      const dren = s.vDrenPI ? (this.manuales[s.vDrenPI] ?? false) : false;
+      if (dren) s.piLectura = 0;
+      else if (aisl) s.piLectura = s.pDescarga;
       const ratio = (P_ATM_KPA + s.pDescarga) / P_ATM_KPA;
       const tObj = corriendo && s.q > 0 ? T1 * (1 + (ratio ** 0.2857 - 1) / 0.55) - 273.15 : tAmb;
       s.tDescarga += ((tObj - s.tDescarga) * dt) / (corriendo ? 40 : 600);
@@ -776,7 +816,7 @@ export class Planta {
     this.escribirAI(io, 'AIT-160305442', this.c15.cond, 4);
     this.escribirAI(io, 'FIT-160305602', this.qAireComp, 0.8, 15);
     this.escribirAI(io, 'FIT-160305607', this.qAireSoplado, 8, 100);
-    this.escribirAI(io, 'FIT-160305603', this.qBypass, 2.5, 13);
+    this.escribirAI(io, 'FIT-160305603', this.qFIT603, 2.5, 13);
     this.escribirAI(io, 'FZI-160305603', this.fv603.pos * 100, 0.1);
     // Finales de carrera
     for (const v of this.valvulasOnOff.values()) {

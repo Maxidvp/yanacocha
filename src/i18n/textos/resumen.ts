@@ -96,4 +96,5 @@ export const UI_RESUMEN: Record<string, string> = {
   'AUTO': 'AUTO',
   'LOCAL': 'LOCAL',
   'OFF': 'OFF',
+  abierta: 'open',
 };

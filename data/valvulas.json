@@ -712,7 +712,8 @@
     "tipo": "Mariposa manual 4\"",
     "descripcion": "Aire compresor → entrada aire TK-30015",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "equipo": "16045-CM-30011"
   },
   {
     "tag": "16045-VBF-309727",
@@ -720,7 +721,8 @@
     "tipo": "Mariposa manual 4\"",
     "descripcion": "Aire compresor → entrada aire TK-30015",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "equipo": "16045-CM-30012"
   },
   {
     "tag": "16045-VBF-309703",
@@ -736,7 +738,9 @@
     "tipo": "Mariposa manual 8\"",
     "descripcion": "Soplante → colector aire filtros",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "equipo": "16045-BL-30009",
+    "nota": "Asignación al soplante por numeración consecutiva del tren de descarga (VCH, PI, VBF) – A CONFIRMAR con el P&ID"
   },
   {
     "tag": "16045-VBF-309713",
@@ -744,7 +748,9 @@
     "tipo": "Mariposa manual 8\"",
     "descripcion": "Soplante → colector aire filtros",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "equipo": "16045-BL-30008",
+    "nota": "Asignación al soplante por numeración consecutiva del tren de descarga (VCH, PI, VBF) – A CONFIRMAR con el P&ID"
   },
   {
     "tag": "16045-VBF-309704",
@@ -752,7 +758,9 @@
     "tipo": "Mariposa manual 24\"",
     "descripcion": "Bypass TK-30015 → sumidero agua filtrada (aislamiento)",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "ubicacion_en_proceso": "Aguas arriba de la estación FIT-160305603 / FV-160305603 (aislamiento de entrada)",
+    "pid": "P-00260-DW-AE-001P-C-EAST (estación de bypass FV-160305603)"
   },
   {
     "tag": "16045-VBF-309708",
@@ -760,7 +768,9 @@
     "tipo": "Mariposa manual 24\"",
     "descripcion": "Bypass TK-30015 → sumidero (aislamiento)",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "ubicacion_en_proceso": "Aguas abajo de la estación FIT-160305603 / FV-160305603 (aislamiento de salida)",
+    "pid": "P-00260-DW-AE-001P-C-EAST (estación de bypass FV-160305603)"
   },
   {
     "tag": "16045-VBF-309709",
@@ -768,7 +778,9 @@
     "tipo": "Mariposa manual 24\"",
     "descripcion": "Bypass TK-30015 → sumidero (aislamiento / by-pass de FV)",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "ubicacion_en_proceso": "Línea paralela de 24″ que rodea VBF-309704, FIT-160305603, FV-160305603 y VBF-309708",
+    "pid": "P-00260-DW-AE-001P-C-EAST (estación de bypass FV-160305603)"
   },
   {
     "tag": "16045-VBF-309718",
@@ -808,7 +820,8 @@
     "tipo": "Bola manual 1/2\"",
     "descripcion": "Aislamiento PI-160305606",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "equipo": "16045-BL-30009"
   },
   {
     "tag": "16045-VBA-309716",
@@ -816,7 +829,8 @@
     "tipo": "Bola manual 1/2\"",
     "descripcion": "Drenaje PI-160305606",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "equipo": "16045-BL-30009"
   },
   {
     "tag": "16045-VBA-309711",
@@ -824,7 +838,8 @@
     "tipo": "Bola manual 1/2\"",
     "descripcion": "Aislamiento PI-160305605",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "equipo": "16045-BL-30008"
   },
   {
     "tag": "16045-VBA-309712",
@@ -832,7 +847,8 @@
     "tipo": "Bola manual 1/2\"",
     "descripcion": "Drenaje PI-160305605",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "equipo": "16045-BL-30008"
   },
   {
     "tag": "16045-VBA-309705",
@@ -840,7 +856,9 @@
     "tipo": "Bola manual 1/2\"",
     "descripcion": "Drenaje línea bypass",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "ubicacion_en_proceso": "Entre VBF-309704 y FIT-160305603 (drenaje de ½″)",
+    "pid": "P-00260-DW-AE-001P-C-EAST (estación de bypass FV-160305603)"
   },
   {
     "tag": "16045-VBA-309707",
@@ -848,7 +866,9 @@
     "tipo": "Bola manual 1/2\"",
     "descripcion": "Drenaje línea bypass",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "ubicacion_en_proceso": "Entre FV-160305603 y VBF-309708 (drenaje de ½″)",
+    "pid": "P-00260-DW-AE-001P-C-EAST (estación de bypass FV-160305603)"
   },
   {
     "tag": "16045-VCH-309710",
@@ -856,7 +876,9 @@
     "tipo": "Retención doble placa 8\"",
     "descripcion": "Descarga soplante → colector aire",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "equipo": "16045-BL-30008",
+    "nota": "Asignación al soplante por numeración consecutiva del tren de descarga (VCH, PI, VBF) – A CONFIRMAR con el P&ID"
   },
   {
     "tag": "16045-VCH-309714",
@@ -864,6 +886,8 @@
     "tipo": "Retención doble placa 8\"",
     "descripcion": "Descarga soplante → colector aire",
     "estado_inicial": "abierta (retención: automática)",
-    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002"
+    "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
+    "equipo": "16045-BL-30009",
+    "nota": "Asignación al soplante por numeración consecutiva del tren de descarga (VCH, PI, VBF) – A CONFIRMAR con el P&ID"
   }
 ]

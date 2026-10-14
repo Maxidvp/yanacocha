@@ -12,6 +12,7 @@ export type Pantalla =
 export type Seleccion =
   | { tipo: 'motor'; tag: string }
   | { tipo: 'valvula'; tag: string }
+  | { tipo: 'manual'; tag: string }
   | { tipo: 'instrumento'; tag: string }
   | { tipo: 'fic' }
   | { tipo: 'tanque'; tag: string }

@@ -153,6 +153,7 @@ export const PARAMS_EN: Record<string, { label: string; nota?: string }> = {
   tk15_rebalse_mm: { label: 'TK-30015 overflow level N11' },
   R_limpio: { label: 'Clean bed resistance', nota: 'Level ≈ 1060 mm at 443 m³/h and ≈ 1420 mm at 590 m³/h with a clean bed.' },
   alfa_colmatacion: { label: 'Clogging coefficient', nota: 'LAHH at ~28 h with 443 m³/h and 5 NTU (T03 acts first); at 590 m³/h, LAHH at ~8 h.' },
+  q_drenaje_bypass_m3h: { label: 'Flow of each ½″ bypass line drain (VBA-309705/707)', nota: '½″ ball valve open with the TK-30015 head (≈ 6 m water column).' },
   bwo_vertedero_mm: { label: 'Backwash outlet (BWO) weir elevation above floor' },
   tiempo_carrera_s: { label: 'On/off valve stroke time', nota: 'Must be shorter than the ZAO/ZAC discrepancy delay (15 s, alarm list): with ≥ 15 s every stroke raises ZAO/ZAC and HOLD.' },
   q_bw_m3h: { label: 'Backwash pump flow (ideal)' },
