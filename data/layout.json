@@ -1,0 +1,390 @@
+{
+  "_fuente": "26442-ST3-J2-16045-00001 rev 001 – Instrument Location Layout, hojas 11 (Treated Water Mixing Tanks Area) y 12 (Active Media Filters Area), escala 1:100",
+  "_nota": "Coordenadas en metros, digitalizadas a mano desde el plano (precisión ±1 m). Origen: esquina NO del área de tanques; x hacia el Este (plant east), y hacia el Sur. La hoja 12 se ubica al sur de la hoja 11 (líneas de calce 'TO SEE DRW ... SHEET-11/12'). Las elevaciones de instrumentos del plano (EL. 4041–4056 m) indican una cota de planta ≈ 4040 m.",
+  "cota_planta_m": 4042,
+  "ancho_m": 62,
+  "alto_m": 39,
+  "areas": [
+    {
+      "id": "tanques",
+      "titulo": "Área tanques de mezcla de agua tratada (hoja 11)",
+      "plano": "26442-ST3-J2-16045-00001 SH.11",
+      "zonas": [
+        [
+          0,
+          0,
+          57,
+          12.1
+        ],
+        [
+          0,
+          12.1,
+          16.6,
+          24.5
+        ]
+      ],
+      "items": [
+        {
+          "tag": "16045-TK-30016",
+          "label": "TK-30016",
+          "kind": "tanque",
+          "x": 21.1,
+          "y": 6.2,
+          "r": 3.375
+        },
+        {
+          "tag": "16045-AG-30007",
+          "label": "AG-30007",
+          "kind": "agitador",
+          "x": 21.1,
+          "y": 6.2
+        },
+        {
+          "tag": "16045-TK-30015",
+          "label": "TK-30015",
+          "kind": "tanque",
+          "x": 31.1,
+          "y": 5.7,
+          "r": 2.15
+        },
+        {
+          "tag": "16045-AG-30006",
+          "label": "AG-30006",
+          "kind": "agitador",
+          "x": 31.1,
+          "y": 5.7
+        },
+        {
+          "tag": "16045-PK-30011",
+          "label": "PK-30011 (NaPTC)",
+          "kind": "skid",
+          "x": 36.4,
+          "y": 3.2,
+          "w": 1.6,
+          "h": 1.2,
+          "nota": "Skid de dosificación NaPTC (por otros)"
+        },
+        {
+          "tag": "16045-TK-30024",
+          "label": "TK-30024 tote NaPTC",
+          "kind": "skid",
+          "x": 37.6,
+          "y": 3.2,
+          "w": 1.0,
+          "h": 1.0,
+          "nota": "Tote NaPTC (por otros)"
+        },
+        {
+          "tag": "16045-BL-30009",
+          "label": "BL-30009",
+          "kind": "soplante",
+          "x": 41.3,
+          "y": 7.1,
+          "w": 2.2,
+          "h": 3.6
+        },
+        {
+          "tag": "16045-BL-30008",
+          "label": "BL-30008",
+          "kind": "soplante",
+          "x": 45.0,
+          "y": 7.1,
+          "w": 2.2,
+          "h": 3.6
+        },
+        {
+          "tag": "16045-CM-30012",
+          "label": "CM-30012",
+          "kind": "compresor",
+          "x": 49.8,
+          "y": 6.6,
+          "w": 3.0,
+          "h": 2.6
+        },
+        {
+          "tag": "16045-CM-30011",
+          "label": "CM-30011",
+          "kind": "compresor",
+          "x": 53.4,
+          "y": 6.6,
+          "w": 3.0,
+          "h": 2.6
+        },
+        {
+          "tag": "16045-PU-30407",
+          "label": "PU-30407 retrolavado",
+          "kind": "bomba",
+          "x": 4.9,
+          "y": 8.5,
+          "nota": "Por otros"
+        },
+        {
+          "tag": "16045-PU-30408",
+          "label": "PU-30408 retrolavado",
+          "kind": "bomba",
+          "x": 4.9,
+          "y": 13.4,
+          "nota": "Por otros"
+        },
+        {
+          "tag": "16045-PU-30088",
+          "label": "PU-30088 liberación",
+          "kind": "bomba",
+          "x": 4.9,
+          "y": 21.3,
+          "nota": "Por otros (liberación agua tratada secundaria)"
+        },
+        {
+          "tag": "16045-PU-30089",
+          "label": "PU-30089 liberación",
+          "kind": "bomba",
+          "x": 4.9,
+          "y": 26.0,
+          "nota": "Por otros"
+        },
+        {
+          "tag": "16045-IP-30510",
+          "label": "IP-30510A/B",
+          "kind": "panel",
+          "x": 32.0,
+          "y": 1.8,
+          "w": 1.6,
+          "h": 0.6,
+          "nota": "Power supply panels 16045-IP-30510A/B"
+        },
+        {
+          "tag": "16045-CE-30155",
+          "label": "CE-30155",
+          "kind": "panel",
+          "x": 38.6,
+          "y": 10.6,
+          "w": 0.9,
+          "h": 0.6,
+          "nota": "Fiber optic cabinet"
+        }
+      ],
+      "instrumentos": [
+        {
+          "tag": "LIT-160305276",
+          "x": 18.2,
+          "y": 4.8,
+          "el": 4054.65
+        },
+        {
+          "tag": "AIT-160305288",
+          "x": 17.6,
+          "y": 5.0,
+          "el": 4055.5
+        },
+        {
+          "tag": "LIT-160305601",
+          "x": 28.6,
+          "y": 3.8,
+          "el": 4050.73
+        },
+        {
+          "tag": "AIT-160305600",
+          "x": 32.8,
+          "y": 5.3,
+          "el": 4050.73
+        },
+        {
+          "tag": "HV-160305646",
+          "x": 28.6,
+          "y": 3.0,
+          "el": 4051.34
+        },
+        {
+          "tag": "FIT-160305602",
+          "x": 47.9,
+          "y": 8.5,
+          "el": 4042.39
+        },
+        {
+          "tag": "PI-160305605",
+          "x": 45.0,
+          "y": 9.8,
+          "el": 3565.03
+        },
+        {
+          "tag": "PI-160305606",
+          "x": 41.3,
+          "y": 9.8,
+          "el": 3565.01
+        }
+      ]
+    },
+    {
+      "id": "filtros",
+      "titulo": "Área filtros de medio activo (hoja 12)",
+      "plano": "26442-ST3-J2-16045-00001 SH.12",
+      "zonas": [
+        [
+          16.6,
+          12.1,
+          31.7,
+          25.1
+        ],
+        [
+          48.3,
+          8.1,
+          11.9,
+          29.1
+        ]
+      ],
+      "items": [
+        {
+          "tag": "16045-FL-30035",
+          "label": "FL-30035 (A)",
+          "kind": "filtro",
+          "x": 26.4,
+          "y": 25.1,
+          "w": 3.2,
+          "h": 12.2
+        },
+        {
+          "tag": "16045-FL-30036",
+          "label": "FL-30036 (B)",
+          "kind": "filtro",
+          "x": 32.0,
+          "y": 25.1,
+          "w": 3.2,
+          "h": 12.2
+        },
+        {
+          "tag": "16045-FL-30037",
+          "label": "FL-30037 (C)",
+          "kind": "filtro",
+          "x": 37.7,
+          "y": 25.1,
+          "w": 3.2,
+          "h": 12.2
+        },
+        {
+          "tag": "16045-FL-30038",
+          "label": "FL-30038 (D)",
+          "kind": "filtro",
+          "x": 43.3,
+          "y": 25.1,
+          "w": 3.2,
+          "h": 12.2
+        },
+        {
+          "tag": "16045-TK-30038",
+          "label": "TK-30038 sumidero regeneración",
+          "kind": "sumidero",
+          "x": 53.8,
+          "y": 13.1,
+          "w": 11.0,
+          "h": 10.0,
+          "nota": "Por otros. Contiene PU-30169/30170 (bombas de regeneración, confirma los tags de la filosofía frente a la SOE)"
+        },
+        {
+          "tag": "16045-PU-30170",
+          "label": "PU-30170",
+          "kind": "bomba",
+          "x": 53.6,
+          "y": 12.7,
+          "nota": "Regeneración, por otros"
+        },
+        {
+          "tag": "16045-PU-30169",
+          "label": "PU-30169",
+          "kind": "bomba",
+          "x": 55.7,
+          "y": 13.4,
+          "nota": "Regeneración, por otros"
+        },
+        {
+          "tag": "16045-TK-30039",
+          "label": "TK-30039 tanque desecho retrolavado",
+          "kind": "sumidero",
+          "x": 54.2,
+          "y": 27.6,
+          "w": 11.8,
+          "h": 19.0,
+          "nota": "Por otros (backwash waste underground tank and pumps)"
+        },
+        {
+          "tag": "16045-PU-30162",
+          "label": "PU-30162",
+          "kind": "bomba",
+          "x": 53.6,
+          "y": 21.5,
+          "nota": "Por otros"
+        },
+        {
+          "tag": "16045-PU-30161",
+          "label": "PU-30161",
+          "kind": "bomba",
+          "x": 55.7,
+          "y": 21.0,
+          "nota": "Por otros"
+        },
+        {
+          "tag": "16045-RIO-30010",
+          "label": "RIO-30010",
+          "kind": "panel",
+          "x": 30.4,
+          "y": 12.7,
+          "w": 2.4,
+          "h": 0.8,
+          "nota": "Remote IO panel"
+        },
+        {
+          "tag": "COLECTORES",
+          "label": "Colectores (entrada / aire / retrolavado / desecho)",
+          "kind": "colector",
+          "x": 19.4,
+          "y": 24.6,
+          "w": 5.4,
+          "h": 25.0
+        }
+      ],
+      "instrumentos": [
+        {
+          "tag": "LIT-160305604",
+          "x": 28.3,
+          "y": 24.4,
+          "el": 4046.0
+        },
+        {
+          "tag": "LIT-160305615",
+          "x": 33.9,
+          "y": 24.4,
+          "el": 4046.0
+        },
+        {
+          "tag": "LIT-160305623",
+          "x": 39.6,
+          "y": 24.4,
+          "el": 4046.0
+        },
+        {
+          "tag": "LIT-160305631",
+          "x": 45.2,
+          "y": 24.4,
+          "el": 4046.0
+        },
+        {
+          "tag": "FIT-160305607",
+          "x": 45.2,
+          "y": 15.3,
+          "el": 4047.39
+        },
+        {
+          "tag": "HV-160305639",
+          "x": 45.4,
+          "y": 15.9,
+          "el": 4042.81
+        },
+        {
+          "tag": "AIT-160305442",
+          "x": 33.6,
+          "y": 12.3,
+          "el": 4042.41
+        }
+      ]
+    }
+  ]
+}

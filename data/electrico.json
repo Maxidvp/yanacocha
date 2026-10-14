@@ -1,0 +1,243 @@
+{
+  "sistema": {
+    "MT": "4160V 3F (no usado en el paquete)",
+    "BT": "460V 3F 60Hz",
+    "monofasico": "220V",
+    "UPS": "120VAC (cliente)",
+    "control": "24VDC",
+    "frecuencia_Hz": 60,
+    "nota": "MCC, VFD, UPS y PLC son alcance del cliente (Rockwell PLC + RIO por otros). Arranques DOL."
+  },
+  "cargas": [
+    {
+      "item": 1,
+      "tag": "16045-CM-30011",
+      "desc": "Compresor TK primario",
+      "tipo": "M",
+      "arranque": "DOL",
+      "kW_abs": 23.41,
+      "kW_nom": 37,
+      "servicio": "C",
+      "clase": "N",
+      "V": 460,
+      "ef": 0.93,
+      "fp": 0.9,
+      "rpm": 3555
+    },
+    {
+      "item": 2,
+      "tag": "16045-CM-30011-CC",
+      "desc": "Gabinete control compresor 1",
+      "tipo": "F",
+      "kW_abs": 3.5,
+      "kW_nom": 3.5,
+      "servicio": "C",
+      "clase": "N",
+      "V": 460
+    },
+    {
+      "item": 3,
+      "tag": "16045-CM-30012",
+      "desc": "Compresor TK primario",
+      "tipo": "M",
+      "arranque": "DOL",
+      "kW_abs": 23.41,
+      "kW_nom": 37,
+      "servicio": "S",
+      "clase": "N",
+      "V": 460,
+      "ef": 0.93,
+      "fp": 0.9,
+      "rpm": 3555
+    },
+    {
+      "item": 4,
+      "tag": "16045-CM-30012-CC",
+      "desc": "Gabinete control compresor 2",
+      "tipo": "F",
+      "kW_abs": 3.5,
+      "kW_nom": 3.5,
+      "servicio": "S",
+      "clase": "N",
+      "V": 460
+    },
+    {
+      "item": 5,
+      "tag": "16045-AG-30006",
+      "desc": "Agitador TK primario",
+      "tipo": "M",
+      "arranque": "DOL",
+      "kW_abs": 5.96,
+      "kW_nom": 7.45,
+      "servicio": "C",
+      "clase": "N",
+      "V": 460,
+      "ef": 0.902,
+      "fp": 0.9,
+      "rpm": 1800
+    },
+    {
+      "item": 6,
+      "tag": "16045-BL-30008",
+      "desc": "Soplante air scour A (c/calefactor)",
+      "tipo": "M",
+      "arranque": "DOL",
+      "kW_abs": 121.5,
+      "kW_nom": 149.1,
+      "servicio": "I",
+      "clase": "N",
+      "V": 460,
+      "ef": 0.95,
+      "fp": 0.89,
+      "rpm": 1800
+    },
+    {
+      "item": 7,
+      "tag": "16045-BL-30009",
+      "desc": "Soplante air scour B (c/calefactor)",
+      "tipo": "M",
+      "arranque": "DOL",
+      "kW_abs": 121.5,
+      "kW_nom": 149.1,
+      "servicio": "S",
+      "clase": "N",
+      "V": 460,
+      "ef": 0.95,
+      "fp": 0.89,
+      "rpm": 1800
+    },
+    {
+      "item": 8,
+      "tag": "BL-30008-ENC",
+      "desc": "Ventiladores cabina acústica soplante A (x2)",
+      "tipo": "M",
+      "kW_abs": 0.3984,
+      "kW_nom": 0.498,
+      "servicio": "I",
+      "clase": "N",
+      "V": 220
+    },
+    {
+      "item": 9,
+      "tag": "BL-30009-ENC",
+      "desc": "Ventiladores cabina acústica soplante B (x2)",
+      "tipo": "M",
+      "kW_abs": 0.3984,
+      "kW_nom": 0.498,
+      "servicio": "S",
+      "clase": "N",
+      "V": 220
+    },
+    {
+      "item": 10,
+      "tag": "16045-AG-30007",
+      "desc": "Agitador TK secundario",
+      "tipo": "M",
+      "arranque": "DOL",
+      "kW_abs": 14.8,
+      "kW_nom": 18.5,
+      "servicio": "C",
+      "clase": "N",
+      "V": 460,
+      "ef": 0.917,
+      "fp": 0.89,
+      "rpm": 1800
+    },
+    {
+      "item": 16,
+      "tag": "16045-PK-30005JB",
+      "desc": "Tablero distribución potencia instrumentos 120VAC/24VDC",
+      "tipo": "F",
+      "consumo": "0.4 A",
+      "clase": "U",
+      "V": 120
+    }
+  ],
+  "leyenda": {
+    "tipo": {
+      "M": "motor",
+      "F": "alimentador"
+    },
+    "servicio": {
+      "C": "continuo",
+      "I": "intermitente",
+      "S": "standby"
+    },
+    "clase": {
+      "N": "normal",
+      "E": "esencial",
+      "U": "UPS"
+    }
+  },
+  "tablero_instrumentos": {
+    "tag": "16045-PK-30005JB",
+    "entrada": "120VAC UPS cliente con descargador DEHN BCO ML2 B 180",
+    "fuente_24VDC": "Phoenix QUINT4-PS/1AC/24DC/1.3",
+    "protecciones": [
+      "CB 3A 120VAC 1P (entrada)",
+      "CB 3A 24VDC 2P",
+      "CB 1A 24VDC 1P x2 (circuitos de instrumentos)"
+    ],
+    "alimenta": "Instrumentos de filtros y caudalímetros (lazo 24VDC). Solenoides/finales de carrera e instrumentos del TK son cableados directo al sistema de control del cliente.",
+    "fuente": "P-00260-DW-EC-003J5-P(EAST)"
+  },
+  "cajas_conexion": [
+    {
+      "tag": "16045-JB001",
+      "servicio": "TK mezcla primario",
+      "clase": "U"
+    },
+    {
+      "tag": "16045-JB002",
+      "servicio": "Filtro 30035",
+      "clase": "E"
+    },
+    {
+      "tag": "16045-JB003",
+      "servicio": "Filtro 30036",
+      "clase": "E"
+    },
+    {
+      "tag": "16045-JB004",
+      "servicio": "Filtro 30037",
+      "clase": "E"
+    },
+    {
+      "tag": "16045-JB005",
+      "servicio": "Filtro 30038",
+      "clase": "E"
+    },
+    {
+      "tag": "16045-FL-30035..38-VJB",
+      "servicio": "Cajas de válvulas por filtro (conduits a válvulas on/off)"
+    },
+    {
+      "nota": "Plano 003J1 indica UNA JB común para LIT de filtros 30035/36 (y 003J? para 30037/38) – A CONFIRMAR vs load list"
+    }
+  ],
+  "estaciones_locales": {
+    "equipos": [
+      "16045-AG-30006-M-HS",
+      "16045-BL-30008-M-HS",
+      "16045-BL-30009-M-HS",
+      "16045-AG-30007-M-HS"
+    ],
+    "contenido": "Pulsador verde START/JOG (1NA+1NC) + hongo E-Stop enclavable (1NA+1NC), 24VDC",
+    "fuente": "P-00260-DW-EC-LCS-P(EAST)"
+  },
+  "convenciones": {
+    "lamparas": {
+      "marcha/abierta": "verde",
+      "parada/cerrada": "rojo",
+      "disparo": "ámbar"
+    },
+    "falla_segura": "circuitos de control y alarma se desenergizan en alarma"
+  },
+  "aire_instrumentos": {
+    "presion_min_kPag": 550,
+    "nominal_psig": 100,
+    "consumo_prom_Nm3h": 82,
+    "consumo_pico_Nm3h": 98,
+    "fuente": "utilityconsumptionlist-C(EAST)"
+  }
+}

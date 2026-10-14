@@ -1,0 +1,457 @@
+[
+  {
+    "tag": "16045-TK-30015",
+    "nombre": "Tanque de mezcla primario de agua tratada (Primary TW Mixing Tank)",
+    "tipo": "tanque_abierto",
+    "dimensiones": {
+      "diametro_m": 4.3,
+      "altura_m": 6.5
+    },
+    "nivel_diseno_liquido_mm": 5550,
+    "volumen_trabajo_m3": 68,
+    "volumen_nominal_m3": 94.66,
+    "presion": "atmosférica",
+    "temp_proceso_C": "7–20",
+    "boquillas": {
+      "N1": "12\" entrada agua tratada HDS (por otros)",
+      "N2": "2\" ácido sulfúrico (por otros)",
+      "N3": "30\" entrada permeado RO (por otros)",
+      "N4": "2\" NaOH (por otros)",
+      "N5": "drenaje",
+      "N6": "40\" salida a filtros",
+      "N7": "6\"",
+      "N8": "2\" analizador pH AIT-160305600",
+      "N9": "4\" LIT-160305601",
+      "N10": "2\" NaPTC (por otros)",
+      "N11": "44\" rebalse",
+      "N12": "24\" bypass a sumidero agua filtrada",
+      "AIR": "4\" entrada de aire (desde compresores)",
+      "M": "16\" montaje agitador",
+      "M1": "30\" manhole"
+    },
+    "fuente": "P-00260-DW-MD-190TD1/TD2-P(EAST), P-00260-SP-ME-190TC1-P, datasheet agitador; P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual); P-00260-DW-AE-001P-C(EAST) rev005",
+    "nota_volumen": "Filosofía de control y comisionamiento: 68 m3. P&ID: 80 m3. Se usa 68 (doc. más reciente de operación).",
+    "salida_a_filtros": "Por gravedad, 40\" desde caja de salida (dropbox/vertedero) al colector de entrada de filtros",
+    "difusor": "16045-DF-30003, cabezal y laterales en el fondo (aireación con compresores)",
+    "control_nivel": "Por otros: LIT-160305601 envía señal a bombas de transferencia RO permeado y HDS TW1 (aguas arriba). Normal 5536 mm (86.5%).",
+    "caudal_entrada_m3h": {
+      "rango_PID": "366–1771",
+      "diseno_planta": 2032,
+      "optimista": 2386,
+      "minimo": 410,
+      "promedio_anual": 1472
+    }
+  },
+  {
+    "tag": "16045-AG-30006",
+    "nombre": "Agitador tanque primario",
+    "tipo": "agitador",
+    "fabricante": "Dynamix NMX6-50-10",
+    "rpm_eje": 35,
+    "impulsores": "2 (1524 / 1778 mm)",
+    "motor": "WEG 7.5 kW (10 HP) 460V 3F 60Hz 1800 rpm, reductor Nord SK6282AFBH",
+    "arranque": "DOL",
+    "sentido": "horario continuo (no reversible)",
+    "interlock": "Para por LAL-160305601 (3392 mm) [C&E]. Datasheet: no operar < 2794 mm.",
+    "lcs": "16045-AG-30006-M-HS (pulsador START/JOG verde + E-STOP)",
+    "fuente": "P-00260-SP-BE-tankmixer-C(EAST), loadlist, LCS",
+    "control": "Solo arranque manual desde PCS; parada manual, E-Stop local o LAL-601 [CP 3.1.2]"
+  },
+  {
+    "tag": "16045-CM-30011",
+    "nombre": "Compresor de aire tanque primario #1",
+    "tipo": "compresor",
+    "fabricante": "Atlas Copco ZE 2-37-A-2.25-460/60-ML (tornillo libre de aceite)",
+    "caudal_req_Nm3h": 350,
+    "capacidad_Nm3h": 414,
+    "presion_descarga_kPa": 102,
+    "potencia_nominal_kW": 37,
+    "potencia_absorbida_kW": 23.41,
+    "motor": "TECO 37 kW 460V 3555 rpm + ventilador 1.1 kW",
+    "calefactor": "60 W 115V (cubículo)",
+    "controlador": "Atlas Copco MK5, Modbus TCP/IP + cableado de interlocks",
+    "alimentaciones": [
+      "460V 3F motor principal",
+      "460V 3F gabinete de control (3.5 kW)"
+    ],
+    "servicio": "C (continuo) / redundancia 2x100%",
+    "logica_vendor": [
+      "Descarga (unload) a atmósfera al arrancar y tras hueco de tensión",
+      "Descarga por presión sin parar motor",
+      "Parada automática tras tiempo en vacío ajustable 1–60 min",
+      "Selección base/standby"
+    ],
+    "psv": "PSV-160305642 (tarado: 0.45 MPa según P&ID compresor; 2 barg datasheet; 123 kPag índice – A CONFIRMAR)",
+    "fuente": "P-00260-SP-BE-aircompressor-C(EAST), AirCompressor-PID-C(EAST), loadlist",
+    "control": "Duty/standby. Auto: arranca si habilitado; para por FAHH-160305602 (385) o FALL-160305602 (315 Nm3/h) [CP 3.1.3, C&E]",
+    "aireacion": "Aire a eductores/difusor en el fondo de TK-30015"
+  },
+  {
+    "tag": "16045-CM-30012",
+    "nombre": "Compresor de aire tanque primario #2",
+    "tipo": "compresor",
+    "igual_a": "16045-CM-30011",
+    "servicio": "S (standby)",
+    "psv": "PSV-160305643",
+    "fuente": "idem",
+    "control": "Duty/standby. Auto: arranca si habilitado; para por FAHH-160305602 (385) o FALL-160305602 (315 Nm3/h) [CP 3.1.3, C&E]",
+    "aireacion": "Aire a eductores/difusor en el fondo de TK-30015"
+  },
+  {
+    "tag": "16045-BL-30008",
+    "nombre": "Soplante de aire de lavado (Air Scour Blower) A",
+    "tipo": "soplante_PD",
+    "fabricante": "Hibon SNH-870 tri-lóbulo, transmisión por correa",
+    "caudal_Nm3h": 2688,
+    "dp_kPa": 58.3,
+    "descarga_kPa_abs": 119.13,
+    "temp_descarga_C": "127 (138 en PRV)",
+    "velocidad_rpm": 1448,
+    "potencia_eje_BHP": 147.7,
+    "motor": "WEG 150 kW (200 HP) 460V 1800 rpm TEFC, calefactor 120VAC",
+    "ventilador_cabina": "0.498 kW 220V (x2)",
+    "arranque": "DOL",
+    "velocidad": "constante",
+    "psv": "PSV-160305618 tarado 64 kPag",
+    "servicio": "I (intermitente – solo en lavado)",
+    "lcs": "16045-BL-30008-M-HS",
+    "fuente": "airblowers-C(EAST), Blowerperformancecurve, loadlist",
+    "control": "Ambos en Auto; arranca el duty a pedido de la secuencia del filtro (paso 7), para en paso 8 o por FAHH-160305607 (3000) / FALL-160305607 (1500 Nm3/h). Standby arranca por falla del duty [CP 3.2.1]",
+    "interlock_PID": "No arrancar con HV-160305639 abierta (P&ID nota 9)"
+  },
+  {
+    "tag": "16045-BL-30009",
+    "nombre": "Soplante de aire de lavado B",
+    "igual_a": "16045-BL-30008",
+    "servicio": "S (standby)",
+    "psv": "PSV-160305622 tarado 64 kPag",
+    "lcs": "16045-BL-30009-M-HS",
+    "control": "Ambos en Auto; arranca el duty a pedido de la secuencia del filtro (paso 7), para en paso 8 o por FAHH-160305607 (3000) / FALL-160305607 (1500 Nm3/h). Standby arranca por falla del duty [CP 3.2.1]",
+    "interlock_PID": "No arrancar con HV-160305639 abierta (P&ID nota 9)"
+  },
+  {
+    "tag": "16045-TK-30016",
+    "nombre": "Tanque de mezcla secundario de agua tratada",
+    "tipo": "tanque_abierto",
+    "dimensiones": {
+      "diametro_m": 6.75,
+      "altura_m": 11.5
+    },
+    "volumen_trabajo_m3": 216,
+    "ubicacion_en_proceso": "AGUAS ABAJO: sumidero de agua filtrada → bombas de sumidero (por otros) → TK-30016. Recibe también agua HDS y H2SO4. Alimenta las bombas de retrolavado 16045-PU-30407/30408 y las bombas de liberación de agua tratada secundaria (por otros).",
+    "fuente": "P-00260-DW-AE-001PFD-C(EAST) rev003; P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) 3.3",
+    "instrumentos": {
+      "nivel": "LIT-160305276 (alarm list / C&E) – la filosofía dice LIT-160305545: A CONFIRMAR",
+      "pH": "AIT-160305288"
+    },
+    "alcance": "Tanque, instrumentos y control por otros; Aquatech solo suministra el agitador"
+  },
+  {
+    "tag": "16045-AG-30007",
+    "nombre": "Agitador tanque secundario",
+    "tipo": "agitador",
+    "fabricante": "Dynamix NMX8-48-25",
+    "rpm_eje": 37,
+    "motor": "WEG 18.5 kW (25 HP) 460V 1800 rpm, reductor Nord SK8282AFBH",
+    "arranque": "DOL",
+    "interlock": "Para por nivel bajo en TK-30016 (LAL-160305276) [CP 3.3.2, C&E]. Datasheet: no operar < 4064 mm.",
+    "lcs": "16045-AG-30007-M-HS",
+    "fuente": "tankmixersecondary-C(EAST), loadlist"
+  },
+  {
+    "tag": "FILTERED-WATER-SUMP",
+    "nombre": "Sumidero de agua filtrada",
+    "tipo": "sumidero",
+    "alcance": "por otros (Bechtel) – sin datos",
+    "fuente": "I/O list (FIT-160305603 'Filtered water sump inlet flow')"
+  },
+  {
+    "tag": "16045-FL-30035",
+    "nombre": "Filtro de medio activo (gravedad) A",
+    "tipo": "filtro_gravedad",
+    "dimensiones": {
+      "largo_m": 12.2,
+      "ancho_m": 3.2,
+      "alto_m": 4.938
+    },
+    "area_filtracion_m2": 39.04,
+    "medios": [
+      {
+        "capa": "Antracita",
+        "volumen_m3": 12,
+        "espesor_m": 0.305
+      },
+      {
+        "capa": "Greensand (Mn)",
+        "volumen_m3": 36,
+        "espesor_m": 0.915
+      },
+      {
+        "capa": "Grava soporte",
+        "volumen_m3": 24,
+        "espesor_m": 0.61
+      }
+    ],
+    "transmisor_nivel": "LIT-160305604",
+    "valvulas": {
+      "SEVI": "HV-160305608",
+      "RI": "HV-160305609",
+      "BWO": "HV-160305610",
+      "FRO": "HV-160305611",
+      "BWI": "HV-160305612",
+      "SEVO": "HV-160305613",
+      "AIRI": "HV-160305614"
+    },
+    "rio": "P2",
+    "caja_conexion": "16045-JB002",
+    "pid": "P-00260-DW-AE-001P2-C",
+    "fuente": "P-00260-DW-AE-001P-C(EAST) rev005; P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual); P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "caudales": {
+      "servicio_diseno_m3h": 443,
+      "servicio_max_m3h": 590,
+      "servicio_min_m3h": 103,
+      "retrolavado_m3h": 1562,
+      "retrolavado_presion_barg": 2.0,
+      "aire_scour_Nm3h": 2688,
+      "recirculacion_regen_m3h": 137,
+      "dosis_NaOCl_12_5pct_Lh": 783,
+      "dosis_tiempo_min": 15
+    },
+    "niveles_mm": {
+      "normal_servicio": "1100–1500",
+      "drenaje_K06": 1825,
+      "llenado_K09": 3000,
+      "HH": 1763,
+      "H": 1613,
+      "L": 280,
+      "LL": 140
+    }
+  },
+  {
+    "tag": "16045-FL-30036",
+    "nombre": "Filtro de medio activo (gravedad) B",
+    "tipo": "filtro_gravedad",
+    "dimensiones": {
+      "largo_m": 12.2,
+      "ancho_m": 3.2,
+      "alto_m": 4.938
+    },
+    "area_filtracion_m2": 39.04,
+    "medios": [
+      {
+        "capa": "Antracita",
+        "volumen_m3": 12,
+        "espesor_m": 0.305
+      },
+      {
+        "capa": "Greensand (Mn)",
+        "volumen_m3": 36,
+        "espesor_m": 0.915
+      },
+      {
+        "capa": "Grava soporte",
+        "volumen_m3": 24,
+        "espesor_m": 0.61
+      }
+    ],
+    "transmisor_nivel": "LIT-160305615",
+    "valvulas": {
+      "SEVI": "HV-160305616",
+      "RI": "HV-160305617",
+      "BWO": "HV-160305618",
+      "FRO": "HV-160305619",
+      "BWI": "HV-160305620",
+      "SEVO": "HV-160305621",
+      "AIRI": "HV-160305622"
+    },
+    "rio": "P3",
+    "caja_conexion": "16045-JB003",
+    "pid": "P-00260-DW-AE-001P3-C",
+    "fuente": "P-00260-DW-AE-001P-C(EAST) rev005; P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual); P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "caudales": {
+      "servicio_diseno_m3h": 443,
+      "servicio_max_m3h": 590,
+      "servicio_min_m3h": 103,
+      "retrolavado_m3h": 1562,
+      "retrolavado_presion_barg": 2.0,
+      "aire_scour_Nm3h": 2688,
+      "recirculacion_regen_m3h": 137,
+      "dosis_NaOCl_12_5pct_Lh": 783,
+      "dosis_tiempo_min": 15
+    },
+    "niveles_mm": {
+      "normal_servicio": "1100–1500",
+      "drenaje_K06": 1825,
+      "llenado_K09": 3000,
+      "HH": 1763,
+      "H": 1613,
+      "L": 280,
+      "LL": 140
+    }
+  },
+  {
+    "tag": "16045-FL-30037",
+    "nombre": "Filtro de medio activo (gravedad) C",
+    "tipo": "filtro_gravedad",
+    "dimensiones": {
+      "largo_m": 12.2,
+      "ancho_m": 3.2,
+      "alto_m": 4.938
+    },
+    "area_filtracion_m2": 39.04,
+    "medios": [
+      {
+        "capa": "Antracita",
+        "volumen_m3": 12,
+        "espesor_m": 0.305
+      },
+      {
+        "capa": "Greensand (Mn)",
+        "volumen_m3": 36,
+        "espesor_m": 0.915
+      },
+      {
+        "capa": "Grava soporte",
+        "volumen_m3": 24,
+        "espesor_m": 0.61
+      }
+    ],
+    "transmisor_nivel": "LIT-160305623",
+    "valvulas": {
+      "SEVI": "HV-160305624",
+      "RI": "HV-160305625",
+      "BWO": "HV-160305626",
+      "FRO": "HV-160305627",
+      "BWI": "HV-160305628",
+      "SEVO": "HV-160305629",
+      "AIRI": "HV-160305630"
+    },
+    "rio": "P4",
+    "caja_conexion": "16045-JB004",
+    "pid": "P-00260-DW-AE-001P4-C",
+    "fuente": "P-00260-DW-AE-001P-C(EAST) rev005; P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual); P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "caudales": {
+      "servicio_diseno_m3h": 443,
+      "servicio_max_m3h": 590,
+      "servicio_min_m3h": 103,
+      "retrolavado_m3h": 1562,
+      "retrolavado_presion_barg": 2.0,
+      "aire_scour_Nm3h": 2688,
+      "recirculacion_regen_m3h": 137,
+      "dosis_NaOCl_12_5pct_Lh": 783,
+      "dosis_tiempo_min": 15
+    },
+    "niveles_mm": {
+      "normal_servicio": "1100–1500",
+      "drenaje_K06": 1825,
+      "llenado_K09": 3000,
+      "HH": 1763,
+      "H": 1613,
+      "L": 280,
+      "LL": 140
+    }
+  },
+  {
+    "tag": "16045-FL-30038",
+    "nombre": "Filtro de medio activo (gravedad) D",
+    "tipo": "filtro_gravedad",
+    "dimensiones": {
+      "largo_m": 12.2,
+      "ancho_m": 3.2,
+      "alto_m": 4.938
+    },
+    "area_filtracion_m2": 39.04,
+    "medios": [
+      {
+        "capa": "Antracita",
+        "volumen_m3": 12,
+        "espesor_m": 0.305
+      },
+      {
+        "capa": "Greensand (Mn)",
+        "volumen_m3": 36,
+        "espesor_m": 0.915
+      },
+      {
+        "capa": "Grava soporte",
+        "volumen_m3": 24,
+        "espesor_m": 0.61
+      }
+    ],
+    "transmisor_nivel": "LIT-160305631",
+    "valvulas": {
+      "SEVI": "HV-160305632",
+      "RI": "HV-160305633",
+      "BWO": "HV-160305634",
+      "FRO": "HV-160305635",
+      "BWI": "HV-160305636",
+      "SEVO": "HV-160305637",
+      "AIRI": "HV-160305638"
+    },
+    "rio": "P5",
+    "caja_conexion": "16045-JB005",
+    "pid": "P-00260-DW-AE-001P5-C",
+    "fuente": "P-00260-DW-AE-001P-C(EAST) rev005; P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual); P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "caudales": {
+      "servicio_diseno_m3h": 443,
+      "servicio_max_m3h": 590,
+      "servicio_min_m3h": 103,
+      "retrolavado_m3h": 1562,
+      "retrolavado_presion_barg": 2.0,
+      "aire_scour_Nm3h": 2688,
+      "recirculacion_regen_m3h": 137,
+      "dosis_NaOCl_12_5pct_Lh": 783,
+      "dosis_tiempo_min": 15
+    },
+    "niveles_mm": {
+      "normal_servicio": "1100–1500",
+      "drenaje_K06": 1825,
+      "llenado_K09": 3000,
+      "HH": 1763,
+      "H": 1613,
+      "L": 280,
+      "LL": 140
+    }
+  },
+  {
+    "tag": "16045-PU-30407/30408",
+    "nombre": "Bombas de retrolavado de filtros (por otros)",
+    "tipo": "bomba_externa",
+    "caudal_m3h": 1562,
+    "presion_barg": 2.0,
+    "succion": "TK-30016",
+    "comando": "PCS por secuencia (paso 10)",
+    "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual)"
+  },
+  {
+    "tag": "16045-PU-30169/30170",
+    "nombre": "Bombas de regeneración (por otros)",
+    "tipo": "bomba_externa",
+    "caudal_m3h": 137,
+    "succion": "Sumidero de regeneración",
+    "comando": "Pasos 12–13",
+    "nota": "La SOE las cita como 16045-PU-30212/30213 – A CONFIRMAR",
+    "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual)"
+  },
+  {
+    "tag": "16045-PU-30236/30237",
+    "nombre": "Bombas dosificadoras de hipoclorito (por otros)",
+    "tipo": "bomba_externa",
+    "caudal_Lh": 783,
+    "producto": "NaOCl 12.5%",
+    "comando": "Paso 13 (inyección en línea de recirculación)",
+    "fuente": "P-00260-PD-PCE-cause&effect-C(EAST) rev002 (en Training Manual) (SOE)"
+  },
+  {
+    "tag": "BACKWASH-WASTE-SUMP",
+    "nombre": "Sumidero de desecho de retrolavado (por otros) – recibe BWO",
+    "tipo": "sumidero",
+    "fuente": "P-00260-DW-AE-001PFD-C(EAST) rev003; P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual)"
+  },
+  {
+    "tag": "REGEN-SUMP",
+    "nombre": "Sumidero de regeneración (por otros) – recibe RO/RW; permisivo de nivel K12 para recircular",
+    "tipo": "sumidero",
+    "fuente": "P-00260-DW-AE-001PFD-C(EAST) rev003; P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual)"
+  }
+]

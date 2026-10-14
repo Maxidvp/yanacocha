@@ -1,0 +1,1233 @@
+{
+  "_nota": "102 puntos de la I/O list rev003 (numerados 1–110) (SR 31-34 y 86-89 no existen en el documento). HV-16030626 en la lista es errata de HV-160305626. Señales de motor según filosofía de control (DO Start/Stop, DI Running/Available) + diagnóstico por comunicación del MPR.",
+  "resumen": {
+    "AI": 11,
+    "AO": 1,
+    "DI": 60,
+    "DO": 30
+  },
+  "io_documentada": [
+    {
+      "tag": "LIT-160305604",
+      "descripcion": "Nivel filtro A",
+      "tipo_senal": "AI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305608-ZSO",
+      "descripcion": "Filtro A válvula SEVI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305608-ZSC",
+      "descripcion": "Filtro A válvula SEVI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305608",
+      "descripcion": "Filtro A válvula SEVI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305609-ZSO",
+      "descripcion": "Filtro A válvula RI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305609-ZSC",
+      "descripcion": "Filtro A válvula RI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305609",
+      "descripcion": "Filtro A válvula RI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305610-ZSO",
+      "descripcion": "Filtro A válvula BWO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305610-ZSC",
+      "descripcion": "Filtro A válvula BWO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305610",
+      "descripcion": "Filtro A válvula BWO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305611-ZSO",
+      "descripcion": "Filtro A válvula FRO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305611-ZSC",
+      "descripcion": "Filtro A válvula FRO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305611",
+      "descripcion": "Filtro A válvula FRO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305612-ZSO",
+      "descripcion": "Filtro A válvula BWI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305612-ZSC",
+      "descripcion": "Filtro A válvula BWI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305612",
+      "descripcion": "Filtro A válvula BWI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305613-ZSO",
+      "descripcion": "Filtro A válvula SEVO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305613-ZSC",
+      "descripcion": "Filtro A válvula SEVO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305613",
+      "descripcion": "Filtro A válvula SEVO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305614-ZSO",
+      "descripcion": "Filtro A válvula AIRI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305614-ZSC",
+      "descripcion": "Filtro A válvula AIRI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305614",
+      "descripcion": "Filtro A válvula AIRI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P2",
+      "servicio": "ACTIVE MEDIA FILTER-A",
+      "equipo": "16045-FL-30035",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "LIT-160305615",
+      "descripcion": "Nivel filtro B",
+      "tipo_senal": "AI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305616-ZSO",
+      "descripcion": "Filtro B válvula SEVI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305616-ZSC",
+      "descripcion": "Filtro B válvula SEVI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305616",
+      "descripcion": "Filtro B válvula SEVI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305617-ZSO",
+      "descripcion": "Filtro B válvula RI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305617-ZSC",
+      "descripcion": "Filtro B válvula RI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305617",
+      "descripcion": "Filtro B válvula RI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305618-ZSO",
+      "descripcion": "Filtro B válvula BWO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305618-ZSC",
+      "descripcion": "Filtro B válvula BWO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305618",
+      "descripcion": "Filtro B válvula BWO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305619-ZSO",
+      "descripcion": "Filtro B válvula FRO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305619-ZSC",
+      "descripcion": "Filtro B válvula FRO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305619",
+      "descripcion": "Filtro B válvula FRO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305620-ZSO",
+      "descripcion": "Filtro B válvula BWI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305620-ZSC",
+      "descripcion": "Filtro B válvula BWI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305620",
+      "descripcion": "Filtro B válvula BWI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305621-ZSO",
+      "descripcion": "Filtro B válvula SEVO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305621-ZSC",
+      "descripcion": "Filtro B válvula SEVO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305621",
+      "descripcion": "Filtro B válvula SEVO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305622-ZSO",
+      "descripcion": "Filtro B válvula AIRI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305622-ZSC",
+      "descripcion": "Filtro B válvula AIRI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305622",
+      "descripcion": "Filtro B válvula AIRI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P3",
+      "servicio": "ACTIVE MEDIA FILTER-B",
+      "equipo": "16045-FL-30036",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "LIT-160305623",
+      "descripcion": "Nivel filtro C",
+      "tipo_senal": "AI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305624-ZSO",
+      "descripcion": "Filtro C válvula SEVI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305624-ZSC",
+      "descripcion": "Filtro C válvula SEVI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305624",
+      "descripcion": "Filtro C válvula SEVI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305625-ZSO",
+      "descripcion": "Filtro C válvula RI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305625-ZSC",
+      "descripcion": "Filtro C válvula RI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305625",
+      "descripcion": "Filtro C válvula RI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305626-ZSO",
+      "descripcion": "Filtro C válvula BWO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305626-ZSC",
+      "descripcion": "Filtro C válvula BWO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305626",
+      "descripcion": "Filtro C válvula BWO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305627-ZSO",
+      "descripcion": "Filtro C válvula FRO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305627-ZSC",
+      "descripcion": "Filtro C válvula FRO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305627",
+      "descripcion": "Filtro C válvula FRO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305628-ZSO",
+      "descripcion": "Filtro C válvula BWI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305628-ZSC",
+      "descripcion": "Filtro C válvula BWI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305628",
+      "descripcion": "Filtro C válvula BWI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305629-ZSO",
+      "descripcion": "Filtro C válvula SEVO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305629-ZSC",
+      "descripcion": "Filtro C válvula SEVO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305629",
+      "descripcion": "Filtro C válvula SEVO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305630-ZSO",
+      "descripcion": "Filtro C válvula AIRI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305630-ZSC",
+      "descripcion": "Filtro C válvula AIRI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305630",
+      "descripcion": "Filtro C válvula AIRI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P4",
+      "servicio": "ACTIVE MEDIA FILTER-C",
+      "equipo": "16045-FL-30037",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "LIT-160305631",
+      "descripcion": "Nivel filtro D",
+      "tipo_senal": "AI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305632-ZSO",
+      "descripcion": "Filtro D válvula SEVI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305632-ZSC",
+      "descripcion": "Filtro D válvula SEVI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305632",
+      "descripcion": "Filtro D válvula SEVI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305633-ZSO",
+      "descripcion": "Filtro D válvula RI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305633-ZSC",
+      "descripcion": "Filtro D válvula RI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305633",
+      "descripcion": "Filtro D válvula RI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305634-ZSO",
+      "descripcion": "Filtro D válvula BWO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305634-ZSC",
+      "descripcion": "Filtro D válvula BWO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305634",
+      "descripcion": "Filtro D válvula BWO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305635-ZSO",
+      "descripcion": "Filtro D válvula FRO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305635-ZSC",
+      "descripcion": "Filtro D válvula FRO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305635",
+      "descripcion": "Filtro D válvula FRO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305636-ZSO",
+      "descripcion": "Filtro D válvula BWI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305636-ZSC",
+      "descripcion": "Filtro D válvula BWI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305636",
+      "descripcion": "Filtro D válvula BWI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305637-ZSO",
+      "descripcion": "Filtro D válvula SEVO – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305637-ZSC",
+      "descripcion": "Filtro D válvula SEVO – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305637",
+      "descripcion": "Filtro D válvula SEVO – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305638-ZSO",
+      "descripcion": "Filtro D válvula AIRI – abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305638-ZSC",
+      "descripcion": "Filtro D válvula AIRI – cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305638",
+      "descripcion": "Filtro D válvula AIRI – comando solenoide (1=abrir)",
+      "tipo_senal": "DO",
+      "modulo_rio": "P5",
+      "servicio": "ACTIVE MEDIA FILTER-D",
+      "equipo": "16045-FL-30038",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "FIT-160305602",
+      "descripcion": "Caudal aire salida compresores",
+      "tipo_senal": "AI",
+      "modulo_rio": "P1",
+      "servicio": "PRI. TW MIXING TANK COMPRESSOR",
+      "equipo": "16045-CM-30011/12",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "LIT-160305601",
+      "descripcion": "Nivel tanque primario",
+      "tipo_senal": "AI",
+      "modulo_rio": "P1",
+      "servicio": "PRI. TW MIXING TANK",
+      "equipo": "16045-TK-30015",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "AIT-160305442",
+      "descripcion": "Conductividad salida tanque primario",
+      "tipo_senal": "AI",
+      "modulo_rio": "P1",
+      "servicio": "PRI. TW MIXING TANK",
+      "equipo": "16045-TK-30015",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "AIT-160305600",
+      "descripcion": "pH tanque primario",
+      "tipo_senal": "AI",
+      "modulo_rio": "P1",
+      "servicio": "PRI. TW MIXING TANK",
+      "equipo": "16045-TK-30015",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "FIT-160305603",
+      "descripcion": "Caudal entrada sumidero agua filtrada (bypass)",
+      "tipo_senal": "AI",
+      "modulo_rio": "P1",
+      "servicio": "FILTERED WATER SUMP",
+      "equipo": "FV-160305603",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "FIT-160305607",
+      "descripcion": "Caudal aire salida soplantes",
+      "tipo_senal": "AI",
+      "modulo_rio": "P2",
+      "servicio": "AIR BLOWER",
+      "equipo": "16045-BL-30008/09",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "FZI-160305603",
+      "descripcion": "Retro posición FCV bypass",
+      "tipo_senal": "AI",
+      "modulo_rio": "P1",
+      "servicio": "FILTERED WATER SUMP",
+      "equipo": "FV-160305603",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "FCV-160305603",
+      "descripcion": "Salida control válvula bypass",
+      "tipo_senal": "AO",
+      "modulo_rio": "P1",
+      "servicio": "FILTERED WATER SUMP",
+      "equipo": "FV-160305603",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305646-ZSO",
+      "descripcion": "HV-160305646 abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P1",
+      "servicio": "PRI. TW MIXING TANK COMPRESSOR",
+      "equipo": "HV-160305646",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305646-ZSC",
+      "descripcion": "HV-160305646 cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P1",
+      "servicio": "PRI. TW MIXING TANK COMPRESSOR",
+      "equipo": "HV-160305646",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305646",
+      "descripcion": "HV-160305646 comando",
+      "tipo_senal": "DO",
+      "modulo_rio": "P1",
+      "servicio": "PRI. TW MIXING TANK COMPRESSOR",
+      "equipo": "HV-160305646",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305639-ZSO",
+      "descripcion": "HV-160305639 abierta",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "AIR BLOWER",
+      "equipo": "HV-160305639",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305639-ZSC",
+      "descripcion": "HV-160305639 cerrada",
+      "tipo_senal": "DI",
+      "modulo_rio": "P2",
+      "servicio": "AIR BLOWER",
+      "equipo": "HV-160305639",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    },
+    {
+      "tag": "HV-160305639",
+      "descripcion": "HV-160305639 comando",
+      "tipo_senal": "DO",
+      "modulo_rio": "P2",
+      "servicio": "AIR BLOWER",
+      "equipo": "HV-160305639",
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+    }
+  ],
+  "io_motores": [
+    {
+      "tag": "16045-AG-30006-START",
+      "descripcion": "Comando arranque",
+      "tipo_senal": "DO",
+      "equipo": "16045-AG-30006",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30006-STOP",
+      "descripcion": "Comando parada",
+      "tipo_senal": "DO",
+      "equipo": "16045-AG-30006",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30006-RUN",
+      "descripcion": "En marcha",
+      "tipo_senal": "DI",
+      "equipo": "16045-AG-30006",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30006-AVL",
+      "descripcion": "Disponible",
+      "tipo_senal": "DI",
+      "equipo": "16045-AG-30006",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30006-CP",
+      "descripcion": "Tensión de control OK (relé inteligente MPR)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-AG-30006",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30006-FLT",
+      "descripcion": "Falla: sobrecarga / tierra / desbalance",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-AG-30006",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30006-LOC",
+      "descripcion": "Marcha/parada local (LCS)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-AG-30006",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30007-START",
+      "descripcion": "Comando arranque",
+      "tipo_senal": "DO",
+      "equipo": "16045-AG-30007",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30007-STOP",
+      "descripcion": "Comando parada",
+      "tipo_senal": "DO",
+      "equipo": "16045-AG-30007",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30007-RUN",
+      "descripcion": "En marcha",
+      "tipo_senal": "DI",
+      "equipo": "16045-AG-30007",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30007-AVL",
+      "descripcion": "Disponible",
+      "tipo_senal": "DI",
+      "equipo": "16045-AG-30007",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30007-CP",
+      "descripcion": "Tensión de control OK (relé inteligente MPR)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-AG-30007",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30007-FLT",
+      "descripcion": "Falla: sobrecarga / tierra / desbalance",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-AG-30007",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-AG-30007-LOC",
+      "descripcion": "Marcha/parada local (LCS)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-AG-30007",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30008-START",
+      "descripcion": "Comando arranque",
+      "tipo_senal": "DO",
+      "equipo": "16045-BL-30008",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30008-STOP",
+      "descripcion": "Comando parada",
+      "tipo_senal": "DO",
+      "equipo": "16045-BL-30008",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30008-RUN",
+      "descripcion": "En marcha",
+      "tipo_senal": "DI",
+      "equipo": "16045-BL-30008",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30008-AVL",
+      "descripcion": "Disponible",
+      "tipo_senal": "DI",
+      "equipo": "16045-BL-30008",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30008-CP",
+      "descripcion": "Tensión de control OK (relé inteligente MPR)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-BL-30008",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30008-FLT",
+      "descripcion": "Falla: sobrecarga / tierra / desbalance",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-BL-30008",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30008-LOC",
+      "descripcion": "Marcha/parada local (LCS)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-BL-30008",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30009-START",
+      "descripcion": "Comando arranque",
+      "tipo_senal": "DO",
+      "equipo": "16045-BL-30009",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30009-STOP",
+      "descripcion": "Comando parada",
+      "tipo_senal": "DO",
+      "equipo": "16045-BL-30009",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30009-RUN",
+      "descripcion": "En marcha",
+      "tipo_senal": "DI",
+      "equipo": "16045-BL-30009",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30009-AVL",
+      "descripcion": "Disponible",
+      "tipo_senal": "DI",
+      "equipo": "16045-BL-30009",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30009-CP",
+      "descripcion": "Tensión de control OK (relé inteligente MPR)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-BL-30009",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30009-FLT",
+      "descripcion": "Falla: sobrecarga / tierra / desbalance",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-BL-30009",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-BL-30009-LOC",
+      "descripcion": "Marcha/parada local (LCS)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-BL-30009",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30011-START",
+      "descripcion": "Comando arranque",
+      "tipo_senal": "DO",
+      "equipo": "16045-CM-30011",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30011-STOP",
+      "descripcion": "Comando parada",
+      "tipo_senal": "DO",
+      "equipo": "16045-CM-30011",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30011-RUN",
+      "descripcion": "En marcha",
+      "tipo_senal": "DI",
+      "equipo": "16045-CM-30011",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30011-AVL",
+      "descripcion": "Disponible",
+      "tipo_senal": "DI",
+      "equipo": "16045-CM-30011",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30011-CP",
+      "descripcion": "Tensión de control OK (relé inteligente MPR)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-CM-30011",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30011-FLT",
+      "descripcion": "Falla: sobrecarga / tierra / desbalance",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-CM-30011",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30011-LOC",
+      "descripcion": "Marcha/parada local (LCS)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-CM-30011",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30012-START",
+      "descripcion": "Comando arranque",
+      "tipo_senal": "DO",
+      "equipo": "16045-CM-30012",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30012-STOP",
+      "descripcion": "Comando parada",
+      "tipo_senal": "DO",
+      "equipo": "16045-CM-30012",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30012-RUN",
+      "descripcion": "En marcha",
+      "tipo_senal": "DI",
+      "equipo": "16045-CM-30012",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30012-AVL",
+      "descripcion": "Disponible",
+      "tipo_senal": "DI",
+      "equipo": "16045-CM-30012",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30012-CP",
+      "descripcion": "Tensión de control OK (relé inteligente MPR)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-CM-30012",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30012-FLT",
+      "descripcion": "Falla: sobrecarga / tierra / desbalance",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-CM-30012",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    },
+    {
+      "tag": "16045-CM-30012-LOC",
+      "descripcion": "Marcha/parada local (LCS)",
+      "tipo_senal": "DI(com)",
+      "equipo": "16045-CM-30012",
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+    }
+  ],
+  "modos_motor": {
+    "selector": "LOCAL / OFF / REMOTO configurado en el PCS",
+    "remoto": "operación normal desde sala de control; local deshabilitado",
+    "local": "mantenimiento; se inhiben interlocks de proceso, quedan activos los de seguridad del equipo; JOG solo en Local",
+    "estop": "pulsador STOP retenido en campo siempre activo",
+    "secuencia": "selector M/A en motores que pertenecen a secuencias",
+    "fuente": "P-00260-DW-AE-001P-C(EAST) rev005"
+  }
+}

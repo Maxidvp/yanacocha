@@ -1,0 +1,522 @@
+[
+  {
+    "tag": "LIT-160305604",
+    "tipo": "Transmisor de nivel radar",
+    "modelo": "E+H FMR60B",
+    "servicio": "Nivel filtro A (16045-FL-30035)",
+    "rango_cal": [
+      0,
+      2980
+    ],
+    "unidad": "mm",
+    "senal": "4-20 mA HART, 24VDC 2 hilos",
+    "alarmas": {
+      "HH": 1763,
+      "H": 1613,
+      "L": 280,
+      "LL": 140,
+      "normal": "1100–1500",
+      "retardo_s": {
+        "HH": 3,
+        "H": 5,
+        "L": 5,
+        "LL": 3
+      }
+    },
+    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "LIT-160305615",
+    "tipo": "Transmisor de nivel radar",
+    "modelo": "E+H FMR60B",
+    "servicio": "Nivel filtro B (16045-FL-30036)",
+    "rango_cal": [
+      0,
+      2980
+    ],
+    "unidad": "mm",
+    "senal": "4-20 mA HART, 24VDC 2 hilos",
+    "alarmas": {
+      "HH": 1763,
+      "H": 1613,
+      "L": 280,
+      "LL": 140,
+      "normal": "1100–1500",
+      "retardo_s": {
+        "HH": 3,
+        "H": 5,
+        "L": 5,
+        "LL": 3
+      }
+    },
+    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "LIT-160305623",
+    "tipo": "Transmisor de nivel radar",
+    "modelo": "E+H FMR60B",
+    "servicio": "Nivel filtro C (16045-FL-30037)",
+    "rango_cal": [
+      0,
+      2980
+    ],
+    "unidad": "mm",
+    "senal": "4-20 mA HART, 24VDC 2 hilos",
+    "alarmas": {
+      "HH": 1763,
+      "H": 1613,
+      "L": 280,
+      "LL": 140,
+      "normal": "1100–1500",
+      "retardo_s": {
+        "HH": 3,
+        "H": 5,
+        "L": 5,
+        "LL": 3
+      }
+    },
+    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "LIT-160305631",
+    "tipo": "Transmisor de nivel radar",
+    "modelo": "E+H FMR60B",
+    "servicio": "Nivel filtro D (16045-FL-30038)",
+    "rango_cal": [
+      0,
+      2980
+    ],
+    "unidad": "mm",
+    "senal": "4-20 mA HART, 24VDC 2 hilos",
+    "alarmas": {
+      "HH": 1763,
+      "H": 1613,
+      "L": 280,
+      "LL": 140,
+      "normal": "1100–1500",
+      "retardo_s": {
+        "HH": 3,
+        "H": 5,
+        "L": 5,
+        "LL": 3
+      }
+    },
+    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "LIT-160305601",
+    "tipo": "Transmisor de nivel radar",
+    "modelo": "E+H FMR60B + display remoto RIA15",
+    "servicio": "Nivel TK-30015",
+    "rango_cal": [
+      0,
+      6400
+    ],
+    "unidad": "mm",
+    "senal": "4-20 mA HART 24VDC",
+    "alarmas": {
+      "HH": 6080,
+      "H": 5760,
+      "L": 3392,
+      "LL": 1984,
+      "normal": 5536,
+      "retardo_s": {
+        "HH": 3,
+        "H": 5,
+        "L": 5,
+        "LL": 3
+      }
+    },
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "AIT-160305600",
+    "tipo": "Analizador pH",
+    "modelo": "Rosemount 1066-P + sensor 396P (jet spray)",
+    "servicio": "pH TK-30015",
+    "rango_cal": [
+      0,
+      14
+    ],
+    "unidad": "pH",
+    "senal": "4-20 mA HART 24VDC loop",
+    "alarmas": {
+      "HH": 7.0,
+      "H": 6.8,
+      "L": 6.3,
+      "LL": 6.0,
+      "normal": 6.5,
+      "retardo_s": 15,
+      "nota": "Índice de instrumentos dice HH 7.2; se usa alarm list (más reciente)"
+    },
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "AIT-160305442",
+    "tipo": "Analizador conductividad",
+    "servicio": "Conductividad salida TK-30015",
+    "rango_cal": "A CONFIRMAR",
+    "unidad": "µS/cm",
+    "nota": "Figura en I/O list pero no en índice de instrumentos – alcance/datasheet a confirmar",
+    "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+    "alarmas": {
+      "HH": "por Bechtel",
+      "H": "por Bechtel",
+      "retardo_s": {
+        "HH": 5,
+        "H": 30
+      },
+      "alcance": "por otros"
+    },
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "FIT-160305602",
+    "tipo": "Caudalímetro vórtex",
+    "modelo": "E+H Prowirl F200",
+    "servicio": "Caudal aire descarga común compresores",
+    "rango_cal": [
+      0,
+      525
+    ],
+    "unidad": "Nm3/h",
+    "senal": "4-20 mA HART lazo",
+    "alarmas": {
+      "HH": 385,
+      "H": 367,
+      "L": 343,
+      "LL": 315,
+      "normal": "523 Nm3/h (según alarm list – incoherente con 350 de diseño, A CONFIRMAR)",
+      "retardo_s": {
+        "HH": 3,
+        "H": 3,
+        "L": 15,
+        "LL": 15
+      },
+      "activa": "L/LL solo con algún compresor en marcha"
+    },
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "FIT-160305607",
+    "tipo": "Caudalímetro vórtex",
+    "modelo": "E+H Prowirl F200 6\"",
+    "servicio": "Caudal aire descarga común soplantes",
+    "rango_cal": [
+      0,
+      4000
+    ],
+    "unidad": "Nm3/h",
+    "senal": "4-20 mA HART lazo",
+    "alarmas": {
+      "HH": 3000,
+      "H": 2900,
+      "L": 2000,
+      "LL": 1500,
+      "normal": 2688,
+      "retardo_s": {
+        "HH": 10,
+        "H": 10,
+        "L": 30,
+        "LL": 30
+      },
+      "activa": "L/LL solo con algún soplante en marcha"
+    },
+    "proceso": "2688 Nm3/h @ 58.3 kPa, 61–127 °C",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002, vortexfit-C(EAST)",
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "FIT-160305603",
+    "tipo": "Caudalímetro magnético",
+    "modelo": "E+H Promag W 400 12\"",
+    "servicio": "Caudal bypass TK-30015 → sumidero agua filtrada",
+    "rango_cal": [
+      0,
+      1280
+    ],
+    "unidad": "m3/h",
+    "senal": "4-20 mA HART 4 hilos (100-240VAC/24VDC)",
+    "alarmas": {
+      "H": 768,
+      "L": 235,
+      "normal": "261–853",
+      "retardo_s": {
+        "H": 10,
+        "L": 30
+      },
+      "nota": "Alarm list rev002 indica FAH 235 / FAL 890 (aparentemente invertido); índice: H 768 / L 235. A CONFIRMAR"
+    },
+    "proceso": "230–853 m3/h, 90 kPag",
+    "fuente": "magfit-C(EAST), P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "FZI-160305603",
+    "tipo": "Retro posición válvula",
+    "servicio": "Posición FV-160305603",
+    "rango_cal": [
+      0,
+      100
+    ],
+    "unidad": "%",
+    "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+  },
+  {
+    "tag": "PI-160305605",
+    "tipo": "Manómetro local",
+    "modelo": "Ashcroft 45-1279",
+    "servicio": "Presión descarga BL-30008",
+    "rango_cal": [
+      0,
+      100
+    ],
+    "unidad": "kPag",
+    "senal": "local (sin I/O)",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+  },
+  {
+    "tag": "PI-160305606",
+    "tipo": "Manómetro local",
+    "modelo": "Ashcroft 45-1279",
+    "servicio": "Presión descarga BL-30009",
+    "rango_cal": [
+      0,
+      100
+    ],
+    "unidad": "kPag",
+    "senal": "local (sin I/O)",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+  },
+  {
+    "tag": "PSV-160305618",
+    "tipo": "Válvula de alivio",
+    "modelo": "Kunkle #3",
+    "servicio": "BL-30008",
+    "tarado_kPag": 64,
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+  },
+  {
+    "tag": "PSV-160305622",
+    "tipo": "Válvula de alivio",
+    "modelo": "Kunkle #3",
+    "servicio": "BL-30009",
+    "tarado_kPag": 64,
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+  },
+  {
+    "tag": "PSV-160305642",
+    "tipo": "Válvula de alivio",
+    "servicio": "CM-30011",
+    "tarado": "A CONFIRMAR (123 kPag índice / 2 barg datasheet / 0.45 MPa P&ID)",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+  },
+  {
+    "tag": "PSV-160305643",
+    "tipo": "Válvula de alivio",
+    "servicio": "CM-30012",
+    "tarado": "A CONFIRMAR",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+  },
+  {
+    "tag": "PT-160305711A",
+    "servicio": "Presión descarga compresor – 16045-CM-30011",
+    "unidad": "kPa",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "PDT-160305701A",
+    "servicio": "DP filtro aire entrada – 16045-CM-30011",
+    "unidad": "kPa",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "PT-160305704A",
+    "servicio": "Presión circuito aceite – 16045-CM-30011",
+    "unidad": "kPa",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305703A",
+    "servicio": "Temp. descarga compresor – 16045-CM-30011",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305705A",
+    "servicio": "Temp. circuito aceite – 16045-CM-30011",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305706A",
+    "servicio": "Temp. devanado motor U – 16045-CM-30011",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305707A",
+    "servicio": "Temp. devanado motor V – 16045-CM-30011",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305708A",
+    "servicio": "Temp. devanado motor W – 16045-CM-30011",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305709A",
+    "servicio": "Temp. rodamiento motor LA – 16045-CM-30011",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305710A",
+    "servicio": "Temp. rodamiento motor LOA – 16045-CM-30011",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "LG-160305702A",
+    "servicio": "Nivel visor tanque aceite – 16045-CM-30011",
+    "unidad": "local",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "HY-160305712A",
+    "servicio": "Solenoide carga/descarga (Y1) – 16045-CM-30011",
+    "unidad": "bool",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "PT-160305711B",
+    "servicio": "Presión descarga compresor – 16045-CM-30012",
+    "unidad": "kPa",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "PDT-160305701B",
+    "servicio": "DP filtro aire entrada – 16045-CM-30012",
+    "unidad": "kPa",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "PT-160305704B",
+    "servicio": "Presión circuito aceite – 16045-CM-30012",
+    "unidad": "kPa",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305703B",
+    "servicio": "Temp. descarga compresor – 16045-CM-30012",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305705B",
+    "servicio": "Temp. circuito aceite – 16045-CM-30012",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305706B",
+    "servicio": "Temp. devanado motor U – 16045-CM-30012",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305707B",
+    "servicio": "Temp. devanado motor V – 16045-CM-30012",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305708B",
+    "servicio": "Temp. devanado motor W – 16045-CM-30012",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305709B",
+    "servicio": "Temp. rodamiento motor LA – 16045-CM-30012",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "TT-160305710B",
+    "servicio": "Temp. rodamiento motor LOA – 16045-CM-30012",
+    "unidad": "°C",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "LG-160305702B",
+    "servicio": "Nivel visor tanque aceite – 16045-CM-30012",
+    "unidad": "local",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "HY-160305712B",
+    "servicio": "Solenoide carga/descarga (Y1) – 16045-CM-30012",
+    "unidad": "bool",
+    "senal": "interno controlador MK5 (Modbus TCP)",
+    "fuente": "AirCompressor-PID-C(EAST) p.5"
+  },
+  {
+    "tag": "LIT-160305276",
+    "tipo": "Nivel TK-30016 (por otros)",
+    "alarmas": "por Bechtel",
+    "fuente": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "AIT-160305288",
+    "tipo": "pH TK-30016 (por otros)",
+    "alarmas": "por Bechtel",
+    "fuente": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+  },
+  {
+    "tag": "FIC-160305065",
+    "tipo": "Controlador caudal permeado RO (por otros) – entrada a FY-160305603",
+    "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual)"
+  },
+  {
+    "tag": "FIC-160304333",
+    "tipo": "Controlador caudal agua tratada HDS (por otros) – entrada a FY-160305603",
+    "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual)"
+  }
+]

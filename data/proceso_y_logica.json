@@ -1,0 +1,555 @@
+{
+  "_fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual); P-00260-PD-PCE-cause&effect-C(EAST) rev002 (en Training Manual); P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual); P-00260-DW-AE-001P-C(EAST) rev005; P-00260-DW-AE-001PFD-C(EAST) rev003",
+  "_estado": "Lógica DOCUMENTADA. Lo que queda A CONFIRMAR está en docs/FALTANTES.md",
+  "condiciones_sitio": {
+    "altitud_m": "3600 (plan E&C) / 4100 (datasheets)",
+    "p_atm_bar_abs": 0.608,
+    "t_amb_C": [
+      -9.4,
+      26.3
+    ]
+  },
+  "calidad_agua_entrada": {
+    "T_C": "7–20 (diseño 12)",
+    "pH": "6.5–8.0 (diseño 7)",
+    "conductividad_uS_cm": "750–1650",
+    "TDS_mg_L": "680–1480",
+    "turbidez_NTU": "1–10 (diseño 5)",
+    "Fe_mg_L": 0.02,
+    "Mn_mg_L": "0.007–0.09",
+    "SO4_mg_L": 450,
+    "SiO2_mg_L": 35
+  },
+  "base_diseno": {
+    "caudal_diseno_alimentacion_m3h": "1655.6 (81% de 2044)",
+    "caudal_promedio_por_filtro_m3h": 415,
+    "capacidad_total_filtros_m3h": 1771,
+    "por_filtro_diseno_m3h": 443,
+    "por_filtro_max_m3h": 590,
+    "configuracion": "4 x 25%"
+  },
+  "flujo_proceso": [
+    "Permeado RO (FIC-160305065) + agua tratada HDS (FIC-160304333) → TK-30015 (por otros controlan caudal y químicos H2SO4/NaOH/NaPTC)",
+    "TK-30015: agitador AG-30006 continuo + aireación por compresores CM-30011/12 (350 Nm3/h) vía difusor DF-30003",
+    "Salida por gravedad 40\" → colector de entrada → SEVI de cada filtro",
+    "Filtros → SEVO → colector de agua filtrada → SUMIDERO DE AGUA FILTRADA (por otros) → bombas → TK-30016",
+    "Bypass: N12 24\" de TK-30015 → FIT/FV-160305603 → sumidero de agua filtrada",
+    "Retrolavado: TK-30016 → bombas PU-30407/08 → colector BWI → filtro → BWO → sumidero de desecho de retrolavado",
+    "Air scour: BL-30008/09 → colector de aire → AIRI → distribuidor inferior del filtro",
+    "Regeneración: sumidero de regeneración → bombas PU-30169/70 (+ NaOCl PU-30236/37) → RI → filtro → RO/RW → sumidero de regeneración",
+    "Fast rinse (tras retrolavado o regeneración): SEVI → filtro → RO/RW → sumidero de regeneración"
+  ],
+  "control_bypass": {
+    "controlador": "FIC-160305603, acción inversa, PV = FIT-160305603, CV = FV-160305603",
+    "calculo_SP": "FY-160305603: SP = (FIC-160305065 + FIC-160304333) − capacidad de filtros disponible",
+    "capacidad_segun_filtros_fuera": {
+      "0": 1771,
+      "1": 1179,
+      "2": 366
+    },
+    "modo": "Entrada TK < 2032 m3/h → FIC en Manual con FV al 0%. Entrada ≥ 2032 → FIC en Auto",
+    "rango_FV_m3h": [
+      261,
+      853
+    ],
+    "objetivo": "mantener ≥87% del agua tratada por filtros",
+    "tabla_escenarios": [
+      {
+        "entrada": 410,
+        "filtros": 410,
+        "bypass": 0,
+        "en_servicio": 4,
+        "por_filtro": 103
+      },
+      {
+        "entrada": 1472,
+        "filtros": 1472,
+        "bypass": 0,
+        "en_servicio": 4,
+        "por_filtro": 368
+      },
+      {
+        "entrada": 1771,
+        "filtros": 1771,
+        "bypass": 0,
+        "en_servicio": 3,
+        "por_filtro": 590
+      },
+      {
+        "entrada": 2032,
+        "filtros": 1771,
+        "bypass": 261,
+        "en_servicio": 4,
+        "por_filtro": 443
+      },
+      {
+        "entrada": 2386,
+        "filtros": 1771,
+        "bypass": 615,
+        "en_servicio": 3,
+        "por_filtro": 590
+      },
+      {
+        "entrada": 2032,
+        "filtros": 1179,
+        "bypass": 853,
+        "en_servicio": 2,
+        "por_filtro": 590,
+        "nota": "1 filtro fuera + 1 en lavado"
+      },
+      {
+        "entrada": 1219,
+        "filtros": 366,
+        "bypass": 853,
+        "en_servicio": 1,
+        "por_filtro": 366,
+        "nota": "2 fuera + 1 en lavado"
+      }
+    ],
+    "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) 3.1.4"
+  },
+  "compresores": {
+    "modo": "Duty/Standby 2x100%",
+    "señales": "DO Start/Stop, DI Running/Available",
+    "arranque": "Auto y habilitado, o Manual + botón",
+    "parada": "Auto deshabilitado, Manual + botón, FAHH-602 o FALL-602",
+    "controlador_vendor": "Atlas Copco MK5 (Modbus TCP): descarga en arranque, descarga por presión, parada por vacío 1–60 min",
+    "drenaje_HV-160305646": "A CONFIRMAR (no descrito en filosofía)"
+  },
+  "agitadores": {
+    "16045-AG-30006": "Arranque manual PCS; para por Stop, E-Stop local o LAL-160305601",
+    "16045-AG-30007": "Arranque manual PCS; para por Stop, E-Stop local o LAL TK-30016"
+  },
+  "soplantes": {
+    "modo": "Ambos en Auto; duty arranca a pedido de secuencia; standby toma si falla duty",
+    "parada": "pedido de secuencia, Manual, FAHH-607 o FALL-607",
+    "interlock": "no arrancar con HV-160305639 abierta"
+  },
+  "filtros": {
+    "modos": {
+      "Auto": "transiciona solo Standby→Service y Service→Lavado",
+      "Semiauto": "el operador inicia Service / Backwash / Regeneration"
+    },
+    "botones_PCS": [
+      "Offline",
+      "Standby",
+      "Service",
+      "Backwash",
+      "Regeneration",
+      "Normal/Prolong (selector)",
+      "Step Advance",
+      "Hold",
+      "Resume",
+      "Auto",
+      "Semiauto"
+    ],
+    "parametros": {
+      "T03_servicio_desde_ultimo_lavado_min": [
+        1440,
+        720,
+        2880
+      ],
+      "K03_servicio_desde_ultima_regen_min": [
+        5760,
+        2880,
+        57600
+      ],
+      "T06_s": [
+        900,
+        600,
+        1200
+      ],
+      "K06_mm": 1825,
+      "T07_s": [
+        600,
+        300,
+        1200
+      ],
+      "T08_s": [
+        180,
+        60,
+        300
+      ],
+      "T09_s": [
+        540,
+        400,
+        600
+      ],
+      "K09_mm": 3000,
+      "T10_s": [
+        600,
+        480,
+        900
+      ],
+      "T11_s": [
+        180,
+        180,
+        300
+      ],
+      "T12_s": [
+        60,
+        60,
+        180
+      ],
+      "T13_s": [
+        900,
+        600,
+        1200
+      ],
+      "T14_s": [
+        300,
+        60,
+        7200
+      ],
+      "T15_s": [
+        300,
+        300,
+        900
+      ],
+      "T16_s": [
+        10,
+        10,
+        30
+      ],
+      "_formato": "[nominal, mín, máx]",
+      "_nota": "SOE de C&E dice T13 1800 s y T14 60 s; se usa filosofía rev005 (900/300)"
+    },
+    "permisivo_lavado": "Ningún filtro en Standby AND ningún filtro con lavado/regen en curso AND ninguno en Backwashing Pending (solo 1 filtro fuera de servicio)",
+    "logica_maestra": {
+      "pedido_servicio": "filtros en servicio < 4 y filtro en Auto",
+      "prioridad": "mayor tiempo de servicio acumulado (TQI-FL-300xx); empate → 35/36/37/38",
+      "standby": "solo por operador en Semiauto"
+    },
+    "hold": {
+      "causas_proceso": [
+        "Botón Hold",
+        "Soplantes no disponibles en paso 7",
+        "Alarma alta/baja caudal retrolavado (por otros) en paso 10",
+        "Bombas de retrolavado no disponibles en paso 10",
+        "T06 o T09 vencido sin alcanzar nivel"
+      ],
+      "causas_dispositivo": "Cualquier ZAO/ZAC de las 7 válvulas del filtro",
+      "acciones": "Paran bombas retrolavado, regeneración, NaOCl y soplantes; cierran las 7 válvulas",
+      "resume": "Reinicia el mismo paso conservando el tiempo acumulado (paso 7 requiere soplante en Auto; paso 10 requiere bomba disponible)",
+      "abortar": "Hold + botón Offline"
+    },
+    "condicion_anormal_nivel": "Si el nivel del TK primario cae bajo la caja de salida o el filtro baja de L, se cierran las SEVO de los filtros en servicio (siguen llenando por SEVI) y reabren al recuperar nivel normal [respuesta CRS en filosofía]",
+    "secuencia": [
+      {
+        "paso": 0,
+        "nombre": "OFFLINE",
+        "timer": null,
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {},
+        "nota": "Mantenimiento; válvulas operables manualmente desde PCS"
+      },
+      {
+        "paso": 1,
+        "nombre": "STANDBY",
+        "timer": null,
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {},
+        "nota": "Listo para ir a Service Pending (2) o Backwashing Pending (5)"
+      },
+      {
+        "paso": 2,
+        "nombre": "SERVICE PENDING",
+        "timer": null,
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {},
+        "nota": "Verifica todas las válvulas cerradas (ZSC) y que no haya otro filtro en Service Pending"
+      },
+      {
+        "paso": 3,
+        "nombre": "SERVICE",
+        "timer": "T03 1440 min",
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "O",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "O",
+          "AIRI": "C"
+        },
+        "equipos": {},
+        "nota": "443 m3/h nominal (103–590). Pasa a 4 por LAHH filtro o T03 vencido"
+      },
+      {
+        "paso": 4,
+        "nombre": "BACKWASHING REQUIRED",
+        "timer": null,
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "O",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "O",
+          "AIRI": "C"
+        },
+        "equipos": {},
+        "nota": "Marca 'Regeneración requerida' si tiempo desde última regen ≥ K03. Espera permisivos"
+      },
+      {
+        "paso": 5,
+        "nombre": "BACKWASHING PENDING",
+        "timer": null,
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {},
+        "nota": "Pasa a 6 si ningún filtro en lavado y al menos un soplante en Auto"
+      },
+      {
+        "paso": 6,
+        "nombre": "DRAIN DOWN",
+        "timer": "T06 900 s (fallo→HOLD)",
+        "transicion_nivel": "LIT ≤ K06 1825 mm",
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "O",
+          "AIRI": "C"
+        },
+        "equipos": {},
+        "nota": "Drena al sumidero de agua filtrada hasta ~300–500 mm sobre el medio"
+      },
+      {
+        "paso": 7,
+        "nombre": "AIR SCOUR",
+        "timer": "T07 600 s",
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "O"
+        },
+        "equipos": {
+          "soplante": "START"
+        },
+        "nota": "2688 Nm3/h"
+      },
+      {
+        "paso": 8,
+        "nombre": "DWELL",
+        "timer": "T08 180 s",
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {
+          "soplante": "STOP",
+          "HV-160305639": "ABRE"
+        },
+        "nota": "Asentamiento del lecho"
+      },
+      {
+        "paso": 9,
+        "nombre": "REFILL",
+        "timer": "T09 540 s (fallo→HOLD)",
+        "transicion_nivel": "LIT ≥ K09 3000 mm",
+        "valvulas": {
+          "SEVI": "O",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {},
+        "nota": "Llenado con agua del TK primario 103–443 m3/h"
+      },
+      {
+        "paso": 10,
+        "nombre": "BACKWASH",
+        "timer": "T10 600 s",
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "O",
+          "RO/RW": "C",
+          "BWI": "O",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {
+          "bomba_retrolavado": "ON (1562 m3/h, 2 barg)"
+        },
+        "nota": "Cierra SEVI, espera 10 s, abre BWI y BWO, arranca bomba"
+      },
+      {
+        "paso": 11,
+        "nombre": "SETTLE",
+        "timer": "T11 180 s",
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {
+          "bomba_retrolavado": "OFF"
+        },
+        "nota": "Para bomba, espera 10 s, cierra BWI/BWO. Va a 12 si regen requerida, si no a 15"
+      },
+      {
+        "paso": 12,
+        "nombre": "RECIRCULATION",
+        "timer": "T12 60 s",
+        "transicion_nivel": "Permisivo: nivel sumidero regen ≥ K12",
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "O",
+          "BWO": "C",
+          "RO/RW": "O",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {
+          "bomba_regeneracion": "ON (137 m3/h)"
+        },
+        "nota": "Abre RO/RW y RI, luego arranca bomba de regeneración"
+      },
+      {
+        "paso": 13,
+        "nombre": "REGENERATION",
+        "timer": "T13 900 s",
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "O",
+          "BWO": "C",
+          "RO/RW": "O",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {
+          "bomba_regeneracion": "ON",
+          "dosif_NaOCl": "ON (783 L/h, 12.5%)"
+        },
+        "nota": "Inyección de NaOCl en la línea de recirculación"
+      },
+      {
+        "paso": 14,
+        "nombre": "REGENERATION COMPLETED (SOAK)",
+        "timer": "T14 300 s (60–7200)",
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {
+          "bomba_regeneracion": "OFF",
+          "dosif_NaOCl": "OFF"
+        },
+        "nota": "Para bombas, espera 10 s, cierra RO/RW y RI; remojo"
+      },
+      {
+        "paso": 15,
+        "nombre": "FAST RINSE",
+        "timer": "T15 300 s + Step Advance del operador",
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "O",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "O",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {},
+        "nota": "Enjuague a sumidero de regeneración; ORP verificado por muestra manual antes de avanzar"
+      },
+      {
+        "paso": 16,
+        "nombre": "SEQUENCE COMPLETED",
+        "timer": "T16 10 s",
+        "transicion_nivel": null,
+        "valvulas": {
+          "SEVI": "C",
+          "RI": "C",
+          "BWO": "C",
+          "RO/RW": "C",
+          "BWI": "C",
+          "SEVO": "C",
+          "AIRI": "C"
+        },
+        "equipos": {},
+        "nota": "Resetea T03 (y K03 si hubo regen) y timers; vuelve a Service (Auto) o Standby (Semiauto)"
+      }
+    ],
+    "arranque_inicial": "Los 4 en Semiauto/Standby; el operador pasa cada uno a Service; luego pasar a Auto"
+  },
+  "secundario": {
+    "TK-30016": "nivel controlado por otros variando bombas de liberación; pH con H2SO4 (por otros)"
+  },
+  "comisionamiento": {
+    "acondicionamiento_greensand": "Retrolavar, dosificar 20 gal de lejía 15% (o 50 gal al 6%) por cada 100 ft3, mezclar con air scour 5–10 min, remojo 4 h, enjuagar hasta Cl libre < 0.2 mg/L",
+    "orden_carga": "grava → greensand (acondicionar) → antracita; sumergir 12–24 h",
+    "fuente": "4.3 Commissioning Procedure P-260 EAST"
+  }
+}

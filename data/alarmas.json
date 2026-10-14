@@ -1,0 +1,403 @@
+{
+  "fuente": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+  "analogicas": {
+    "FIT-160305602": {
+      "HH": 385,
+      "H": 367,
+      "L": 343,
+      "LL": 315,
+      "normal": "523 Nm3/h (según alarm list – incoherente con 350 de diseño, A CONFIRMAR)",
+      "retardo_s": {
+        "HH": 3,
+        "H": 3,
+        "L": 15,
+        "LL": 15
+      },
+      "activa": "L/LL solo con algún compresor en marcha"
+    },
+    "AIT-160305600": {
+      "HH": 7.0,
+      "H": 6.8,
+      "L": 6.3,
+      "LL": 6.0,
+      "normal": 6.5,
+      "retardo_s": 15,
+      "nota": "Índice de instrumentos dice HH 7.2; se usa alarm list (más reciente)"
+    },
+    "LIT-160305601": {
+      "HH": 6080,
+      "H": 5760,
+      "L": 3392,
+      "LL": 1984,
+      "normal": 5536,
+      "retardo_s": {
+        "HH": 3,
+        "H": 5,
+        "L": 5,
+        "LL": 3
+      }
+    },
+    "FIT-160305603": {
+      "H": 768,
+      "L": 235,
+      "normal": "261–853",
+      "retardo_s": {
+        "H": 10,
+        "L": 30
+      },
+      "nota": "Alarm list rev002 indica FAH 235 / FAL 890 (aparentemente invertido); índice: H 768 / L 235. A CONFIRMAR"
+    },
+    "FIT-160305607": {
+      "HH": 3000,
+      "H": 2900,
+      "L": 2000,
+      "LL": 1500,
+      "normal": 2688,
+      "retardo_s": {
+        "HH": 10,
+        "H": 10,
+        "L": 30,
+        "LL": 30
+      },
+      "activa": "L/LL solo con algún soplante en marcha"
+    },
+    "AIT-160305442": {
+      "HH": "por Bechtel",
+      "H": "por Bechtel",
+      "retardo_s": {
+        "HH": 5,
+        "H": 30
+      },
+      "alcance": "por otros"
+    }
+  },
+  "filtros_nivel_mm": {
+    "HH": 1763,
+    "H": 1613,
+    "L": 280,
+    "LL": 140
+  },
+  "digitales": [
+    {
+      "tag": "16045-CM-30011-FTS",
+      "descripcion": "16045-CM-30011 falla al arrancar",
+      "retardo_s": 5
+    },
+    {
+      "tag": "16045-CM-30012-FTS",
+      "descripcion": "16045-CM-30012 falla al arrancar",
+      "retardo_s": 10
+    },
+    {
+      "tag": "16045-AG-30006-FTS",
+      "descripcion": "16045-AG-30006 falla al arrancar",
+      "retardo_s": 5
+    },
+    {
+      "tag": "16045-AG-30007-FTS",
+      "descripcion": "16045-AG-30007 falla al arrancar",
+      "retardo_s": 5
+    },
+    {
+      "tag": "16045-BL-30008-FTS",
+      "descripcion": "16045-BL-30008 falla al arrancar",
+      "retardo_s": 5
+    },
+    {
+      "tag": "16045-BL-30009-FTS",
+      "descripcion": "16045-BL-30009 falla al arrancar",
+      "retardo_s": 10
+    },
+    {
+      "tag": "ZAO-160305639",
+      "descripcion": "Drenaje soplantes falla al abrir",
+      "retardo_s": 10
+    },
+    {
+      "tag": "ZAC-160305639",
+      "descripcion": "Drenaje soplantes falla al cerrar",
+      "retardo_s": 10
+    },
+    {
+      "tag": "ZAO-160305608",
+      "descripcion": "HV-160305608 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305608",
+      "descripcion": "HV-160305608 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305609",
+      "descripcion": "HV-160305609 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305609",
+      "descripcion": "HV-160305609 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305610",
+      "descripcion": "HV-160305610 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305610",
+      "descripcion": "HV-160305610 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305611",
+      "descripcion": "HV-160305611 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305611",
+      "descripcion": "HV-160305611 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305612",
+      "descripcion": "HV-160305612 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305612",
+      "descripcion": "HV-160305612 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305613",
+      "descripcion": "HV-160305613 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305613",
+      "descripcion": "HV-160305613 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305614",
+      "descripcion": "HV-160305614 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305614",
+      "descripcion": "HV-160305614 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305616",
+      "descripcion": "HV-160305616 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305616",
+      "descripcion": "HV-160305616 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305617",
+      "descripcion": "HV-160305617 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305617",
+      "descripcion": "HV-160305617 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305618",
+      "descripcion": "HV-160305618 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305618",
+      "descripcion": "HV-160305618 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305619",
+      "descripcion": "HV-160305619 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305619",
+      "descripcion": "HV-160305619 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305620",
+      "descripcion": "HV-160305620 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305620",
+      "descripcion": "HV-160305620 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305621",
+      "descripcion": "HV-160305621 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305621",
+      "descripcion": "HV-160305621 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305622",
+      "descripcion": "HV-160305622 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305622",
+      "descripcion": "HV-160305622 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305624",
+      "descripcion": "HV-160305624 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305624",
+      "descripcion": "HV-160305624 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305625",
+      "descripcion": "HV-160305625 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305625",
+      "descripcion": "HV-160305625 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305626",
+      "descripcion": "HV-160305626 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305626",
+      "descripcion": "HV-160305626 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305627",
+      "descripcion": "HV-160305627 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305627",
+      "descripcion": "HV-160305627 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305628",
+      "descripcion": "HV-160305628 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305628",
+      "descripcion": "HV-160305628 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305629",
+      "descripcion": "HV-160305629 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305629",
+      "descripcion": "HV-160305629 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305630",
+      "descripcion": "HV-160305630 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305630",
+      "descripcion": "HV-160305630 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305632",
+      "descripcion": "HV-160305632 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305632",
+      "descripcion": "HV-160305632 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305633",
+      "descripcion": "HV-160305633 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305633",
+      "descripcion": "HV-160305633 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305634",
+      "descripcion": "HV-160305634 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305634",
+      "descripcion": "HV-160305634 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305635",
+      "descripcion": "HV-160305635 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305635",
+      "descripcion": "HV-160305635 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305636",
+      "descripcion": "HV-160305636 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305636",
+      "descripcion": "HV-160305636 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305637",
+      "descripcion": "HV-160305637 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305637",
+      "descripcion": "HV-160305637 falla al cerrar",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAO-160305638",
+      "descripcion": "HV-160305638 falla al abrir",
+      "retardo_s": 15
+    },
+    {
+      "tag": "ZAC-160305638",
+      "descripcion": "HV-160305638 falla al cerrar",
+      "retardo_s": 15
+    }
+  ],
+  "nota": "Setpoints y retardos ajustables por ingeniería. La alarm list tiene descripciones AIRI/BWO cruzadas (610↔614); usar tags del P&ID rev003+."
+}

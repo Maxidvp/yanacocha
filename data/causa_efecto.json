@@ -1,0 +1,114 @@
+{
+  "fuente": "P-00260-PD-PCE-cause&effect-C(EAST) rev002 (en Training Manual)",
+  "leyenda": {
+    "T": "disparo, requiere reset del operador",
+    "X": "inicia acción"
+  },
+  "efectos": {
+    "E1": "Paran bombas de permeado RO (16045-PU-30084/30085/30214, por otros)",
+    "E2": "Paran bombas de transferencia HDS (16045-PU-30401/30402, por otros)",
+    "E3": "Para agitador TK primario 16045-AG-30006",
+    "E4": "Para dosificación de ácido (por otros)",
+    "E5": "Para dosificación de soda (por otros)",
+    "E6-E9": "Filtro 30035/36/37/38 requiere retrolavado",
+    "E10": "Paran soplantes 16045-BL-30008/30009",
+    "E11": "Para agitador TK secundario 16045-AG-30007",
+    "E12": "Paran bombas de retrolavado 16045-PU-30407/30408",
+    "E13": "Paran compresores 16045-CM-30011/30012"
+  },
+  "causas": [
+    {
+      "causa": "LAHH-160305601 nivel TK primario muy alto",
+      "efectos": {
+        "E1": "T",
+        "E2": "T"
+      }
+    },
+    {
+      "causa": "LAL-160305601 nivel TK primario bajo",
+      "efectos": {
+        "E3": "T"
+      }
+    },
+    {
+      "causa": "AAHH-160305442 conductividad efluente TK primario muy alta",
+      "efectos": {
+        "E1": "T",
+        "E2": "T"
+      }
+    },
+    {
+      "causa": "AAHH-160305600 pH muy alto",
+      "efectos": {
+        "E5": "T"
+      }
+    },
+    {
+      "causa": "AALL-160305600 pH muy bajo",
+      "efectos": {
+        "E4": "T"
+      }
+    },
+    {
+      "causa": "FAHH-160305602 caudal aire compresores muy alto",
+      "efectos": {
+        "E13": "T"
+      }
+    },
+    {
+      "causa": "FALL-160305602 caudal aire compresores muy bajo",
+      "efectos": {
+        "E13": "T"
+      }
+    },
+    {
+      "causa": "FAHH-160305607 caudal aire soplantes muy alto",
+      "efectos": {
+        "E10": "T"
+      }
+    },
+    {
+      "causa": "FALL-160305607 caudal aire soplantes muy bajo",
+      "efectos": {
+        "E10": "T"
+      }
+    },
+    {
+      "causa": "LAHH-160305604 nivel filtro 30035",
+      "efectos": {
+        "E6": "X"
+      }
+    },
+    {
+      "causa": "LAHH-160305615 nivel filtro 30036",
+      "efectos": {
+        "E7": "X"
+      }
+    },
+    {
+      "causa": "LAHH-160305623 nivel filtro 30037",
+      "efectos": {
+        "E8": "X"
+      }
+    },
+    {
+      "causa": "LAHH-160305631 nivel filtro 30038",
+      "efectos": {
+        "E9": "X"
+      }
+    },
+    {
+      "causa": "LAL-160305276 nivel TK secundario bajo",
+      "efectos": {
+        "E11": "T"
+      }
+    },
+    {
+      "causa": "LALL-160305276 nivel TK secundario muy bajo",
+      "efectos": {
+        "E12": "T"
+      }
+    }
+  ],
+  "nota": "Asignación causa→efecto reconstruida desde el texto del PDF (columnas no legibles en texto plano): VERIFICAR contra la matriz original. La matriz cita LAH (no LAHH) en filtros; la filosofía usa LAHH para 'Backwashing Required'."
+}
