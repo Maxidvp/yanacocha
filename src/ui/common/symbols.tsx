@@ -82,14 +82,15 @@ export const tipoManual = (tag: string): TipoManual => (tag.includes('-VCH-') ? 
  * Válvula manual (ISA): corbatín con volante en T; mariposa con eje, bola con círculo, retención con flecha de sentido.
  * orient 'h' = cañería horizontal; sentido (+1/−1) = dirección del flujo para la retención.
  */
-export function ValvulaManualSym({ x, y, tag, abierta, orient = 'h', size = 6, etiqueta, lado = 'arriba', sentido = 1 }: { x: number; y: number; tag: string; abierta: boolean; orient?: 'h' | 'v'; size?: number; etiqueta?: string; lado?: 'arriba' | 'abajo' | 'der' | 'izq'; sentido?: 1 | -1 }) {
+export function ValvulaManualSym({ x, y, tag, abierta, orient = 'h', size = 6, etiqueta, lado = 'arriba', sentido = 1 }: { x: number; y: number; tag: string; abierta: boolean; orient?: 'h' | 'v'; size?: number; etiqueta?: string; lado?: 'arriba' | 'arriba-izq' | 'abajo' | 'der' | 'izq'; sentido?: 1 | -1 }) {
   const { activo } = useSel({ tipo: 'manual', tag });
   const tipo = tipoManual(tag);
   const s = size;
   const estado: EstadoVisual = abierta ? 'on' : 'off';
   const pts = `${-s},${-s * 0.7} ${s},${s * 0.7} ${s},${-s * 0.7} ${-s},${s * 0.7}`;
-  const tl = { arriba: [0, -s - 9, 'middle'], abajo: [0, s + 10, 'middle'], der: [s + 4, 3, 'start'], izq: [-s - 4, 3, 'end'] }[lado] as [number, number, 'middle' | 'start' | 'end'];
-  const rot = orient === 'v' ? 90 : 0;
+  const tl = { arriba: [0, -s - 9, 'middle'], 'arriba-izq': [s, -s - 6, 'end'], abajo: [0, s + 10, 'middle'], der: [s + 4, 3, 'start'], izq: [-s - 4, 3, 'end'] }[lado] as [number, number, 'middle' | 'start' | 'end'];
+  // en cañería vertical el volante apunta al lado opuesto de la etiqueta; la retención no lleva volante
+  const rot = orient === 'v' ? (tipo !== 'retencion' && lado === 'der' ? -90 : 90) : 0;
   return (
     <Clic s={{ tipo: 'manual', tag }} titulo={`${tag} · ${abierta ? t('abierta') : t('cerrada')}`}>
       <g transform={`translate(${x},${y})`}>

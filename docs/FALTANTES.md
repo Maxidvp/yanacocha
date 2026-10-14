@@ -41,6 +41,9 @@ Detectados al poner a correr juntos el modelo de proceso y la lógica. Cada uno 
 8. **Elevaciones del layout**: los instrumentos están a EL. 4041–4056 m (cota de planta ≈ 4042 m, coherente con 0.608 bar(a) ≈ 4100 m). PI-160305605/606 y las PSV de soplantes figuran a EL. 3565 m, aparentemente un error de tipeo.
 9. ~~**Bombas de regeneración**: el layout confirma PU-30169/30170~~ → **refutado** por la C&E rev002, que asigna PU-30169/30170 a la dosificación de ácido. El layout solo muestra que están junto a TK-30038 (por otros), sin decir su función. Ver contradicción 5.
 10. **Dos compresores en marcha**: 2 × 350 Nm³/h superan FAHH-160305602 (385) en 3 s y la C&E (E13) dispara ambos. No hay un permisivo que impida arrancar el standby en manual con el duty en marcha.
+11. **Estación de bypass (P&ID)**: FIT-160305603 está en la rama de la FV, entre VBF-309704 y VBF-309708; VBF-309709 rodea toda la estación. Con VBF-309709 abierta el caudal de bypass no se mide ni se controla, y el FIC ve solo la rama de la FV.
+12. **Válvulas manuales de soplantes**: la lista de válvulas no dice a qué soplante pertenecen VCH-309710/309714 y VBF-309713/309717. Se asignaron por numeración consecutiva del tren (VCH-309710, PI-160305605 con VBA-309711/712 y VBF-309713 para BL-30008; VCH-309714, PI-160305606 con VBA-309715/716 y VBF-309717 para BL-30009). A CONFIRMAR con el P&ID.
+13. **Estado inicial de las válvulas manuales**: la lista de válvulas indica "abierta" para todas, incluidos los drenajes y el rodeo VBF-309709. El simulador arranca con los drenajes y VBF-309709 cerrados (operación normal).
 
 ## Verificación con el Training Manual (rev. 4)
 Fuente: P-00260-PD-PCE-trainingmanual-C(EAST) págs. 57 (matriz C&E), 58 (SOE) y 87–88 (alarm list).

@@ -1,8 +1,8 @@
 import { filtrosEquipo, type FuncionValvula } from '../../data';
 import { useEngine, useSim } from '../../store/sim';
 import { CONST_PLANTA } from '../../sim/process/plant';
-import { AgitadorSym, BombaExtSym, EquipoRotSym, Frontera, InstrumentoSym, Pipe, TanqueSym, ValvulaControlSym, ValvulaSym } from '../common/symbols';
-import { estadoMotor, estadoValvula, fmt, LETRAS } from '../common/util';
+import { AgitadorSym, BombaExtSym, CaudalimetroSym, EquipoRotSym, Frontera, InstrumentoSym, Pipe, ReduccionSym, TanqueSym, ValvulaControlSym, ValvulaManualSym, ValvulaSym } from '../common/symbols';
+import { estadoMotor, estadoValvula, fmt, LETRAS, lecturaLocal, manualAbierta } from '../common/util';
 import type { Engine } from '../../sim/engine';
 import { t, td, ts } from '../../i18n';
 
@@ -17,18 +17,14 @@ const H_RW = 570;
 const H_ENT = 100;
 const H_RI = 130;
 const H_BWO = 70;
+// drenajes manuales de los filtros A–D (valvulas.json: "Drenaje filtro X → colector desecho")
+const DRENAJES_FILTRO = ['16045-VBF-309718', '16045-VBF-309720', '16045-VBF-309722', '16045-VBF-309724'];
 
 function alarmaDe(e: Engine, tag: string): string | null {
   const suf = tag.split('-')[1];
   const l = tag[0];
   for (const n of ['HH', 'LL', 'H', 'L']) if (e.plc.alarmas.activa(`${l}A${n}-${suf}`)) return n;
   return null;
-}
-
-/** Lectura de indicadores locales sin I/O (manómetros de soplantes). */
-function lecturaLocal(e: Engine, tag: string) {
-  const s = e.planta.soplantes.find((x) => x.pi === tag);
-  return { eu: s ? s.pDescarga : NaN, mA: NaN, mala: false };
 }
 
 export function Inst({ e, tag, x, y, d = 0, unidad, lado = 'r' }: { e: Engine; tag: string; x: number; y: number; d?: number; unidad?: string; lado?: 'r' | 'l' | 'b' }) {
@@ -91,6 +87,9 @@ function Filtro({ e, i }: { e: Engine; i: number }) {
         <text className="t-val" x={x0 + FW - 6} y={FY + 52} textAnchor="end">{fmt(f.qSEVO, 0)} m³/h</text>
       </g>
       <Inst e={e} tag={fe.transmisor_nivel} x={cx + 100} y={FY + 40} lado="b" />
+      {/* drenaje manual del filtro → colector de desecho */}
+      <Pipe d={`M ${x0} ${FY + FH - 8} H ${x0 - 18} V ${FY + FH + 6}`} fluido="waste" activa={f.qDrenaje > 0.5} ancho={2} />
+      <ValvulaManualSym x={x0 - 10} y={FY + FH - 8} tag={DRENAJES_FILTRO[i]} abierta={manualAbierta(e, DRENAJES_FILTRO[i])} size={4.5} etiqueta={DRENAJES_FILTRO[i].slice(-6)} lado="arriba-izq" />
 
       {/* válvulas */}
       <ValvulaSym x={cx - 40} y={160} tag={v('SEVI')} estado={est('SEVI')} orient="v" forzada={fz('SEVI')} />
@@ -115,7 +114,6 @@ function Filtro({ e, i }: { e: Engine; i: number }) {
 export function Resumen() {
   const e = useEngine();
   const pl = e.planta;
-  const plc = e.plc;
   const p = e.params;
   const fr = pl.frontera;
   const L15frac = pl.L15 / 6500;
@@ -148,6 +146,9 @@ export function Resumen() {
           {/* ---- compresores y aireación ---- */}
           <Pipe d="M 76 470 H 120 V 505" fluido="air" activa={compQ[0] > 1} ancho={3} />
           <Pipe d="M 76 560 H 120 V 505" fluido="air" activa={compQ[1] > 1} ancho={3} />
+          {pl.compresores.map((c, k) => (
+            <ValvulaManualSym key={c.valvulaManual} x={99} y={[470, 560][k]} tag={c.valvulaManual} abierta={manualAbierta(e, c.valvulaManual)} size={5.5} etiqueta={c.valvulaManual.replace('16045-', '')} />
+          ))}
           <Pipe d="M 120 505 H 150 V 372 H 182" fluido="air" activa={hayAireTK} ancho={3} />
           <Pipe d="M 120 505 V 610" fluido="air" activa={pl.qAire646 > 1} ancho={2} />
           <ValvulaSym x={120} y={585} tag="HV-160305646" estado={estadoValvula(e, 'HV-160305646')} orient="v" size={7} etiqueta="HV-646" />
@@ -172,6 +173,10 @@ export function Resumen() {
           <EquipoRotSym x={245} y={56} tag="16045-AG-30006" estado={estadoMotor(e, '16045-AG-30006')} letra="M" r={13} />
           <text className="t-tag" x={265} y={52}>AG-30006</text>
           {pl.qRebalse15 > 1 && <text x={186} y={84} style={{ fontSize: 11, fill: 'var(--crit)', fontWeight: 700 }}>{t('REBALSE {q} m³/h', { q: fmt(pl.qRebalse15, 0) })}</text>}
+          {/* drenaje manual de TK-30015 → canaleta */}
+          <Pipe d="M 303 380 V 424" fluido="water" activa={pl.qDrenaje15 > 1} ancho={3} />
+          <ValvulaManualSym x={303} y={406} tag="16045-VBF-309703" abierta={manualAbierta(e, '16045-VBF-309703')} orient="v" size={5.5} etiqueta="VBF-309703" lado="der" />
+          <text className="t-xs" x={303} y={434} textAnchor="middle">{t('a canaleta')}{pl.qDrenaje15 > 1 ? ` ${fmt(pl.qDrenaje15, 0)} m³/h` : ''}</text>
           <Inst e={e} tag="LIT-160305601" x={345} y={235} unidad="mm" />
           <Inst e={e} tag="AIT-160305600" x={345} y={285} d={2} unidad="pH" />
           <Inst e={e} tag="AIT-160305442" x={345} y={335} d={0} unidad="µS/cm" />
@@ -198,8 +203,9 @@ export function Resumen() {
           {CX.map((_, i) => <Filtro key={i} e={e} i={i} />)}
 
           {/* ---- soplantes ---- */}
-          <Pipe d="M 520 744 V 700 H 570" fluido="air" activa={pl.soplantes[0].q > 1} ancho={3} />
-          <Pipe d="M 620 744 V 700 H 570" fluido="air" activa={pl.soplantes[1].q > 1} ancho={3} />
+          <Pipe d="M 520 744 V 700 H 570" fluido="air" activa={pl.soplantes[0].q > 1 && pl.soplantes[0].qPSV < 1} ancho={3} />
+          <Pipe d="M 620 744 V 700 H 570" fluido="air" activa={pl.soplantes[1].q > 1 && pl.soplantes[1].qPSV < 1} ancho={3} />
+          {pl.soplantes.map((s, k) => <TrenSoplante key={s.motor.tag} e={e} k={k} />)}
           <Pipe d="M 570 700 V 620" fluido="air" activa={pl.qAireSoplado + pl.qAirePSVsoplantes > 50} ancho={3.5} />
           <Pipe d="M 570 668 H 660 V 690" fluido="air" activa={pl.qAire639 > 5} ancho={2} />
           <ValvulaSym x={640} y={668} tag="HV-160305639" estado={estadoValvula(e, 'HV-160305639')} size={7} etiqueta="HV-639" />
@@ -208,13 +214,8 @@ export function Resumen() {
           <Inst e={e} tag="FIT-160305607" x={530} y={630} unidad="Nm³/h" lado="l" />
           {pl.qAirePSVsoplantes > 10 && <text x={470} y={812} style={{ fontSize: 11, fill: 'var(--crit)', fontWeight: 700 }}>{t('PSV aliviando {q} Nm³/h', { q: fmt(pl.qAirePSVsoplantes, 0) })}</text>}
 
-          {/* ---- bypass ---- */}
-          <Pipe d="M 245 380 V 650 H 1250" fluido="water" activa={pl.qBypass > 1} ancho={5} />
-          <ValvulaControlSym x={760} y={650} pos={plc.pv['FZI-160305603']?.eu ?? 0} falla={e.planta.fv603.trabada} />
-          <Inst e={e} tag="FIT-160305603" x={880} y={618} unidad="m³/h" />
-          <text className="t-sm" x={690} y={600}>
-            FIC-603 {plc.modoFIC === 'PROGRAMA' ? (plc.autoEfectivoFIC ? t('AUTO (prog.)') : t('MAN 0 % (prog.)')) : ts(plc.modoFIC)} · SP {fmt(plc.spFY, 0)} · OUT {fmt(plc.salidaFIC, 0)} %
-          </text>
+          {/* ---- bypass (estación según P&ID: VBF-309704 → VBA-309705 → FIT → FV → VBA-309707 → VBF-309708; VBF-309709 la rodea) ---- */}
+          <EstacionBypass e={e} />
           <text className="t-sm" x={262} y={642}>{t('Bypass 24″ N12 → sumidero')}</text>
 
           {/* ---- sumidero agua filtrada y TK-30016 ---- */}
@@ -295,5 +296,64 @@ function ResumenTablero({ e }: { e: Engine }) {
         );
       })}
     </div>
+  );
+}
+
+/** Estación de bypass FV-160305603 tal como en el P&ID. */
+function EstacionBypass({ e }: { e: Engine }) {
+  const pl = e.planta;
+  const plc = e.plc;
+  const Y = 650;
+  const YL = 705; // línea paralela con VBF-309709
+  const ab = (tag: string) => manualAbierta(e, tag);
+  return (
+    <g>
+      <Pipe d={`M 700 ${Y} V ${YL} H 1030 V ${Y}`} fluido="water" activa={pl.qBypass709 > 1} ancho={5} />
+      <Pipe d={`M 245 380 V ${Y} H 700`} fluido="water" activa={pl.qBypass + pl.qDrenajeBypass > 1} ancho={5} />
+      <Pipe d={`M 700 ${Y} H 1030`} fluido="water" activa={pl.qFIT603 > 1} ancho={5} />
+      <Pipe d={`M 1030 ${Y} H 1250`} fluido="water" activa={pl.qBypass > 1} ancho={5} />
+      {/* drenajes de ½″ */}
+      <Pipe d={`M 755 ${Y} V ${Y + 24}`} fluido="water" activa={ab('16045-VBA-309705') && pl.qDrenajeBypass > 0.5} ancho={1.5} />
+      <Pipe d={`M 930 ${Y} V ${Y + 24}`} fluido="water" activa={ab('16045-VBA-309707') && pl.qDrenajeBypass > 0.5} ancho={1.5} />
+      <ValvulaManualSym x={755} y={Y + 15} tag="16045-VBA-309705" abierta={ab('16045-VBA-309705')} orient="v" size={4.5} etiqueta="VBA-309705" lado="der" />
+      <ValvulaManualSym x={930} y={Y + 15} tag="16045-VBA-309707" abierta={ab('16045-VBA-309707')} orient="v" size={4.5} etiqueta="VBA-309707" lado="der" />
+      {/* aislamiento y reducciones 24″ × 16″ × 12″ */}
+      <ValvulaManualSym x={725} y={Y} tag="16045-VBF-309704" abierta={ab('16045-VBF-309704')} size={7} etiqueta="VBF-309704" />
+      <ReduccionSym x={785} y={Y} dir={1} />
+      <CaudalimetroSym x={815} y={Y} tag="FIT-160305603" />
+      <line x1={815} x2={815} y1={Y - 9} y2={622} stroke="var(--tank-wall)" strokeWidth={0.9} strokeDasharray="3 2" />
+      <Inst e={e} tag="FIT-160305603" x={815} y={605} unidad="m³/h" lado="l" />
+      <ValvulaControlSym x={880} y={Y} pos={plc.pv['FZI-160305603']?.eu ?? 0} falla={pl.fv603.trabada} />
+      <ReduccionSym x={962} y={Y} dir={-1} />
+      <ValvulaManualSym x={995} y={Y} tag="16045-VBF-309708" abierta={ab('16045-VBF-309708')} size={7} etiqueta="VBF-309708" />
+      <ValvulaManualSym x={865} y={YL} tag="16045-VBF-309709" abierta={ab('16045-VBF-309709')} size={7} etiqueta="VBF-309709" lado="abajo" />
+      {pl.qBypass709 > 1 && <text className="t-val" x={895} y={YL + 20}>{fmt(pl.qBypass709, 0)} m³/h {t('sin medir')}</text>}
+      <text className="t-sm" x={872} y={600}>
+        FIC-603 {plc.modoFIC === 'PROGRAMA' ? (plc.autoEfectivoFIC ? t('AUTO (prog.)') : t('MAN 0 % (prog.)')) : ts(plc.modoFIC)} · SP {fmt(plc.spFY, 0)} · OUT {fmt(plc.salidaFIC, 0)} %
+      </text>
+    </g>
+  );
+}
+
+/** Tren de descarga de un soplante: PI con aislamiento y venteo, retención VCH y mariposa de descarga. */
+function TrenSoplante({ e, k }: { e: Engine; k: number }) {
+  const s = e.planta.soplantes[k];
+  const x = [520, 620][k];
+  const dir = k === 0 ? -1 : 1; // PI hacia afuera
+  const xPI = x + dir * 52;
+  const yPI = 740;
+  const xAisl = x + dir * 17;
+  const xDren = x + dir * 27;
+  const lado = k === 0 ? 'izq' : 'der';
+  return (
+    <g>
+      <line x1={x} x2={xPI - dir * 13} y1={yPI} y2={yPI} stroke="var(--tank-wall)" strokeWidth={1} />
+      <line x1={xDren} x2={xDren} y1={yPI} y2={yPI + 13} stroke="var(--tank-wall)" strokeWidth={1} />
+      {s.vAislPI && <ValvulaManualSym x={xAisl} y={yPI} tag={s.vAislPI} abierta={manualAbierta(e, s.vAislPI)} size={3.6} />}
+      {s.vDrenPI && <ValvulaManualSym x={xDren} y={yPI + 8} tag={s.vDrenPI} abierta={manualAbierta(e, s.vDrenPI)} orient="v" size={3.2} />}
+      <Inst e={e} tag={s.pi} x={xPI} y={yPI + 12} d={1} unidad="kPag" lado={k === 0 ? 'l' : 'r'} />
+      {s.vRetencion && <ValvulaManualSym x={x} y={726} tag={s.vRetencion} abierta={manualAbierta(e, s.vRetencion)} orient="v" size={5} sentido={-1} etiqueta={s.vRetencion.slice(-6)} lado={lado} />}
+      {s.vDescarga && <ValvulaManualSym x={x} y={711} tag={s.vDescarga} abierta={manualAbierta(e, s.vDescarga)} orient="v" size={5} etiqueta={s.vDescarga.slice(-6)} lado={lado} />}
+    </g>
   );
 }

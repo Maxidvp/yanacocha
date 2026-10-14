@@ -41,6 +41,9 @@ Found by running the process model and the logic together. Each one is an editab
 8. **Layout elevations**: instruments are at EL. 4041–4056 m (plant grade ≈ 4042 m, consistent with 0.608 bar(a) ≈ 4100 m). PI-160305605/606 and the blower PSVs are shown at EL. 3565 m, apparently a typo.
 9. ~~**Regeneration pumps**: the layout confirms PU-30169/30170~~ → **refuted** by C&E rev002, which assigns PU-30169/30170 to acid dosing. The layout only shows them next to TK-30038 (by others), without stating their function. See contradiction 5.
 10. **Two compressors running**: 2 × 350 Nm³/h exceed FAHH-160305602 (385) in 3 s and the C&E (E13) trips both. There is no permissive preventing a manual start of the standby unit while the duty unit is running.
+11. **Bypass station (P&ID)**: FIT-160305603 is in the FV branch, between VBF-309704 and VBF-309708; VBF-309709 bypasses the whole station. With VBF-309709 open the bypass flow is neither measured nor controlled, and the FIC sees only the FV branch.
+12. **Blower manual valves**: the valve list does not say which blower VCH-309710/309714 and VBF-309713/309717 belong to. They were assigned by the consecutive numbering of the train (VCH-309710, PI-160305605 with VBA-309711/712 and VBF-309713 for BL-30008; VCH-309714, PI-160305606 with VBA-309715/716 and VBF-309717 for BL-30009). TO BE CONFIRMED with the P&ID.
+13. **Initial state of manual valves**: the valve list states "open" for all of them, including the drains and the VBF-309709 bypass. The simulator starts with the drains and VBF-309709 closed (normal operation).
 
 ## Check against the Training Manual (rev. 4)
 Source: P-00260-PD-PCE-trainingmanual-C(EAST) pp. 57 (C&E matrix), 58 (SOE) and 87–88 (alarm list).

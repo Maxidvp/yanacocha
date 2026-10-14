@@ -386,6 +386,9 @@ input[type='range'] { accent-color: var(--accent); }
 @media (prefers-reduced-motion: reduce) { .flow, .agit-rotor, .agit-remolino, .agit-top { animation: none; } .bubbles circle { animation: none !important; } }
 .st-on { fill: var(--on); }
 .st-off { fill: var(--off); }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: middle; }
+.dot.on { background: var(--on); }
+.dot.off { background: var(--off); }
 .st-trip { fill: var(--trip); }
 .st-moving { fill: var(--moving); }
 .st-unk { fill: var(--unk); }

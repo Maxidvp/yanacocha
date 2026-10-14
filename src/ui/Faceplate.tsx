@@ -1,12 +1,13 @@
 // Faceplates (panel lateral) por tipo de objeto seleccionado en los mímicos.
-import { useState, type ReactNode } from 'react';
+import { Fragment, useState, type ReactNode } from 'react';
 import { alarmas as alarmasDoc, equipoPorTag, instrumentoPorTag, valvulaPorTag, cargaPorTag, esAConfirmar, filtrosEquipo, LETRA_FILTRO, type Json } from '../data';
 import { useEngine, useSim } from '../store/sim';
 import type { Engine } from '../sim/engine';
 import { rangoAI } from '../sim/params';
 import { CONST_PLANTA, type ModoFallaTx } from '../sim/process/plant';
 import type { FallaFinCarrera, Selector } from '../sim/process/devices';
-import { estadoMotor, estadoValvula, ESTADO_TXT, fmt } from './common/util';
+import { estadoMotor, estadoValvula, ESTADO_TXT, fmt, lecturaLocal, manualAbierta } from './common/util';
+import { tipoManual } from './common/symbols';
 import { t, td, ts, campo } from '../i18n';
 
 export function Ficha({ datos, excluir = [] }: { datos: Record<string, Json | undefined>; excluir?: string[] }) {
@@ -150,8 +151,10 @@ function FaceMotor({ e, tag }: { e: Engine; tag: string }) {
             <dt>{t('Caudal')}</dt><dd>{fmt(sop.q, 0)} Nm³/h</dd>
             <dt>{t('{tag} presión descarga', { tag: sop.pi })}</dt><dd>{fmt(sop.pDescarga, 1)} kPag</dd>
             <dt>{t('Temp. descarga')}</dt><dd>{fmt(sop.tDescarga, 0)} °C</dd>
-            <dt>{sop.psv} (64 kPag)</dt><dd>{e.planta.qAirePSVsoplantes > 10 && sop.q > 0 ? t('ALIVIANDO') : t('cerrada')}</dd>
+            <dt>{sop.psv} (64 kPag)</dt><dd>{sop.qPSV > 1 || (e.planta.qAirePSVsoplantes > 10 && sop.q > 0) ? t('ALIVIANDO') : t('cerrada')}</dd>
+            {sop.vRetencion && <><dt>{sop.vRetencion}</dt><dd>{sop.retencionAbierta ? t('abierta') : t('cerrada')}</dd></>}
           </dl>
+          {sop.vDescarga && <Toggle label={t('Válvula manual {tag} abierta', { tag: sop.vDescarga })} valor={manualAbierta(e, sop.vDescarga)} onChange={(v) => accion((en) => en.setManual(sop.vDescarga!, v))} />}
         </Seccion>
       )}
       <Seccion titulo={t('Inyección de fallas')}>
@@ -249,7 +252,8 @@ function FaceInstrumento({ e, tag }: { e: Engine; tag: string }) {
   const d = instrumentoPorTag(tag);
   const enIO = e.io.tiene(tag);
   const pt = enIO ? e.io.punto(tag) : null;
-  const pv = e.plc.pv[tag] ?? (enIO ? e.io.ai(tag) : { eu: NaN, mA: NaN, mala: false });
+  const pv = e.plc.pv[tag] ?? (enIO ? e.io.ai(tag) : lecturaLocal(e, tag));
+  const sopPI = e.planta.soplantes.find((x) => x.pi === tag);
   const rango = rangoAI(tag, e.params);
   const falla = e.planta.fallas.transmisor[tag]?.modo ?? 'ok';
   const suf = tag.split('-')[1];
@@ -263,14 +267,25 @@ function FaceInstrumento({ e, tag }: { e: Engine; tag: string }) {
         {falla !== 'ok' && <span className="pill trip">{t('Falla inyectada: {f}', { f: t(falla) })}</span>}
         {esCOM && <span className="pill info">{t('Señal por comunicación (por otros)')}</span>}
       </div>
-      <Seccion titulo={t('Medición')}>
+      {sopPI && (
+        <Seccion titulo={t('Manómetro local (sin señal al PLC)')}>
+          <dl className="kv">
+            <dt>{t('Lectura')}</dt><dd style={{ fontSize: '1.05rem' }}>{fmt(sopPI.piLectura, 1)} kPag</dd>
+            <dt>{t('Presión real de descarga')}</dt><dd>{fmt(sopPI.pDescarga, 1)} kPag</dd>
+          </dl>
+          {sopPI.vAislPI && <Toggle label={t('{tag} aislamiento abierto', { tag: sopPI.vAislPI })} valor={manualAbierta(e, sopPI.vAislPI)} onChange={(v) => accion((en) => en.setManual(sopPI.vAislPI!, v))} />}
+          {sopPI.vDrenPI && <Toggle label={t('{tag} venteo abierto', { tag: sopPI.vDrenPI })} valor={manualAbierta(e, sopPI.vDrenPI)} onChange={(v) => accion((en) => en.setManual(sopPI.vDrenPI!, v))} />}
+          <div className="note">{t('Aislamiento cerrado: queda la presión atrapada. Venteo abierto: lee 0.')}</div>
+        </Seccion>
+      )}
+      {!sopPI && <Seccion titulo={t('Medición')}>
         <dl className="kv">
           <dt>{t('Valor (PLC)')}</dt><dd style={{ fontSize: '1.05rem' }}>{fmt(pv.eu, 2)} {pt?.unidad ?? d?.unidad ?? ''}</dd>
           {!esCOM && <><dt>{t('Señal')}</dt><dd>{fmt(pv.mA, 2)} mA</dd></>}
           {!esCOM && <><dt>{t('Rango calibrado')}</dt><dd>{rango[0]} – {rango[1]} {pt?.unidad ?? ''}</dd></>}
           {pt?.rio && <><dt>RIO</dt><dd>{pt.rio}</dd></>}
         </dl>
-      </Seccion>
+      </Seccion>}
       {lim && (
         <Seccion titulo={t('Alarmas')}>
           <table className="t">
@@ -334,9 +349,69 @@ function FaceInstrumento({ e, tag }: { e: Engine; tag: string }) {
   );
 }
 
+// ------------------------------------------------------------------ válvula manual
+const tipoManualTxt = (tp: ReturnType<typeof tipoManual>) => (tp === 'mariposa' ? t('Mariposa manual') : tp === 'bola' ? t('Bola manual') : t('Retención (automática)'));
+
+/** Qué hace cada válvula manual en el modelo y qué variables mirar. */
+function efectoManual(e: Engine, tag: string): { texto: string; filas: [string, string][] } {
+  const pl = e.planta;
+  const num = tag.slice(-6);
+  const sop = pl.soplantes.find((s) => [s.vDescarga, s.vRetencion, s.vAislPI, s.vDrenPI].includes(tag));
+  const comp = pl.compresores.find((c) => c.valvulaManual === tag);
+  const iFiltro = ['309718', '309720', '309722', '309724'].indexOf(num);
+  if (num === '309703') return { texto: t('Drena TK-30015 a la canaleta (≈ 250 m³/h con nivel normal).'), filas: [[t('Caudal de drenaje'), `${fmt(pl.qDrenaje15, 0)} m³/h`], [t('Nivel TK-30015'), `${fmt(pl.L15, 0)} mm`]] };
+  if (num === '309704' || num === '309708') return { texto: t('Aísla la rama de FIT/FV-160305603: cerrada, no pasa caudal por la FV aunque el FIC la abra.'), filas: [[t('Caudal por la rama FIT/FV'), `${fmt(pl.qBypassFV, 0)} m³/h`], ['FIT-160305603', `${fmt(e.plc.pv['FIT-160305603']?.eu, 0)} m³/h`]] };
+  if (num === '309709') return { texto: t('Rodea VBF-309704, FIT-160305603, FV-160305603 y VBF-309708: ese caudal no se mide ni se controla.'), filas: [[t('Caudal por VBF-309709'), `${fmt(pl.qBypass709, 0)} m³/h`], [t('Total de bypass'), `${fmt(pl.qBypass, 0)} m³/h`]] };
+  if (num === '309705' || num === '309707') return { texto: t('Drenaje de ½″ de la línea de bypass: con la línea cargada desde TK-30015 descarga el caudal del parámetro de drenaje.'), filas: [[t('Caudal de drenajes de la línea'), `${fmt(pl.qDrenajeBypass, 1)} m³/h`]] };
+  if (iFiltro >= 0) return { texto: t('Drena el filtro al colector de desecho.'), filas: [[t('Caudal de drenaje'), `${fmt(pl.filtros[iFiltro].qDrenaje, 1)} m³/h`], [t('Nivel del filtro'), `${fmt(pl.filtros[iFiltro].h, 0)} mm`]] };
+  if (comp) return { texto: t('Aísla la descarga del compresor hacia TK-30015: cerrada, la presión sube hasta que el MK5 descarga.'), filas: [[t('Presión de descarga'), `${fmt(comp.pDescarga, 1)} kPa`], [t('Estado MK5'), ts(comp.estado)]] };
+  if (sop && tag === sop.vDescarga) return { texto: t('Aísla la descarga del soplante: cerrada, el soplante en marcha trabaja contra su PSV y no aporta aire al colector.'), filas: [[t('Presión de descarga'), `${fmt(sop.pDescarga, 1)} kPag`], [t('Alivio por PSV'), `${fmt(sop.qPSV, 0)} Nm³/h`]] };
+  if (sop && tag === sop.vRetencion) return { texto: t('Retención: abre sola con caudal del soplante e impide el retorno desde el colector.'), filas: [[t('Caudal del soplante'), `${fmt(sop.q, 0)} Nm³/h`]] };
+  if (sop && tag === sop.vAislPI) return { texto: t('Aísla el manómetro: cerrada, queda la presión atrapada.'), filas: [[sop.pi, `${fmt(sop.piLectura, 1)} kPag`], [t('Presión real de descarga'), `${fmt(sop.pDescarga, 1)} kPag`]] };
+  if (sop && tag === sop.vDrenPI) return { texto: t('Ventea el manómetro: abierta, lee 0.'), filas: [[sop.pi, `${fmt(sop.piLectura, 1)} kPag`]] };
+  return { texto: t('Sin efecto modelado.'), filas: [] };
+}
+
+function FaceManual({ e, tag }: { e: Engine; tag: string }) {
+  const accion = useSim((s) => s.accion);
+  const d = valvulaPorTag(tag);
+  const tipo = tipoManual(tag);
+  const abierta = manualAbierta(e, tag);
+  const ef = efectoManual(e, tag);
+  return (
+    <>
+      <div className="row">
+        <span className={`pill ${abierta ? 'on' : 'off'}`}>{abierta ? t('Abierta') : t('Cerrada')}</span>
+        <span className="pill info">{tipoManualTxt(tipo)}</span>
+        <span className="pill unk">{t('Sin señales al PLC')}</span>
+      </div>
+      {tipo !== 'retencion' && (
+        <div className="row">
+          <button className="btn" disabled={abierta} onClick={() => accion((en) => en.setManual(tag, true))}>{t('Abrir')}</button>
+          <button className="btn" disabled={!abierta} onClick={() => accion((en) => en.setManual(tag, false))}>{t('Cerrar')}</button>
+        </div>
+      )}
+      <Seccion titulo={t('Efecto en el simulador')}>
+        <p style={{ margin: '0 0 6px' }}>{ef.texto}</p>
+        {ef.filas.length > 0 && (
+          <dl className="kv">
+            {ef.filas.map(([k, v]) => <Fragment key={k}><dt>{k}</dt><dd>{v}</dd></Fragment>)}
+          </dl>
+        )}
+      </Seccion>
+      {d && (
+        <Seccion titulo={t('Ficha técnica (lista de válvulas)')}>
+          <Ficha datos={d} excluir={['tag']} />
+        </Seccion>
+      )}
+    </>
+  );
+}
+
 // ------------------------------------------------------------------ FIC-603
 function FaceFIC({ e }: { e: Engine }) {
   const cmd = useSim((s) => s.cmd);
+  const seleccionar = useSim((s) => s.seleccionar);
   const accion = useSim((s) => s.accion);
   const plc = e.plc;
   const [manual, setManual] = useState(String(Math.round(plc.salidaManualFIC)));
@@ -376,6 +451,21 @@ function FaceFIC({ e }: { e: Engine }) {
           <button className="btn" onClick={() => cmd({ tipo: 'fic', salida: Number(manual) })}>{t('Aplicar')}</button>
         </div>
         <div className="note">{t('Programa: entrada < {u} m³/h → FV al 0 %; ≥ umbral → Auto. La FV es aire-abre / resorte-cierra: cierra ante falla de aire o de señal.', { u: e.params.bypass_umbral_auto_m3h })}</div>
+      </Seccion>
+      <Seccion titulo={t('Estación de bypass (P&ID)')}>
+        <dl className="kv">
+          <dt>{t('Rama FIT/FV (VBF-309704 → VBF-309708)')}</dt><dd>{fmt(e.planta.qBypassFV, 0)} m³/h</dd>
+          <dt>{t('Rodeo VBF-309709 (no lo mide la FIT)')}</dt><dd>{fmt(e.planta.qBypass709, 0)} m³/h</dd>
+          <dt>{t('Drenajes VBA-309705/707')}</dt><dd>{fmt(e.planta.qDrenajeBypass, 1)} m³/h</dd>
+          <dt>{t('Total al sumidero de agua filtrada')}</dt><dd style={{ fontWeight: 700 }}>{fmt(e.planta.qBypass, 0)} m³/h</dd>
+        </dl>
+        <div className="row">
+          {['16045-VBF-309704', '16045-VBA-309705', '16045-VBA-309707', '16045-VBF-309708', '16045-VBF-309709'].map((tag) => (
+            <button key={tag} className="btn small" onClick={() => seleccionar({ tipo: 'manual', tag })}>
+              <span className={`dot ${manualAbierta(e, tag) ? 'on' : 'off'}`} /> {tag.replace('16045-', '')}
+            </button>
+          ))}
+        </div>
       </Seccion>
       <Seccion titulo={t('Inyección de fallas')}>
         <Toggle label={t('FV-160305603 trabada')} valor={e.planta.fv603.trabada} onChange={(v) => accion((en) => en.setFallaValvula('FV-160305603', v))} peligro />
@@ -516,6 +606,11 @@ export function Faceplate() {
       titulo = sel.tag;
       sub = td(valvulaPorTag(sel.tag)?.descripcion);
       cuerpo = <FaceValvula e={e} tag={sel.tag} />;
+      break;
+    case 'manual':
+      titulo = sel.tag;
+      sub = td(valvulaPorTag(sel.tag)?.descripcion);
+      cuerpo = <FaceManual e={e} tag={sel.tag} />;
       break;
     case 'instrumento':
       titulo = sel.tag;

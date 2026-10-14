@@ -39,6 +39,18 @@ export function estadoMotor(e: Engine, tag: string): EstadoVisual {
   return b.run ? 'on' : 'off';
 }
 
+/** Válvula manual abierta (las retenciones VCH abren solas con caudal del soplante). */
+export function manualAbierta(e: Engine, tag: string): boolean {
+  if (tag.includes('-VCH-')) return e.planta.soplantes.some((s) => s.vRetencion === tag && s.retencionAbierta);
+  return e.planta.manuales[tag] ?? true;
+}
+
+/** Lectura de indicadores locales sin I/O (manómetros PI de soplantes, con aislamiento y venteo). */
+export function lecturaLocal(e: Engine, tag: string) {
+  const s = e.planta.soplantes.find((x) => x.pi === tag);
+  return { eu: s ? s.piLectura : NaN, mA: NaN, mala: false };
+}
+
 // Textos en español (clave de t()); traducir al mostrar con t(ESTADO_TXT[x]) o estadoTxt(x).
 export const ESTADO_TXT: Record<EstadoVisual, string> = { on: 'Marcha/abierta', off: 'Parada/cerrada', moving: 'En recorrido', trip: 'Falla/disparo', unk: 'Sin dato' };
 export const estadoTxt = (e: EstadoVisual) => t(ESTADO_TXT[e]);

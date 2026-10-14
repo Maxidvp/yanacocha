@@ -97,4 +97,6 @@ export const UI_RESUMEN: Record<string, string> = {
   'LOCAL': 'LOCAL',
   'OFF': 'OFF',
   abierta: 'open',
+  'a canaleta': 'to trench',
+  'sin medir': 'unmeasured',
 };

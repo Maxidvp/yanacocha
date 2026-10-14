@@ -37,7 +37,7 @@ export function Datos() {
   const listas: Record<Exclude<Vista, 'pendientes'>, { tag: string; titulo: string; obj: Record<string, Json | undefined>; abrir?: () => void }[]> = {
     equipos: filtro(equipos).map((x) => ({ tag: x.tag, titulo: td(x.nombre), obj: x, abrir: x.tag.match(/AG|BL|CM/) ? () => seleccionar({ tipo: 'motor', tag: x.tag }) : x.tag.match(/TK-3001[56]/) ? () => seleccionar({ tipo: 'tanque', tag: x.tag }) : undefined })),
     instrumentos: filtro(instrumentos).map((x) => ({ tag: x.tag, titulo: td(String(x.servicio ?? x.tipo ?? '')), obj: x, abrir: () => seleccionar({ tipo: 'instrumento', tag: x.tag }) })),
-    valvulas: filtro(valvulas).map((x) => ({ tag: x.tag, titulo: td(x.descripcion), obj: x, abrir: x.senales ? () => (x.tag.startsWith('FV') ? seleccionar({ tipo: 'fic' }) : seleccionar({ tipo: 'valvula', tag: x.tag })) : undefined })),
+    valvulas: filtro(valvulas).map((x) => ({ tag: x.tag, titulo: td(x.descripcion), obj: x, abrir: x.senales ? () => (x.tag.startsWith('FV') ? seleccionar({ tipo: 'fic' }) : seleccionar({ tipo: 'valvula', tag: x.tag })) : x.funcion === 'MANUAL' ? () => seleccionar({ tipo: 'manual', tag: x.tag }) : undefined })),
     cargas: filtro(electrico.cargas).map((x) => ({ tag: x.tag, titulo: td(x.desc), obj: x as unknown as Record<string, Json> })),
   };
   return (

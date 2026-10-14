@@ -10,6 +10,7 @@ Resumen de las ecuaciones y supuestos del modelo (`src/sim/process/`). Los coefi
 - Tanque abierto D = 4.3 m (14.52 m²). Balance: dL/dt = (Q_entrada − Q_filtros − Q_bypass − Q_rebalse − Q_drenaje)/A.
 - Salida a filtros por la caja de salida (vertedero, SUPUESTO cresta 5000 mm): Q = Cw·(L − L_vert)^1.5, con Cw calibrado para 1771 m³/h a 5536 mm (nivel normal).
 - Bypass N12: Q = 853·(posición FV)^1.15·√(carga/carga_nominal), con tope mecánico de 853 m³/h. La FV es aire-abre/resorte-cierra con un actuador de 1er orden.
+- Estación de bypass según el P&ID: VBF-309704 → VBA-309705 → FIT-160305603 → FV-160305603 → VBA-309707 → VBF-309708, con VBF-309709 (24″) en paralelo a toda la estación. Con VBF-309704 o VBF-309708 cerrada no pasa caudal por la FV. VBF-309709 abierta deja pasar 1300·√(carga/carga_nominal) m³/h que la FIT no mide y el FIC no controla. Cada drenaje VBA de ½″ abierto saca `q_drenaje_bypass_m3h` (SUPUESTO 8 m³/h) con la línea cargada desde el TK (VBF-309704 abierta); el de aguas abajo de la FV solo si la FV deja pasar, y ese caudal sí lo ve la FIT.
 - Rebalse N11 a 6250 mm (SUPUESTO).
 
 ## Filtros (4 × 25 %)
@@ -24,6 +25,7 @@ Resumen de las ecuaciones y supuestos del modelo (`src/sim/process/`). Los coefi
 
 ## Aire
 - Soplantes de desplazamiento positivo (2688 Nm³/h). La presión del colector se resuelve por bisección entre las salidas abiertas (AIRI, HV-639 y PSV a 64 kPag). La carga estática es la columna de agua sobre el distribuidor; queda calibrado a 58.3 kPa tras el drenaje.
+- Tren de descarga de cada soplante: retención VCH (abre sola con caudal), mariposa VBF de descarga y manómetro PI con aislamiento y venteo (VBA). Con la VBF cerrada el soplante en marcha trabaja contra su propia PSV (≈ 64 kPag) y no aporta aire al colector; FIT-160305607 ve caudal cero y FALL-160305607 dispara E10 a los 30 s. El manómetro lee la descarga con el aislamiento abierto y el venteo cerrado, retiene la última presión si se aísla y lee 0 si se ventea.
 - Temperatura de descarga adiabática con η = 0.55 a 0.608 bar(a) (≈ 122 °C de diseño).
 - Compresores Atlas Copco: estados MK5 (arranque en vacío 10 s, carga, descarga por presión y parada tras marcha en vacío). La presión de descarga es la columna de TK-30015 más la pérdida del difusor (≈ 102 kPa).
 
