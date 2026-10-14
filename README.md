@@ -30,6 +30,8 @@ npm run build:single # dist-single/index.html autocontenido (un solo archivo)
 Atajos: F1–F11 cambian de pantalla, Esc cierra el faceplate.
 
 ## Deploy (Firebase Hosting)
+Publicado en **https://yanacocha-awtp.web.app** (proyecto Firebase `yanacocha-awtp`).
+
 Cada push a `main` o a `claude/friendly-babbage-owfywt` ejecuta `.github/workflows/firebase-hosting.yml`: instala dependencias, corre typecheck y tests, compila y despliega `dist/` en Firebase Hosting.
 - Requiere el secreto de repositorio `FIREBASE_SERVICE_ACCOUNT` con el JSON de una cuenta de servicio con rol *Firebase Hosting Admin*. El project ID se lee del JSON.
 - También se puede lanzar a mano desde la pestaña Actions (*Run workflow*).
