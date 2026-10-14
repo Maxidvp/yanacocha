@@ -7,6 +7,7 @@ import { Inst } from './Resumen';
 import { Pipe, ValvulaSym } from '../common/symbols';
 import { TrendPane } from '../common/Trend';
 import { duracion, estadoValvula, fmt, LETRAS, tiempoSim } from '../common/util';
+import { t, td, ts } from '../../i18n';
 
 const NOMBRE_FN: Record<FuncionValvula, string> = { SEVI: 'Entrada de servicio', RI: 'Entrada regeneración', BWO: 'Salida retrolavado', FRO: 'Salida enjuague/regen. (RO/RW)', BWI: 'Entrada retrolavado', SEVO: 'Salida de servicio', AIRI: 'Entrada aire (air scour)' };
 
@@ -35,7 +36,7 @@ function Corte({ e, i }: { e: Engine; i: number }) {
   const z0 = p.z0_LIT_mm;
   const sucio = Math.min(1, f.suciedad / 120);
   return (
-    <svg className="mimic" viewBox="0 0 560 430" role="img" aria-label={`Corte del filtro ${LETRAS[i]}`}>
+    <svg className="mimic" viewBox="0 0 560 430" role="img" aria-label={t('Corte del filtro {f}', { f: LETRAS[i] })}>
       {/* agua */}
       <rect x={X0} y={y(Math.min(f.h, CONST_PLANTA.ALTO_FILTRO_MM))} width={W} height={Math.max(0, Math.min(f.h, CONST_PLANTA.ALTO_FILTRO_MM)) * k} fill={f.turbBWO > 20 ? 'var(--water-dirty)' : 'var(--water-fill)'} />
       {/* medios */}
@@ -43,9 +44,9 @@ function Corte({ e, i }: { e: Engine; i: number }) {
       <rect x={X0} y={y(grava + gs)} width={W} height={gs * k} fill="#3f5a3c" />
       <rect x={X0} y={y(grava + gs + an)} width={W} height={an * k} fill="#2f2f2f" />
       <rect x={X0} y={y(grava + gs + an)} width={W} height={Math.max(2, 10 * sucio)} fill="#7a6232" opacity={0.85} />
-      <text className="t-xs" x={X0 + 6} y={y(grava + gs + an) + an * k - 3} style={{ fill: '#e0e0e0' }}>Antracita {an} mm</text>
+      <text className="t-xs" x={X0 + 6} y={y(grava + gs + an) + an * k - 3} style={{ fill: '#e0e0e0' }}>{t('Antracita {e} mm', { e: an })}</text>
       <text className="t-xs" x={X0 + 6} y={y(grava + gs) + gs * k / 2 + 3} style={{ fill: '#e0e0e0' }}>Greensand {gs} mm</text>
-      <text className="t-xs" x={X0 + 6} y={y(grava) + grava * k / 2 + 3} style={{ fill: '#1b1b1b' }}>Grava {grava} mm</text>
+      <text className="t-xs" x={X0 + 6} y={y(grava) + grava * k / 2 + 3} style={{ fill: '#1b1b1b' }}>{t('Grava {e} mm', { e: grava })}</text>
       {f.qAire > 100 && (
         <g className="bubbles">
           {Array.from({ length: 14 }, (_, n) => <circle key={n} cx={X0 + 12 + n * 16} cy={y(grava + gs + an) - 4} r={2.6} style={{ animationDelay: `${(n % 7) * 0.2}s` }} />)}
@@ -59,8 +60,8 @@ function Corte({ e, i }: { e: Engine; i: number }) {
       {lin(z0 + 140, '')}
       {lin(p.K06_mm, `K06 ${p.K06_mm}`, 'var(--accent)', true)}
       {lin(p.K09_mm, `K09 ${p.K09_mm}`, 'var(--accent)', true)}
-      {lin(z0, `cero LIT ${z0}`, 'var(--ink-2)', true)}
-      <text className="t-xs" x={X0} y={Y0 + H + 16}>Fondo · alto 4938 mm · área 39.04 m² · niveles en mm</text>
+      {lin(z0, t('cero LIT {z}', { z: z0 }), 'var(--ink-2)', true)}
+      <text className="t-xs" x={X0} y={Y0 + H + 16}>{t('Fondo · alto 4938 mm · área 39.04 m² · niveles en mm')}</text>
 
       {/* cañerías y válvulas */}
       <Pipe d={`M 10 40 H ${X0 + 40} V ${Y0}`} fluido="water" activa={f.qSEVI > 1} ancho={5} />
@@ -97,7 +98,7 @@ function Botones({ e, i }: { e: Engine; i: number }) {
   return (
     <div className="stack">
       <div className="row">
-        <div className="seg" role="group" aria-label="Modo">
+        <div className="seg" role="group" aria-label={t('Modo')}>
           <button aria-pressed={s.modo === 'AUTO'} onClick={b('AUTO')}>Auto</button>
           <button aria-pressed={semi} onClick={b('SEMIAUTO')}>Semiauto</button>
         </div>
@@ -119,7 +120,7 @@ function Botones({ e, i }: { e: Engine; i: number }) {
         <button className="btn" disabled={!s.hold} onClick={b('RESUME')}>Resume</button>
       </div>
       <div className="note">
-        Auto: pasa solo Standby→Service y Service→Lavado. Semiauto: el operador inicia Service / Backwash / Regeneration. Abortar = Hold + Offline. Prolong retiene los pasos temporizados hasta Step Advance.
+        {t('Auto: pasa solo Standby→Service y Service→Lavado. Semiauto: el operador inicia Service / Backwash / Regeneration. Abortar = Hold + Offline. Prolong retiene los pasos temporizados hasta Step Advance.')}
       </div>
     </div>
   );
@@ -133,9 +134,9 @@ function Matriz({ e, i }: { e: Engine; i: number }) {
       <table className="t matrix">
         <thead>
           <tr>
-            <th>Válvula</th>
-            {SECUENCIA.map((p) => <th key={p.paso} className={p.paso === s.paso ? 'cur' : ''} title={p.nombre}>{p.paso}</th>)}
-            <th>Ahora</th>
+            <th>{t('Válvula')}</th>
+            {SECUENCIA.map((p) => <th key={p.paso} className={p.paso === s.paso ? 'cur' : ''} title={td(p.nombre)}>{p.paso}</th>)}
+            <th>{t('Ahora')}</th>
           </tr>
         </thead>
         <tbody>
@@ -155,7 +156,7 @@ function Matriz({ e, i }: { e: Engine; i: number }) {
           })}
           {Object.entries(soe.columnas.comunes).map(([k, txt]) => (
             <tr key={k}>
-              <td style={{ fontSize: '0.8rem' }}>{txt.replace(/ \(by others\)/, ' (otros)')}</td>
+              <td style={{ fontSize: '0.8rem' }}>{txt.replace(/ \(by others\)/, ` ${t('(otros)')}`)}</td>
               {soe.pasos.map((p) => {
                 const v = p.comunes[k];
                 return <td key={p.paso} className={`${v === 'ON' || v === 'ST' || v === 'O' ? 'o' : 'c'}${p.paso === s.paso ? ' cur' : ''}`} style={{ fontSize: '0.72rem' }}>{v === 'Off' || v === 'Cl' ? '·' : v}</td>;
@@ -164,13 +165,13 @@ function Matriz({ e, i }: { e: Engine; i: number }) {
             </tr>
           ))}
           <tr>
-            <td style={{ fontSize: '0.8rem' }}>Preset SOE / filosofía</td>
+            <td style={{ fontSize: '0.8rem' }}>{t('Preset SOE / filosofía')}</td>
             {soe.pasos.map((p) => {
               const pf = SECUENCIA.find((x) => x.paso === p.paso)?.timer?.match(/(\d+) ?(s|min)/);
               const filo = pf ? Number(pf[1]) * (pf[2] === 'min' ? 60 : 1) : null;
               const difiere = p.preset_s !== null && filo !== null && p.preset_s !== filo;
               return (
-                <td key={p.paso} className={p.paso === s.paso ? 'cur' : ''} style={{ fontSize: '0.68rem', textAlign: 'center', color: difiere ? 'var(--crit)' : 'var(--ink-3)' }} title={difiere ? `SOE ${p.preset} ≠ filosofía ${filo} s` : p.preset}>
+                <td key={p.paso} className={p.paso === s.paso ? 'cur' : ''} style={{ fontSize: '0.68rem', textAlign: 'center', color: difiere ? 'var(--crit)' : 'var(--ink-3)' }} title={difiere ? t('SOE {soe} ≠ filosofía {filo} s', { soe: td(p.preset), filo: filo ?? '' }) : td(p.preset)}>
                   {p.preset_s === null ? '' : p.preset_s >= 3600 ? `${p.preset_s / 60}m` : p.preset_s}{difiere ? `/${filo}` : ''}
                 </td>
               );
@@ -201,8 +202,8 @@ export function Filtros() {
   return (
     <div className="screen">
       <div className="screen-head">
-        <h2>Filtros de medio activo</h2>
-        <div className="seg" role="tablist" aria-label="Filtro">
+        <h2>{t('Filtros de medio activo')}</h2>
+        <div className="seg" role="tablist" aria-label={t('Filtro')}>
           {e.plc.filtros.map((x, k) => (
             <button key={k} role="tab" aria-selected={k === i} aria-pressed={k === i} onClick={() => setFiltro(k)}>
               {LETRAS[k]} · {x.hold ? 'HOLD' : x.paso}
@@ -212,10 +213,10 @@ export function Filtros() {
         <p>{fe.tag} · LIT {fe.transmisor_nivel} · RIO {fe.rio} · {fe.caja_conexion}</p>
       </div>
 
-      <div className="steps" aria-label="Pasos de la secuencia">
+      <div className="steps" aria-label={t('Pasos de la secuencia')}>
         {SECUENCIA.map((x) => (
-          <div key={x.paso} className={`step${x.paso === s.paso ? (s.hold ? ' hold' : ' cur') : ''}`} title={x.nota}>
-            <b>{x.paso}</b>{x.nombre}
+          <div key={x.paso} className={`step${x.paso === s.paso ? (s.hold ? ' hold' : ' cur') : ''}`} title={td(x.nota)}>
+            <b>{x.paso}</b>{td(x.nombre)}
           </div>
         ))}
       </div>
@@ -223,31 +224,31 @@ export function Filtros() {
       <div className="grid g2">
         <div className="card">
           <h3>
-            Paso {s.paso} · {s.nombrePaso}
+            {t('Paso {n} · {nombre}', { n: s.paso, nombre: td(s.nombrePaso) })}
             {s.hold && <span className="pill trip">HOLD</span>}
             {s.prolongar && <span className="pill info">Prolong</span>}
-            {s.paso === 12 && !s.permisivoK12 && <span className="pill trip">Esperando K12</span>}
+            {s.paso === 12 && !s.permisivoK12 && <span className="pill trip">{t('Esperando K12')}</span>}
           </h3>
-          {s.hold && <div className="note warn">Causa: {s.holdCausa}</div>}
-          {pasoDef && <div className="note">{pasoDef.nota}{pasoDef.transicion_nivel ? ` · Transición: ${pasoDef.transicion_nivel}` : ''}</div>}
+          {s.hold && <div className="note warn">{t('Causa: {c}', { c: ts(s.holdCausa) })}</div>}
+          {pasoDef && <div className="note">{td(pasoDef.nota)}{pasoDef.transicion_nivel ? ` · ${t('Transición: {x}', { x: td(pasoDef.transicion_nivel) })}` : ''}</div>}
           <dl className="kv" style={{ marginTop: 8 }}>
-            <dt>Timer del paso</dt><dd>{duracion(s.tPaso)}{pre ? ` / ${duracion(pre)}` : ''}</dd>
+            <dt>{t('Timer del paso')}</dt><dd>{duracion(s.tPaso)}{pre ? ` / ${duracion(pre)}` : ''}</dd>
           </dl>
           {pre && <div className={`bar${s.tPaso > pre ? ' warn' : ''}`} style={{ margin: '4px 0 8px' }}><i style={{ width: `${Math.min(100, (100 * s.tPaso) / pre)}%` }} /></div>}
           <dl className="kv">
-            <dt>Servicio desde último lavado (T03)</dt><dd>{duracion(s.tServicioLavado)} / {duracion(t03)}</dd>
+            <dt>{t('Servicio desde último lavado (T03)')}</dt><dd>{duracion(s.tServicioLavado)} / {duracion(t03)}</dd>
           </dl>
           <div className="bar" style={{ margin: '4px 0 8px' }}><i style={{ width: `${Math.min(100, (100 * s.tServicioLavado) / t03)}%` }} /></div>
           <dl className="kv">
-            <dt>Servicio desde última regeneración (K03)</dt><dd>{duracion(s.tServicioRegen)} / {duracion(k03)}</dd>
+            <dt>{t('Servicio desde última regeneración (K03)')}</dt><dd>{duracion(s.tServicioRegen)} / {duracion(k03)}</dd>
           </dl>
           <div className={`bar${s.tServicioRegen >= k03 ? ' warn' : ''}`} style={{ margin: '4px 0 8px' }}><i style={{ width: `${Math.min(100, (100 * s.tServicioRegen) / k03)}%` }} /></div>
           <dl className="kv">
-            <dt>Regeneración requerida</dt><dd>{s.regenRequerida ? 'SÍ' : 'no'}</dd>
-            <dt>TQI tiempo de servicio acumulado</dt><dd>{fmt(s.tqi, 1)} h</dd>
-            <dt>Lavados / regeneraciones (sesión)</dt><dd>{s.lavados} / {s.regeneraciones}</dd>
-            <dt>Último motivo de lavado</dt><dd>{s.ultimoMotivoLavado || '—'}</dd>
-            {s.sevoCerradaAnormal && <><dt>Condición anormal</dt><dd>SEVO cerrada por nivel</dd></>}
+            <dt>{t('Regeneración requerida')}</dt><dd>{s.regenRequerida ? t('SÍ') : t('no')}</dd>
+            <dt>{t('TQI tiempo de servicio acumulado')}</dt><dd>{fmt(s.tqi, 1)} h</dd>
+            <dt>{t('Lavados / regeneraciones (sesión)')}</dt><dd>{s.lavados} / {s.regeneraciones}</dd>
+            <dt>{t('Último motivo de lavado')}</dt><dd>{ts(s.ultimoMotivoLavado) || '—'}</dd>
+            {s.sevoCerradaAnormal && <><dt>{t('Condición anormal')}</dt><dd>{t('SEVO cerrada por nivel')}</dd></>}
           </dl>
           <div style={{ marginTop: 10 }}>
             <Botones e={e} i={i} />
@@ -260,46 +261,46 @@ export function Filtros() {
 
       <div className="grid g3">
         <div className="card">
-          <h3>Hidráulica (modelo)</h3>
+          <h3>{t('Hidráulica (modelo)')}</h3>
           <dl className="kv">
-            <dt>Nivel sobre el fondo</dt><dd>{fmt(f.h, 0)} mm</dd>
-            <dt>Nivel LIT (escala 0–2980)</dt><dd>{fmt(f.h - p.z0_LIT_mm, 0)} mm</dd>
-            <dt>Entrada SEVI / BWI / RI</dt><dd>{fmt(f.qSEVI, 0)} / {fmt(f.qBWI, 0)} / {fmt(f.qRI, 0)} m³/h</dd>
-            <dt>Salida SEVO / BWO / RO-RW</dt><dd>{fmt(f.qSEVO, 0)} / {fmt(f.qBWO, 0)} / {fmt(f.qRW, 0)} m³/h</dd>
-            <dt>Velocidad de filtración</dt><dd>{fmt(f.qSEVO / CONST_PLANTA.A_FILTRO, 2)} m/h</dd>
-            <dt>Tasa de retrolavado</dt><dd>{fmt(f.qBWI / CONST_PLANTA.A_FILTRO, 1)} m/h</dd>
-            <dt>Aire de lavado</dt><dd>{fmt(f.qAire, 0)} Nm³/h ({fmt(f.qAire / CONST_PLANTA.A_FILTRO, 1)} Nm³/m²·h)</dd>
-            <dt>Resistencia del lecho R/R₀</dt><dd>{fmt(R / p.R_limpio, 2)}</dd>
+            <dt>{t('Nivel sobre el fondo')}</dt><dd>{fmt(f.h, 0)} mm</dd>
+            <dt>{t('Nivel LIT (escala 0–2980)')}</dt><dd>{fmt(f.h - p.z0_LIT_mm, 0)} mm</dd>
+            <dt>{t('Entrada SEVI / BWI / RI')}</dt><dd>{fmt(f.qSEVI, 0)} / {fmt(f.qBWI, 0)} / {fmt(f.qRI, 0)} m³/h</dd>
+            <dt>{t('Salida SEVO / BWO / RO-RW')}</dt><dd>{fmt(f.qSEVO, 0)} / {fmt(f.qBWO, 0)} / {fmt(f.qRW, 0)} m³/h</dd>
+            <dt>{t('Velocidad de filtración')}</dt><dd>{fmt(f.qSEVO / CONST_PLANTA.A_FILTRO, 2)} m/h</dd>
+            <dt>{t('Tasa de retrolavado')}</dt><dd>{fmt(f.qBWI / CONST_PLANTA.A_FILTRO, 1)} m/h</dd>
+            <dt>{t('Aire de lavado')}</dt><dd>{fmt(f.qAire, 0)} Nm³/h ({fmt(f.qAire / CONST_PLANTA.A_FILTRO, 1)} Nm³/m²·h)</dd>
+            <dt>{t('Resistencia del lecho R/R₀')}</dt><dd>{fmt(R / p.R_limpio, 2)}</dd>
           </dl>
         </div>
         <div className="card">
-          <h3>Medio y calidad (modelo)</h3>
+          <h3>{t('Medio y calidad (modelo)')}</h3>
           <dl className="kv">
-            <dt>Sólidos retenidos</dt><dd>{fmt(f.suciedad, 1)} kg</dd>
-            <dt>Sólidos en suspensión</dt><dd>{fmt(f.susp, 1)} kg</dd>
-            <dt>Lecho aflojado por aire</dt><dd>{fmt(f.aflojado * 100, 0)} %</dd>
-            <dt>Maduración tras lavado</dt><dd>{fmt(f.maduracion * 100, 0)} %</dd>
-            <dt>Capacidad oxidativa greensand</dt><dd>{fmt((100 * f.capOx) / p.cap_greensand_kg, 0)} %</dd>
-            <dt>Turbidez salida</dt><dd>{fmt(f.calidadSalida.turb, 2)} NTU</dd>
-            <dt>Mn salida</dt><dd>{fmt(f.calidadSalida.mn, 3)} mg/L</dd>
-            <dt>Turbidez desecho BWO</dt><dd>{fmt(f.turbBWO, 0)} NTU</dd>
-            <dt>Cloro libre en el filtro</dt><dd>{fmt(f.cl, 2)} mg/L</dd>
-            <dt>Volumen filtrado / retrolavado</dt><dd>{fmt(f.volFiltrado, 0)} / {fmt(f.volRetrolavado, 0)} m³</dd>
+            <dt>{t('Sólidos retenidos')}</dt><dd>{fmt(f.suciedad, 1)} kg</dd>
+            <dt>{t('Sólidos en suspensión')}</dt><dd>{fmt(f.susp, 1)} kg</dd>
+            <dt>{t('Lecho aflojado por aire')}</dt><dd>{fmt(f.aflojado * 100, 0)} %</dd>
+            <dt>{t('Maduración tras lavado')}</dt><dd>{fmt(f.maduracion * 100, 0)} %</dd>
+            <dt>{t('Capacidad oxidativa greensand')}</dt><dd>{fmt((100 * f.capOx) / p.cap_greensand_kg, 0)} %</dd>
+            <dt>{t('Turbidez salida')}</dt><dd>{fmt(f.calidadSalida.turb, 2)} NTU</dd>
+            <dt>{t('Mn salida')}</dt><dd>{fmt(f.calidadSalida.mn, 3)} mg/L</dd>
+            <dt>{t('Turbidez desecho BWO')}</dt><dd>{fmt(f.turbBWO, 0)} NTU</dd>
+            <dt>{t('Cloro libre en el filtro')}</dt><dd>{fmt(f.cl, 2)} mg/L</dd>
+            <dt>{t('Volumen filtrado / retrolavado')}</dt><dd>{fmt(f.volFiltrado, 0)} / {fmt(f.volRetrolavado, 0)} m³</dd>
           </dl>
         </div>
         <div className="card">
-          <h3>Muestra manual (paso 15)</h3>
+          <h3>{t('Muestra manual (paso 15)')}</h3>
           <p className="muted" style={{ margin: 0, fontSize: '0.88rem' }}>
-            La filosofía exige verificar ORP por muestra manual antes de dar Step Advance al final del enjuague rápido (comisionamiento: Cl libre &lt; 0.2 mg/L).
+            {t('La filosofía exige verificar ORP por muestra manual antes de dar Step Advance al final del enjuague rápido (comisionamiento: Cl libre < 0.2 mg/L).')}
           </p>
           <div className="row" style={{ marginTop: 8 }}>
-            <button className="btn primary" onClick={() => accion((en) => en.tomarMuestra(i))}>Tomar muestra</button>
-            {s.paso === 15 && s.esperandoStepAdvance && <span className="pill info">Esperando Step Advance</span>}
+            <button className="btn primary" onClick={() => accion((en) => en.tomarMuestra(i))}>{t('Tomar muestra')}</button>
+            {s.paso === 15 && s.esperandoStepAdvance && <span className="pill info">{t('Esperando Step Advance')}</span>}
           </div>
           <table className="t" style={{ marginTop: 8 }}>
-            <thead><tr><th>Hora</th><th className="n">Cl libre mg/L</th><th className="n">ORP mV</th></tr></thead>
+            <thead><tr><th>{t('Hora')}</th><th className="n">{t('Cl libre mg/L')}</th><th className="n">ORP mV</th></tr></thead>
             <tbody>
-              {muestras.length === 0 && <tr><td colSpan={3} className="empty">Sin muestras de este filtro.</td></tr>}
+              {muestras.length === 0 && <tr><td colSpan={3} className="empty">{t('Sin muestras de este filtro.')}</td></tr>}
               {muestras.map((m, k) => (
                 <tr key={k}><td className="mono">{tiempoSim(m.t)}</td><td className="n" style={{ color: m.cl < 0.2 ? 'var(--good)' : 'var(--crit)' }}>{fmt(m.cl, 2)}</td><td className="n">{fmt(m.orp, 0)}</td></tr>
               ))}
@@ -309,14 +310,14 @@ export function Filtros() {
       </div>
 
       <div className="card">
-        <h3>Matriz de la secuencia (filosofía rev005 + SOE de la C&amp;E rev002) · columna resaltada = paso actual</h3>
+        <h3>{t('Matriz de la secuencia (filosofía rev005 + SOE de la C&E rev002) · columna resaltada = paso actual')}</h3>
         <Matriz e={e} i={i} />
-        <div className="note" style={{ marginTop: 6 }}>Válvulas idénticas en filosofía y SOE. En rojo los presets que difieren (T13, T14: se usa la filosofía). ST/SP = comando de marcha/parada al MCC; X = depende de los otros filtros. {NOMBRE_FN.SEVI} (SEVI) · {NOMBRE_FN.SEVO} (SEVO) · {NOMBRE_FN.BWI} (BWI) · {NOMBRE_FN.BWO} (BWO) · {NOMBRE_FN.AIRI} (AIRI) · {NOMBRE_FN.RI} (RI) · {NOMBRE_FN.FRO}</div>
+        <div className="note" style={{ marginTop: 6 }}>{t('Válvulas idénticas en filosofía y SOE. En rojo los presets que difieren (T13, T14: se usa la filosofía). ST/SP = comando de marcha/parada al MCC; X = depende de los otros filtros.')} {t(NOMBRE_FN.SEVI)} (SEVI) · {t(NOMBRE_FN.SEVO)} (SEVO) · {t(NOMBRE_FN.BWI)} (BWI) · {t(NOMBRE_FN.BWO)} (BWO) · {t(NOMBRE_FN.AIRI)} (AIRI) · {t(NOMBRE_FN.RI)} (RI) · {t(NOMBRE_FN.FRO)}</div>
       </div>
 
       <div className="grid g2">
-        <div className="card"><TrendPane series={[fe.transmisor_nivel]} ventana={4 * 3600} titulo="Nivel" refs={[{ v: 1763, label: 'HH' }, { v: 280, label: 'L' }]} /></div>
-        <div className="card"><TrendPane series={[`PASO-${LETRAS[i]}`]} ventana={4 * 3600} titulo="Paso de secuencia" escalon /></div>
+        <div className="card"><TrendPane series={[fe.transmisor_nivel]} ventana={4 * 3600} titulo={t('Nivel')} refs={[{ v: 1763, label: 'HH' }, { v: 280, label: 'L' }]} /></div>
+        <div className="card"><TrendPane series={[`PASO-${LETRAS[i]}`]} ventana={4 * 3600} titulo={t('Paso de secuencia')} escalon /></div>
       </div>
     </div>
   );

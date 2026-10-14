@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useEngine } from '../../store/sim';
 import { TrendPane } from '../common/Trend';
-import { copiar } from '../common/util';
+import { copiar, grupoTxt, serieTxt, unidadTxt } from '../common/util';
+import { t } from '../../i18n';
 
+// Claves en español (también son la clave de t() al mostrarlas).
 const PRESETS: Record<string, string[][]> = {
   'Filtros: niveles y pasos': [['LIT-160305604', 'LIT-160305615', 'LIT-160305623', 'LIT-160305631'], ['PASO-A', 'PASO-B', 'PASO-C', 'PASO-D'], ['Q-SEVO-A', 'Q-SEVO-B', 'Q-SEVO-C', 'Q-SEVO-D']],
   'Bypass FIC-603': [['FIT-160305603', 'FY-160305603'], ['FCV-160305603', 'FZI-160305603'], ['Q-ENTRADA', 'Q-FILTROS']],
@@ -22,18 +24,21 @@ export function Tendencias() {
   const [ventana, setVentana] = useState(14400);
   const [nueva, setNueva] = useState(e.hist.series[0].id);
   const [csv, setCsv] = useState<string | null>(null);
-  const [aviso, setAviso] = useState('');
+  const [aviso, setAviso] = useState<{ es: string; n?: number } | null>(null);
   const elegirPreset = (p: string) => {
     setPreset(p);
     setPaneles(PRESETS[p]);
   };
   const copiarCSV = async () => {
-    const texto = e.hist.csv(Math.max(0, e.t - ventana));
+    const crudo = e.hist.csv(Math.max(0, e.t - ventana));
+    const corte = crudo.indexOf('\n');
+    const cab = corte < 0 ? crudo : crudo.slice(0, corte);
+    const texto = cab.split('[paso]').join(`[${t('paso')}]`) + (corte < 0 ? '' : crudo.slice(corte));
     if (await copiar(texto)) {
-      setAviso(`CSV copiado al portapapeles (${texto.split('\n').length - 1} filas).`);
+      setAviso({ es: 'CSV copiado al portapapeles ({n} filas).', n: texto.split('\n').length - 1 });
       setCsv(null);
     } else {
-      setAviso('El portapapeles no está disponible: seleccioná y copiá el texto.');
+      setAviso({ es: 'El portapapeles no está disponible: seleccioná y copiá el texto.' });
       setCsv(texto);
     }
   };
@@ -41,35 +46,35 @@ export function Tendencias() {
   return (
     <div className="screen">
       <div className="screen-head">
-        <h2>Tendencias</h2>
-        <p>Historiador cada 5 s de tiempo simulado, 24 h de buffer. Un panel por unidad (un solo eje); pasá el cursor para leer valores.</p>
+        <h2>{t('Tendencias')}</h2>
+        <p>{t('Historiador cada 5 s de tiempo simulado, 24 h de buffer. Un panel por unidad (un solo eje); pasá el cursor para leer valores.')}</p>
       </div>
       <div className="row">
-        <select id="tr-preset" value={preset} onChange={(ev) => elegirPreset(ev.target.value)} aria-label="Conjunto de tendencias">
-          {Object.keys(PRESETS).map((p) => <option key={p}>{p}</option>)}
-          <option value="Personalizado">Personalizado</option>
+        <select id="tr-preset" value={preset} onChange={(ev) => elegirPreset(ev.target.value)} aria-label={t('Conjunto de tendencias')}>
+          {Object.keys(PRESETS).map((p) => <option key={p} value={p}>{t(p)}</option>)}
+          <option value="Personalizado">{t('Personalizado')}</option>
         </select>
-        <div className="seg" role="group" aria-label="Ventana de tiempo">
+        <div className="seg" role="group" aria-label={t('Ventana de tiempo')}>
           {VENTANAS.map(([t, v]) => <button key={v} aria-pressed={ventana === v} onClick={() => setVentana(v)}>{t}</button>)}
         </div>
-        <select id="tr-serie" value={nueva} onChange={(ev) => setNueva(ev.target.value)} aria-label="Serie para agregar">
+        <select id="tr-serie" value={nueva} onChange={(ev) => setNueva(ev.target.value)} aria-label={t('Serie para agregar')}>
           {grupos.map((g) => (
-            <optgroup key={g} label={g}>
-              {e.hist.series.filter((s) => s.grupo === g).map((s) => <option key={s.id} value={s.id}>{s.label} [{s.unidad}]</option>)}
+            <optgroup key={g} label={grupoTxt(g)}>
+              {e.hist.series.filter((s) => s.grupo === g).map((s) => <option key={s.id} value={s.id}>{serieTxt(s.label)} [{unidadTxt(s.unidad)}]</option>)}
             </optgroup>
           ))}
         </select>
-        <button className="btn" onClick={() => { setPreset('Personalizado'); setPaneles([...paneles, [nueva]]); }}>Agregar panel</button>
-        <button className="btn" onClick={copiarCSV}>Copiar CSV</button>
-        {aviso && <span className="muted" role="status">{aviso}</span>}
+        <button className="btn" onClick={() => { setPreset('Personalizado'); setPaneles([...paneles, [nueva]]); }}>{t('Agregar panel')}</button>
+        <button className="btn" onClick={copiarCSV}>{t('Copiar CSV')}</button>
+        {aviso && <span className="muted" role="status">{t(aviso.es, aviso.n !== undefined ? { n: aviso.n } : undefined)}</span>}
       </div>
-      {csv && <textarea readOnly value={csv} style={{ width: '100%', height: 140, fontFamily: 'var(--font-data)', fontSize: 11 }} aria-label="CSV de tendencias" />}
+      {csv && <textarea readOnly value={csv} style={{ width: '100%', height: 140, fontFamily: 'var(--font-data)', fontSize: 11 }} aria-label={t('CSV de tendencias')} />}
       <div className="grid g2">
         {paneles.map((ids, k) => (
           <div key={`${ids.join(',')}-${k}`} className="card">
             <TrendPane series={ids} ventana={ventana} alto={170} />
             <div className="row" style={{ justifyContent: 'flex-end', marginTop: 4 }}>
-              <button className="btn small" onClick={() => { setPreset('Personalizado'); setPaneles(paneles.filter((_, j) => j !== k)); }}>Quitar</button>
+              <button className="btn small" onClick={() => { setPreset('Personalizado'); setPaneles(paneles.filter((_, j) => j !== k)); }}>{t('Quitar')}</button>
             </div>
           </div>
         ))}

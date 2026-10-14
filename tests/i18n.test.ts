@@ -21,6 +21,9 @@ function clavesT(src: string): string[] {
 /** Texto en castellano (heurística): tildes/ñ o palabras funcionales frecuentes. */
 const ES = /[áéíóúñÁÉÍÓÚÑ¿¡]|\b(de|del|la|las|los|el|por|con|sin|para|nivel|filtro|válvula|entrada|salida|falla|tanque|agua|aire|bomba|bombas|abierta|cerrada|marcha|según|otros|soplante|soplantes|compresor|compresores|drenaje|aislamiento|desde|hacia|caudal|lavado|retrolavado|sumidero|tablero|paso|pasos|tiempo|carga|cargas|colector|retención|mariposa|bola)\b/i;
 
+/** Restos de castellano en una traducción (más estricta que ES: distingue mayúsculas y evita "de-energize", "DE", "y towards"). */
+const RESTO_ES = /[áéíóúñ¿¡]|\b(del|las|los|por|con|sin|para|nivel|filtro|válvula|entrada|salida|falla|tanque|agua|aire|bomba|bombas|abierta|cerrada|marcha|según|otros|soplante|soplantes|compresor|compresores|drenaje|desde|caudal|lavado|retrolavado|sumidero|tablero)\b|\b(de|la|el) (?=\p{L})/u;
+
 describe('i18n – rutas', () => {
   test('/en activa inglés; el resto, castellano', () => {
     expect(idiomaDeRuta('/en')).toBe('en');
@@ -38,6 +41,10 @@ describe('i18n – interfaz', () => {
     const faltan = new Set<string>();
     for (const src of Object.values(FUENTES)) for (const k of clavesT(src)) if (UI_EN[k] === undefined) faltan.add(k);
     expect([...faltan]).toEqual([]);
+  });
+
+  test('ninguna traducción de interfaz quedó en castellano', () => {
+    expect(Object.entries(UI_EN).filter(([, en]) => RESTO_ES.test(en))).toEqual([]);
   });
 
   test('las variables {x} coinciden entre castellano e inglés', () => {
@@ -61,7 +68,8 @@ describe('i18n – datos (data/*.json)', () => {
 
   test('todo texto en castellano de los JSON tiene traducción', () => {
     expect(textos.size).toBeGreaterThan(300);
-    const faltan = [...textos].filter(([s]) => traducirDato(s) === null).map(([s, d]) => `${d} → ${s}`);
+    // sin traducción, o con traducción parcial que sigue en castellano
+    const faltan = [...textos].filter(([s]) => { const en = traducirDato(s); return en === null || RESTO_ES.test(en); }).map(([s, d]) => `${d} → ${s} ⇒ ${traducirDato(s)}`);
     expect(faltan).toEqual([]);
   });
 });
@@ -72,6 +80,12 @@ describe('i18n – simulación', () => {
     expect(PARAM_DEFS.filter((d) => d.nota && !PARAMS_EN[d.key]?.nota).map((d) => d.key)).toEqual([]);
     expect([...new Set(PARAM_DEFS.map((d) => d.group))].filter((g) => !GRUPOS_PARAM_EN[g])).toEqual([]);
     expect(ESCENARIOS.filter((x) => !ESCENARIOS_EN[x.id]).map((x) => x.id)).toEqual([]);
+  });
+
+  test('descripciones de I/O generadas por la simulación', () => {
+    const e = new Engine('normal');
+    const faltan = e.io.puntos.map((p) => p.descripcion).filter((s) => { if (!ES.test(s)) return false; const en = traducirSim(s); return en === null || RESTO_ES.test(en); });
+    expect(faltan).toEqual([]);
   });
 
   test('alarmas configuradas, historial, HOLD, motivos y bloqueos', { timeout: 60000 }, () => {
@@ -100,7 +114,7 @@ describe('i18n – simulación', () => {
     fallas.cmd({ tipo: 'reset_disparos' });
     fallas.avanzar(5);
     juntar(fallas);
-    const faltan = [...vistos].filter((s) => ES.test(s) && traducirSim(s) === null);
+    const faltan = [...vistos].filter((s) => { if (!ES.test(s)) return false; const en = traducirSim(s); return en === null || RESTO_ES.test(en); });
     expect(faltan).toEqual([]);
   });
 });

@@ -1,7 +1,8 @@
 // Panel de tendencia en canvas: una unidad por panel (un solo eje), cuadrícula tenue, cursor con tooltip.
 import { useEffect, useRef, useState } from 'react';
 import { useEngine } from '../../store/sim';
-import { tiempoSim } from './util';
+import { tiempoSim, serieTxt, unidadTxt } from './util';
+import { t } from '../../i18n';
 
 export const COLORES_SERIE = ['--s1', '--s2', '--s3', '--s4', '--s5', '--s6'];
 
@@ -156,7 +157,7 @@ export function TrendPane({ series, ventana, alto = 150, titulo, refs = [], esca
         const dd = Math.abs(d.t[k] - t);
         if (dd < bd) { bd = dd; best = k; }
       }
-      return { id: defs[i].label, v: best >= 0 ? d.v[best] : NaN, color: `var(${COLORES_SERIE[i % COLORES_SERIE.length]})` };
+      return { id: serieTxt(defs[i].label), v: best >= 0 ? d.v[best] : NaN, color: `var(${COLORES_SERIE[i % COLORES_SERIE.length]})` };
     });
     setHover({ x, y: ev.clientY - rect.top, t, vals });
   };
@@ -169,20 +170,20 @@ export function TrendPane({ series, ventana, alto = 150, titulo, refs = [], esca
           {defs.map((d, i) => (
             <span key={d.id}>
               <i style={{ background: `var(${COLORES_SERIE[i % COLORES_SERIE.length]})` }} />
-              {d.label}
+              {serieTxt(d.label)}
             </span>
           ))}
         </div>
-        <span className="dim mono" style={{ fontSize: '0.8rem' }}>{unidad}</span>
+        <span className="dim mono" style={{ fontSize: '0.8rem' }}>{unidadTxt(unidad)}</span>
       </div>
-      <canvas ref={canvas} style={{ height: alto }} onPointerMove={onMove} onPointerLeave={() => setHover(null)} aria-label={`Tendencia ${defs.map((d) => d.label).join(', ')}`} />
+      <canvas ref={canvas} style={{ height: alto }} onPointerMove={onMove} onPointerLeave={() => setHover(null)} aria-label={t('Tendencia {series}', { series: defs.map((d) => serieTxt(d.label)).join(', ') })} />
       {hover && (
         <div className="tooltip" style={{ left: Math.min(hover.x + 12, (canvas.current?.clientWidth ?? 300) - 190), top: 24 }}>
           <div className="mono dim">{tiempoSim(hover.t)}</div>
           {hover.vals.map((v) => (
             <div key={v.id}>
               <i style={{ display: 'inline-block', width: 10, height: 3, background: v.color, marginRight: 6, verticalAlign: 'middle' }} />
-              {v.id}: <b className="mono">{Number.isFinite(v.v) ? v.v.toFixed(2) : '—'}</b> {unidad}
+              {v.id}: <b className="mono">{Number.isFinite(v.v) ? v.v.toFixed(2) : '—'}</b> {unidadTxt(unidad)}
             </div>
           ))}
         </div>

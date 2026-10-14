@@ -2,6 +2,7 @@
 import type { ReactNode } from 'react';
 import { useSim, type Seleccion } from '../../store/sim';
 import type { EstadoVisual } from './util';
+import { t } from '../../i18n';
 
 function useSel(s: Seleccion | null) {
   const sel = useSim((st) => st.seleccion);
@@ -91,7 +92,7 @@ export function EquipoRotSym({ x, y, tag, estado, letra, r = 15, label, sub }: {
 /** Bomba por otros (frontera): contorno punteado. */
 export function BombaExtSym({ x, y, tag, on, label, sub }: { x: number; y: number; tag: string; on: boolean; label: string; sub?: string }) {
   return (
-    <Clic s={{ tipo: 'externo', tag }} titulo={`${tag} (por otros)`}>
+    <Clic s={{ tipo: 'externo', tag }} titulo={t('{tag} (por otros)', { tag })}>
       <g transform={`translate(${x},${y})`}>
         <circle r={12} className={on ? 'st-on hl' : 'st-off hl'} stroke="var(--tank-wall)" strokeDasharray="3 2" strokeWidth={1.5} opacity={0.9} />
         <path d="M -4 -6 L 7 0 L -4 6 Z" fill="#fff" />
