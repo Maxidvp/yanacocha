@@ -38,10 +38,12 @@ La raíz `/` muestra la consola en castellano; **`/en`** la muestra en inglés (
 ## Deploy (Firebase Hosting)
 Publicado en **https://yanacocha-awtp.web.app** (castellano) y **https://yanacocha-awtp.web.app/en** (inglés), proyecto Firebase `yanacocha-awtp`.
 
-Cada push a `main` o a `claude/friendly-babbage-owfywt` ejecuta `.github/workflows/firebase-hosting.yml`: instala dependencias, corre typecheck y tests, compila y despliega `dist/` en Firebase Hosting.
+Cada push a `main` o a `claude/friendly-babbage-owfywt` ejecuta `.github/workflows/firebase-hosting.yml`: instala dependencias, corre typecheck y tests, compila (`npm run build:web`) y despliega `dist-web/` en Firebase Hosting.
+
+**Acceso con clave.** El sitio publicado está cifrado: `scripts/proteger.mjs` comprime y cifra el build autocontenido (AES-256-GCM con una clave aleatoria por build, envuelta con la clave pública RSA-OAEP de `scripts/acceso.json`) y genera una página que pide la clave de acceso y descifra la aplicación en el navegador (PBKDF2-SHA256, 600 000 iteraciones). Sin la clave no se puede leer nada de la planta desde el sitio. La clave **no** está en el repositorio; para cambiarla: `CLAVE_SITIO='nueva-clave' node scripts/acceso-generar.mjs`, commit de `scripts/acceso.json` y push. "Recordar en este equipo" guarda la clave derivada en el navegador; se olvida borrando los datos del sitio.
 - Requiere el secreto de repositorio `FIREBASE_SERVICE_ACCOUNT` con el JSON de una cuenta de servicio con rol *Firebase Hosting Admin*. El project ID se lee del JSON.
 - También se puede lanzar a mano desde la pestaña Actions (*Run workflow*).
-- Deploy local: `npm run build && npx firebase-tools deploy --only hosting --project <project-id>`.
+- Deploy local: `npm run build:web && npx firebase-tools deploy --only hosting --project <project-id>`.
 
 ## Arquitectura
 - `data/` – fuente de verdad (JSON del paquete, `soe.json` de la C&E rev002 y `layout.json` digitalizado del plano de ubicación).

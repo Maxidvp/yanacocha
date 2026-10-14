@@ -4,6 +4,7 @@ import { CONST_PLANTA } from '../../sim/process/plant';
 import { AgitadorSym, BombaExtSym, EquipoRotSym, Frontera, InstrumentoSym, Pipe, TanqueSym, ValvulaControlSym, ValvulaSym } from '../common/symbols';
 import { estadoMotor, estadoValvula, fmt, LETRAS } from '../common/util';
 import type { Engine } from '../../sim/engine';
+import { t, td, ts } from '../../i18n';
 
 const CX = [480, 680, 880, 1080];
 const FY = 200; // borde superior filtros
@@ -64,10 +65,10 @@ function Filtro({ e, i }: { e: Engine; i: number }) {
       <Pipe d={`M ${cx + 45} ${FY + FH} V ${H_RW}`} fluido="regen" activa={f.qRW > 1} ancho={3} />
 
       {/* cuerpo del filtro */}
-      <g className="clickable" role="button" tabIndex={0} aria-label={`Abrir detalle del filtro ${LETRAS[i]}`}
+      <g className="clickable" role="button" tabIndex={0} aria-label={t('Abrir detalle del filtro {f}', { f: LETRAS[i] })}
         onClick={() => { setFiltro(i); setPantalla('filtros'); }}
         onKeyDown={(ev) => { if (ev.key === 'Enter') { setFiltro(i); setPantalla('filtros'); } }}>
-        <title>{`${fe.tag} – abrir detalle`}</title>
+        <title>{t('{tag} – abrir detalle', { tag: fe.tag })}</title>
         <rect x={x0} y={FY} width={FW} height={FH} fill="var(--panel)" />
         <rect x={x0} y={FY + FH * (1 - Math.min(1, frac))} width={FW} height={FH * Math.min(1, frac)} fill={f.turbBWO > 20 ? 'var(--water-dirty)' : 'var(--water-fill)'} />
         <rect x={x0} y={FY + FH - hMedio} width={FW} height={hMedio * 0.17} fill="#3a3a3a" opacity={0.75} />
@@ -84,9 +85,9 @@ function Filtro({ e, i }: { e: Engine; i: number }) {
         <text className="t-tag" x={x0 + 6} y={FY + 15}>{`${LETRAS[i]} · ${fe.tag.replace('16045-', '')}`}</text>
         <rect x={x0 + 5} y={FY + 21} width={FW - 10} height={17} rx={3} fill={colorPaso} opacity={0.95} />
         <text x={x0 + 10} y={FY + 33} style={{ fontSize: 10.5, fill: '#fff', fontWeight: 600 }}>
-          {`${s.paso} ${s.hold ? 'HOLD' : s.nombrePaso}`.slice(0, 24)}
+          {`${s.paso} ${s.hold ? 'HOLD' : td(s.nombrePaso)}`.slice(0, 24)}
         </text>
-        <text className="t-sm" x={x0 + 6} y={FY + 52}>{s.modo === 'AUTO' ? 'Auto' : 'Semiauto'}{s.regenRequerida ? ' · regen.' : ''}</text>
+        <text className="t-sm" x={x0 + 6} y={FY + 52}>{s.modo === 'AUTO' ? t('Auto') : t('Semiauto')}{s.regenRequerida ? ` · ${t('regen.')}` : ''}</text>
         <text className="t-val" x={x0 + FW - 6} y={FY + 52} textAnchor="end">{fmt(f.qSEVO, 0)} m³/h</text>
       </g>
       <Inst e={e} tag={fe.transmisor_nivel} x={cx + 100} y={FY + 40} lado="b" />
@@ -127,18 +128,18 @@ export function Resumen() {
   return (
     <div className="screen">
       <div className="screen-head">
-        <h2>Resumen de planta</h2>
-        <p>Paquete 16045-PK-30006 · tocá cualquier equipo, válvula o instrumento para abrir su faceplate; tocá un filtro para ver su detalle.</p>
+        <h2>{t('Resumen de planta')}</h2>
+        <p>{t('Paquete 16045-PK-30006 · tocá cualquier equipo, válvula o instrumento para abrir su faceplate; tocá un filtro para ver su detalle.')}</p>
       </div>
       <div className="mimic-wrap">
-        <svg className="mimic" viewBox="0 0 1600 900" role="img" aria-label="Mímico de la planta AWTP EAST">
+        <svg className="mimic" viewBox="0 0 1600 900" role="img" aria-label={t('Mímico de la planta AWTP EAST')}>
           {/* ---- entradas ---- */}
-          <Frontera x={10} y={112} texto="Permeado RO (por otros)" sub={`FIC-160305065 ${fmt(pl.qRO, 0)} m³/h`} />
-          <Frontera x={10} y={150} texto="Agua tratada HDS" sub={`FIC-160304333 ${fmt(pl.qHDS, 0)} m³/h`} />
+          <Frontera x={10} y={112} texto={t('Permeado RO (por otros)')} sub={`FIC-160305065 ${fmt(pl.qRO, 0)} m³/h`} />
+          <Frontera x={10} y={150} texto={t('Agua tratada HDS')} sub={`FIC-160304333 ${fmt(pl.qHDS, 0)} m³/h`} />
           <Pipe d="M 152 112 H 180" fluido="water" activa={pl.qRO > 1} ancho={5} />
           <Pipe d="M 152 150 H 180" fluido="water" activa={pl.qHDS > 1} ancho={3.5} />
-          <Frontera x={10} y={200} texto="H₂SO₄ (por otros)" sub={`${fmt(fr.acidoLh, 1)} L/h`} />
-          <Frontera x={10} y={236} texto="NaOH (por otros)" sub={`${fmt(fr.sodaLh, 1)} L/h`} />
+          <Frontera x={10} y={200} texto={t('H₂SO₄ (por otros)')} sub={`${fmt(fr.acidoLh, 1)} L/h`} />
+          <Frontera x={10} y={236} texto={t('NaOH (por otros)')} sub={`${fmt(fr.sodaLh, 1)} L/h`} />
           <Frontera x={10} y={272} texto="NaPTC PK-30011" sub={`${fmt(pl.qEntrada > 0 ? p.naptc_Lh : 0, 1)} L/h`} />
           <Pipe d="M 152 200 H 180" fluido="chem" activa={fr.acidoLh > 0.1} ancho={2} />
           <Pipe d="M 152 236 H 180" fluido="chem" activa={fr.sodaLh > 0.1} ancho={2} />
@@ -150,14 +151,14 @@ export function Resumen() {
           <Pipe d="M 120 505 H 150 V 372 H 182" fluido="air" activa={hayAireTK} ancho={3} />
           <Pipe d="M 120 505 V 610" fluido="air" activa={pl.qAire646 > 1} ancho={2} />
           <ValvulaSym x={120} y={585} tag="HV-160305646" estado={estadoValvula(e, 'HV-160305646')} orient="v" size={7} etiqueta="HV-646" />
-          <EquipoRotSym x={60} y={470} tag="16045-CM-30011" estado={estadoMotor(e, '16045-CM-30011')} letra="C" label="CM-30011" sub={pl.compresores[0].estado} />
-          <EquipoRotSym x={60} y={560} tag="16045-CM-30012" estado={estadoMotor(e, '16045-CM-30012')} letra="C" label="CM-30012" sub={pl.compresores[1].estado} />
+          <EquipoRotSym x={60} y={470} tag="16045-CM-30011" estado={estadoMotor(e, '16045-CM-30011')} letra="C" label="CM-30011" sub={ts(pl.compresores[0].estado)} />
+          <EquipoRotSym x={60} y={560} tag="16045-CM-30012" estado={estadoMotor(e, '16045-CM-30012')} letra="C" label="CM-30012" sub={ts(pl.compresores[1].estado)} />
           <Inst e={e} tag="FIT-160305602" x={150} y={432} unidad="Nm³/h" lado="r" />
 
           {/* ---- TK-30015 ---- */}
           <TanqueSym x={180} y={90} w={130} h={290} frac={L15frac} tag="16045-TK-30015" label="TK-30015 · 68 m³">
             <line x1={182} x2={308} y1={yVert} y2={yVert} stroke="var(--tank-wall)" strokeDasharray="4 3" strokeWidth={1} />
-            <text className="t-xs" x={186} y={yVert - 4}>caja de salida</text>
+            <text className="t-xs" x={186} y={yVert - 4}>{t('caja de salida')}</text>
             {Array.from({ length: 9 }, (_, k) => <circle key={k} cx={196 + k * 12} cy={374} r={2} fill="var(--air)" />)}
             {hayAireTK && (
               <g className="bubbles">
@@ -170,29 +171,29 @@ export function Resumen() {
           <AgitadorSym x={245} yTop={70} impulsores={[262, 326]} velocidad={pl.motor('16045-AG-30006').velocidad} />
           <EquipoRotSym x={245} y={56} tag="16045-AG-30006" estado={estadoMotor(e, '16045-AG-30006')} letra="M" r={13} />
           <text className="t-tag" x={265} y={52}>AG-30006</text>
-          {pl.qRebalse15 > 1 && <text x={186} y={84} style={{ fontSize: 11, fill: 'var(--crit)', fontWeight: 700 }}>REBALSE {fmt(pl.qRebalse15, 0)} m³/h</text>}
+          {pl.qRebalse15 > 1 && <text x={186} y={84} style={{ fontSize: 11, fill: 'var(--crit)', fontWeight: 700 }}>{t('REBALSE {q} m³/h', { q: fmt(pl.qRebalse15, 0) })}</text>}
           <Inst e={e} tag="LIT-160305601" x={345} y={235} unidad="mm" />
           <Inst e={e} tag="AIT-160305600" x={345} y={285} d={2} unidad="pH" />
           <Inst e={e} tag="AIT-160305442" x={345} y={335} d={0} unidad="µS/cm" />
 
           {/* ---- colector de entrada a filtros ---- */}
           <Pipe d={`M 310 ${yVert} H 360 V ${H_ENT} H ${CX[3] - 40}`} fluido="water" activa={pl.qAFiltros > 1} ancho={6} />
-          <text className="t-sm" x={372} y={H_ENT - 8}>Colector de entrada 40″ · {fmt(pl.qAFiltros, 0)} m³/h</text>
+          <text className="t-sm" x={372} y={H_ENT - 8}>{t('Colector de entrada 40″ · {q} m³/h', { q: fmt(pl.qAFiltros, 0) })}</text>
           {/* regeneración (RI) y desecho BWO */}
           <Pipe d={`M 1462 270 V ${H_RI} H ${CX[0] - 15}`} fluido="regen" activa={fr.qRegen > 1} ancho={3} />
           <Pipe d={`M ${CX[0] + 50} ${H_BWO} H 1290`} fluido="waste" activa={pl.filtros.some((f) => f.qBWO > 1)} ancho={5} />
-          <text className="t-sm" x={CX[0] + 60} y={H_BWO - 8}>Desecho de retrolavado (BWO) 24″</text>
-          <text className="t-sm" x={1000} y={H_RI - 6}>Regeneración (RI) {fr.qRegen > 1 ? `${fmt(fr.qRegen, 0)} m³/h` : ''}</text>
+          <text className="t-sm" x={CX[0] + 60} y={H_BWO - 8}>{t('Desecho de retrolavado (BWO) 24″')}</text>
+          <text className="t-sm" x={1000} y={H_RI - 6}>{t('Regeneración (RI)')} {fr.qRegen > 1 ? `${fmt(fr.qRegen, 0)} m³/h` : ''}</text>
 
           {/* ---- colectores inferiores ---- */}
           <Pipe d={`M 570 620 V ${H_AIRE} H ${CX[0] - 45} M 570 ${H_AIRE} H ${CX[3] - 45}`} fluido="air" activa={pl.qAireSoplado > 50} ancho={3.5} />
           <Pipe d={`M 1338 790 H 1180 V ${H_BW} H ${CX[0] - 15}`} fluido="water" activa={fr.qBW > 1} ancho={4.5} />
           <Pipe d={`M ${CX[0] + 15} ${H_FILT} H 1290 V 560`} fluido="water" activa={pl.qFiltrada > 1} ancho={6} />
           <Pipe d={`M ${CX[0] + 45} ${H_RW} H 1220 V 300 H 1290`} fluido="regen" activa={pl.filtros.some((f) => f.qRW > 1)} ancho={3.5} />
-          <text className="t-sm" x={CX[3] + 70} y={H_AIRE - 6}>Aire de lavado</text>
-          <text className="t-sm" x={CX[3] + 70} y={H_BW - 6}>Retrolavado {fr.qBW > 1 ? `${fmt(fr.qBW, 0)} m³/h` : ''}</text>
-          <text className="t-sm" x={CX[3] + 70} y={H_FILT - 6}>Agua filtrada {fmt(pl.qFiltrada, 0)} m³/h</text>
-          <text className="t-sm" x={CX[3] + 70} y={H_RW - 6}>Enjuague / desecho regen. (RO/RW)</text>
+          <text className="t-sm" x={CX[3] + 70} y={H_AIRE - 6}>{t('Aire de lavado')}</text>
+          <text className="t-sm" x={CX[3] + 70} y={H_BW - 6}>{t('Retrolavado')} {fr.qBW > 1 ? `${fmt(fr.qBW, 0)} m³/h` : ''}</text>
+          <text className="t-sm" x={CX[3] + 70} y={H_FILT - 6}>{t('Agua filtrada {q} m³/h', { q: fmt(pl.qFiltrada, 0) })}</text>
+          <text className="t-sm" x={CX[3] + 70} y={H_RW - 6}>{t('Enjuague / desecho regen. (RO/RW)')}</text>
 
           {CX.map((_, i) => <Filtro key={i} e={e} i={i} />)}
 
@@ -205,22 +206,22 @@ export function Resumen() {
           <EquipoRotSym x={520} y={760} tag="16045-BL-30008" estado={estadoMotor(e, '16045-BL-30008')} letra="B" label="BL-30008" sub={`${fmt(pl.soplantes[0].pDescarga, 1)} kPag`} />
           <EquipoRotSym x={620} y={760} tag="16045-BL-30009" estado={estadoMotor(e, '16045-BL-30009')} letra="B" label="BL-30009" sub={`${fmt(pl.soplantes[1].pDescarga, 1)} kPag`} />
           <Inst e={e} tag="FIT-160305607" x={530} y={630} unidad="Nm³/h" lado="l" />
-          {pl.qAirePSVsoplantes > 10 && <text x={470} y={812} style={{ fontSize: 11, fill: 'var(--crit)', fontWeight: 700 }}>PSV aliviando {fmt(pl.qAirePSVsoplantes, 0)} Nm³/h</text>}
+          {pl.qAirePSVsoplantes > 10 && <text x={470} y={812} style={{ fontSize: 11, fill: 'var(--crit)', fontWeight: 700 }}>{t('PSV aliviando {q} Nm³/h', { q: fmt(pl.qAirePSVsoplantes, 0) })}</text>}
 
           {/* ---- bypass ---- */}
           <Pipe d="M 245 380 V 650 H 1250" fluido="water" activa={pl.qBypass > 1} ancho={5} />
           <ValvulaControlSym x={760} y={650} pos={plc.pv['FZI-160305603']?.eu ?? 0} falla={e.planta.fv603.trabada} />
           <Inst e={e} tag="FIT-160305603" x={880} y={618} unidad="m³/h" />
           <text className="t-sm" x={690} y={600}>
-            FIC-603 {plc.modoFIC === 'PROGRAMA' ? (plc.autoEfectivoFIC ? 'AUTO (prog.)' : 'MAN 0 % (prog.)') : plc.modoFIC} · SP {fmt(plc.spFY, 0)} · OUT {fmt(plc.salidaFIC, 0)} %
+            FIC-603 {plc.modoFIC === 'PROGRAMA' ? (plc.autoEfectivoFIC ? t('AUTO (prog.)') : t('MAN 0 % (prog.)')) : ts(plc.modoFIC)} · SP {fmt(plc.spFY, 0)} · OUT {fmt(plc.salidaFIC, 0)} %
           </text>
-          <text className="t-sm" x={262} y={642}>Bypass 24″ N12 → sumidero</text>
+          <text className="t-sm" x={262} y={642}>{t('Bypass 24″ N12 → sumidero')}</text>
 
           {/* ---- sumidero agua filtrada y TK-30016 ---- */}
-          <TanqueSym x={1250} y={560} w={80} h={120} frac={0.55} tag="FILTERED-WATER-SUMP" label="Sumidero agua filtrada" color="var(--water-fill)" />
-          <text className="t-xs" x={1290} y={708} textAnchor="middle">(por otros)</text>
+          <TanqueSym x={1250} y={560} w={80} h={120} frac={0.55} tag="FILTERED-WATER-SUMP" label={t('Sumidero agua filtrada')} color="var(--water-fill)" />
+          <text className="t-xs" x={1290} y={708} textAnchor="middle">{t('(por otros)')}</text>
           <Pipe d="M 1330 600 H 1400" fluido="water" activa={pl.qSumidero > 1} ancho={5} />
-          <TanqueSym x={1400} y={440} w={140} h={300} frac={L16frac} tag="16045-TK-30016" label="TK-30016 · 216 m³ (por otros)" />
+          <TanqueSym x={1400} y={440} w={140} h={300} frac={L16frac} tag="16045-TK-30016" label={`TK-30016 · 216 m³ ${t('(por otros)')}`} />
           <AgitadorSym x={1470} yTop={420} impulsores={[694]} velocidad={pl.motor('16045-AG-30007').velocidad} ancho={42} />
           <EquipoRotSym x={1470} y={418} tag="16045-AG-30007" estado={estadoMotor(e, '16045-AG-30007')} letra="M" r={13} />
           <text className="t-tag" x={1490} y={414}>AG-30007</text>
@@ -231,7 +232,7 @@ export function Resumen() {
           <BombaExtSym x={1350} y={790} tag="16045-PU-30407" on={fr.bombaBW} label="PU-30407/08" sub={fr.qBW > 1 ? `${fmt(fr.qBW, 0)} m³/h` : undefined} />
           <Pipe d="M 1540 730 H 1560 V 790" fluido="water" activa={fr.qLiberacion > 1} ancho={4} />
           <BombaExtSym x={1560} y={802} tag="16045-PU-30088" on={fr.qLiberacion > 1} label="PU-30088/89" sub={`${fmt(fr.qLiberacion, 0)} m³/h`} />
-          <text className="t-xs" x={1560} y={855} textAnchor="middle">a liberación</text>
+          <text className="t-xs" x={1560} y={855} textAnchor="middle">{t('a liberación')}</text>
 
           {/* ---- sumidero de regeneración TK-30038 y NaOCl ---- */}
           <TanqueSym x={1290} y={200} w={120} h={110} frac={regenPct / 100} tag="16045-TK-30038" label={`TK-30038 regen. ${fmt(regenPct, 0)} %`} color="color-mix(in srgb, var(--regen) 35%, transparent)" />
@@ -243,21 +244,21 @@ export function Resumen() {
           {/* ---- desecho de retrolavado TK-30039 ---- */}
           <TanqueSym x={1290} y={20} w={120} h={90} frac={tk39Pct / 100} tag="16045-TK-30039" label="" color="var(--water-dirty)" />
           <text className="t-tag" x={1418} y={45}>TK-30039</text>
-          <text className="t-sm" x={1418} y={60}>desecho retrolavado</text>
+          <text className="t-sm" x={1418} y={60}>{t('desecho retrolavado')}</text>
           <text className="t-val" x={1418} y={75}>{fmt(tk39Pct, 0)} % · {fmt(pl.turbTK39, 0)} NTU</text>
 
           {/* ---- leyenda ---- */}
           <g transform="translate(20, 830)">
-            {([['on', 'Marcha / abierta'], ['off', 'Parada / cerrada'], ['trip', 'Falla / disparo'], ['moving', 'En recorrido']] as const).map(([k, t], n) => (
+            {([['on', 'Marcha / abierta'], ['off', 'Parada / cerrada'], ['trip', 'Falla / disparo'], ['moving', 'En recorrido']] as const).map(([k, lbl], n) => (
               <g key={k} transform={`translate(${n * 135}, 0)`}>
                 <rect width={14} height={14} className={`st-${k}`} rx={2} />
-                <text className="t-sm" x={20} y={11}>{t}</text>
+                <text className="t-sm" x={20} y={11}>{t(lbl)}</text>
               </g>
             ))}
-            {([['water', 'Agua'], ['air', 'Aire'], ['chem', 'Químicos'], ['regen', 'Regeneración'], ['waste', 'Desecho']] as const).map(([k, t], n) => (
+            {([['water', 'Agua'], ['air', 'Aire'], ['chem', 'Químicos'], ['regen', 'Regeneración'], ['waste', 'Desecho']] as const).map(([k, lbl], n) => (
               <g key={k} transform={`translate(${n * 105}, 26)`}>
                 <line x1={0} x2={22} y1={7} y2={7} className={`pipe ${k}`} strokeWidth={4} />
-                <text className="t-sm" x={28} y={11}>{t}</text>
+                <text className="t-sm" x={28} y={11}>{t(lbl)}</text>
               </g>
             ))}
           </g>
@@ -281,14 +282,14 @@ function ResumenTablero({ e }: { e: Engine }) {
         return (
           <button key={i} className="card" style={{ textAlign: 'left', cursor: 'pointer' }} onClick={() => { setFiltro(i); setPantalla('filtros'); }}>
             <h3>
-              Filtro {LETRAS[i]}
-              <span className={`pill ${s.hold ? 'trip' : s.enServicio ? 'on' : s.enLavado ? 'info' : 'unk'}`}>{s.hold ? 'HOLD' : s.nombrePaso}</span>
+              {t('Filtro {l}', { l: LETRAS[i] })}
+              <span className={`pill ${s.hold ? 'trip' : s.enServicio ? 'on' : s.enLavado ? 'info' : 'unk'}`}>{s.hold ? 'HOLD' : td(s.nombrePaso)}</span>
             </h3>
             <dl className="kv">
-              <dt>Paso / timer</dt><dd>{s.paso} · {fmt(s.tPaso / 60, 1)}{pre ? ` / ${fmt(pre / 60, 1)}` : ''} min</dd>
-              <dt>Servicio desde lavado (T03)</dt><dd>{fmt(s.tServicioLavado / 3600, 1)} h</dd>
-              <dt>Caudal filtrado</dt><dd>{fmt(f.qSEVO, 0)} m³/h</dd>
-              <dt>Sólidos retenidos</dt><dd>{fmt(f.suciedad, 0)} kg</dd>
+              <dt>{t('Paso / timer')}</dt><dd>{s.paso} · {fmt(s.tPaso / 60, 1)}{pre ? ` / ${fmt(pre / 60, 1)}` : ''} min</dd>
+              <dt>{t('Servicio desde lavado (T03)')}</dt><dd>{fmt(s.tServicioLavado / 3600, 1)} h</dd>
+              <dt>{t('Caudal filtrado')}</dt><dd>{fmt(f.qSEVO, 0)} m³/h</dd>
+              <dt>{t('Sólidos retenidos')}</dt><dd>{fmt(f.suciedad, 0)} kg</dd>
             </dl>
           </button>
         );

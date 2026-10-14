@@ -1,6 +1,8 @@
 # Compila, prueba y publica el simulador en Firebase Hosting.
 # Requiere el secreto de repositorio FIREBASE_SERVICE_ACCOUNT con el JSON de una cuenta de servicio
 # con rol "Firebase Hosting Admin". El project ID se toma del propio JSON.
+# El sitio se publica cifrado (dist-web/): pide la clave de acceso antes de mostrar la aplicación.
+# La clave no está en el repositorio; scripts/acceso.json solo tiene la clave pública y la privada cifrada.
 name: Deploy Firebase Hosting
 
 on:
@@ -29,7 +31,12 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
-      - run: npx vite build
+      - run: npm run build:web
+      - name: Verificar que el sitio publicado esté cifrado
+        run: |
+          test -f dist-web/index.html
+          if grep -q 'HV-160305610\|TK-30015' dist-web/index.html; then echo '::error::dist-web/index.html contiene texto de la planta sin cifrar'; exit 1; fi
+          test "$(ls dist-web | wc -l)" -eq 1
 
       - name: Deploy a Firebase Hosting
         env:

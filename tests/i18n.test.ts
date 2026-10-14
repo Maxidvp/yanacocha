@@ -1,6 +1,4 @@
 // Cobertura de la versión en inglés (/en): textos de interfaz, datos de los JSON y textos de la simulación.
-import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join } from 'node:path';
 import { describe, expect, test } from 'vitest';
 import { idiomaDeRuta, traducirDato, traducirSim } from '../src/i18n';
 import { UI_EN } from '../src/i18n/ui';
@@ -8,14 +6,9 @@ import { ESCENARIOS_EN, GRUPOS_PARAM_EN, PARAMS_EN } from '../src/i18n/sim';
 import { Engine, ESCENARIOS } from '../src/sim/engine';
 import { PARAM_DEFS } from '../src/sim/params';
 
-const raiz = join(__dirname, '..');
-
-function archivos(dir: string, ext: RegExp): string[] {
-  return readdirSync(dir).flatMap((f) => {
-    const p = join(dir, f);
-    return statSync(p).isDirectory() ? archivos(p, ext) : ext.test(f) ? [p] : [];
-  });
-}
+// fuentes de la interfaz y JSON de datos, leídos por Vite (sin tipos de Node)
+const FUENTES = import.meta.glob<string>(['../src/**/*.{ts,tsx}', '!../src/i18n/**'], { query: '?raw', import: 'default', eager: true });
+const DATOS = import.meta.glob<unknown>('../data/*.json', { import: 'default', eager: true });
 
 /** Primer argumento literal de cada llamada t('…') / t("…") / t(`…`) sin interpolación JS. */
 function clavesT(src: string): string[] {
@@ -40,11 +33,10 @@ describe('i18n – rutas', () => {
 });
 
 describe('i18n – interfaz', () => {
-  const fuentes = archivos(join(raiz, 'src'), /\.tsx?$/).filter((f) => !f.includes(`${join('src', 'i18n')}`));
-
   test('cada t(\'…\') literal tiene traducción', () => {
+    expect(Object.keys(FUENTES).length).toBeGreaterThan(20);
     const faltan = new Set<string>();
-    for (const f of fuentes) for (const k of clavesT(readFileSync(f, 'utf8'))) if (UI_EN[k] === undefined) faltan.add(k);
+    for (const src of Object.values(FUENTES)) for (const k of clavesT(src)) if (UI_EN[k] === undefined) faltan.add(k);
     expect([...faltan]).toEqual([]);
   });
 
@@ -65,9 +57,10 @@ describe('i18n – datos (data/*.json)', () => {
     } else if (Array.isArray(v)) v.forEach((x) => recorrer(x, f, k));
     else if (v && typeof v === 'object') for (const [kk, vv] of Object.entries(v)) recorrer(vv, f, kk);
   };
-  for (const f of readdirSync(join(raiz, 'data')).filter((x) => x.endsWith('.json'))) recorrer(JSON.parse(readFileSync(join(raiz, 'data', f), 'utf8')), f, '');
+  for (const [f, json] of Object.entries(DATOS)) recorrer(json, f.replace('../data/', ''), '');
 
   test('todo texto en castellano de los JSON tiene traducción', () => {
+    expect(textos.size).toBeGreaterThan(300);
     const faltan = [...textos].filter(([s]) => traducirDato(s) === null).map(([s, d]) => `${d} → ${s}`);
     expect(faltan).toEqual([]);
   });
