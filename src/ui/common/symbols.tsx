@@ -1,0 +1,174 @@
+// Símbolos SVG del mímico (ISA 5.1 simplificado) con estado por color.
+import type { ReactNode } from 'react';
+import { useSim, type Seleccion } from '../../store/sim';
+import type { EstadoVisual } from './util';
+
+function useSel(s: Seleccion | null) {
+  const sel = useSim((st) => st.seleccion);
+  const seleccionar = useSim((st) => st.seleccionar);
+  const activo = !!s && !!sel && JSON.stringify(sel) === JSON.stringify(s);
+  return { activo, onClick: () => s && seleccionar(s) };
+}
+
+/** Grupo clicable que abre el faceplate. */
+export function Clic({ s, children, titulo }: { s: Seleccion; children: ReactNode; titulo?: string }) {
+  const { onClick } = useSel(s);
+  return (
+    <g
+      className="clickable"
+      role="button"
+      tabIndex={0}
+      aria-label={titulo}
+      onClick={onClick}
+      onKeyDown={(ev) => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          onClick();
+        }
+      }}
+    >
+      {titulo && <title>{titulo}</title>}
+      {children}
+    </g>
+  );
+}
+
+/** Válvula on/off (corbatín). orient 'h' = cañería horizontal. */
+export function ValvulaSym({ x, y, tag, estado, orient = 'h', etiqueta, size = 9, forzada }: { x: number; y: number; tag: string; estado: EstadoVisual; orient?: 'h' | 'v'; etiqueta?: string; size?: number; forzada?: boolean }) {
+  const { activo } = useSel({ tipo: 'valvula', tag });
+  const s = size;
+  const pts = orient === 'h' ? `${-s},${-s * 0.7} ${s},${s * 0.7} ${s},${-s * 0.7} ${-s},${s * 0.7}` : `${-s * 0.7},${-s} ${s * 0.7},${s} ${-s * 0.7},${s} ${s * 0.7},${-s}`;
+  return (
+    <Clic s={{ tipo: 'valvula', tag }} titulo={`${tag}${etiqueta ? ' ' + etiqueta : ''}`}>
+      <g transform={`translate(${x},${y})`}>
+        <polygon points={pts} className={`st-${estado} hl`} stroke="var(--tank-wall)" strokeWidth={1} strokeLinejoin="round" />
+        {forzada && <circle cx={s + 3} cy={-s} r={3.5} fill="var(--forced)" />}
+        {activo && <circle r={s + 5} className="sel-ring" />}
+        {etiqueta && (
+          <text className="t-xs" x={orient === 'h' ? 0 : s + 4} y={orient === 'h' ? -s - 3 : 3} textAnchor={orient === 'h' ? 'middle' : 'start'}>
+            {etiqueta}
+          </text>
+        )}
+      </g>
+    </Clic>
+  );
+}
+
+/** Válvula de control con actuador de diafragma y posición. */
+export function ValvulaControlSym({ x, y, pos, falla }: { x: number; y: number; pos: number; falla?: boolean }) {
+  const { activo } = useSel({ tipo: 'fic' });
+  const s = 11;
+  const estado: EstadoVisual = falla ? 'trip' : pos > 1 ? 'on' : 'off';
+  return (
+    <Clic s={{ tipo: 'fic' }} titulo="FV-160305603 / FIC-160305603">
+      <g transform={`translate(${x},${y})`}>
+        <polygon points={`${-s},${-s * 0.7} ${s},${s * 0.7} ${s},${-s * 0.7} ${-s},${s * 0.7}`} className={`st-${estado} hl`} stroke="var(--tank-wall)" strokeWidth={1} />
+        <line x1={0} y1={0} x2={0} y2={-18} stroke="var(--tank-wall)" strokeWidth={1.5} />
+        <path d="M -10 -18 A 10 8 0 0 1 10 -18 Z" fill="var(--panel-2)" stroke="var(--tank-wall)" strokeWidth={1.5} />
+        <text className="t-val" x={14} y={-14}>{pos.toFixed(0)}%</text>
+        {activo && <circle r={s + 7} className="sel-ring" />}
+      </g>
+    </Clic>
+  );
+}
+
+/** Motor / bomba / soplante / compresor: círculo con letra. */
+export function EquipoRotSym({ x, y, tag, estado, letra, r = 15, label, sub }: { x: number; y: number; tag: string; estado: EstadoVisual; letra: string; r?: number; label?: string; sub?: string }) {
+  const { activo } = useSel({ tipo: 'motor', tag });
+  return (
+    <Clic s={{ tipo: 'motor', tag }} titulo={tag}>
+      <g transform={`translate(${x},${y})`}>
+        <circle r={r} className={`st-${estado} hl`} stroke="var(--tank-wall)" strokeWidth={1.5} />
+        <text textAnchor="middle" y={4.5} style={{ fill: '#fff', fontSize: 13, fontWeight: 700 }}>{letra}</text>
+        {activo && <circle r={r + 6} className="sel-ring" />}
+        {label && <text className="t-tag" textAnchor="middle" y={r + 14}>{label}</text>}
+        {sub && <text className="t-val" textAnchor="middle" y={r + 27}>{sub}</text>}
+      </g>
+    </Clic>
+  );
+}
+
+/** Bomba por otros (frontera): contorno punteado. */
+export function BombaExtSym({ x, y, tag, on, label, sub }: { x: number; y: number; tag: string; on: boolean; label: string; sub?: string }) {
+  return (
+    <Clic s={{ tipo: 'externo', tag }} titulo={`${tag} (por otros)`}>
+      <g transform={`translate(${x},${y})`}>
+        <circle r={12} className={on ? 'st-on hl' : 'st-off hl'} stroke="var(--tank-wall)" strokeDasharray="3 2" strokeWidth={1.5} opacity={0.9} />
+        <path d="M -4 -6 L 7 0 L -4 6 Z" fill="#fff" />
+        <text className="t-sm" textAnchor="middle" y={25}>{label}</text>
+        {sub && <text className="t-val" textAnchor="middle" y={37}>{sub}</text>}
+      </g>
+    </Clic>
+  );
+}
+
+/** Burbuja de instrumento ISA con valor. */
+export function InstrumentoSym({ x, y, tag, valor, unidad, alarma, mala, forzado, lado = 'r' }: { x: number; y: number; tag: string; valor: string; unidad?: string; alarma?: string | null; mala?: boolean; forzado?: boolean; lado?: 'r' | 'l' | 'b' }) {
+  const { activo } = useSel({ tipo: 'instrumento', tag });
+  const [func, num] = tag.split('-');
+  const color = mala ? 'var(--trip)' : alarma ? 'var(--crit)' : 'var(--tank-wall)';
+  const tx = lado === 'r' ? 21 : lado === 'l' ? -21 : 0;
+  const ty = lado === 'b' ? 32 : 0;
+  const anchor = lado === 'r' ? 'start' : lado === 'l' ? 'end' : 'middle';
+  return (
+    <Clic s={{ tipo: 'instrumento', tag }} titulo={tag}>
+      <g transform={`translate(${x},${y})`}>
+        <circle r={17} fill="var(--panel)" stroke={color} strokeWidth={alarma || mala ? 2.5 : 1.3} className="hl" />
+        <line x1={-17} x2={17} y1={0} y2={0} stroke="var(--tank-wall)" strokeWidth={0.8} />
+        <text textAnchor="middle" y={-4} style={{ fontSize: 9.5, fontWeight: 600 }}>{func}</text>
+        <text textAnchor="middle" y={10} style={{ fontSize: 8 }}>{num?.slice(-3)}</text>
+        {forzado && <circle cx={14} cy={-14} r={4} fill="var(--forced)" />}
+        {activo && <circle r={23} className="sel-ring" />}
+        <text className="t-val" x={tx} y={ty - 2} textAnchor={anchor} style={{ fontWeight: 600, fill: mala ? 'var(--trip)' : alarma ? 'var(--crit)' : undefined }}>
+          {mala ? 'BAD' : valor}
+          {unidad && !mala ? <tspan className="t-xs"> {unidad}</tspan> : null}
+        </text>
+        {alarma && !mala && (
+          <text x={tx} y={ty + 10} textAnchor={anchor} style={{ fontSize: 9.5, fill: 'var(--crit)', fontWeight: 700 }}>
+            {alarma}
+          </text>
+        )}
+      </g>
+    </Clic>
+  );
+}
+
+/** Cañería con animación de flujo cuando circula. */
+export function Pipe({ d, fluido, activa, ancho = 4 }: { d: string; fluido: 'water' | 'air' | 'chem' | 'regen' | 'waste'; activa: boolean; ancho?: number }) {
+  return (
+    <g>
+      <path d={d} className={`pipe ${fluido}${activa ? '' : ' idle'}`} strokeWidth={ancho} />
+      {activa && <path d={d} className={`flow ${fluido}`} />}
+    </g>
+  );
+}
+
+/** Tanque abierto con nivel. */
+export function TanqueSym({ x, y, w, h, frac, tag, label, color = 'var(--water-fill)', children }: { x: number; y: number; w: number; h: number; frac: number; tag: string; label?: string; color?: string; children?: ReactNode }) {
+  const { activo } = useSel({ tipo: 'tanque', tag });
+  const f = Math.max(0, Math.min(1, frac));
+  return (
+    <Clic s={{ tipo: 'tanque', tag }} titulo={tag}>
+      <g>
+        <rect x={x} y={y + h * (1 - f)} width={w} height={h * f} fill={color} />
+        <path d={`M ${x} ${y} L ${x} ${y + h} L ${x + w} ${y + h} L ${x + w} ${y}`} className="tank-wall hl" />
+        {activo && <rect x={x - 5} y={y - 5} width={w + 10} height={h + 10} className="sel-ring" />}
+        {label && <text className="t-tag" x={x + w / 2} y={y + h + 15} textAnchor="middle">{label}</text>}
+        {children}
+      </g>
+    </Clic>
+  );
+}
+
+/** Indicador de flecha de entrada/salida (frontera). */
+export function Frontera({ x, y, texto, sub, dir = 'r' }: { x: number; y: number; texto: string; sub?: string; dir?: 'r' | 'l' }) {
+  const w = 132;
+  const pts = dir === 'r' ? `0,0 ${w},0 ${w + 10},11 ${w},22 0,22` : `10,0 ${w + 10},0 ${w + 10},22 10,22 0,11`;
+  return (
+    <g transform={`translate(${x},${y - 11})`}>
+      <polygon points={pts} fill="var(--panel-2)" stroke="var(--line-2)" strokeDasharray="4 2" />
+      <text className="t-xs" x={dir === 'r' ? 6 : 16} y={10}>{texto}</text>
+      {sub && <text className="t-val" x={dir === 'r' ? 6 : 16} y={20} style={{ fontSize: 10 }}>{sub}</text>}
+    </g>
+  );
+}

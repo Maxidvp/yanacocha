@@ -151,6 +151,19 @@ export class Engine {
     if (registrar) this.hist.paso(dt, this.t);
   }
 
+  private acum = 0;
+  /** Avanza acumulando fracciones de paso (para el lazo de tiempo real). Limita el trabajo por llamada. */
+  avanzarAcumulado(segundos: number, maxPasos = 4000) {
+    this.acum += segundos;
+    let n = 0;
+    while (this.acum >= DT && n < maxPasos) {
+      this.paso();
+      this.acum -= DT;
+      n++;
+    }
+    if (n >= maxPasos) this.acum = 0;
+  }
+
   /** Avanza la simulación un tiempo simulado (s). */
   avanzar(segundos: number) {
     const n = Math.max(1, Math.round(segundos / DT));
