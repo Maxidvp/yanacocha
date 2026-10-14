@@ -1,0 +1,53 @@
+# Compila, prueba y publica el simulador en Firebase Hosting.
+# Requiere el secreto de repositorio FIREBASE_SERVICE_ACCOUNT con el JSON de una cuenta de servicio
+# con rol "Firebase Hosting Admin". El project ID se toma del propio JSON.
+name: Deploy Firebase Hosting
+
+on:
+  push:
+    branches: [main, claude/friendly-babbage-owfywt]
+  workflow_dispatch:
+
+concurrency:
+  group: firebase-hosting
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npx vite build
+
+      - name: Deploy a Firebase Hosting
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if [ -z "$FIREBASE_SERVICE_ACCOUNT" ]; then
+            echo "::error::Falta el secreto de repositorio FIREBASE_SERVICE_ACCOUNT (Settings > Secrets and variables > Actions)."
+            exit 1
+          fi
+          umask 077
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/sa.json"
+          if ! jq -e .project_id "$RUNNER_TEMP/sa.json" > /dev/null 2>&1; then
+            echo "::error::FIREBASE_SERVICE_ACCOUNT no es el JSON de una cuenta de servicio (no tiene project_id)."
+            exit 1
+          fi
+          PROJECT_ID=$(jq -r .project_id "$RUNNER_TEMP/sa.json")
+          echo "Proyecto: $PROJECT_ID"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/sa.json"
+          npx --yes firebase-tools@15.32.1 deploy --only hosting --project "$PROJECT_ID" --non-interactive
+          echo "### Publicado en https://$PROJECT_ID.web.app" >> "$GITHUB_STEP_SUMMARY"
+          rm -f "$RUNNER_TEMP/sa.json"
