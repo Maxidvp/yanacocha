@@ -1,4 +1,4 @@
-# Open items – AWTP EAST (rev. 4, after P&ID, PFD, layout and C&E verification)
+# Open items – AWTP EAST (rev. 5, after P&ID, PFD, layout, C&E verification and the v3 update)
 
 ## Resolved with the new documents
 - Control philosophy rev005: 17-step sequence, timers/setpoints, Hold/Resume, master logic, bypass.
@@ -18,7 +18,12 @@
 7. **AIRI/BWO swapped** in the SOE header and the digital alarm list (610↔614). The P&ID tags are used.
 8. **Compressor PSVs**: 123 kPag (index) / 2 barg (datasheet) / 0.45 MPa (vendor P&ID).
 9. **TK-30015 volume**: 68 m³ (philosophy) vs 80 m³ (P&ID). 68 is used.
-10. **Altitude**: 3600 m vs 4100 m.
+10. **Altitude**: 3600 m vs 4100 m (the Bechtel climatic specification gives 3600 m, see `RESUMEN_SECUNDARIOS.md`).
+11. **Promag FIT-160305603 order code**: datasheet 5W4C3H-AAELH… vs index 5W4C5H-AAFLH…
+12. **Blower starting**: load list DOL vs WEG motor sheet "VFD". DOL is simulated (6 × FLA = 1350 A on the bus during acceleration).
+13. **Junction boxes**: load list 16045-JB001…JB005 vs as-built drawings (FL-30035/36-JB, FL-30037/38-JB, 4 VJB, PK-30005JB). The drawings are used.
+14. **HV-160305639**: J6 calls it "Air blower flush valve"; the alarm list, "condensate drain valve".
+15. **Type V5 valves**: the P&ID defines them as "single acting, fail last position", but they have a single 4/5-way coil: with the coil de-energized they go CLOSED; without air they stay in last position (confirmed by Bechtel 8-May-25 in the J6 CRS). That is what the model simulates.
 
 ## Information still missing from the documents
 - Logic of the compressor drain valve HV-160305646 (not in the philosophy).
@@ -27,12 +32,14 @@
 - Setpoint K12 (regeneration sump level to recirculate).
 - ~~The cause & effect matrix was rebuilt from text~~ → **verified** against the original (see below).
 - Calibration range of the filter LITs: the alarm list refers to 26443-220-V1A-MLF0-00196 (EAST Radar Level Indicating Transmitter). That document should settle the K06/K09 reference (finding 1).
-- Stroke time of the on/off valves (adjusted with the exhaust silencer; 10–30 s suggested as an editable parameter).
+- Stroke time of the on/off valves: no measured value. The client specification (inside the RA Valves) sets 1 in/s × DN, so the simulator uses `DN` seconds (parameter `carrera_s_por_pulg`, TO BE CONFIRMED).
+- **Motor logical names** (Start/Stop/Running/Available/MPR): not in any document; the package brings a proposal `16045-XX-NNNNN-M.<signal>` to be confirmed with the PCS programmer (the UI marks it "proposed").
+- **PLC addressing** (slot/channel) of the I/O list: empty columns in rev003.
 
 ## Simulator findings (rev. 3)
 Found by running the process model and the logic together. Each one is an editable parameter in *Scenarios and faults*.
-1. **K06 / K09 reference**: K06 = 1825 mm and K09 = 3000 mm cannot be on the LIT scale (0–2980 mm; service 1100–1500, HH 1763): drain-down would end immediately and refill would never end (3000 > 2980). They are read as **referenced to the filter floor**, with the LIT zero 1400 mm above the floor (assumption `z0_LIT_mm`). So K06 → LIT 425 mm (≈ "300–500 mm above the media") and K09 → LIT 1600 mm (top of the normal range). TO BE CONFIRMED with Aquatech.
-2. **Valve stroke vs discrepancy delay**: the alarm list sets ZAO/ZAC at 15 s and the valve list suggests 10–30 s strokes. With a stroke ≥ 15 s every operation raises ZAO/ZAC and the filter goes into device HOLD. 12 s is used by default. The real stroke must stay below the delay, or the delay must be raised.
+1. **K06 / K09 reference** (updated in v3): K06 = 1825 mm and K09 = 3000 mm cannot be on the LIT scale (0–2980 mm; service 1100–1500, HH 1763). They are read as **referenced to the filter floor**, with the LIT zero at the **top of the media (1830 mm)** by default (parameter `z0_LIT_mm`, TO BE CONFIRMED). So K06 → LIT ≈ −5 mm (drain down to the top of the media), K09 → LIT 1170 mm (normal level) and LAL/LALL (280/140 mm LIT) protect the media. Step 6 drains through SEVO, so the effective filtered water outlet elevation (`z_salida_filtrada_mm`, ASSUMPTION 1430 mm) must be below K06; the LIT reads down to 3.8 mA (−37 mm) per NE43.
+2. **Valve stroke vs discrepancy delay** (fixed in v3): the alarm list sets ZAO/ZAC at 15 s (10 s for HV-639) and the stroke is ≈ DN seconds (6–24″ valves). With stroke ≥ delay every operation raised false ZAO/ZAC (seen on ZAO/ZAC-160305639 entering and leaving step 8). Rule applied: effective delay = max(alarm list delay, stroke + margin); margin `margen_discrepancia_s` (ASSUMPTION 5 s).
 3. **Bypass threshold vs scenario table**: the text says "inflow < 2032 m³/h → FV at 0 %", but the table includes 1219 m³/h inflow with 853 m³/h bypass (2 filters out + 1 washing). With the literal text, those scenarios overflow TK-30015. See parameter `bypass_auto_si_sp`.
 4. **Capacity with 1 filter out and inflow < 2032**: with 1771 m³/h and one filter OFFLINE, the bypass stays closed and the remaining 2 filters (plus one washing) take ~885 m³/h each, above the 590 m³/h maximum.
 5. **Filter level at maximum flow**: at 590 m³/h per filter (3 in service + 1 washing at 1771 m³/h), dirty filters exceed H/HH and request backwash in cascade; the one-filter-out-at-a-time permissive queues them in step 4.
@@ -63,3 +70,10 @@ Source: P-00260-PD-PCE-trainingmanual-C(EAST) pp. 57 (C&E matrix), 58 (SOE) and 
 7. **Digital alarm list**: repeats the AIRI/BWO swap (610↔614) for all 4 filters, and has misassigned alarms (line 24 ZAC-160305608 for ZSC-616; line 30 ZAC-611 for ZSC-619; lines 35–36 ZAO/ZAC-614 for HV-622; line 43 ZAO-611 for ZSO-627). The simulator uses ZAO/ZAC with each valve's own number.
 8. **Filter LIT span**: the alarm list percentages (LAHH 63 % = 1763 mm, LAL 10 % = 280 mm, LALL 5 % = 140 mm) imply a span of ~2800 mm; the instrument index gives 0–2980 mm.
 9. **TK-30016 pH (AIT-160305288)**: the alarm list defines AAHH/AAH/AAL/AALL "by Bechtel" with a 15 s delay; they were added with setpoints TO BE CONFIRMED. LIT-160305276 uses 3/5/5/3 s delays.
+
+## v3 update (site review, 14-Oct)
+- **Power supplies**: per `electrico.json` → `fallas_correctas`, panel 16045-PK-30005JB (and the 120 VAC UPS feeding it) only powers FIT-160305603; losing it leaves FIC-603 without PV (it holds its output). Loss of the client I/O panel 24 VDC is a separate fault: it de-energizes solenoids, leaves ZSO/ZSC at 0 and drives the filter LITs to 0 mA.
+- **Balance during the fast rinse**: the SEVI of the rinsing filter draws from the same inlet header. The excess of filtered + RO/RW flow over the inflow comes from the water stored in the other filters, whose levels drop as they receive less flow. The Overview shows the balance with the accumulation term.
+- **TT-160305703**: with the effective efficiency `comp_eta` (ASSUMPTION 0.92) the discharge stays at ≈ 84–132 °C between the site ambient extremes, in line with the datasheet (86–131 °C).
+- **Quality per stream**: the documented quality is that of the blend. The RO permeate uses editable assumptions and the HDS water is obtained by difference, so that at the design flows the blend matches the documented values.
+

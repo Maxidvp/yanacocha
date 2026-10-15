@@ -471,3 +471,12 @@ details > summary { cursor: pointer; font-family: var(--font-label); letter-spac
 
 /* texto legible sobre agua/medios */
 .halo { paint-order: stroke; stroke: var(--panel); stroke-width: 3px; stroke-linejoin: round; }
+
+/* ficha técnica agrupada y panel de señales */
+.ficha-sec { font-family: var(--font-label); font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-2); border-bottom: 1px solid var(--line); margin: 6px 0 4px; }
+.ficha-kv { grid-template-columns: minmax(90px, 0.6fr) minmax(0, 1.4fr); }
+.ficha-kv dd { text-align: left; font-family: var(--font-ui); font-size: 0.84rem; overflow-wrap: anywhere; }
+.ficha-kv.anidada { margin: 2px 0; padding-left: 8px; border-left: 2px solid var(--line); font-size: 0.8rem; }
+.ficha-anidada { padding: 2px 0; }
+table.senales tr.grupo th { text-align: left; background: var(--panel-2); font-size: 0.74rem; letter-spacing: 0.04em; }
+table.senales td { vertical-align: top; }

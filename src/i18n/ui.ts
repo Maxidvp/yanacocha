@@ -4,5 +4,6 @@ import { UI_CONFIG } from './textos/config';
 import { UI_RESUMEN } from './textos/resumen';
 import { UI_FILTROS } from './textos/filtros';
 import { UI_VARIOS } from './textos/varios';
+import { UI_FICHAS } from './textos/fichas';
 
-export const UI_EN: Record<string, string> = { ...UI_VARIOS, ...UI_FILTROS, ...UI_RESUMEN, ...UI_CONFIG, ...UI_APP };
+export const UI_EN: Record<string, string> = { ...UI_FICHAS, ...UI_VARIOS, ...UI_FILTROS, ...UI_RESUMEN, ...UI_CONFIG, ...UI_APP };

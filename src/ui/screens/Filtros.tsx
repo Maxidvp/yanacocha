@@ -1,4 +1,4 @@
-import { filtrosEquipo, proceso, soe, COLUMNA_SECUENCIA, FUNCIONES_VALVULA, type FuncionValvula } from '../../data';
+import { filtrosEquipo, proceso, soe, COLUMNA_SECUENCIA, FUNCIONES_VALVULA, type FuncionValvula, senalesDe } from '../../data';
 import { useEngine, useSim } from '../../store/sim';
 import type { Engine } from '../../sim/engine';
 import { CONST_PLANTA } from '../../sim/process/plant';
@@ -6,6 +6,7 @@ import { SECUENCIA, type BotonFiltro } from '../../sim/plc/filterSeq';
 import { Inst } from './Resumen';
 import { Pipe, ValvulaSym } from '../common/symbols';
 import { TrendPane } from '../common/Trend';
+import { PanelSenales } from '../common/PanelSenales';
 import { duracion, estadoValvula, fmt, LETRAS, tiempoSim } from '../common/util';
 import { t, td, ts } from '../../i18n';
 
@@ -338,6 +339,10 @@ export function Filtros() {
         <div className="card"><TrendPane series={[fe.transmisor_nivel]} ventana={4 * 3600} titulo={t('Nivel')} refs={[{ v: 1763, label: 'HH' }, { v: 280, label: 'L' }]} /></div>
         <div className="card"><TrendPane series={[`PASO-${LETRAS[i]}`]} ventana={4 * 3600} titulo={t('Paso de secuencia')} escalon /></div>
       </div>
+      <details className="card">
+        <summary><b>{t('Señales del filtro {f} – LIT y 7 válvulas × 3 ({n})', { f: LETRAS[i], n: senalesDe(fe.tag).length })}</b></summary>
+        <div style={{ marginTop: 8 }}><PanelSenales e={e} tag={fe.tag} /></div>
+      </details>
     </div>
   );
 }

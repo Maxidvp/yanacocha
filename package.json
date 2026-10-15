@@ -11,7 +11,7 @@
     "build:web": "tsc -p . && vite build --mode single && node scripts/proteger.mjs",
     "preview": "vite preview",
     "typecheck": "tsc -p .",
-    "test": "vitest run"
+    "test": "vitest run --fsModuleCache=false"
   },
   "dependencies": {
     "react": "^19.3.0",

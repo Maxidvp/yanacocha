@@ -74,4 +74,8 @@ export const DATOS_V3_EN: Record<string, string> = {
   "sí, jackscrew; tope mecánico 853 m³/h": "yes, jackscrew; mechanical stop 853 m³/h",
   "Drenaje de la descarga común de compresores del TK primario": "Primary TW tank compressors common discharge drain",
   "AIR BLOWER FLUSH VALVE – venteo/drenaje de la descarga común de soplantes (J6 la llama 'flush valve'; la alarm list 'condensate drain')": "AIR BLOWER FLUSH VALVE – vent/drain of the blowers common discharge (J6 calls it 'flush valve'; the alarm list 'condensate drain')",
+  "Alimentación 24 VDC": "24 VDC power supply",
+  "Alimentación del caudalímetro desde TBP1/1A": "Flowmeter power supply from TBP1/1A",
+  "Funciones según filosofía/P&ID; nombre propuesto": "Functions per control philosophy/P&ID; proposed name",
+  "Para cada equipo/instrumento/válvula seleccionado en la UI, listar estas señales agrupadas por tipo (AI, AO, DI, DO, DI(com)/COM, alimentación) con valor en vivo.": "For each equipment/instrument/valve selected in the UI, list these signals grouped by type (AI, AO, DI, DO, DI(com)/COM, power supply) with live value.",
 };

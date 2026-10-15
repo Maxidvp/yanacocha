@@ -15,6 +15,10 @@ export interface PuntoIO {
   rio?: string;
   equipo?: string;
   unidad?: string;
+  /** nombre lógico del PCS (p. ej. HY-160305608, ZSO-160305608); solo para mostrar */
+  nombreLogico?: string;
+  /** el nombre lógico es una propuesta (señales de motor) */
+  propuesto?: boolean;
   /** valor en origen: mA (AI/AO), 0/1 (digitales) o unidad de ingeniería (COM-AI) */
   origen: number;
   forzado: boolean;
@@ -59,10 +63,10 @@ export class TablaIO {
 
   constructor(public params: Params) {
     for (const s of senales.io_documentada) {
-      this.agregar({ tag: s.tag, descripcion: s.descripcion, tipo: s.tipo_senal, grupo: 'documentada', rio: s.modulo_rio, equipo: s.equipo, unidad: UNIDAD_AI[s.tag] });
+      this.agregar({ tag: s.tag, descripcion: s.descripcion, tipo: s.tipo_senal, grupo: 'documentada', rio: s.modulo_rio, equipo: s.equipo, unidad: UNIDAD_AI[s.tag], nombreLogico: s.nombre_logico });
     }
     for (const s of senales.io_motores) {
-      this.agregar({ tag: s.tag, descripcion: s.descripcion, tipo: s.tipo_senal, grupo: 'motor', equipo: s.equipo });
+      this.agregar({ tag: s.tag, descripcion: s.descripcion, tipo: s.tipo_senal, grupo: 'motor', equipo: s.equipo, nombreLogico: s.nombre_logico_propuesto, propuesto: !!s.nombre_logico_propuesto });
     }
     for (const s of IO_OTROS) this.agregar(s);
   }

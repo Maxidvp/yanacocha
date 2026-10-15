@@ -1,4 +1,4 @@
-# Pendientes – AWTP EAST (rev. 4, tras P&ID, PFD, layout y verificación de la C&E)
+# Pendientes – AWTP EAST (rev. 5, tras P&ID, PFD, layout, verificación de la C&E y actualización v3)
 
 ## Resuelto con los documentos nuevos
 - Filosofía de control rev005: secuencia de 17 pasos, timers/setpoints, Hold/Resume, lógica maestra, bypass.
@@ -18,7 +18,12 @@
 7. **AIRI/BWO cruzados** en encabezado de SOE y alarm list digital (610↔614). Se usaron los tags del P&ID.
 8. **PSV compresores**: 123 kPag (índice) / 2 barg (datasheet) / 0.45 MPa (P&ID vendor).
 9. **Volumen TK-30015**: 68 m³ (filosofía) vs 80 m³ (P&ID). Se usó 68.
-10. **Altitud**: 3600 m vs 4100 m.
+10. **Altitud**: 3600 m vs 4100 m (la especificación climática de Bechtel da 3600 m, ver `RESUMEN_SECUNDARIOS.md`).
+11. **Código del Promag FIT-160305603**: datasheet 5W4C3H-AAELH… vs índice 5W4C5H-AAFLH…
+12. **Arranque de soplantes**: lista de cargas DOL vs hoja del motor WEG "VFD". Se simula DOL (6 × FLA = 1350 A en la barra durante la aceleración).
+13. **Cajas de conexión**: lista de cargas 16045-JB001…JB005 vs planos as-built (FL-30035/36-JB, FL-30037/38-JB, 4 VJB, PK-30005JB). Se usan los planos.
+14. **HV-160305639**: J6 la llama "Air blower flush valve"; el alarm list, "condensate drain valve".
+15. **Válvulas Tipo V5**: el P&ID las define "simple efecto, falla última posición", pero tienen una sola bobina 4/5 vías: sin tensión de bobina van a CERRADA; sin aire quedan en la última posición (confirmado por Bechtel 8-may-25 en CRS de J6). Es lo que simula el modelo.
 
 ## Información que todavía no está en los documentos
 - Lógica de la válvula de drenaje de compresores HV-160305646 (no figura en la filosofía).
@@ -27,12 +32,14 @@
 - Setpoint K12 (nivel sumidero de regeneración para recircular).
 - ~~La matriz causa-efecto se reconstruyó desde texto~~ → **verificada** contra el original (ver abajo).
 - Rango de calibración de los LIT de filtro: el alarm list remite a 26443-220-V1A-MLF0-00196 (EAST Radar Level Indicating Transmitter). Ese documento debería resolver la referencia de K06/K09 (hallazgo 1).
-- Tiempo de carrera de las válvulas on/off (se ajusta con el silenciador de escape; se sugiere 10–30 s como parámetro editable).
+- Tiempo de carrera de las válvulas on/off: no hay valor medido. La especificación del cliente (dentro del RA Valves) fija 1 in/s × DN, así que el simulador usa `DN` segundos (parámetro `carrera_s_por_pulg`, A CONFIRMAR).
+- **Nombres lógicos de motores** (Start/Stop/Running/Available/MPR): no están en ningún documento; el paquete trae una propuesta `16045-XX-NNNNN-M.<señal>` a confirmar con el programador del PCS (la UI la marca "propuesto").
+- **Direccionamiento PLC** (slot/canal) de la I/O list: columnas vacías en rev003.
 
 ## Hallazgos del simulador (rev. 3)
 Detectados al poner a correr juntos el modelo de proceso y la lógica. Cada uno es un parámetro editable en *Escenarios y fallas*.
-1. **Referencia de K06 / K09**: K06 = 1825 mm y K09 = 3000 mm no pueden estar en la escala del LIT (0–2980 mm; servicio 1100–1500, HH 1763): el drenaje terminaría al instante y el rellenado no terminaría nunca (3000 > 2980). Se interpretan **referidos al fondo del filtro**, con el cero del LIT a 1400 mm sobre el fondo (supuesto `z0_LIT_mm`). Así K06 → LIT 425 mm (≈ "300–500 mm sobre el medio") y K09 → LIT 1600 mm (tope del rango normal). A CONFIRMAR con Aquatech.
-2. **Carrera de válvula vs retardo de discrepancia**: el alarm list fija ZAO/ZAC a 15 s y la lista de válvulas sugiere carreras de 10–30 s. Con carrera ≥ 15 s cada maniobra genera ZAO/ZAC y el filtro entra en HOLD por dispositivo. Se usa 12 s por defecto. La carrera real debe quedar por debajo del retardo, o hay que subir el retardo.
+1. **Referencia de K06 / K09** (actualizado en v3): K06 = 1825 mm y K09 = 3000 mm no pueden estar en la escala del LIT (0–2980 mm; servicio 1100–1500, HH 1763). Se leen **referidos al fondo del filtro**, con el cero del LIT en el **tope del medio (1830 mm)** por defecto (parámetro `z0_LIT_mm`, A CONFIRMAR). Así K06 → LIT ≈ −5 mm (drenaje hasta el tope del medio), K09 → LIT 1170 mm (nivel normal) y LAL/LALL (280/140 mm LIT) protegen el medio. El drenaje del paso 6 sale por SEVO, por lo que la cota efectiva de la salida de agua filtrada (`z_salida_filtrada_mm`, SUPUESTO 1430 mm) debe quedar por debajo de K06; el LIT lee hasta 3.8 mA (−37 mm) según NE43.
+2. **Carrera de válvula vs retardo de discrepancia** (corregido en v3): el alarm list fija ZAO/ZAC en 15 s (10 s para HV-639) y la carrera es ≈ DN segundos (válvulas de 6–24″). Con carrera ≥ retardo cada maniobra daba ZAO/ZAC falsas (se vieron en ZAO/ZAC-160305639 al entrar y salir del paso 8). Regla aplicada: retardo efectivo = máx(retardo del alarm list, carrera + margen); margen `margen_discrepancia_s` (SUPUESTO 5 s).
 3. **Umbral del bypass vs tabla de escenarios**: el texto dice "entrada < 2032 m³/h → FV al 0 %", pero la tabla incluye entrada 1219 m³/h con bypass 853 m³/h (2 filtros fuera + 1 en lavado). Con el texto literal, esos escenarios rebalsan TK-30015. Ver parámetro `bypass_auto_si_sp`.
 4. **Capacidad con 1 filtro fuera y entrada < 2032**: con 1771 m³/h y un filtro en OFFLINE, el bypass queda cerrado y los 2 filtros restantes (más uno en lavado) reciben ~885 m³/h cada uno, por encima del máximo de 590 m³/h.
 5. **Nivel de filtros a caudal máximo**: con 590 m³/h por filtro (3 en servicio + 1 en lavado a 1771 m³/h), los filtros sucios superan H/HH y piden lavado en cascada; el permisivo de un solo filtro fuera a la vez los encola en el paso 4.
@@ -63,3 +70,10 @@ Fuente: P-00260-PD-PCE-trainingmanual-C(EAST) págs. 57 (matriz C&E), 58 (SOE) y
 7. **Alarm list digital**: repite el cruce AIRI/BWO (610↔614) en los 4 filtros, y tiene alarmas mal asignadas (línea 24 ZAC-160305608 para ZSC-616; línea 30 ZAC-611 para ZSC-619; líneas 35–36 ZAO/ZAC-614 para HV-622; línea 43 ZAO-611 para ZSO-627). El simulador usa ZAO/ZAC con el número de cada válvula.
 8. **Span de los LIT de filtro**: los porcentajes del alarm list (LAHH 63 % = 1763 mm, LAL 10 % = 280 mm, LALL 5 % = 140 mm) implican un span de ~2800 mm; el índice de instrumentos da 0–2980 mm.
 9. **pH TK-30016 (AIT-160305288)**: el alarm list define AAHH/AAH/AAL/AALL "por Bechtel" con 15 s de retardo; se agregaron con setpoints A CONFIRMAR. LIT-160305276 usa retardos 3/5/5/3 s.
+
+## Actualización v3 (revisión del sitio, 14-oct)
+- **Alimentaciones**: según `electrico.json` → `fallas_correctas`, el tablero 16045-PK-30005JB (y el UPS de 120 VAC que lo alimenta) solo alimenta FIT-160305603; su pérdida deja al FIC-603 sin PV (mantiene la salida). La pérdida del 24 VDC del panel de I/O del cliente es otra falla: desenergiza solenoides, deja ZSO/ZSC en 0 y lleva a 0 mA los LIT de filtros.
+- **Balance en el enjuague rápido**: la SEVI del filtro que enjuaga toma del mismo colector de entrada. El excedente de filtrada + RO/RW sobre la entrada sale del agua acumulada en los otros filtros, que bajan de nivel al recibir menos caudal. El Resumen muestra el balance con la acumulación.
+- **TT-160305703**: con el rendimiento efectivo `comp_eta` (SUPUESTO 0.92) la descarga queda en ≈ 84–132 °C entre los extremos de ambiente del sitio, en línea con la hoja de datos (86–131 °C).
+- **Calidad por corriente**: la calidad documentada es la de la mezcla. El permeado RO usa supuestos editables y el agua HDS sale por diferencia, de modo que con los caudales de diseño la mezcla da los valores documentados.
+

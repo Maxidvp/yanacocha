@@ -88,6 +88,11 @@ export interface SenalIO {
   servicio?: string;
   equipo?: string;
   fuente?: string;
+  /** nombre lógico del PCS (I/O documentada) */
+  nombre_logico?: string;
+  /** señales de motor: nombre propuesto, a confirmar con el programador del PCS */
+  nombre_logico_propuesto?: string;
+  fuente_nombre_logico?: string;
 }
 
 export interface Carga {

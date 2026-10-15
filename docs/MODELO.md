@@ -14,10 +14,10 @@ Resumen de las ecuaciones y supuestos del modelo (`src/sim/process/`). Los coefi
 - Rebalse N11 a 6250 mm (SUPUESTO).
 
 ## Filtros (4 × 25 %)
-- Área 39.04 m², alto 4938 mm. Nivel h sobre el fondo; el LIT mide h − z0 (z0 = 1400 mm, SUPUESTO).
+- Área 39.04 m², alto 4938 mm. Nivel h sobre el fondo; el LIT mide h − z0 con z0 = 1830 mm (tope del medio, A CONFIRMAR). La lectura NE43 llega hasta 3.8 mA (≈ −37 mm), así el drenaje puede alcanzar K06 (LIT ≈ −5 mm).
 - La entrada SEVI reparte el caudal del colector por igual entre los filtros con SEVI abierta.
-- Salida SEVO o RO/RW por gravedad: Q = apertura·(h − z0)/R, con R = R₀·(1 + α·M), donde M son los sólidos retenidos (kg).
-  R₀ = 2.4 mm/(m³/h) y α = 0.007 1/kg (SUPUESTO) dan ~1060 mm limpio a 443 m³/h y LAHH a ~28 h con 5 NTU.
+- Salida SEVO por gravedad sobre la cota de agua filtrada: Q = apertura·(h − z_salida)/R, con z_salida = 1430 mm y R = R₀·(1 + α·M), donde M son los sólidos retenidos (kg). R₀ = 3.39 mm/(m³/h) y α = 0.005 1/kg (SUPUESTO) dan LIT ≈ 1100 mm limpio a 443 m³/h, ≈ 1600 mm a 590 m³/h y LAHH a ~26 h con 5 NTU. El drenaje del paso 6 (por SEVO) llega a K06 en 520–600 s, dentro de T06.
+- Salida RO/RW hacia el sumidero (cota ≈ fondo) por su línea: Q = apertura·h/(R + R_línea), con R_línea = 3.2 mm/(m³/h) (≈ 443 m³/h de enjuague a nivel normal).
 - Captura de sólidos: SST = 1.5·NTU + 1.91·Fe + 1.58·Mn; eficiencia 94 % × maduración, con caída por ruptura cuando R/R₀ > 1.9.
 - Air scour "afloja" el lecho; el retrolavado desprende sólidos con un volumen característico de 220 m³ sin aire y 90 m³ con lecho aflojado. Los sólidos salen por BWO o vuelven a sedimentar en reposo.
 - Greensand: capacidad oxidativa (kg de Mn) que consume la remoción de Mn/Fe y repone el NaOCl en la regeneración (1.3 kg Cl₂ por kg de Mn). La eficiencia de remoción de Mn cae por debajo del 30 % de capacidad.
@@ -27,12 +27,14 @@ Resumen de las ecuaciones y supuestos del modelo (`src/sim/process/`). Los coefi
 - Soplantes de desplazamiento positivo (2688 Nm³/h). La presión del colector se resuelve por bisección entre las salidas abiertas (AIRI, HV-639 y PSV a 64 kPag). La carga estática es la columna de agua sobre el distribuidor; queda calibrado a 58.3 kPa tras el drenaje.
 - Tren de descarga de cada soplante: retención VCH (abre sola con caudal), mariposa VBF de descarga y manómetro PI con aislamiento y venteo (VBA). Con la VBF cerrada el soplante en marcha trabaja contra su propia PSV (≈ 64 kPag) y no aporta aire al colector; FIT-160305607 ve caudal cero y FALL-160305607 dispara E10 a los 30 s. El manómetro lee la descarga con el aislamiento abierto y el venteo cerrado, retiene la última presión si se aísla y lee 0 si se ventea.
 - Temperatura de descarga adiabática con η = 0.55 a 0.608 bar(a) (≈ 122 °C de diseño).
+- Compresores: temperatura de descarga con rendimiento efectivo `comp_eta` = 0.92 (SUPUESTO), calibrado a 86–131 °C de la hoja de datos entre −9.4 y 26.3 °C de ambiente.
 - Compresores Atlas Copco: estados MK5 (arranque en vacío 10 s, carga, descarga por presión y parada tras marcha en vacío). La presión de descarga es la columna de TK-30015 más la pérdida del difusor (≈ 102 kPa).
 
 ## Química
 - Sistema carbonato (K1, K2, Kw según la temperatura; sin corrección de actividad). El pH se calcula a partir de la alcalinidad y del carbono inorgánico total.
 - Dosificación por otros: PI de H₂SO₄/NaOH sobre AIT-600 hacia SP 6.5. El stripping de CO₂ es proporcional al aire de los compresores.
 - Conductividad: aporte iónico de ácido y soda. Sulfato: aporte del H₂SO₄.
+- Calidad de entrada por corriente: permeado RO con supuestos editables y agua HDS por diferencia con la mezcla documentada (a caudales de diseño). La mezcla real se pondera con los caudales del momento.
 
 ## Fronteras (por otros)
 - Bombas ideales: retrolavado 1562 m³/h, regeneración 137 m³/h, NaOCl 783 L/h. Sumideros de regeneración (120 m³) y desecho de retrolavado (450 m³) con evacuación automática SUPUESTA.
@@ -40,5 +42,12 @@ Resumen de las ecuaciones y supuestos del modelo (`src/sim/process/`). Los coefi
 
 ## Eléctrico
 - kW por carga según el estado del equipo, con los kW absorbidos de la lista de cargas. Soplantes: P ∝ Q·Δp. Compresores: 30 % en vacío.
-- Arranque DOL: corriente ≈ 6 × FLA hasta 85 % de velocidad. Temperatura de devanado de 1er orden.
-- Barra 460 V: kVA con fp 0.88; 24 VDC: suma de las corrientes de lazo de los transmisores de 2 hilos.
+- Arranque DOL: corriente = 6 × FLA (FLA de la ficha del motor) hasta 85 % de velocidad; soplantes 6 × 225 = 1350 A (DOL vs VFD A CONFIRMAR). Temperatura de devanado de 1er orden.
+- Barra 460 V: kVA con fp 0.88; corriente = suma de las corrientes de motor (incluye arranques) + resto de cargas.
+- Alimentaciones (electrico.json → fallas_correctas): PK-30005JB (24 VDC) y el UPS de 120 VAC alimentan solo FIT-160305603; el 24 VDC del panel de I/O del cliente alimenta solenoides, finales de carrera (vía VJB) y los lazos LIT de filtros.
+
+## Válvulas on/off
+- Carrera ≈ DN × `carrera_s_por_pulg` (1 s/in, spec del cliente, A CONFIRMAR). El PLC usa como retardo de ZAO/ZAC el máximo entre el del alarm list y carrera + `margen_discrepancia_s` (5 s, SUPUESTO).
+
+## Balance de agua
+- Volumen de TK-30015 + 4 filtros; el Resumen muestra entradas (RO + HDS, BWI, RI), salidas (SEVO, RO/RW, BWO, bypass, rebalses y drenajes), acumulación y cierre (≈ 0).

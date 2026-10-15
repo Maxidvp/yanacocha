@@ -13,11 +13,11 @@ Corre entero en el navegador: modelo de proceso, capa de I/O y "PLC" con la filo
 | Eléctrico | Unifilar 460 V / 220 V / 120 VAC UPS → 24 VDC, kW y A por carga, energía, costo, Wh/m³ |
 | Corrientes y calidad | Tabla de corrientes tipo PFD: caudal, velocidad, Reynolds, P, T, pH, conductividad, turbidez, Fe, Mn, Cl₂, SO₄ |
 | Vista de planta | Layout 26442-ST3-J2-16045-00001 (hojas 11 y 12) con estados en vivo |
-| Lista de I/O | 102 puntos de la I/O list + señales de motor + interfaz con otros; valor, mA y forzado |
+| Lista de I/O | 102 puntos de la I/O list + señales de motor + interfaz con otros; nombre lógico del PCS como identificador, valor, mA y forzado |
 | Alarmas y C&E | Activas, historial, reconocimiento, matriz causa-efecto con disparos enclavados y reset |
 | Tendencias | Historiador de 24 h, paneles por unidad, cursor, exportar CSV |
 | Escenarios y fallas | 7 escenarios de operación, 10 fallas guiadas y parámetros editables marcados *A confirmar* / *Supuesto* |
-| Fichas técnicas | Datos de equipos, instrumentos, válvulas y cargas, más la lista de pendientes |
+| Fichas técnicas | Ficha completa de equipos, instrumentos, válvulas y cargas (Identificación · Proceso · Instrumento/Motor · Conexionado · Documentos) con el panel de señales de cada elemento, más la lista de pendientes |
 
 ## Uso
 ```bash
@@ -54,4 +54,4 @@ Cada push a `main` o a `claude/friendly-babbage-owfywt` ejecuta `.github/workflo
 - `src/ui/` – HMI (React + SVG + canvas). El estado de la UI vive en Zustand, separado del motor de simulación.
 
 ## Supuestos y pendientes
-`docs/FALTANTES.md` reúne las contradicciones entre documentos y lo que aportó el simulador (referencia de K06/K09, carrera de válvulas vs retardo ZAO/ZAC, umbral del bypass, tags de PSV y otros). Cada supuesto es un parámetro editable en la app.
+`docs/FALTANTES.md` reúne las contradicciones (y `docs/RESUMEN_SECUNDARIOS.md`, los datos de documentos secundarios) entre documentos y lo que aportó el simulador (referencia de K06/K09, carrera de válvulas vs retardo ZAO/ZAC, umbral del bypass, tags de PSV y otros). Cada supuesto es un parámetro editable en la app.

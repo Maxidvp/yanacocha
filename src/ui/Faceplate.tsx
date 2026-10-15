@@ -1,6 +1,6 @@
 // Faceplates (panel lateral) por tipo de objeto seleccionado en los mímicos.
 import { Fragment, useState, type ReactNode } from 'react';
-import { alarmas as alarmasDoc, equipoPorTag, instrumentoPorTag, valvulaPorTag, cargaPorTag, esAConfirmar, filtrosEquipo, LETRA_FILTRO, type Json } from '../data';
+import { alarmas as alarmasDoc, equipoPorTag, instrumentoPorTag, valvulaPorTag, cargaPorTag, filtrosEquipo, LETRA_FILTRO, senalesDe, type Json } from '../data';
 import { useEngine, useSim } from '../store/sim';
 import type { Engine } from '../sim/engine';
 import { rangoAI } from '../sim/params';
@@ -8,32 +8,21 @@ import { CONST_PLANTA, type ModoFallaTx } from '../sim/process/plant';
 import type { FallaFinCarrera, Selector } from '../sim/process/devices';
 import { estadoMotor, estadoValvula, ESTADO_TXT, fmt, lecturaLocal, manualAbierta } from './common/util';
 import { tipoManual } from './common/symbols';
-import { t, td, ts, campo } from '../i18n';
+import { t, td, ts } from '../i18n';
+import { Ficha } from './common/Ficha';
+import { PanelSenales } from './common/PanelSenales';
 
-export function Ficha({ datos, excluir = [] }: { datos: Record<string, Json | undefined>; excluir?: string[] }) {
-  const filas = Object.entries(datos).filter(([k, v]) => v !== undefined && !excluir.includes(k) && !k.startsWith('_'));
-  // tr = false: texto original (para detectar A CONFIRMAR); tr = true: claves con campo() y valores con td()
-  const txt = (v: Json | undefined, tr = false): string => {
-    const val = (x: Json): string => (tr ? td(String(x)) : String(x));
-    if (v === null || v === undefined) return '—';
-    if (Array.isArray(v)) return v.map((x) => (typeof x === 'object' && x !== null ? JSON.stringify(x) : val(x))).join(' · ');
-    if (typeof v === 'object') return Object.entries(v).map(([k, x]) => `${tr ? campo(k) : k}: ${typeof x === 'object' && x !== null ? JSON.stringify(x) : val(x)}`).join(' · ');
-    return val(v);
-  };
+// Ficha técnica completa (agrupada por secciones) y panel de señales del elemento
+export { Ficha } from './common/Ficha';
+
+/** Señales del elemento (senales_por_equipo.json): solo si las tiene. */
+function SeccionSenales({ e, tag }: { e: Engine; tag: string }) {
+  const n = senalesDe(tag).length;
+  if (!n) return null;
   return (
-    <dl className="kv" style={{ gridTemplateColumns: 'minmax(90px, 0.6fr) minmax(0, 1.4fr)' }}>
-      {filas.map(([k, v]) => {
-        const original = txt(v);
-        return (
-          <span key={k} style={{ display: 'contents' }}>
-            <dt>{campo(k)}</dt>
-            <dd style={{ textAlign: 'left', fontFamily: 'var(--font-ui)', fontSize: '0.84rem', overflowWrap: 'anywhere' }}>
-              {txt(v, true)} {esAConfirmar(original) && <span className="badge A_CONFIRMAR">{t('A confirmar')}</span>}
-            </dd>
-          </span>
-        );
-      })}
-    </dl>
+    <Seccion titulo={t('Señales ({n})', { n })}>
+      <PanelSenales e={e} tag={tag} />
+    </Seccion>
   );
 }
 
@@ -165,6 +154,7 @@ function FaceMotor({ e, tag }: { e: Engine; tag: string }) {
         {comp && <Toggle label={t('Filtro de aire de admisión tapado')} valor={!!e.planta.fallas.filtroAireTapado[tag]} onChange={(v) => accion((en) => en.setFallaEquipo('filtroAireTapado', tag, v))} peligro />}
         <button className="btn small" style={{ alignSelf: 'flex-start' }} onClick={() => accion((en) => en.resetMPR(tag))}>{t('Reset MPR (en el MCC)')}</button>
       </Seccion>
+      <SeccionSenales e={e} tag={tag} />
       {eq && (
         <Seccion titulo={t('Ficha técnica')}>
           <Ficha datos={eq} excluir={['tag']} />
@@ -234,6 +224,7 @@ function FaceValvula({ e, tag }: { e: Engine; tag: string }) {
           </select>
         </label>
       </Seccion>
+      <SeccionSenales e={e} tag={tag} />
       {d && (
         <Seccion titulo={t('Ficha técnica (lista de válvulas)')}>
           <Ficha datos={d} excluir={['tag', 'senales']} />
@@ -340,6 +331,7 @@ function FaceInstrumento({ e, tag }: { e: Engine; tag: string }) {
           </div>
         </Seccion>
       )}
+      <SeccionSenales e={e} tag={tag} />
       {d && (
         <Seccion titulo={t('Ficha técnica (índice de instrumentos)')}>
           <Ficha datos={d} excluir={['tag', 'alarmas']} />
@@ -471,6 +463,7 @@ function FaceFIC({ e }: { e: Engine }) {
         <Toggle label={t('FV-160305603 trabada')} valor={e.planta.fv603.trabada} onChange={(v) => accion((en) => en.setFallaValvula('FV-160305603', v))} peligro />
         <Toggle label={t('Válvula manual de bypass VBF-309709 abierta (rodeo de la FV)')} valor={!!e.planta.manuales['16045-VBF-309709']} onChange={(v) => accion((en) => en.setManual('16045-VBF-309709', v))} />
       </Seccion>
+      <SeccionSenales e={e} tag="FV-160305603" />
       {d && (
         <Seccion titulo={t('Ficha técnica FV-160305603')}>
           <Ficha datos={d} excluir={['tag', 'senales']} />
@@ -515,6 +508,7 @@ function FaceTanque({ e, tag }: { e: Engine; tag: string }) {
           <Toggle label={t('{tag} aislamiento bypass', { tag: '16045-VBF-309704' })} valor={!!pl.manuales['16045-VBF-309704']} onChange={(v) => accion((en) => en.setManual('16045-VBF-309704', v))} />
           <Toggle label={t('{tag} aislamiento bypass', { tag: '16045-VBF-309708' })} valor={!!pl.manuales['16045-VBF-309708']} onChange={(v) => accion((en) => en.setManual('16045-VBF-309708', v))} />
         </Seccion>
+        <SeccionSenales e={e} tag={tag} />
         {eq && <Seccion titulo={t('Ficha técnica')}><Ficha datos={eq} excluir={['tag']} /></Seccion>}
       </>
     );

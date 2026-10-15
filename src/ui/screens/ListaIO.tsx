@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { senales } from '../../data';
 import { useEngine, useSim } from '../../store/sim';
-import { esAnalogica, esEntrada, type PuntoIO } from '../../sim/io/iotable';
-import { rangoAI } from '../../sim/params';
+import { esEntrada, type PuntoIO } from '../../sim/io/iotable';
+import { EditorForzado, NombreLogico } from '../common/Forzado';
 import type { Engine } from '../../sim/engine';
 import { fmt } from '../common/util';
 import { t, td, ts } from '../../i18n';
@@ -14,35 +14,6 @@ function valorTexto(e: Engine, p: PuntoIO) {
   if (p.tipo === 'AI' || p.tipo === 'AO') return `${fmt(e.io.euVisible(p), 1)} ${p.unidad ?? (p.tipo === 'AO' ? '%' : '')}`;
   if (p.tipo === 'COM-AI') return `${fmt(e.io.valor(p.tag), 1)} ${p.unidad ?? ''}`;
   return e.io.valor(p.tag) >= 0.5 ? '1' : '0';
-}
-
-function EditorForzado({ e, p, onClose }: { e: Engine; p: PuntoIO; onClose: () => void }) {
-  const accion = useSim((s) => s.accion);
-  const analog = esAnalogica(p.tipo);
-  const [v, setV] = useState(analog ? String(Math.round(e.io.euVisible(p) * 10) / 10) : '1');
-  const rango = p.tipo === 'AO' ? [0, 100] : rangoAI(p.tag, e.params);
-  const aplicar = () => {
-    accion((en) => {
-      const n = Number(v);
-      if (p.tipo === 'AI' || p.tipo === 'AO') en.io.forzar(p.tag, 4 + (16 * (n - rango[0])) / (rango[1] - rango[0]));
-      else en.io.forzar(p.tag, n);
-    });
-    onClose();
-  };
-  return (
-    <span className="row" style={{ gap: 4 }}>
-      {analog ? (
-        <input type="number" id={`fz-${p.tag}`} value={v} onChange={(ev) => setV(ev.target.value)} aria-label={t('Valor forzado {tag}', { tag: p.tag })} />
-      ) : (
-        <select id={`fz-${p.tag}`} value={v} onChange={(ev) => setV(ev.target.value)} aria-label={t('Valor forzado {tag}', { tag: p.tag })}>
-          <option value="1">1</option>
-          <option value="0">0</option>
-        </select>
-      )}
-      <button className="btn small primary" onClick={aplicar}>{t('Forzar')}</button>
-      <button className="btn small" onClick={onClose}>{t('Cancelar')}</button>
-    </span>
-  );
 }
 
 export function ListaIO() {
@@ -59,7 +30,7 @@ export function ListaIO() {
     return puntos.filter((p) =>
       (tipo === 'todos' || p.tipo === tipo || (tipo === 'COM' && p.tipo.startsWith('COM'))) &&
       (grupo === 'todos' || p.grupo === grupo) &&
-      (!qq || p.tag.toLowerCase().includes(qq) || p.descripcion.toLowerCase().includes(qq) || descTxt(p).toLowerCase().includes(qq) || (p.equipo ?? '').toLowerCase().includes(qq)),
+      (!qq || p.tag.toLowerCase().includes(qq) || (p.nombreLogico ?? '').toLowerCase().includes(qq) || p.descripcion.toLowerCase().includes(qq) || descTxt(p).toLowerCase().includes(qq) || (p.equipo ?? '').toLowerCase().includes(qq)),
     );
   }, [puntos, q, tipo, grupo]);
   const cuenta = (t: string) => puntos.filter((p) => p.grupo === 'documentada' && p.tipo === t).length;
@@ -97,7 +68,7 @@ export function ListaIO() {
       <div className="tbl-wrap">
         <table className="t">
           <thead>
-            <tr><th>Tag</th><th>{t('Descripción')}</th><th>{t('Tipo')}</th><th>RIO</th><th>{t('Equipo')}</th><th className="n">{t('Valor')}</th><th className="n">mA</th><th>{t('Forzado')}</th></tr>
+            <tr><th>{t('Nombre lógico · tag I/O')}</th><th>{t('Descripción')}</th><th>{t('Tipo')}</th><th>RIO</th><th>{t('Equipo')}</th><th className="n">{t('Valor')}</th><th className="n">mA</th><th>{t('Forzado')}</th></tr>
           </thead>
           <tbody>
             {filtrados.map((p) => {
@@ -109,8 +80,9 @@ export function ListaIO() {
                 <tr key={p.tag} className={p.forzado ? 'forz' : ''}>
                   <td className="mono">
                     {esInst || esValv ? (
-                      <button className="btn small" style={{ fontFamily: 'var(--font-data)' }} onClick={() => seleccionar(esInst ? { tipo: 'instrumento', tag: p.tag } : { tipo: 'valvula', tag: p.tag })}>{p.tag}</button>
-                    ) : p.tag}
+                      <button className="btn small" style={{ fontFamily: 'var(--font-data)' }} onClick={() => seleccionar(esInst ? { tipo: 'instrumento', tag: p.tag } : { tipo: 'valvula', tag: p.tag })}><NombreLogico nombre={p.nombreLogico ?? p.tag} propuesto={p.propuesto} /></button>
+                    ) : <NombreLogico nombre={p.nombreLogico ?? p.tag} propuesto={p.propuesto} />}
+                    {p.nombreLogico && p.nombreLogico !== p.tag && <div className="dim" style={{ fontSize: '0.74rem' }}>{p.tag}</div>}
                   </td>
                   <td>{descTxt(p)}</td>
                   <td><span className="tagchip">{p.tipo}</span> <span className="dim" style={{ fontSize: '0.75rem' }}>{esEntrada(p.tipo) ? t('entrada') : t('salida')}</span></td>

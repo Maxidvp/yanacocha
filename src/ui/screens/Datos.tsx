@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { equipos, instrumentos, valvulas, electrico, type Json } from '../../data';
+import { equipos, instrumentos, valvulas, electrico, senalesDe, type Json } from '../../data';
+import { PanelSenales } from '../common/PanelSenales';
 import faltantes from '../../../docs/FALTANTES.md?raw';
 import faltantesEn from '../../../docs/FALTANTES.en.md?raw';
 import { getIdioma, t, td } from '../../i18n';
-import { useSim } from '../../store/sim';
+import { useEngine, useSim } from '../../store/sim';
+import type { Json as JsonT } from '../../data';
 import { Ficha } from '../Faceplate';
 
 type Vista = 'equipos' | 'instrumentos' | 'valvulas' | 'cargas' | 'pendientes';
@@ -24,6 +26,40 @@ function Markdown({ texto }: { texto: string }) {
         }
         return l.trim() ? <p key={k} style={{ margin: 0 }}>{l}</p> : null;
       })}
+    </div>
+  );
+}
+
+interface ItemFicha { tag: string; titulo: string; obj: Record<string, JsonT | undefined>; abrir?: () => void }
+
+/** Tarjeta de ficha: la ficha y el panel de señales (con valores en vivo) se dibujan solo al abrirla. */
+function Tarjeta({ x }: { x: ItemFicha }) {
+  const [abierta, setAbierta] = useState(false);
+  return (
+    <details className="card" onToggle={(ev) => setAbierta((ev.target as HTMLDetailsElement).open)}>
+      <summary className="row" style={{ display: 'flex' }}>
+        <span className="mono" style={{ fontWeight: 600 }}>{x.tag}</span>
+        <span className="muted" style={{ flex: 1, minWidth: 0 }}>{x.titulo}</span>
+        {tieneAC(x.obj) && <span className="badge A_CONFIRMAR">{t('A confirmar')}</span>}
+      </summary>
+      {abierta && <ContenidoTarjeta x={x} />}
+    </details>
+  );
+}
+
+function ContenidoTarjeta({ x }: { x: ItemFicha }) {
+  const e = useEngine();
+  const n = senalesDe(x.tag).length;
+  return (
+    <div style={{ marginTop: 8 }} className="stack">
+      <Ficha datos={x.obj} excluir={['tag']} />
+      {n > 0 && (
+        <>
+          <div className="ficha-sec">{t('Señales ({n})', { n })}</div>
+          <PanelSenales e={e} tag={x.tag} />
+        </>
+      )}
+      {x.abrir && <button className="btn small" style={{ alignSelf: 'flex-start' }} onClick={x.abrir}>{t('Abrir faceplate en vivo')}</button>}
     </div>
   );
 }
@@ -55,19 +91,7 @@ export function Datos() {
         <div className="card"><Markdown texto={getIdioma() === 'en' ? faltantesEn : faltantes} /></div>
       ) : (
         <div className="stack">
-          {listas[vista].map((x) => (
-            <details key={x.tag} className="card">
-              <summary className="row" style={{ display: 'flex' }}>
-                <span className="mono" style={{ fontWeight: 600 }}>{x.tag}</span>
-                <span className="muted" style={{ flex: 1, minWidth: 0 }}>{x.titulo}</span>
-                {tieneAC(x.obj) && <span className="badge A_CONFIRMAR">{t('A confirmar')}</span>}
-              </summary>
-              <div style={{ marginTop: 8 }} className="stack">
-                <Ficha datos={x.obj} excluir={['tag']} />
-                {x.abrir && <button className="btn small" style={{ alignSelf: 'flex-start' }} onClick={x.abrir}>{t('Abrir faceplate en vivo')}</button>}
-              </div>
-            </details>
-          ))}
+          {listas[vista].map((x) => <Tarjeta key={x.tag} x={x} />)}
           {listas[vista].length === 0 && <p className="empty">{t('Sin resultados para "{q}".', { q })}</p>}
         </div>
       )}
