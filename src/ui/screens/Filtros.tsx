@@ -99,7 +99,7 @@ function Corte({ e, i }: { e: Engine; i: number }) {
       {/* cañerías y válvulas */}
       <Pipe d={`M 10 40 H ${X0 + 40} V ${Y0}`} fluido="water" activa={f.qSEVI > 1} ancho={5} />
       <Pipe d="M 10 16 H 110 V 40" fluido="regen" activa={f.qRI > 1} ancho={3} />
-      <Pipe d={`M 250 4 V ${y(150)}`} fluido="air" activa={f.qAire > 50} ancho={3} />
+      <Pipe d={`M 250 4 V ${y(150)} H ${X0 + 10} M 250 ${y(150)} H ${X0 + W - 10}`} fluido="air" activa={f.qAire > 50} ancho={3} />
       <Pipe d={`M ${X0 + W} 70 H 550`} fluido="waste" activa={f.qBWO > 1} ancho={5} />
       <Pipe d={`M 10 ${y(110)} H ${X0}`} fluido="water" activa={f.qBWI > 1} ancho={4.5} />
       <Pipe d={`M ${X0 + W} ${y(110)} H 550`} fluido="water" activa={f.qSEVO > 1} ancho={5} />

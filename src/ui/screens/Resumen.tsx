@@ -67,7 +67,8 @@ function Filtro({ e, i }: { e: Engine; i: number }) {
       <Pipe d={`M ${cx - 40} ${H_ENT} V ${FY}`} fluido="water" activa={f.qSEVI > 1} ancho={4} />
       <Pipe d={`M ${cx - 15} ${H_RI} V 185 H ${cx - 40}`} fluido="regen" activa={f.qRI > 1} ancho={2.5} />
       <Pipe d={`M ${cx + 50} ${FY + 6} V ${H_BWO}`} fluido="waste" activa={f.qBWO > 1} ancho={4} />
-      <Pipe d={`M ${cx - 45} ${H_AIRE} V ${FY + FH}`} fluido="air" activa={f.qAire > 50} ancho={2.5} />
+      {/* aire de lavado: sube junto a la pared derecha y entra por arriba (la bajada interna se dibuja con el cuerpo) */}
+      <Pipe d={`M ${cx + 73} ${H_AIRE} V ${FY - 10} H ${cx + 58}`} fluido="air" activa={f.qAire > 50} ancho={2.5} />
       <Pipe d={`M ${cx - 15} ${H_BW} V ${FY + FH}`} fluido="water" activa={f.qBWI > 1} ancho={3.5} />
       <Pipe d={`M ${cx + 15} ${FY + FH} V ${H_FILT}`} fluido="water" activa={f.qSEVO > 1} ancho={4} />
       <Pipe d={`M ${cx + 45} ${FY + FH} V ${H_RW}`} fluido="regen" activa={f.qRW > 1} ancho={3} />
@@ -82,7 +83,9 @@ function Filtro({ e, i }: { e: Engine; i: number }) {
         <rect x={x0} y={FY + FH - hMedio} width={FW} height={hMedio * 0.17} fill="#3a3a3a" opacity={0.75} />
         <rect x={x0} y={FY + FH - hMedio * 0.83} width={FW} height={hMedio * 0.5} fill="#3f5a3c" opacity={0.75 + 0.25 * sucio} />
         <rect x={x0} y={FY + FH - hMedio * 0.33} width={FW} height={hMedio * 0.33} fill="#8b8579" opacity={0.75} />
-        {f.qAire > 50 && <BurbujasAire x={x0} w={FW} yFondo={FY + FH - 6} ySup={FY + FH * (1 - Math.min(1, frac))} n={12} />}
+        {/* bajada interna hasta el distribuidor de aire del fondo */}
+        <g style={{ pointerEvents: 'none' }}><Pipe d={`M ${cx + 58} ${FY - 10} V ${FY + FH - 8} H ${x0 + 8}`} fluido="air" activa={f.qAire > 50} ancho={2.5} /></g>
+        {f.qAire > 50 && <BurbujasAire x={x0} w={FW} yFondo={FY + FH - 8} ySup={FY + FH * (1 - Math.min(1, frac))} n={12} />}
         <path d={`M ${x0} ${FY} V ${FY + FH} H ${x0 + FW} V ${FY}`} className="tank-wall hl" />
         <text className="t-tag" x={x0 + 6} y={FY + 15}>{`${LETRAS[i]} · ${fe.tag.replace('16045-', '')}`}</text>
         <rect x={x0 + 5} y={FY + 21} width={FW - 10} height={17} rx={3} fill={colorPaso} opacity={0.95} />
@@ -90,7 +93,7 @@ function Filtro({ e, i }: { e: Engine; i: number }) {
           {`${s.paso} ${s.hold ? 'HOLD' : td(s.nombrePaso)}`.slice(0, 24)}
         </text>
         <text className="t-sm" x={x0 + 6} y={FY + 52}>{s.modo === 'AUTO' ? t('Auto') : t('Semiauto')}{s.regenRequerida ? ` · ${t('regen.')}` : ''}</text>
-        <text className="t-val" x={x0 + FW - 6} y={FY + 52} textAnchor="end">{fmt(f.qSEVO, 0)} m³/h</text>
+        <text className="t-val" x={x0 + FW - 12} y={FY + 52} textAnchor="end">{fmt(f.qSEVO, 0)} m³/h</text>
       </g>
       <Inst e={e} tag={fe.transmisor_nivel} x={cx + 100} y={FY + 40} lado="b" />
       {/* drenaje manual del filtro → colector de desecho */}
@@ -104,8 +107,8 @@ function Filtro({ e, i }: { e: Engine; i: number }) {
       <text className="t-xs" x={cx - 6} y={150}>RI</text>
       <ValvulaSym x={cx + 50} y={160} tag={v('BWO')} estado={est('BWO')} orient="v" forzada={fz('BWO')} />
       <text className="t-xs" x={cx + 62} y={163}>BWO</text>
-      {(['AIRI', 'BWI', 'SEVO', 'FRO'] as FuncionValvula[]).map((fn, k) => {
-        const x = [cx - 45, cx - 15, cx + 15, cx + 45][k];
+      {(['BWI', 'SEVO', 'FRO', 'AIRI'] as FuncionValvula[]).map((fn, k) => {
+        const x = [cx - 15, cx + 15, cx + 45, cx + 73][k];
         return (
           <g key={fn}>
             <ValvulaSym x={x} y={448} tag={v(fn)} estado={est(fn)} orient="v" size={7} forzada={fz(fn)} />
@@ -138,8 +141,8 @@ export function Resumen() {
   const iAireDer = ultimo((f) => f.qAire, 50);
   const tramoAire = [
     pl.qAireSoplado > 50 ? `M 570 610 V ${H_AIRE}` : '',
-    fl[0].qAire > 50 ? `M 570 ${H_AIRE} H ${CX[0] - 45}` : '',
-    iAireDer >= 1 ? `M 570 ${H_AIRE} H ${CX[iAireDer] - 45}` : '',
+    fl[0].qAire > 50 ? `M 570 ${H_AIRE} H ${CX[0] + 73}` : '',
+    iAireDer >= 1 ? `M 570 ${H_AIRE} H ${CX[iAireDer] + 73}` : '',
   ].join(' ').trim() || null;
   const compQ = pl.compresores.map((c) => c.q);
   const hayAireTK = pl.qAireTK15 > 5;
@@ -215,14 +218,14 @@ export function Resumen() {
           <text className="t-sm" x={1000} y={H_RI - 6}>{t('Regeneración (RI)')} {fr.qRegen > 1 ? `${fmt(fr.qRegen, 0)} m³/h` : ''}</text>
 
           {/* ---- colectores inferiores ---- */}
-          <Colector d={`M 570 610 V ${H_AIRE} H ${CX[0] - 45} M 570 ${H_AIRE} H ${CX[3] - 45}`} tramo={tramoAire} fluido="air" ancho={3.5} />
+          <Colector d={`M 570 610 V ${H_AIRE} H ${CX[0] + 73} M 570 ${H_AIRE} H ${CX[3] + 73}`} tramo={tramoAire} fluido="air" ancho={3.5} />
           <Colector d={`M 1338 790 H 1180 V ${H_BW} H ${CX[0] - 15}`} tramo={iBWI >= 0 ? `M 1338 790 H 1180 V ${H_BW} H ${CX[iBWI] - 15}` : null} fluido="water" ancho={4.5} />
           <Colector d={`M ${CX[0] + 15} ${H_FILT} H 1290 V 560`} tramo={iSEVO >= 0 ? `M ${CX[iSEVO] + 15} ${H_FILT} H 1290 V 560` : null} fluido="water" ancho={6} />
           <Colector d={`M ${CX[0] + 45} ${H_RW} H 1220 V 300 H 1290`} tramo={iRW >= 0 ? `M ${CX[iRW] + 45} ${H_RW} H 1220 V 300 H 1290` : null} fluido="regen" ancho={3.5} />
-          <text className="t-sm" x={CX[3] + 70} y={H_AIRE - 6}>{t('Aire de lavado')}</text>
-          <text className="t-sm" x={CX[3] + 70} y={H_BW - 6}>{t('Retrolavado')} {fr.qBW > 1 ? `${fmt(fr.qBW, 0)} m³/h` : ''}</text>
-          <text className="t-sm" x={CX[3] + 70} y={H_FILT - 6}>{t('Agua filtrada {q} m³/h', { q: fmt(pl.qFiltrada, 0) })}</text>
-          <text className="t-sm" x={CX[3] + 70} y={H_RW - 6}>{t('Enjuague / desecho regen. (RO/RW)')}</text>
+          <text className="t-sm" x={CX[3] + 84} y={H_AIRE - 6}>{t('Aire de lavado')}</text>
+          <text className="t-sm" x={CX[3] + 84} y={H_BW - 6}>{t('Retrolavado')} {fr.qBW > 1 ? `${fmt(fr.qBW, 0)} m³/h` : ''}</text>
+          <text className="t-sm" x={CX[3] + 84} y={H_FILT - 6}>{t('Agua filtrada {q} m³/h', { q: fmt(pl.qFiltrada, 0) })}</text>
+          <text className="t-sm" x={CX[3] + 84} y={H_RW - 6}>{t('Enjuague / desecho regen. (RO/RW)')}</text>
 
           {CX.map((_, i) => <Filtro key={i} e={e} i={i} />)}
 
