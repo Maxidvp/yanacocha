@@ -12,7 +12,8 @@ function Unifilar({ e }: { e: Engine }) {
   const pl = e.planta;
   const k = pl.kWcargas;
   const motorDe = (tag: string) => pl.motores.get(tag.replace(/-CC$/, ''));
-  const pot = pl.potenciaInstrumentos;
+  const pot = pl.alimPK30005;
+  const salidas = electrico.tablero_instrumentos.salidas;
   return (
     <svg className="mimic" viewBox="0 0 1100 540" role="img" aria-label={t('Diagrama unifilar simplificado')}>
       <text className="t-tag" x={40} y={30}>{t('MCC 460 V 3F 60 Hz (por otros) · arranques DOL')}</text>
@@ -91,9 +92,12 @@ function Unifilar({ e }: { e: Engine }) {
         <rect x={330} y={20} width={30} height={20} fill="var(--panel)" stroke="var(--ink-2)" />
         <text className="t-xs" x={345} y={34} textAnchor="middle">1A×2</text>
         <line x1={360} x2={420} y1={30} y2={30} stroke="var(--ink-2)" strokeWidth={2} />
-        <text className="t-sm" x={425} y={26}>{t('Lazos 4–20 mA: LIT ×4, FIT-602, FIT-607')}</text>
-        <text className="t-val" x={425} y={42}>{t('{mA} mA de 1300 mA ({pct} %)', { mA: fmt(pl.mA24, 0), pct: fmt((100 * pl.mA24) / 1300, 0) })}</text>
-        <text className="t-xs" x={0} y={78}>{t('Consumo tablero: 0.4 A @ 120 V. Solenoides, finales de carrera e instrumentos del TK van directo al sistema de control del cliente.')}</text>
+        {salidas.map((s, k) => (
+          <text key={s.borne} className={k === 0 ? 't-val' : 't-sm'} x={425} y={26 + k * 16}>
+            {s.borne.replace('TBP1/1A ', '')} → {td(s.carga)}{k === 0 ? ` · ${pot ? t('alimentado') : t('sin tensión')}` : ''}
+          </text>
+        ))}
+        <text className="t-xs" x={0} y={78}>{t('Consumo del tablero: 0.37 A @ 120 VAC. Los LIT de filtros se alimentan desde la AI del PLC del cliente; FIT-602/607 en lazo desde el RIO; solenoides y finales de carrera con 24 VDC del panel de I/O del cliente vía VJB.')}</text>
       </g>
     </svg>
   );
@@ -121,6 +125,9 @@ export function Electrico() {
         <div className="card"><div className="lbl">{t('Energía específica')}</div><div className="mono" style={{ fontSize: '1.6rem' }}>{fmt(kWhM3 * 1000, 1)} Wh/m³</div><div className="dim">{t('sobre {v} m³ tratados', { v: fmt(tot.entrada, 0) })}</div></div>
       </div>
       <div className="mimic-wrap"><Unifilar e={e} /></div>
+      <div className="note">
+        <span className="badge A_CONFIRMAR">{t('A confirmar')}</span> {t('Arranque de soplantes BL-30008/09: DOL según la lista de cargas (simulado: 6 × FLA = 1350 A en la barra durante la aceleración); la hoja del motor WEG dice VFD.')}
+      </div>
       <div className="grid g2">
         <div className="card">
           <h3>{t('Cargas')}</h3>
@@ -151,7 +158,8 @@ export function Electrico() {
           <TrendPane series={['I-460']} ventana={4 * 3600} titulo={t('Corriente barra 460 V')} />
           <div className="row">
             <label className="row" style={{ gap: 6 }}><input type="checkbox" checked={pl.fallas.ups120} onChange={(ev) => accion((en) => en.setFallaGlobal('ups120', ev.target.checked))} /> {t('Pérdida de 120 VAC UPS')}</label>
-            <label className="row" style={{ gap: 6 }}><input type="checkbox" checked={pl.fallas.dc24} onChange={(ev) => accion((en) => en.setFallaGlobal('dc24', ev.target.checked))} /> {t('Pérdida de 24 VDC')}</label>
+            <label className="row" style={{ gap: 6 }}><input type="checkbox" checked={pl.fallas.dc24} onChange={(ev) => accion((en) => en.setFallaGlobal('dc24', ev.target.checked))} /> {t('Pérdida de 24 VDC (PK-30005JB)')}</label>
+            <label className="row" style={{ gap: 6 }}><input type="checkbox" checked={pl.fallas.dc24Cliente} onChange={(ev) => accion((en) => en.setFallaGlobal('dc24Cliente', ev.target.checked))} /> {t('Pérdida de 24 VDC del panel de I/O del cliente')}</label>
           </div>
         </div>
       </div>

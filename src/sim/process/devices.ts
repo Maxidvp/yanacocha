@@ -1,5 +1,5 @@
 // Dispositivos de campo: válvulas on/off Tipo V5, válvula de control FV-603 y motores con su arrancador (MCC por otros).
-import { cargaPorTag } from '../../data';
+import { cargaPorTag, equipoPorTag } from '../../data';
 
 export type FallaFinCarrera = 'ok' | 'zso_trabado_0' | 'zsc_trabado_0' | 'zso_trabado_1' | 'zsc_trabado_1';
 
@@ -119,7 +119,9 @@ export class Motor {
     this.V = c?.V ?? 460;
     this.fp = c?.fp ?? 0.85;
     this.ef = c?.ef ?? 0.9;
-    this.fla = (this.kWnom * 1000) / (Math.sqrt(3) * this.V * this.fp * this.ef);
+    // FLA de la ficha del motor (equipos.json → motor_ficha) o calculada desde la lista de cargas
+    const ficha = equipoPorTag(tag)?.motor_ficha as { FLA_A?: number } | undefined;
+    this.fla = ficha?.FLA_A ?? (this.kWnom * 1000) / (Math.sqrt(3) * this.V * this.fp * this.ef);
     this.tieneLCS = tieneLCS;
     this.tempDevanado = tAmb;
   }
@@ -160,7 +162,8 @@ export class Motor {
     if (this.contactor) {
       const kWel = kWcarga * Math.max(this.velocidad, 0.15);
       const Ireg = (kWel * 1000) / (Math.sqrt(3) * this.V * this.fp);
-      this.corriente = this.velocidad < 0.85 ? Math.max(6 * this.fla * (1 - this.velocidad * 0.5), Ireg) : Ireg;
+      // DOL: corriente de rotor bloqueado ≈ 6×FLA durante la aceleración (soplantes: 6 × 225 = 1350 A)
+      this.corriente = this.velocidad < 0.85 ? Math.max(6 * this.fla, Ireg) : Ireg;
       this.kW = this.velocidad < 0.85 ? Math.sqrt(3) * this.V * this.corriente * 0.3 / 1000 : kWel;
       this.horas += dt / 3600;
     } else {

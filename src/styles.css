@@ -229,7 +229,10 @@ h3 { font-size: 1.02rem; }
   color: var(--ink-2);
 }
 .nav button:hover { background: var(--panel-2); color: var(--ink); }
-.nav button[aria-current='page'] { background: var(--accent); color: var(--accent-ink); }
+.nav [role='tablist'] { display: flex; flex-direction: inherit; gap: inherit; }
+.nav button[aria-selected='true'] { background: var(--accent); color: var(--accent-ink); }
+.nav button.tras-sep { margin-top: 13px; position: relative; }
+.nav button.tras-sep::before { content: ''; position: absolute; left: 4px; right: 4px; top: -7px; height: 1px; background: var(--line); }
 .nav .key { font-family: var(--font-data); font-size: 0.7rem; opacity: 0.7; }
 .nav .sep { height: 1px; background: var(--line); margin: 6px 4px; }
 
@@ -258,6 +261,8 @@ h3 { font-size: 1.02rem; }
   }
   .nav button { white-space: nowrap; padding: 6px 10px; }
   .nav .sep, .nav .key { display: none; }
+  .nav button.tras-sep { margin-top: 0; }
+  .nav button.tras-sep::before { display: none; }
   .main { padding-left: max(16px, env(safe-area-inset-left, 0px)); }
   .kpis { margin-left: 0; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .brand span { display: none; }
@@ -358,6 +363,12 @@ input[type='range'] { accent-color: var(--accent); }
 .mimic { width: 100%; height: auto; display: block; font-family: var(--font-label); }
 .mimic-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); }
 .mimic-wrap > svg { min-width: 980px; }
+/* mímico con zoom: se escala al contenedor, sin ancho mínimo */
+.mimic-wrap.zoomable { position: relative; overflow: hidden; }
+.mimic-wrap.zoomable > svg { min-width: 0; touch-action: pan-x pan-y; user-select: none; }
+.mimic-wrap.zoomable > svg.ampliado { touch-action: none; cursor: grab; }
+.zoom-ctl { position: absolute; top: 6px; right: 6px; display: flex; gap: 4px; z-index: 1; }
+.zoom-ctl .btn { min-width: 30px; }
 .mimic text { fill: var(--ink); }
 .mimic .t-sm { font-size: 13px; fill: var(--ink-2); }
 .mimic .t-xs { font-size: 11px; fill: var(--ink-2); }
@@ -457,3 +468,6 @@ details > summary { cursor: pointer; font-family: var(--font-label); letter-spac
 .tooltip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--line-2); border-radius: var(--r); padding: 4px 8px; font-size: 0.8rem; box-shadow: 0 4px 12px rgb(0 0 0 / 0.15); white-space: nowrap; z-index: 2; }
 
 .confirm { border: 1px solid var(--warn); background: color-mix(in srgb, var(--warn) 12%, var(--panel)); border-radius: var(--r); padding: 8px 10px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+/* texto legible sobre agua/medios */
+.halo { paint-order: stroke; stroke: var(--panel); stroke-width: 3px; stroke-linejoin: round; }

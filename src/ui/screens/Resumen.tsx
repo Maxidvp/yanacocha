@@ -2,6 +2,7 @@ import { filtrosEquipo, type FuncionValvula } from '../../data';
 import { useEngine, useSim } from '../../store/sim';
 import { CONST_PLANTA } from '../../sim/process/plant';
 import { AgitadorSym, BombaExtSym, CaudalimetroSym, EquipoRotSym, Frontera, InstrumentoSym, Pipe, ReduccionSym, TanqueSym, ValvulaControlSym, ValvulaManualSym, ValvulaSym } from '../common/symbols';
+import { MimicoZoom } from '../common/MimicoZoom';
 import { estadoMotor, estadoValvula, fmt, LETRAS, lecturaLocal, manualAbierta } from '../common/util';
 import type { Engine } from '../../sim/engine';
 import { t, td, ts } from '../../i18n';
@@ -103,7 +104,7 @@ function Filtro({ e, i }: { e: Engine; i: number }) {
         return (
           <g key={fn}>
             <ValvulaSym x={x} y={448} tag={v(fn)} estado={est(fn)} orient="v" size={7} forzada={fz(fn)} />
-            <text className="t-xs" x={x} y={433} textAnchor="middle">{fn === 'FRO' ? 'RW' : fn}</text>
+            <text className="t-xs" x={x} y={433} textAnchor="middle" style={fn === 'FRO' ? { fontSize: 7.5 } : undefined}>{fn === 'FRO' ? 'RO/RW' : fn}</text>
           </g>
         );
       })}
@@ -129,8 +130,7 @@ export function Resumen() {
         <h2>{t('Resumen de planta')}</h2>
         <p>{t('Paquete 16045-PK-30006 · tocá cualquier equipo, válvula o instrumento para abrir su faceplate; tocá un filtro para ver su detalle.')}</p>
       </div>
-      <div className="mimic-wrap">
-        <svg className="mimic" viewBox="0 0 1600 900" role="img" aria-label={t('Mímico de la planta AWTP EAST')}>
+      <MimicoZoom ancho={1600} alto={900} label={t('Mímico de la planta AWTP EAST')}>
           {/* ---- entradas ---- */}
           <Frontera x={10} y={112} texto={t('Permeado RO (por otros)')} sub={`FIC-160305065 ${fmt(pl.qRO, 0)} m³/h`} />
           <Frontera x={10} y={150} texto={t('Agua tratada HDS')} sub={`FIC-160304333 ${fmt(pl.qHDS, 0)} m³/h`} />
@@ -263,9 +263,9 @@ export function Resumen() {
               </g>
             ))}
           </g>
-        </svg>
-      </div>
+      </MimicoZoom>
       <ResumenTablero e={e} />
+      <BalanceAgua e={e} />
     </div>
   );
 }
@@ -287,7 +287,7 @@ function ResumenTablero({ e }: { e: Engine }) {
               <span className={`pill ${s.hold ? 'trip' : s.enServicio ? 'on' : s.enLavado ? 'info' : 'unk'}`}>{s.hold ? 'HOLD' : td(s.nombrePaso)}</span>
             </h3>
             <dl className="kv">
-              <dt>{t('Paso / timer')}</dt><dd>{s.paso} · {fmt(s.tPaso / 60, 1)}{pre ? ` / ${fmt(pre / 60, 1)}` : ''} min</dd>
+              <dt>{t('Paso / timer')}</dt><dd>{s.paso} · {fmt(s.timerPaso / 60, 1)}{pre ? ` / ${fmt(pre / 60, 1)}` : ''} min</dd>
               <dt>{t('Servicio desde lavado (T03)')}</dt><dd>{fmt(s.tServicioLavado / 3600, 1)} h</dd>
               <dt>{t('Caudal filtrado')}</dt><dd>{fmt(f.qSEVO, 0)} m³/h</dd>
               <dt>{t('Sólidos retenidos')}</dt><dd>{fmt(f.suciedad, 0)} kg</dd>
@@ -355,5 +355,42 @@ function TrenSoplante({ e, k }: { e: Engine; k: number }) {
       {s.vRetencion && <ValvulaManualSym x={x} y={726} tag={s.vRetencion} abierta={manualAbierta(e, s.vRetencion)} orient="v" size={5} sentido={-1} etiqueta={s.vRetencion.slice(-6)} lado={lado} />}
       {s.vDescarga && <ValvulaManualSym x={x} y={711} tag={s.vDescarga} abierta={manualAbierta(e, s.vDescarga)} orient="v" size={5} etiqueta={s.vDescarga.slice(-6)} lado={lado} />}
     </g>
+  );
+}
+
+/** Balance de agua de TK-30015 + filtros: entradas − salidas = acumulación (m³/h). */
+function BalanceAgua({ e }: { e: Engine }) {
+  const b = e.planta.balance;
+  const fila = (k: string, v: number, fuerte = false) => (
+    <>
+      <dt>{k}</dt>
+      <dd style={fuerte ? { fontWeight: 700 } : undefined}>{fmt(v, 0)} m³/h</dd>
+    </>
+  );
+  return (
+    <div className="card">
+      <h3>{t('Balance de agua – TK-30015 + filtros')}</h3>
+      <div className="grid g3">
+        <dl className="kv">
+          {fila(t('Entrada RO + HDS'), b.entrada)}
+          {fila(t('Retrolavado (BWI)'), b.retrolavado)}
+          {fila(t('Regeneración (RI)'), b.regeneracion)}
+          {fila(t('Total entradas'), b.entradas, true)}
+        </dl>
+        <dl className="kv">
+          {fila(t('Agua filtrada (SEVO)'), b.filtrada)}
+          {fila(t('RO/RW'), b.rw)}
+          {fila(t('Desecho de retrolavado (BWO)'), b.bwo)}
+          {fila(t('Bypass'), b.bypass)}
+          {fila(t('Rebalses y drenajes'), b.otras)}
+          {fila(t('Total salidas'), b.salidas, true)}
+        </dl>
+        <dl className="kv">
+          {fila(t('Acumulación (TK + filtros)'), b.acumulacion, true)}
+          {fila(t('Cierre del balance'), b.cierre)}
+        </dl>
+      </div>
+      <div className="note">{t('Acumulación negativa: el TK o los filtros entregan agua guardada (por ejemplo, durante el enjuague rápido los otros filtros bajan de nivel al recibir menos caudal por SEVI).')}</div>
+    </div>
   );
 }

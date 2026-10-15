@@ -1,4 +1,4 @@
-import { Component, useEffect, type ReactNode } from 'react';
+import { Component, useEffect, type KeyboardEvent as TeclaReact, type ReactNode } from 'react';
 import { useEngine, useSim, type Pantalla } from './store/sim';
 import { fmt, tiempoSim } from './ui/common/util';
 import { Faceplate } from './ui/Faceplate';
@@ -112,17 +112,36 @@ function Nav() {
   const setPantalla = useSim((s) => s.setPantalla);
   const e = useEngine();
   const activas = e.plc.alarmas.resumen.filter((a) => a.activa).length;
+  const onKey = (ev: TeclaReact) => {
+    const k = PANTALLAS.findIndex((p) => p.id === pantalla);
+    const n = PANTALLAS.length;
+    const destino = { ArrowDown: k + 1, ArrowRight: k + 1, ArrowUp: k - 1, ArrowLeft: k - 1, Home: 0, End: n - 1 }[ev.key];
+    if (destino === undefined) return;
+    ev.preventDefault();
+    const p = PANTALLAS[(destino + n) % n];
+    setPantalla(p.id);
+    document.getElementById(`tab-${p.id}`)?.focus();
+  };
   return (
     <nav className="nav" aria-label={t('Pantallas')}>
-      {PANTALLAS.map((p, i) => (
-        <span key={p.id} style={{ display: 'contents' }}>
-          {(i === 6 || i === 9) && <span className="sep" />}
-          <button aria-current={pantalla === p.id ? 'page' : undefined} onClick={() => setPantalla(p.id)}>
+      {/* pestañas principales: tablist con teclado (flechas, Inicio, Fin) */}
+      <div role="tablist" aria-orientation="vertical" aria-label={t('Pantallas')} onKeyDown={onKey}>
+        {PANTALLAS.map((p, i) => (
+          <button
+            key={p.id}
+            id={`tab-${p.id}`}
+            role="tab"
+            aria-selected={pantalla === p.id}
+            aria-controls="panel-pantalla"
+            tabIndex={pantalla === p.id ? 0 : -1}
+            className={i === 6 || i === 9 ? 'tras-sep' : undefined}
+            onClick={() => setPantalla(p.id)}
+          >
             <span>{t(p.label)}{p.id === 'alarmas' && activas ? ` (${activas})` : ''}</span>
             <span className="key">{p.key}</span>
           </button>
-        </span>
-      ))}
+        ))}
+      </div>
     </nav>
   );
 }
@@ -175,7 +194,7 @@ export function App() {
       <TopBar />
       <Banner />
       <Nav />
-      <main className="main">
+      <main className="main" id="panel-pantalla" role="tabpanel" aria-labelledby={`tab-${pantalla}`}>
         <Contencion clave={pantalla}>
         {pantalla === 'resumen' && <Resumen />}
         {pantalla === 'filtros' && <Filtros />}

@@ -261,4 +261,12 @@ export const UI_VARIOS: Record<string, string> = {
   'pH TK-30016 (por otros)': 'TK-30016 pH (by others)',
   'Caudal de retrolavado (por otros)': 'Backwash flow (by others)',
   'Nivel sumidero de regeneración TK-30038 (por otros)': 'Regeneration sump TK-30038 level (by others)',
+  "calidad supuesta (editable)": "assumed quality (editable)",
+  "por diferencia con la mezcla de diseño": "by difference with the design blend",
+  "Mezcla de entrada a TK-30015": "TK-30015 inlet blend",
+  "alimentado": "powered",
+  "sin tensión": "no power",
+  "Consumo del tablero: 0.37 A @ 120 VAC. Los LIT de filtros se alimentan desde la AI del PLC del cliente; FIT-602/607 en lazo desde el RIO; solenoides y finales de carrera con 24 VDC del panel de I/O del cliente vía VJB.": "Panel consumption: 0.37 A @ 120 VAC. Filter LITs are powered from the client PLC AI card; FIT-602/607 loop powered from the RIO; solenoids and limit switches use 24 VDC from the client I/O panel via VJB.",
+  "Arranque de soplantes BL-30008/09: DOL según la lista de cargas (simulado: 6 × FLA = 1350 A en la barra durante la aceleración); la hoja del motor WEG dice VFD.": "Blowers BL-30008/09 starting: DOL per the load list (simulated: 6 × FLA = 1350 A on the bus during acceleration); the WEG motor sheet says VFD.",
+  "Pérdida de 24 VDC del panel de I/O del cliente": "Client I/O panel 24 VDC loss",
 };

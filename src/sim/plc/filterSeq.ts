@@ -104,6 +104,11 @@ export class SecuenciaFiltro {
   get nombrePaso() {
     return NOMBRE_PASO(this.paso);
   }
+  /** Timer que se compara con el preset: en Service (paso 3) es T03, el servicio acumulado desde el último lavado. */
+  get timerPaso(): number {
+    return this.paso === 3 ? this.tServicioLavado : this.tPaso;
+  }
+
   /** Preset del timer del paso actual (s), o null. */
   preset(p: Params): number | null {
     if (this.paso === 3) return p.T03_servicio_desde_ultimo_lavado_min * 60;

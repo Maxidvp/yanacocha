@@ -190,7 +190,7 @@ describe('Secuencia de filtro – recorrido completo de los 17 pasos', () => {
     f.tServicioLavado = p.T03_servicio_desde_ultimo_lavado_min * 60;
     correr(2);
     expect(f.paso).toBe(6);
-    estado.lit = 300;
+    estado.lit = p.K06_mm - p.z0_LIT_mm - 1;
     correr(1);
     correr(p.T07_s + p.T08_s + 1);
     estado.lit = 1700;

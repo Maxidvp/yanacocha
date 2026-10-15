@@ -80,14 +80,36 @@ describe('Integración', () => {
     expect(e.planta.filtros[1].valvulas.SEVI.pos).toBe(sevi);
   });
 
-  test('pérdida de 24 VDC: AI a 0 mA (falla de lazo) y solenoides desenergizados', () => {
-    const e = new Engine('normal');
+  test('pérdida de 24 VDC de PK-30005JB: solo FIT-160305603 a 0 mA; el FIC mantiene la salida', () => {
+    const e = new Engine('diseno');
+    e.avanzar(300);
+    const salida = e.plc.salidaFIC;
+    expect(salida).toBeGreaterThan(5);
     e.setFallaGlobal('dc24', true);
+    e.avanzar(30);
+    expect(e.io.punto('FIT-160305603').origen).toBe(0);
+    expect(e.plc.alarmas.activa('FIT-160305603-BAD')).toBe(true);
+    expect(e.plc.salidaFIC).toBeCloseTo(salida, 0);
+    // el resto no se afecta
+    expect(e.plc.alarmas.activa('LIT-160305604-BAD')).toBe(false);
+    expect(e.planta.filtros[0].valvulas.SEVI.pos).toBe(1);
+  });
+
+  test('pérdida de 24 VDC del panel de I/O del cliente: solenoides desenergizados, ZSO/ZSC en 0 y LIT de filtros a 0 mA', () => {
+    const e = new Engine('normal');
+    e.setFallaGlobal('dc24Cliente', true);
     e.avanzar(30);
     expect(e.io.punto('LIT-160305604').origen).toBe(0);
     expect(e.plc.alarmas.activa('LIT-160305604-BAD')).toBe(true);
-    // solenoides desenergizados → las válvulas Tipo V5 (con aire) cierran
+    // las válvulas Tipo V5 con aire cierran; los finales de carrera quedan sin tensión
     expect(e.planta.filtros[0].valvulas.SEVI.pos).toBe(0);
+    expect(e.io.di('HV-160305608-ZSO')).toBe(false);
+    expect(e.io.di('HV-160305608-ZSC')).toBe(false);
+    // las válvulas que estaban cerradas pierden el ZSC → ZAC y el filtro entra en HOLD por dispositivo
+    expect(e.plc.alarmas.activa('ZAC-160305614')).toBe(true);
+    expect(e.plc.filtros[0].hold).toBe(true);
+    // FIT-160305603 sigue alimentado desde PK-30005JB
+    expect(e.plc.alarmas.activa('FIT-160305603-BAD')).toBe(false);
   });
 
   test('lavado_por_LAH: el filtro pide lavado al superar 1613 mm (LAH) sin llegar a LAHH', () => {

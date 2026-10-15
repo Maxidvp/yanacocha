@@ -1,7 +1,7 @@
 // Modelo de proceso de la planta (lado campo). Integra a paso fijo; lee salidas del PLC desde la
 // tabla de I/O y escribe las entradas (AI en mA, DI de finales de carrera y de motores).
 import { filtrosEquipo, valvulas, electrico, proceso, LETRA_FILTRO, FUNCIONES_VALVULA, type FuncionValvula } from '../../data';
-import type { Params } from '../params';
+import { PARAM_DEFS, type Params } from '../params';
 import type { TablaIO } from '../io/iotable';
 import { Motor, ValvulaControl, ValvulaOnOff, type FallaFinCarrera } from './devices';
 import {
@@ -20,8 +20,12 @@ export interface FallaTransmisor {
 
 export interface Fallas {
   aireInstrumentos: boolean;
+  /** 120 VAC UPS del cliente → solo alimenta 16045-PK-30005JB */
   ups120: boolean;
+  /** 24 VDC del tablero 16045-PK-30005JB → solo alimenta FIT-160305603 (MCB-201) */
   dc24: boolean;
+  /** 24 VDC del panel de I/O del cliente → solenoides, finales de carrera (vía VJB) y lazos LIT de filtros */
+  dc24Cliente: boolean;
   bombaRetrolavado: boolean;
   bombaRegeneracion: boolean;
   bombaNaOCl: boolean;
@@ -31,7 +35,7 @@ export interface Fallas {
 }
 
 export const fallasVacias = (): Fallas => ({
-  aireInstrumentos: false, ups120: false, dc24: false, bombaRetrolavado: false, bombaRegeneracion: false,
+  aireInstrumentos: false, ups120: false, dc24: false, dc24Cliente: false, bombaRetrolavado: false, bombaRegeneracion: false,
   bombaNaOCl: false, correaRota: {}, filtroAireTapado: {}, transmisor: {},
 });
 
@@ -179,6 +183,9 @@ export class Planta {
   c15: Calidad;
   c16: Calidad;
   cEntrada: Calidad;
+  /** calidad por corriente: permeado RO (supuesto) y agua tratada HDS (por diferencia con la mezcla de diseño) */
+  cRO: Calidad = calidadVacia();
+  cHDS: Calidad = calidadVacia();
   pH15 = 6.5;
   pH16 = 6.8;
   pH15medido = 6.5;
@@ -187,6 +194,8 @@ export class Planta {
   /** estación de bypass: rama FIT/FV (VBF-309704/708), rodeo VBF-309709, drenajes VBA-309705/707, FIT-160305603 */
   qBypassFV = 0; qBypass709 = 0; qDrenajeBypass = 0; qFIT603 = 0;
   qFiltrada = 0; qSumidero = 0; qHDS16 = 0;
+  /** Balance de agua de TK-30015 + filtros (m³/h): entradas − salidas = acumulación */
+  balance = { entradas: 0, salidas: 0, acumulacion: 0, cierre: 0, entrada: 0, retrolavado: 0, regeneracion: 0, filtrada: 0, rw: 0, bwo: 0, bypass: 0, otras: 0, vol: 0 };
   cFiltrada: Calidad = calidadVacia();
   cSumidero: Calidad = calidadVacia();
   // ---- sumideros ----
@@ -221,7 +230,6 @@ export class Planta {
   kVA460 = 0;
   I460 = 0;
   kWh = 0;
-  mA24 = 0;
   // ---- totalizadores ----
   tot = { entrada: 0, filtrada: 0, bypass: 0, retrolavado: 0, regenRW: 0, rebalse15: 0, acidoL: 0, sodaL: 0, naoclL: 0, naptcL: 0, aireSopladoNm3: 0 };
   private rnd = prng(26443);
@@ -237,7 +245,7 @@ export class Planta {
       }
       if (v.funcion === 'BYPASS_CTRL') continue;
       const filtro = v.filtro ? filtrosEquipo.findIndex((f) => f.tag === v.filtro) : null;
-      this.valvulasOnOff.set(v.tag, new ValvulaOnOff(v.tag, v.funcion, filtro === -1 ? null : filtro, v.tamano_in ?? (v.funcion === 'DRAIN' || v.funcion === 'FLUSH' ? 2 : 8)));
+      this.valvulasOnOff.set(v.tag, new ValvulaOnOff(v.tag, v.funcion, filtro === -1 ? null : filtro, v.tamano_in ?? 2));
     }
     const acel: Record<string, number> = { '16045-AG-30006': 2, '16045-AG-30007': 3, '16045-BL-30008': 5, '16045-BL-30009': 5, '16045-CM-30011': 3, '16045-CM-30012': 3 };
     for (const tag of Object.keys(acel)) this.motores.set(tag, new Motor(tag, acel[tag], MOTORES_LCS.has(tag), tAmb));
@@ -311,13 +319,31 @@ export class Planta {
     return this.motores.get(tag)!;
   }
 
-  calidadEntrada(): Calidad {
+  /** Calidad de la mezcla de diseño (documentada en proceso_y_logica.json → calidad_agua_entrada). */
+  calidadMezclaDiseno(): Calidad {
     const p = this.p;
     const alk = p.alc_in / 50;
     return {
       alk, ct: ctDesdePh(p.pH_in, alk, p.T_agua_C), cond: p.cond_in, turb: p.turb_in, fe: p.fe_in, mn: p.mn_in,
       cl: 0, so4: p.so4_in, sio2: p.sio2_in,
     };
+  }
+
+  /**
+   * Calidad por corriente y mezcla real según los caudales del momento. El permeado RO usa supuestos editables;
+   * el agua HDS sale por diferencia para que, con los caudales nominales, la mezcla sea la documentada.
+   */
+  calidadEntrada(): Calidad {
+    const p = this.p;
+    const d = this.calidadMezclaDiseno();
+    const alkRO = p.alc_RO / 50;
+    this.cRO = { alk: alkRO, ct: ctDesdePh(p.pH_RO, alkRO, p.T_agua_C), cond: p.cond_RO, turb: p.turb_RO, fe: p.fe_RO, mn: p.mn_RO, cl: 0, so4: p.so4_RO, sio2: p.sio2_RO };
+    const qRO = PARAM_DEFS.find((x) => x.key === 'q_RO_m3h')!.nominal;
+    const qHDS = PARAM_DEFS.find((x) => x.key === 'q_HDS_m3h')!.nominal;
+    const resto = (k: keyof Calidad) => Math.max(0, (d[k] * (qRO + qHDS) - this.cRO[k] * qRO) / qHDS);
+    this.cHDS = { alk: resto('alk'), ct: resto('ct'), cond: resto('cond'), turb: resto('turb'), fe: resto('fe'), mn: resto('mn'), cl: 0, so4: resto('so4'), sio2: resto('sio2') };
+    if (this.qRO + this.qHDS < 1) return d;
+    return mezclar([{ q: this.qRO, c: this.cRO }, { q: this.qHDS, c: this.cHDS }]);
   }
 
   private ruido(sigma: number) {
@@ -328,8 +354,21 @@ export class Planta {
     return sigma * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
   }
 
-  get potenciaInstrumentos() {
+  /** 24 VDC de 16045-PK-30005JB (alimenta solo FIT-160305603, electrico.json → tablero_instrumentos) */
+  get alimPK30005() {
     return !this.fallas.ups120 && !this.fallas.dc24;
+  }
+
+  /** 24 VDC del panel de I/O del cliente: solenoides y finales de carrera (VJB) y lazos LIT de filtros */
+  get alimIOCliente() {
+    return !this.fallas.dc24Cliente;
+  }
+
+  /** Alimentación del lazo de cada AI (electrico.json → fallas_correctas). */
+  private aiAlimentada(tag: string) {
+    if (tag === 'FIT-160305603') return this.alimPK30005;
+    if (this.filtros.some((f) => f.lit === tag)) return this.alimIOCliente;
+    return true;
   }
 
   /** Nivel que ve el LIT del filtro (escala del LIT, mm). */
@@ -343,7 +382,7 @@ export class Planta {
     const p = this.p;
     this.t += dt;
     const tAmb = p.T_amb_C;
-    const pot = this.potenciaInstrumentos;
+    const ioCliente = this.alimIOCliente;
 
     // ---------- 1. Aire de instrumentos ----------
     const objetivoAire = this.fallas.aireInstrumentos ? 0 : p.aire_inst_kPag;
@@ -354,10 +393,10 @@ export class Planta {
     // ---------- 2. Válvulas ----------
     let consumo = 0;
     for (const v of this.valvulasOnOff.values()) {
-      const sol = pot && io.leerSalida(v.tag);
-      consumo += v.actualizar(dt, sol, aireOk, p.tiempo_carrera_s);
+      const sol = ioCliente && io.leerSalida(v.tag);
+      consumo += v.actualizar(dt, sol, aireOk, v.diametroIn * p.carrera_s_por_pulg);
     }
-    const mAfv = pot ? io.leerAOmA('FCV-160305603') : 0;
+    const mAfv = io.leerAOmA('FCV-160305603');
     this.fv603.actualizar(dt, mAfv, this.pAireInst, p.fv_tau_s);
     this.consumoAireInst = this.pAireInst > 50 ? 55 + 6 * this.fv603.pos + consumo : 0;
 
@@ -420,13 +459,12 @@ export class Planta {
     this.filtros.forEach((f, i) => {
       const v = f.valvulas;
       const R = p.R_limpio * (1 + p.alfa_colmatacion * f.suciedad);
-      const zRef = p.z0_LIT_mm;
+      // SEVO descarga sobre la cota de salida de agua filtrada; RO/RW va al sumidero (≈ cota de fondo) por su línea
       f.qSEVI = aceptTot > 0 ? (this.qAFiltros * acept[i]) / aceptTot : 0;
       f.qBWI = aperturasBWI > 0 ? (fr.qBW * v.BWI.apertura) / aperturasBWI : 0;
       f.qRI = aperturasRI > 0 ? (fr.qRegen * v.RI.apertura) / aperturasRI : 0;
-      const cargaSalida = Math.max(0, f.h - zRef) / R;
-      f.qSEVO = v.SEVO.apertura * cargaSalida;
-      f.qRW = v.FRO.apertura * cargaSalida;
+      f.qSEVO = (v.SEVO.apertura * Math.max(0, f.h - p.z_salida_filtrada_mm)) / R;
+      f.qRW = (v.FRO.apertura * Math.max(0, f.h)) / (R + p.R_linea_RW);
       f.qBWO = v.BWO.apertura * 49400 * (Math.max(0, f.h - p.bwo_vertedero_mm) / 1000) ** 1.5;
       f.qRebalse = f.h > ALTO_FILTRO_MM ? 30000 * ((f.h - ALTO_FILTRO_MM) / 1000) ** 1.5 : 0;
       const drenaje = ['16045-VBF-309718', '16045-VBF-309720', '16045-VBF-309722', '16045-VBF-309724'][i];
@@ -548,6 +586,7 @@ export class Planta {
     this.pasoMotores(dt, io, tAmb);
 
     // ---------- 12. Eléctrico ----------
+    this.pasoBalance(dt);
     this.pasoElectrico(dt);
 
     // ---------- 13. Totalizadores ----------
@@ -672,7 +711,7 @@ export class Planta {
       else c.pDescarga += ((pRed - c.pDescarga) * dt) / 12; // volumen de cañería + difusor
       if (valvulaAbierta) qTot += c.q;
       const ratio = (P_ATM_KPA + c.pDescarga) / P_ATM_KPA;
-      const tObj = c.estado === 'CARGA' ? T1 * (1 + (ratio ** 0.2857 - 1) / 0.65) - 273.15 : c.estado === 'PARADO' ? tAmb : tAmb + 40;
+      const tObj = c.estado === 'CARGA' ? T1 * (1 + (ratio ** 0.2857 - 1) / p.comp_eta) - 273.15 : c.estado === 'PARADO' ? tAmb : tAmb + 40;
       c.tDescarga += ((tObj - c.tDescarga) * dt) / (c.estado === 'PARADO' ? 900 : 90);
       c.tAceite += (((m.contactor ? tAmb + 42 : tAmb) - c.tAceite) * dt) / 900;
       c.tRodLA += (((m.contactor ? tAmb + 38 : tAmb) - c.tRodLA) * dt) / 1200;
@@ -733,7 +772,7 @@ export class Planta {
     fr.acido16I = Math.min(40, Math.max(0, fr.acido16I + 0.02 * e16 * dt));
     fr.acido16Lh = this.qSumidero > 10 ? Math.min(40, Math.max(0, fr.acido16I + 10 * e16)) : 0;
     const eq16 = fr.acido16Lh * eqPorLitroAcido(p.acido_conc_pct);
-    this.c16 = pasoCSTR(this.c16, V16, [{ q: this.qSumidero, c: this.cSumidero }, { q: this.qHDS16, c: this.cEntrada }], dt, {
+    this.c16 = pasoCSTR(this.c16, V16, [{ q: this.qSumidero, c: this.cSumidero }, { q: this.qHDS16, c: this.cHDS }], dt, {
       alk: -eq16, cond: 36 * eq16, so4: eq16 * 48.03,
     });
     this.c16.cl *= Math.exp(-dt / 3600);
@@ -761,6 +800,27 @@ export class Planta {
     }
   }
 
+  /** Balance de volumen de TK-30015 + 4 filtros: muestra de dónde sale el caudal (p. ej. acumulación de filtros en el enjuague). */
+  private pasoBalance(dt: number) {
+    const b = this.balance;
+    const fs = this.filtros;
+    const vol = (A_TK15 * this.L15) / 1000 + fs.reduce((s, f) => s + (A_FILTRO * f.h) / 1000, 0);
+    const suma = (k: 'qBWI' | 'qRI' | 'qRW' | 'qBWO' | 'qRebalse' | 'qDrenaje') => fs.reduce((s, f) => s + f[k], 0);
+    b.entrada = this.qEntrada;
+    b.retrolavado = suma('qBWI');
+    b.regeneracion = suma('qRI');
+    b.filtrada = this.qFiltrada;
+    b.rw = suma('qRW');
+    b.bwo = suma('qBWO');
+    b.bypass = this.qBypass;
+    b.otras = this.qRebalse15 + this.qDrenaje15 + this.qDrenajeBypass + suma('qRebalse') + suma('qDrenaje');
+    b.entradas = b.entrada + b.retrolavado + b.regeneracion;
+    b.salidas = b.filtrada + b.rw + b.bwo + b.bypass + b.otras;
+    b.acumulacion = b.vol > 0 ? ((vol - b.vol) / dt) * 3600 : 0;
+    b.cierre = b.entradas - b.salidas - b.acumulacion;
+    b.vol = vol;
+  }
+
   private pasoElectrico(dt: number) {
     const k: Record<string, number> = {};
     for (const c of electrico.cargas) {
@@ -778,14 +838,17 @@ export class Planta {
     this.kWtotal = Object.values(k).reduce((a, b) => a + b, 0);
     const kW460 = electrico.cargas.filter((c) => c.V === 460).reduce((s, c) => s + (k[c.tag] ?? 0), 0);
     this.kVA460 = kW460 / 0.88;
-    this.I460 = (this.kVA460 * 1000) / (Math.sqrt(3) * this.p.v_bus_460);
+    // corriente de barra: suma de corrientes de motores (incluye 6×FLA en arranques DOL) + resto de cargas 460 V
+    const iMotores = [...this.motores.values()].reduce((s, m) => s + m.corriente, 0);
+    const kWresto = electrico.cargas.filter((c) => c.V === 460 && !this.motores.has(c.tag)).reduce((s, c) => s + (k[c.tag] ?? 0), 0);
+    this.I460 = iMotores + (kWresto * 1000) / (Math.sqrt(3) * this.p.v_bus_460 * 0.88);
     this.kWh += (this.kWtotal * dt) / 3600;
   }
 
   // ---------------------------------------------------------------------
   private escribirAI(io: TablaIO, tag: string, eu: number, sigma: number, corte = 0) {
     const f = this.fallas.transmisor[tag];
-    if (!this.potenciaInstrumentos) {
+    if (!this.aiAlimentada(tag)) {
       io.escribirAImA(tag, 0);
       return;
     }
@@ -819,9 +882,10 @@ export class Planta {
     this.escribirAI(io, 'FIT-160305603', this.qFIT603, 2.5, 13);
     this.escribirAI(io, 'FZI-160305603', this.fv603.pos * 100, 0.1);
     // Finales de carrera
+    // finales de carrera: sin 24 VDC del panel del cliente ambos quedan en 0
     for (const v of this.valvulasOnOff.values()) {
-      io.escribirCampo(`${v.tag}-ZSO`, v.zso);
-      io.escribirCampo(`${v.tag}-ZSC`, v.zsc);
+      io.escribirCampo(`${v.tag}-ZSO`, this.alimIOCliente && v.zso);
+      io.escribirCampo(`${v.tag}-ZSC`, this.alimIOCliente && v.zsc);
     }
     // Motores
     for (const m of this.motores.values()) {
@@ -845,9 +909,7 @@ export class Planta {
     io.escribirCOM('EXT-PU-30169-70-RUN', fr.bombaRegen);
     io.escribirCOM('EXT-PU-30236-37-AVL', !this.fallas.bombaNaOCl);
     io.escribirCOM('EXT-PU-30236-37-RUN', fr.bombaNaOCl);
-    // Consumo de lazos 24 VDC (transmisores 2 hilos del PK-30005JB)
-    const lazos = ['LIT-160305604', 'LIT-160305615', 'LIT-160305623', 'LIT-160305631', 'FIT-160305602', 'FIT-160305607'];
-    this.mA24 = this.potenciaInstrumentos ? lazos.reduce((s, t) => s + Math.max(3.6, io.punto(t).origen), 0) + 45 : 0;
+
   }
 
   /** Inyección/limpieza de fallas de fin de carrera y válvulas trabadas. */

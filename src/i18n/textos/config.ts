@@ -70,4 +70,8 @@ export const UI_CONFIG: Record<string, string> = {
   'Sin resultados para "{q}".': 'No results for "{q}".',
   'Los valores provienen de los JSON del paquete (data/); la columna fuente indica el documento de origen.':
     'Values come from the package JSON files (data/); the source field names the original document.',
+  "Solo FIT-160305603 queda sin alimentación: AI a 0 mA (falla de lazo NE43) y FIC-603 sin PV, que mantiene la salida. Nada más se afecta.": "Only FIT-160305603 loses power: AI at 0 mA (NE43 loop failure) and FIC-603 without PV, holding its output. Nothing else is affected.",
+  "Mismo efecto que la pérdida de 24 VDC de PK-30005JB: el UPS alimenta solo ese tablero (FIT-160305603).": "Same effect as the PK-30005JB 24 VDC loss: the UPS only feeds that panel (FIT-160305603).",
+  "Pérdida de 24 VDC del panel de I/O del cliente": "Client I/O panel 24 VDC loss",
+  "Solenoides desenergizados: las on/off van a CERRADA (con aire); ZSO/ZSC sin tensión quedan en 0 → ZAO/ZAC; los lazos LIT de filtros caen a 0 mA.": "Solenoids de-energized: on/off valves go CLOSED (with air); ZSO/ZSC without power stay at 0 → ZAO/ZAC; filter LIT loops drop to 0 mA.",
 };

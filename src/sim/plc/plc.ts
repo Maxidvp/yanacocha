@@ -81,7 +81,7 @@ export class PLC {
       if (!v.senales?.DO_cmd) continue;
       const filtro = v.filtro ? filtrosEquipo.findIndex((f) => f.tag === v.filtro) : null;
       const ret = alarmasDoc.digitales.find((d) => d.tag === `ZAO-${v.tag.replace('HV-', '')}`)?.retardo_s ?? 15;
-      const b = new BloqueValvula(v.tag, v.funcion, filtro === -1 ? null : filtro, ret);
+      const b = new BloqueValvula(v.tag, v.funcion, filtro === -1 ? null : filtro, ret, v.tamano_in ?? 2);
       if (v.tag === 'HV-160305646') b.modo = 'MANUAL'; // lógica A CONFIRMAR: solo manual
       this.valvulas.set(v.tag, b);
     }
@@ -255,7 +255,10 @@ export class PLC {
 
     // 1. Lectura de entradas
     for (const m of this.motores.values()) m.leer(io);
-    for (const v of this.valvulas.values()) v.leer(io);
+    for (const v of this.valvulas.values()) {
+      v.leer(io);
+      v.retardo = Math.max(v.retardoDoc, v.diametroIn * p.carrera_s_por_pulg + p.margen_discrepancia_s);
+    }
     for (const tag of AI_PLANTA) this.pv[tag] = io.ai(tag);
     for (const tag of ['FIC-160305065', 'FIC-160304333', 'LIT-160305276', 'AIT-160305288', 'EXT-FI-RETROLAVADO', 'EXT-LI-TK30038']) this.pv[tag] = io.ai(tag);
 

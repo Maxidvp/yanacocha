@@ -36,7 +36,7 @@ function Corte({ e, i }: { e: Engine; i: number }) {
   const z0 = p.z0_LIT_mm;
   const sucio = Math.min(1, f.suciedad / 120);
   return (
-    <svg className="mimic" viewBox="0 0 560 430" role="img" aria-label={t('Corte del filtro {f}', { f: LETRAS[i] })}>
+    <svg className="mimic" viewBox="0 0 560 440" role="img" aria-label={t('Corte del filtro {f}', { f: LETRAS[i] })}>
       {/* agua */}
       <rect x={X0} y={y(Math.min(f.h, CONST_PLANTA.ALTO_FILTRO_MM))} width={W} height={Math.max(0, Math.min(f.h, CONST_PLANTA.ALTO_FILTRO_MM)) * k} fill={f.turbBWO > 20 ? 'var(--water-dirty)' : 'var(--water-fill)'} />
       {/* medios */}
@@ -58,10 +58,24 @@ function Corte({ e, i }: { e: Engine; i: number }) {
       {lin(z0 + 1613, '')}
       {lin(z0 + 280, 'L/LL 280/140')}
       {lin(z0 + 140, '')}
-      {lin(p.K06_mm, `K06 ${p.K06_mm}`, 'var(--accent)', true)}
-      {lin(p.K09_mm, `K09 ${p.K09_mm}`, 'var(--accent)', true)}
+      {lin(p.K06_mm, `K06 ${p.K06_mm} (LIT ${p.K06_mm - z0})`, 'var(--accent)', true)}
+      {lin(p.K09_mm, `K09 ${p.K09_mm} (LIT ${p.K09_mm - z0})`, 'var(--accent)', true)}
       {lin(z0, t('cero LIT {z}', { z: z0 }), 'var(--ink-2)', true)}
-      <text className="t-xs" x={X0} y={Y0 + H + 16}>{t('Fondo · alto 4938 mm · área 39.04 m² · niveles en mm')}</text>
+      {/* dos escalas: izquierda sobre el fondo, derecha LIT (fondo − cero del LIT) */}
+      {[0, 1000, 2000, 3000, 4000].map((mm) => (
+        <g key={`f${mm}`}>
+          <line x1={X0} x2={X0 + 7} y1={y(mm)} y2={y(mm)} stroke="var(--ink-2)" strokeWidth={1} />
+          <text className="t-xs halo" x={X0 + 9} y={y(mm) + 3}>{mm}</text>
+        </g>
+      ))}
+      {[0, 500, 1000, 1500, 2000, 2500].filter((l) => z0 + l <= CONST_PLANTA.ALTO_FILTRO_MM).map((l) => (
+        <g key={`l${l}`}>
+          <line x1={X0 + W - 7} x2={X0 + W} y1={y(z0 + l)} y2={y(z0 + l)} stroke="var(--accent)" strokeWidth={1} />
+          <text className="t-xs halo" x={X0 + W - 9} y={y(z0 + l) + 3} textAnchor="end" style={{ fill: 'var(--accent)' }}>{l}</text>
+        </g>
+      ))}
+      <text className="t-xs" x={X0} y={Y0 + H + 16}>{t('Escalas en mm: izquierda sobre el fondo · derecha LIT (cero a {z} mm) · alto 4938 mm · área 39.04 m²', { z: z0 })}</text>
+      <text className="t-xs" x={X0} y={Y0 + H + 30}>{t('Nivel: {f} mm sobre el fondo = {l} mm LIT', { f: fmt(f.h, 0), l: fmt(f.h - z0, 0) })}</text>
 
       {/* cañerías y válvulas */}
       <Pipe d={`M 10 40 H ${X0 + 40} V ${Y0}`} fluido="water" activa={f.qSEVI > 1} ancho={5} />
@@ -231,10 +245,15 @@ export function Filtros() {
           </h3>
           {s.hold && <div className="note warn">{t('Causa: {c}', { c: ts(s.holdCausa) })}</div>}
           {pasoDef && <div className="note">{td(pasoDef.nota)}{pasoDef.transicion_nivel ? ` · ${t('Transición: {x}', { x: td(pasoDef.transicion_nivel) })}` : ''}</div>}
-          <dl className="kv" style={{ marginTop: 8 }}>
-            <dt>{t('Timer del paso')}</dt><dd>{duracion(s.tPaso)}{pre ? ` / ${duracion(pre)}` : ''}</dd>
-          </dl>
-          {pre && <div className={`bar${s.tPaso > pre ? ' warn' : ''}`} style={{ margin: '4px 0 8px' }}><i style={{ width: `${Math.min(100, (100 * s.tPaso) / pre)}%` }} /></div>}
+          {/* en Service (paso 3) el timer del paso es T03: se muestra en la fila de abajo */}
+          {s.paso !== 3 && (
+            <>
+              <dl className="kv" style={{ marginTop: 8 }}>
+                <dt>{t('Timer del paso')}</dt><dd>{duracion(s.tPaso)}{pre ? ` / ${duracion(pre)}` : ''}</dd>
+              </dl>
+              {pre && <div className={`bar${s.tPaso > pre ? ' warn' : ''}`} style={{ margin: '4px 0 8px' }}><i style={{ width: `${Math.min(100, (100 * s.tPaso) / pre)}%` }} /></div>}
+            </>
+          )}
           <dl className="kv">
             <dt>{t('Servicio desde último lavado (T03)')}</dt><dd>{duracion(s.tServicioLavado)} / {duracion(t03)}</dd>
           </dl>

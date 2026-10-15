@@ -192,7 +192,8 @@ export const electrico = electricoRaw as unknown as {
   sistema: Record<string, string | number>;
   cargas: Carga[];
   leyenda: Record<string, Record<string, string>>;
-  tablero_instrumentos: { tag: string; entrada: string; fuente_24VDC: string; protecciones: string[]; alimenta: string; fuente: string };
+  tablero_instrumentos: { tag: string; entrada: string; fuente_24VDC: string; protecciones: string[]; salidas: { borne: string; cable?: string; carga: string }[]; NO_alimenta: string[]; plano?: string; caja?: string };
+  fallas_correctas: Record<string, string>;
   cajas_conexion: { tag?: string; servicio?: string; clase?: string; nota?: string }[];
   estaciones_locales: { equipos: string[]; contenido: string; fuente: string };
   convenciones: Record<string, Json>;

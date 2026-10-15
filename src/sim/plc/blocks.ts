@@ -102,8 +102,16 @@ export class BloqueValvula {
     readonly tag: string,
     readonly funcion: string,
     readonly filtro: number | null,
-    readonly retardo: number,
-  ) {}
+    /** retardo ZAO/ZAC de la alarm list */
+    readonly retardoDoc: number,
+    /** diámetro nominal, pulgadas (tiempo de carrera ≈ DN × s/in) */
+    readonly diametroIn: number,
+  ) {
+    this.retardo = retardoDoc;
+  }
+
+  /** retardo efectivo: máx(alarm list, carrera + margen); lo actualiza el PLC con los parámetros */
+  retardo: number;
 
   leer(io: TablaIO) {
     this.zso = io.di(`${this.tag}-ZSO`);

@@ -100,7 +100,7 @@ export class Engine {
       const fueraServicio = arranque || (this.escenario === 'mantenimiento' && i === 3);
       f.suciedad = arranque ? 2 : horas[i] * 2.8 * (qFiltro / 368);
       const R = p.R_limpio * (1 + p.alfa_colmatacion * f.suciedad);
-      f.h = fueraServicio ? p.z0_LIT_mm + 1100 : p.z0_LIT_mm + R * qFiltro;
+      f.h = fueraServicio ? p.z0_LIT_mm + 1100 : p.z_salida_filtrada_mm + R * qFiltro;
       s.tServicioLavado = horas[i] * 3600;
       s.tServicioRegen = diasRegen[i] * 86400;
       s.tqi = 1500 + 100 * i;
@@ -204,7 +204,7 @@ export class Engine {
     if (f.modo === 'ok') delete this.planta.fallas.transmisor[tag];
     else this.planta.fallas.transmisor[tag] = { ...f, acumulado: 0 };
   }
-  setFallaGlobal(k: 'aireInstrumentos' | 'ups120' | 'dc24' | 'bombaRetrolavado' | 'bombaRegeneracion' | 'bombaNaOCl', v: boolean) {
+  setFallaGlobal(k: 'aireInstrumentos' | 'ups120' | 'dc24' | 'dc24Cliente' | 'bombaRetrolavado' | 'bombaRegeneracion' | 'bombaNaOCl', v: boolean) {
     this.planta.fallas[k] = v;
   }
   setFallaEquipo(k: 'correaRota' | 'filtroAireTapado', tag: string, v: boolean) {

@@ -123,7 +123,8 @@ export class TablaIO {
     if (p.tipo === 'COM-AI') return { eu: v, mA: NaN, mala: false };
     const [lo, hi] = rangoAI(tag, this.params);
     const mala = v < 3.6 || v > 21;
-    return { eu: lo + ((Math.min(20, Math.max(4, v)) - 4) / 16) * (hi - lo), mA: v, mala };
+    // rango de medición NE43 3.8–20.5 mA: el PLC escala también la sub/sobre-escala (−1.25 %…+3.1 %)
+    return { eu: lo + ((Math.min(20.5, Math.max(3.8, v)) - 4) / 16) * (hi - lo), mA: v, mala };
   }
   escribirDO(tag: string, v: boolean) {
     this.punto(tag).origen = v ? 1 : 0;

@@ -320,4 +320,6 @@ export const UI_FILTROS: Record<string, string> = {
   'Rodeo VBF-309709 (no lo mide la FIT)': 'VBF-309709 bypass (not measured by the FIT)',
   'Drenajes VBA-309705/707': 'Drains VBA-309705/707',
   'Total al sumidero de agua filtrada': 'Total to the filtered water sump',
+  "Escalas en mm: izquierda sobre el fondo · derecha LIT (cero a {z} mm) · alto 4938 mm · área 39.04 m²": "Scales in mm: left above floor · right LIT (zero at {z} mm) · height 4938 mm · area 39.04 m²",
+  "Nivel: {f} mm sobre el fondo = {l} mm LIT": "Level: {f} mm above floor = {l} mm LIT",
 };

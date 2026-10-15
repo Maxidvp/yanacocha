@@ -56,8 +56,9 @@ function corrientes(e: Engine): Corriente[] {
   const cRW: Cal = { ...pl.c15, cl: clRW };
   const cRI: Cal = { ...pl.c16, cl: pl.clRegen + (fr.qRegen > 0 ? (fr.naoclLh * 0.125 * 1e6) / (fr.qRegen * 1000) : 0) };
   const out: Corriente[] = [
-    { id: 'RO', nombre: t('Permeado RO → TK-30015 (N3)'), fluido: 'agua', q: pl.qRO, unidad: 'm³/h', diam: 30, T, c: pl.cEntrada, pH: p.pH_in, nota: t('calidad de mezcla de diseño') },
-    { id: 'HDS', nombre: t('Agua tratada HDS → TK-30015 (N1)'), fluido: 'agua', q: pl.qHDS, unidad: 'm³/h', diam: 12, T, c: pl.cEntrada, pH: p.pH_in, nota: t('calidad de mezcla de diseño') },
+    { id: 'RO', nombre: t('Permeado RO → TK-30015 (N3)'), fluido: 'agua', q: pl.qRO, unidad: 'm³/h', diam: 30, T, c: pl.cRO, pH: ph(pl.cRO), nota: t('calidad supuesta (editable)') },
+    { id: 'HDS', nombre: t('Agua tratada HDS → TK-30015 (N1)'), fluido: 'agua', q: pl.qHDS, unidad: 'm³/h', diam: 12, T, c: pl.cHDS, pH: ph(pl.cHDS), nota: t('por diferencia con la mezcla de diseño') },
+    { id: 'MEZ', nombre: t('Mezcla de entrada a TK-30015'), fluido: 'agua', q: pl.qEntrada, unidad: 'm³/h', T, c: pl.cEntrada, pH: ph(pl.cEntrada) },
     { id: 'TKF', nombre: t('TK-30015 → colector de entrada (N6)'), fluido: 'agua', q: pl.qAFiltros, unidad: 'm³/h', diam: 40, T, c: pl.c15, pH: pl.pH15 },
     { id: 'BYP', nombre: t('Bypass N12 → FV-603 → sumidero'), fluido: 'agua', q: pl.qBypass, unidad: 'm³/h', diam: 24, T, P: '61.5', c: pl.c15, pH: pl.pH15 },
     ...pl.filtros.map((f, i): Corriente => ({ id: `F${i}`, nombre: t('Filtrado {l} (SEVO)', { l: LETRAS[i] }), fluido: 'agua', q: f.qSEVO, unidad: 'm³/h', diam: 20, T, c: f.calidadSalida, pH: ph(f.calidadSalida) })),
@@ -146,7 +147,7 @@ export function Calidad() {
           <dl className="kv">
             <dt>{t('Alcalinidad entrada → TK')}</dt><dd>{fmt(pl.cEntrada.alk * 50, 1)} → {fmt(pl.c15.alk * 50, 1)} mg/L CaCO₃</dd>
             <dt>{t('Carbono inorgánico total')}</dt><dd>{fmt(pl.c15.ct, 3)} mmol/L</dd>
-            <dt>{t('pH entrada → TK (SP por otros {sp})', { sp: p.pH_SP_TK15 })}</dt><dd>{fmt(p.pH_in, 2)} → {fmt(pl.pH15, 2)}</dd>
+            <dt>{t('pH entrada → TK (SP por otros {sp})', { sp: p.pH_SP_TK15 })}</dt><dd>{fmt(phDesde(pl.cEntrada.alk, pl.cEntrada.ct, p.T_agua_C), 2)} → {fmt(pl.pH15, 2)}</dd>
             <dt>{t('Conductividad')}</dt><dd>{fmt(pl.c15.cond, 0)} µS/cm</dd>
             <dt>SiO₂</dt><dd>{fmt(pl.c15.sio2, 0)} mg/L</dd>
             <dt>{t('Consumo H₂SO₄ / NaOH / NaOCl / NaPTC')}</dt><dd>{fmt(pl.tot.acidoL, 0)} / {fmt(pl.tot.sodaL, 0)} / {fmt(pl.tot.naoclL, 0)} / {fmt(pl.tot.naptcL, 0)} L</dd>
