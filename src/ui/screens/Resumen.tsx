@@ -1,3 +1,4 @@
+import type { ComponentProps } from 'react';
 import { filtrosEquipo, type FuncionValvula } from '../../data';
 import { useEngine, useSim } from '../../store/sim';
 import { CONST_PLANTA } from '../../sim/process/plant';
@@ -26,6 +27,16 @@ function alarmaDe(e: Engine, tag: string): string | null {
   const l = tag[0];
   for (const n of ['HH', 'LL', 'H', 'L']) if (e.plc.alarmas.activa(`${l}A${n}-${suf}`)) return n;
   return null;
+}
+
+/** Colector: la cañería completa en reposo y, encima, solo el tramo por donde circula, animado en el sentido del flujo. */
+function Colector({ d, tramo, fluido, ancho }: { d: string; tramo: string | null; fluido: ComponentProps<typeof Pipe>['fluido']; ancho: number }) {
+  return (
+    <>
+      <Pipe d={d} fluido={fluido} activa={false} ancho={ancho} />
+      {tramo && <Pipe d={tramo} fluido={fluido} activa ancho={ancho} />}
+    </>
+  );
 }
 
 export function Inst({ e, tag, x, y, d = 0, unidad, lado = 'r' }: { e: Engine; tag: string; x: number; y: number; d?: number; unidad?: string; lado?: 'r' | 'l' | 'b' }) {
@@ -114,6 +125,22 @@ export function Resumen() {
   const L15frac = pl.L15 / 6500;
   const L16frac = pl.L16 / CONST_PLANTA.H_TK16;
   const yVert = 90 + 290 * (1 - p.tk15_vertedero_mm / 6500);
+  // tramo de cada colector que realmente circula: desde el primer filtro que aporta, o hasta el último que recibe
+  const fl = pl.filtros;
+  const primero = (q: (f: (typeof fl)[number]) => number, min = 1) => fl.findIndex((f) => q(f) > min);
+  const ultimo = (q: (f: (typeof fl)[number]) => number, min = 1) => fl.reduce((k, f, n) => (q(f) > min ? n : k), -1);
+  const iSEVI = ultimo((f) => f.qSEVI);
+  const iSEVO = primero((f) => f.qSEVO);
+  const iRW = primero((f) => f.qRW);
+  const iBWO = primero((f) => f.qBWO);
+  const iBWI = primero((f) => f.qBWI);
+  const iRI = primero((f) => f.qRI);
+  const iAireDer = ultimo((f) => f.qAire, 50);
+  const tramoAire = [
+    pl.qAireSoplado > 50 ? `M 570 610 V ${H_AIRE}` : '',
+    fl[0].qAire > 50 ? `M 570 ${H_AIRE} H ${CX[0] - 45}` : '',
+    iAireDer >= 1 ? `M 570 ${H_AIRE} H ${CX[iAireDer] - 45}` : '',
+  ].join(' ').trim() || null;
   const compQ = pl.compresores.map((c) => c.q);
   const hayAireTK = pl.qAireTK15 > 5;
   const regenPct = (100 * pl.vRegen) / p.sump_regen_m3;
@@ -179,19 +206,19 @@ export function Resumen() {
           <Inst e={e} tag="AIT-160305442" x={345} y={335} d={0} unidad="µS/cm" />
 
           {/* ---- colector de entrada a filtros ---- */}
-          <Pipe d={`M 310 ${yVert} H 360 V ${H_ENT} H ${CX[3] - 40}`} fluido="water" activa={pl.qAFiltros > 1} ancho={6} />
+          <Colector d={`M 310 ${yVert} H 360 V ${H_ENT} H ${CX[3] - 40}`} tramo={iSEVI >= 0 ? `M 310 ${yVert} H 360 V ${H_ENT} H ${CX[iSEVI] - 40}` : null} fluido="water" ancho={6} />
           <text className="t-sm" x={372} y={H_ENT - 8}>{t('Colector de entrada 40″ · {q} m³/h', { q: fmt(pl.qAFiltros, 0) })}</text>
           {/* regeneración (RI) y desecho BWO */}
-          <Pipe d={`M 1462 270 V ${H_RI} H ${CX[0] - 15}`} fluido="regen" activa={fr.qRegen > 1} ancho={3} />
-          <Pipe d={`M ${CX[0] + 50} ${H_BWO} H 1290`} fluido="waste" activa={pl.filtros.some((f) => f.qBWO > 1)} ancho={5} />
+          <Colector d={`M 1462 270 V ${H_RI} H ${CX[0] - 15}`} tramo={iRI >= 0 ? `M 1462 270 V ${H_RI} H ${CX[iRI] - 15}` : null} fluido="regen" ancho={3} />
+          <Colector d={`M ${CX[0] + 50} ${H_BWO} H 1290`} tramo={iBWO >= 0 ? `M ${CX[iBWO] + 50} ${H_BWO} H 1290` : null} fluido="waste" ancho={5} />
           <text className="t-sm" x={CX[0] + 60} y={H_BWO - 8}>{t('Desecho de retrolavado (BWO) 24″')}</text>
           <text className="t-sm" x={1000} y={H_RI - 6}>{t('Regeneración (RI)')} {fr.qRegen > 1 ? `${fmt(fr.qRegen, 0)} m³/h` : ''}</text>
 
           {/* ---- colectores inferiores ---- */}
-          <Pipe d={`M 570 610 V ${H_AIRE} H ${CX[0] - 45} M 570 ${H_AIRE} H ${CX[3] - 45}`} fluido="air" activa={pl.qAireSoplado > 50} ancho={3.5} />
-          <Pipe d={`M 1338 790 H 1180 V ${H_BW} H ${CX[0] - 15}`} fluido="water" activa={fr.qBW > 1} ancho={4.5} />
-          <Pipe d={`M ${CX[0] + 15} ${H_FILT} H 1290 V 560`} fluido="water" activa={pl.qFiltrada > 1} ancho={6} />
-          <Pipe d={`M ${CX[0] + 45} ${H_RW} H 1220 V 300 H 1290`} fluido="regen" activa={pl.filtros.some((f) => f.qRW > 1)} ancho={3.5} />
+          <Colector d={`M 570 610 V ${H_AIRE} H ${CX[0] - 45} M 570 ${H_AIRE} H ${CX[3] - 45}`} tramo={tramoAire} fluido="air" ancho={3.5} />
+          <Colector d={`M 1338 790 H 1180 V ${H_BW} H ${CX[0] - 15}`} tramo={iBWI >= 0 ? `M 1338 790 H 1180 V ${H_BW} H ${CX[iBWI] - 15}` : null} fluido="water" ancho={4.5} />
+          <Colector d={`M ${CX[0] + 15} ${H_FILT} H 1290 V 560`} tramo={iSEVO >= 0 ? `M ${CX[iSEVO] + 15} ${H_FILT} H 1290 V 560` : null} fluido="water" ancho={6} />
+          <Colector d={`M ${CX[0] + 45} ${H_RW} H 1220 V 300 H 1290`} tramo={iRW >= 0 ? `M ${CX[iRW] + 45} ${H_RW} H 1220 V 300 H 1290` : null} fluido="regen" ancho={3.5} />
           <text className="t-sm" x={CX[3] + 70} y={H_AIRE - 6}>{t('Aire de lavado')}</text>
           <text className="t-sm" x={CX[3] + 70} y={H_BW - 6}>{t('Retrolavado')} {fr.qBW > 1 ? `${fmt(fr.qBW, 0)} m³/h` : ''}</text>
           <text className="t-sm" x={CX[3] + 70} y={H_FILT - 6}>{t('Agua filtrada {q} m³/h', { q: fmt(pl.qFiltrada, 0) })}</text>
@@ -203,8 +230,8 @@ export function Resumen() {
           <Pipe d="M 520 744 V 700 H 570" fluido="air" activa={pl.soplantes[0].q > 1 && pl.soplantes[0].qPSV < 1} ancho={3} />
           <Pipe d="M 620 744 V 700 H 570" fluido="air" activa={pl.soplantes[1].q > 1 && pl.soplantes[1].qPSV < 1} ancho={3} />
           {pl.soplantes.map((s, k) => <TrenSoplante key={s.motor.tag} e={e} k={k} />)}
-          {/* montante de aire: salta el bypass (y = 650) y pasa por FIT-160305607 */}
-          <Pipe d="M 570 700 V 658 A 8 8 0 0 0 570 642 V 610" fluido="air" activa={pl.qAireSoplado + pl.qAirePSVsoplantes > 50} ancho={3.5} />
+          {/* montante de aire de las soplantes, a través de FIT-160305607 */}
+          <Pipe d="M 570 700 V 610" fluido="air" activa={pl.qAireSoplado + pl.qAirePSVsoplantes > 50} ancho={3.5} />
           <Pipe d="M 570 668 H 660 V 690" fluido="air" activa={pl.qAire639 > 5} ancho={2} />
           <ValvulaSym x={640} y={668} tag="HV-160305639" estado={estadoValvula(e, 'HV-160305639')} size={7} etiqueta="HV-639" />
           <EquipoRotSym x={520} y={760} tag="16045-BL-30008" estado={estadoMotor(e, '16045-BL-30008')} letra="B" label="BL-30008" sub={`${fmt(pl.soplantes[0].pDescarga, 1)} kPag`} />
