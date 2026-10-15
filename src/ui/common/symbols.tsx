@@ -118,14 +118,15 @@ export function ValvulaManualSym({ x, y, tag, abierta, orient = 'h', size = 6, e
   );
 }
 
-/** Caudalímetro en línea (electromagnético "M"), clicable al instrumento. */
-export function CaudalimetroSym({ x, y, tag }: { x: number; y: number; tag: string }) {
+/** Caudalímetro en línea ("M" electromagnético, "V" vórtex), en cañería horizontal o vertical; clicable al instrumento. */
+export function CaudalimetroSym({ x, y, tag, letra = 'M', orient = 'h' }: { x: number; y: number; tag: string; letra?: 'M' | 'V'; orient?: 'h' | 'v' }) {
   const { activo } = useSel({ tipo: 'instrumento', tag });
+  const [w, h] = orient === 'h' ? [22, 18] : [18, 22];
   return (
     <Clic s={{ tipo: 'instrumento', tag }} titulo={tag}>
       <g transform={`translate(${x},${y})`}>
-        <rect x={-11} y={-9} width={22} height={18} fill="var(--panel)" stroke="var(--tank-wall)" strokeWidth={1.3} className="hl" />
-        <text textAnchor="middle" y={4} style={{ fontSize: 10, fontWeight: 700 }}>M</text>
+        <rect x={-w / 2} y={-h / 2} width={w} height={h} fill="var(--panel)" stroke="var(--tank-wall)" strokeWidth={1.3} className="hl" />
+        <text textAnchor="middle" y={4} style={{ fontSize: 10, fontWeight: 700 }}>{letra}</text>
         {activo && <circle r={17} className="sel-ring" />}
       </g>
     </Clic>

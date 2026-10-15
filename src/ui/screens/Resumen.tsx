@@ -154,7 +154,10 @@ export function Resumen() {
           <ValvulaSym x={120} y={585} tag="HV-160305646" estado={estadoValvula(e, 'HV-160305646')} orient="v" size={7} etiqueta="HV-646" />
           <EquipoRotSym x={60} y={470} tag="16045-CM-30011" estado={estadoMotor(e, '16045-CM-30011')} letra="C" label="CM-30011" sub={ts(pl.compresores[0].estado)} />
           <EquipoRotSym x={60} y={560} tag="16045-CM-30012" estado={estadoMotor(e, '16045-CM-30012')} letra="C" label="CM-30012" sub={ts(pl.compresores[1].estado)} />
-          <Inst e={e} tag="FIT-160305602" x={150} y={432} unidad="Nm³/h" lado="r" />
+          {/* FIT-160305602 (Prowirl 3″) en la descarga común de los compresores, con su línea de señal */}
+          <CaudalimetroSym x={150} y={418} tag="FIT-160305602" letra="V" orient="v" />
+          <line x1={141} x2={123} y1={418} y2={418} stroke="var(--tank-wall)" strokeWidth={0.9} strokeDasharray="3 2" />
+          <Inst e={e} tag="FIT-160305602" x={106} y={418} unidad="Nm³/h" lado="l" />
 
           {/* ---- TK-30015 ---- */}
           <TanqueSym x={180} y={90} w={130} h={290} frac={L15frac} tag="16045-TK-30015" label="TK-30015 · 68 m³">
@@ -191,7 +194,7 @@ export function Resumen() {
           <text className="t-sm" x={1000} y={H_RI - 6}>{t('Regeneración (RI)')} {fr.qRegen > 1 ? `${fmt(fr.qRegen, 0)} m³/h` : ''}</text>
 
           {/* ---- colectores inferiores ---- */}
-          <Pipe d={`M 570 620 V ${H_AIRE} H ${CX[0] - 45} M 570 ${H_AIRE} H ${CX[3] - 45}`} fluido="air" activa={pl.qAireSoplado > 50} ancho={3.5} />
+          <Pipe d={`M 570 610 V ${H_AIRE} H ${CX[0] - 45} M 570 ${H_AIRE} H ${CX[3] - 45}`} fluido="air" activa={pl.qAireSoplado > 50} ancho={3.5} />
           <Pipe d={`M 1338 790 H 1180 V ${H_BW} H ${CX[0] - 15}`} fluido="water" activa={fr.qBW > 1} ancho={4.5} />
           <Pipe d={`M ${CX[0] + 15} ${H_FILT} H 1290 V 560`} fluido="water" activa={pl.qFiltrada > 1} ancho={6} />
           <Pipe d={`M ${CX[0] + 45} ${H_RW} H 1220 V 300 H 1290`} fluido="regen" activa={pl.filtros.some((f) => f.qRW > 1)} ancho={3.5} />
@@ -206,12 +209,16 @@ export function Resumen() {
           <Pipe d="M 520 744 V 700 H 570" fluido="air" activa={pl.soplantes[0].q > 1 && pl.soplantes[0].qPSV < 1} ancho={3} />
           <Pipe d="M 620 744 V 700 H 570" fluido="air" activa={pl.soplantes[1].q > 1 && pl.soplantes[1].qPSV < 1} ancho={3} />
           {pl.soplantes.map((s, k) => <TrenSoplante key={s.motor.tag} e={e} k={k} />)}
-          <Pipe d="M 570 700 V 620" fluido="air" activa={pl.qAireSoplado + pl.qAirePSVsoplantes > 50} ancho={3.5} />
+          {/* montante de aire: salta el bypass (y = 650) y pasa por FIT-160305607 */}
+          <Pipe d="M 570 700 V 658 A 8 8 0 0 0 570 642 V 610" fluido="air" activa={pl.qAireSoplado + pl.qAirePSVsoplantes > 50} ancho={3.5} />
           <Pipe d="M 570 668 H 660 V 690" fluido="air" activa={pl.qAire639 > 5} ancho={2} />
           <ValvulaSym x={640} y={668} tag="HV-160305639" estado={estadoValvula(e, 'HV-160305639')} size={7} etiqueta="HV-639" />
           <EquipoRotSym x={520} y={760} tag="16045-BL-30008" estado={estadoMotor(e, '16045-BL-30008')} letra="B" label="BL-30008" sub={`${fmt(pl.soplantes[0].pDescarga, 1)} kPag`} />
           <EquipoRotSym x={620} y={760} tag="16045-BL-30009" estado={estadoMotor(e, '16045-BL-30009')} letra="B" label="BL-30009" sub={`${fmt(pl.soplantes[1].pDescarga, 1)} kPag`} />
-          <Inst e={e} tag="FIT-160305607" x={530} y={630} unidad="Nm³/h" lado="l" />
+          {/* FIT-160305607 (Prowirl 6″) en la descarga común de las soplantes, con su línea de señal */}
+          <CaudalimetroSym x={570} y={610} tag="FIT-160305607" letra="V" orient="v" />
+          <line x1={561} x2={537} y1={610} y2={610} stroke="var(--tank-wall)" strokeWidth={0.9} strokeDasharray="3 2" />
+          <Inst e={e} tag="FIT-160305607" x={520} y={610} unidad="Nm³/h" lado="l" />
           {pl.qAirePSVsoplantes > 10 && <text x={470} y={812} style={{ fontSize: 11, fill: 'var(--crit)', fontWeight: 700 }}>{t('PSV aliviando {q} Nm³/h', { q: fmt(pl.qAirePSVsoplantes, 0) })}</text>}
 
           {/* ---- bypass (estación según P&ID: VBF-309704 → VBA-309705 → FIT → FV → VBA-309707 → VBF-309708; VBF-309709 la rodea) ---- */}
