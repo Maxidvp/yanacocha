@@ -1,6 +1,6 @@
-// Panel de señales del elemento seleccionado (senales_por_equipo.json → mapa[tag]): agrupadas por tipo,
-// con nombre lógico, tag de la I/O list, conexionado, valor en vivo, forzado y alarmas asociadas.
-import { Fragment, useState } from 'react';
+// Panel de señales del elemento seleccionado (senales_por_equipo.json → mapa[tag]): tipo, nombre lógico, tag de la
+// I/O list y valor en vivo en cada fila; conexionado, alarmas asociadas y forzado al abrirla.
+import { Fragment, useState, type ReactNode } from 'react';
 import { senalesDe, type SenalEquipo } from '../../data';
 import { useSim } from '../../store/sim';
 import type { Engine } from '../../sim/engine';
@@ -9,8 +9,6 @@ import { fmt } from './util';
 import { t, td } from '../../i18n';
 
 type Grupo = 'AI' | 'AO' | 'DI' | 'DO' | 'COM' | 'ALIM' | 'LOCAL';
-const ORDEN: Grupo[] = ['AI', 'AO', 'DI', 'DO', 'COM', 'ALIM', 'LOCAL'];
-const TITULO: Record<Grupo, string> = { AI: 'Entradas analógicas (AI)', AO: 'Salidas analógicas (AO)', DI: 'Entradas digitales (DI)', DO: 'Salidas digitales (DO)', COM: 'Comunicación (MPR / Modbus TCP)', ALIM: 'Alimentación', LOCAL: 'Indicación local' };
 
 function grupoDe(s: SenalEquipo): Grupo {
   if (s.tipo === 'AI' || s.tipo === 'AO' || s.tipo === 'DI' || s.tipo === 'DO') return s.tipo;
@@ -60,23 +58,33 @@ function valorMK5(e: Engine, tag: string): string | null {
   return null;
 }
 
-function ValorVivo({ e, s }: { e: Engine; s: SenalEquipo }) {
+/** Etiqueta corta del tipo de señal (AI/AO/DI/DO/COM…) y su clase de color. */
+function tipoCorto(s: SenalEquipo): { txt: string; clase: string } {
+  const m = /^(AI|AO|DI|DO)/.exec(s.tipo);
+  if (m) return { txt: m[1], clase: m[1] };
+  if (s.tipo.startsWith('Alimentación')) return { txt: t('ALIM'), clase: 'ALIM' };
+  if (s.tipo === 'Local') return { txt: t('LOC'), clase: 'LOC' };
+  return { txt: 'COM', clase: 'COM' };
+}
+
+/** Valor en vivo: principal (unidad de ingeniería, 0/1) y secundario (mA o texto del estado). */
+function valorVivo(e: Engine, s: SenalEquipo): { v: ReactNode; sub?: ReactNode } {
   const g = grupoDe(s);
   const tag = s.tag_io;
-  if (g === 'ALIM') return <span className={`pill ${e.planta.alimPK30005 ? 'on' : 'trip'}`}>{e.planta.alimPK30005 ? t('alimentado') : t('sin tensión')}</span>;
-  if (g === 'LOCAL') return <span className="dim">{t('local')}</span>;
+  if (g === 'ALIM') return { v: <span className={`pill ${e.planta.alimPK30005 ? 'on' : 'trip'}`}>{e.planta.alimPK30005 ? t('alimentado') : t('sin tensión')}</span> };
+  if (g === 'LOCAL') return { v: <span className="dim">{t('local')}</span> };
   const mk5 = valorMK5(e, tag);
-  if (mk5 !== null) return <span className="mono">{mk5}</span>;
-  if (!e.io.tiene(tag)) return <span className="dim">—</span>;
+  if (mk5 !== null) return { v: mk5, sub: 'Modbus' };
+  if (!e.io.tiene(tag)) return { v: <span className="dim">—</span> };
   const p = e.io.punto(tag);
   if (p.tipo === 'AI') {
     const pv = e.plc.pv[tag] ?? e.io.ai(tag);
-    if (pv.mala) return <span className="mono" style={{ color: 'var(--trip)' }}>BAD · {fmt(pv.mA, 2)} mA</span>;
-    return <span className="mono">{fmt(pv.eu, 1)} {p.unidad ?? s.unidad ?? ''} · {fmt(pv.mA, 2)} mA</span>;
+    if (pv.mala) return { v: <span style={{ color: 'var(--trip)' }}>BAD</span>, sub: `${fmt(pv.mA, 2)} mA` };
+    return { v: `${fmt(pv.eu, 1)} ${p.unidad ?? s.unidad ?? ''}`.trim(), sub: `${fmt(pv.mA, 2)} mA` };
   }
-  if (p.tipo === 'AO') return <span className="mono">{fmt(e.io.euVisible(p), 1)} % · {fmt(e.io.valor(tag), 2)} mA</span>;
-  const v = e.io.valor(tag) >= 0.5;
-  return <span className="mono">{v ? 1 : 0} <span className="dim">{textoDigital(tag, v)}</span></span>;
+  if (p.tipo === 'AO') return { v: `${fmt(e.io.euVisible(p), 1)} %`, sub: `${fmt(e.io.valor(tag), 2)} mA` };
+  const on = e.io.valor(tag) >= 0.5;
+  return { v: <><span className={`lampara${on ? ' on' : ''}`} />{on ? 1 : 0}</>, sub: textoDigital(tag, on) };
 }
 
 /** Alarmas asociadas a la señal: HH/H/L/LL de las AI y ZAO/ZAC de los finales de carrera; FTS/FLT/CP de motores. */
@@ -96,8 +104,8 @@ function idsAlarma(e: Engine, s: SenalEquipo): string[] {
   return ids.filter((id) => e.plc.alarmas.estados.has(id));
 }
 
-function Alarmas({ e, s }: { e: Engine; s: SenalEquipo }) {
-  const ids = idsAlarma(e, s);
+function Alarmas({ e, s, soloActivas = false }: { e: Engine; s: SenalEquipo; soloActivas?: boolean }) {
+  const ids = idsAlarma(e, s).filter((id) => !soloActivas || e.plc.alarmas.estados.get(id)!.activa);
   if (!ids.length) return null;
   return (
     <span className="row" style={{ gap: 3 }}>
@@ -114,58 +122,63 @@ function Alarmas({ e, s }: { e: Engine; s: SenalEquipo }) {
   );
 }
 
+/** Señales del elemento en el orden del JSON (agrupadas por dispositivo): tipo, nombre lógico / tag y valor a la vista;
+ *  descripción, conexionado, alarmas y forzado al abrir la fila. Pensado para el ancho de la barra lateral. */
 export function PanelSenales({ e, tag }: { e: Engine; tag: string }) {
   const accion = useSim((st) => st.accion);
   const [editando, setEditando] = useState<string | null>(null);
   const lista = senalesDe(tag);
   if (!lista.length) return null;
-  const grupos = ORDEN.map((g) => [g, lista.filter((s) => grupoDe(s) === g)] as const).filter(([, l]) => l.length > 0);
+  const cuenta = new Map<string, number>();
+  for (const s of lista) cuenta.set(tipoCorto(s).txt, (cuenta.get(tipoCorto(s).txt) ?? 0) + 1);
   return (
-    <div className="stack">
-      <div className="muted" style={{ fontSize: '0.8rem' }}>{t('{n} señales · nombre lógico como identificador; tag de la I/O list debajo.', { n: lista.length })}</div>
-      <div className="scroll-x">
-        <table className="t senales">
-          <thead>
-            <tr><th>{t('Nombre lógico · tag I/O')}</th><th>{t('Descripción')}</th><th>RIO</th><th>{t('Caja / bornes / cable')}</th><th>{t('Valor')}</th><th>{t('Forzado')}</th><th>{t('Alarmas')}</th></tr>
-          </thead>
-          <tbody>
-            {grupos.map(([g, l]) => (
-              <Fragment key={g}>
-                <tr className="grupo"><th colSpan={7}>{t(TITULO[g])}</th></tr>
-                {l.map((s) => {
-                  const nombre = s.nombre_logico ?? s.nombre_logico_propuesto ?? s.tag_io;
-                  const enIO = e.io.tiene(s.tag_io);
-                  const p = enIO ? e.io.punto(s.tag_io) : null;
-                  return (
-                    <tr key={`${g}-${s.tag_io}`} className={p?.forzado ? 'forz' : ''}>
-                      <td className="mono" style={{ whiteSpace: 'nowrap' }}>
-                        <NombreLogico nombre={nombre} propuesto={esPropuesto(s)} />
-                        {nombre !== s.tag_io && <div className="dim" style={{ fontSize: '0.72rem' }}>{s.tag_io}</div>}
-                      </td>
-                      <td>{td(s.descripcion)}</td>
-                      <td className="mono">{s.rio ?? ''}</td>
-                      <td className="mono" style={{ fontSize: '0.72rem' }}>
-                        {[s.caja, bornesTxt(s.bornes), s.cable].filter(Boolean).map((x, k) => <div key={k}>{x}</div>)}
-                      </td>
-                      <td><ValorVivo e={e} s={s} /></td>
-                      <td>
-                        {!p || p.tipo.startsWith('COM') ? null : editando === s.tag_io ? (
-                          <EditorForzado e={e} p={p} onClose={() => setEditando(null)} />
-                        ) : p.forzado ? (
-                          <span className="row" style={{ gap: 4 }}><span className="pill forced">F</span><button className="btn small" onClick={() => accion((en) => en.io.liberar(s.tag_io))}>{t('Liberar')}</button></span>
-                        ) : (
-                          <button className="btn small" onClick={() => setEditando(s.tag_io)}>{t('Forzar…')}</button>
-                        )}
-                      </td>
-                      <td><Alarmas e={e} s={s} /></td>
-                    </tr>
-                  );
-                })}
-              </Fragment>
-            ))}
-          </tbody>
-        </table>
+    <div className="senal-lista">
+      <div className="senal-resumen">
+        {[...cuenta].map(([k, n]) => <span key={k} className="mono">{k} {n}</span>)}
+        <span className="dim">{t('clic en una fila: conexionado, alarmas y forzado')}</span>
       </div>
+      {lista.map((s, n) => {
+        const nombre = s.nombre_logico ?? s.nombre_logico_propuesto ?? s.tag_io;
+        const p = e.io.tiene(s.tag_io) ? e.io.punto(s.tag_io) : null;
+        const tc = tipoCorto(s);
+        const { v, sub } = valorVivo(e, s);
+        const conex: [string, string | undefined][] = [['RIO', s.rio], [t('Caja'), s.caja], [t('Bornes'), bornesTxt(s.bornes)], [t('Cable'), s.cable]];
+        return (
+          <details key={`${s.tag_io}-${n}`} className={`senal${p?.forzado ? ' forz' : ''}`}>
+            <summary>
+              <span className={`tipo-io ${tc.clase}`} title={s.tipo}>{tc.txt}</span>
+              <span className="senal-id">
+                <span className="mono b"><NombreLogico nombre={nombre} propuesto={esPropuesto(s)} /></span>
+                {nombre !== s.tag_io && <span className="mono dim">{s.tag_io}</span>}
+              </span>
+              <span className="senal-val">
+                <span className="mono b">{v}</span>
+                {sub && <span className="dim">{sub}</span>}
+                {(p?.forzado || idsAlarma(e, s).some((id) => e.plc.alarmas.estados.get(id)!.activa)) && (
+                  <span className="row" style={{ gap: 3, justifyContent: 'flex-end' }}>
+                    {p?.forzado && <span className="pill forced" style={{ fontSize: '0.7rem' }}>F</span>}
+                    <Alarmas e={e} s={s} soloActivas />
+                  </span>
+                )}
+              </span>
+            </summary>
+            <div className="senal-det">
+              {s.descripcion && <div>{td(s.descripcion)}</div>}
+              <dl className="kv">
+                {conex.filter(([, x]) => x).map(([k, x]) => <Fragment key={k}><dt>{k}</dt><dd className="mono">{x}</dd></Fragment>)}
+                {idsAlarma(e, s).length > 0 && <><dt>{t('Alarmas')}</dt><dd><Alarmas e={e} s={s} /></dd></>}
+              </dl>
+              {p && !p.tipo.startsWith('COM') && (editando === s.tag_io ? (
+                <EditorForzado e={e} p={p} onClose={() => setEditando(null)} />
+              ) : p.forzado ? (
+                <span className="row" style={{ gap: 6 }}><span className="pill forced">{t('Forzado')}</span><button className="btn small" onClick={() => accion((en) => en.io.liberar(s.tag_io))}>{t('Liberar')}</button></span>
+              ) : (
+                <button className="btn small" onClick={() => setEditando(s.tag_io)}>{t('Forzar…')}</button>
+              ))}
+            </div>
+          </details>
+        );
+      })}
     </div>
   );
 }
