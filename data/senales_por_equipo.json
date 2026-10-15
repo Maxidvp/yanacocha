@@ -1,0 +1,3306 @@
+{
+  "_uso": "Para cada equipo/instrumento/válvula seleccionado en la UI, listar estas señales agrupadas por tipo (AI, AO, DI, DO, DI(com)/COM, alimentación) con valor en vivo.",
+  "_fuentes": [
+    "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)",
+    "P-00260-DW-EC-003J1-P(EAST) rev004 (26443-220-V1A-MLF0-00101)",
+    "P-00260-DW-EC-003J3-P(EAST) rev004 (26443-220-V1A-MLF0-00103)",
+    "P-00260-DW-EC-003J5-P(EAST) rev002 (26443-220-V1A-MLF0-00212)",
+    "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)",
+    "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (26443-220-V1A-MLF0-00149)",
+    "AirCompressor-PID-C(EAST)"
+  ],
+  "mapa": {
+    "16045-FL-30035": [
+      {
+        "tag_io": "LIT-160305604",
+        "nombre_logico": "LIT-160305604",
+        "tipo": "AI",
+        "descripcion": "Nivel filtro A",
+        "rio": "P2",
+        "documentado": true,
+        "rango": [
+          0,
+          2980
+        ],
+        "unidad": "mm",
+        "alarmas": {
+          "HH": 1763,
+          "H": 1613,
+          "L": 280,
+          "LL": 140,
+          "normal": "1100–1500",
+          "retardo_s": {
+            "HH": 3,
+            "H": 5,
+            "L": 5,
+            "LL": 3
+          }
+        },
+        "caja": "16045-FL-30035/36-JB",
+        "bornes": {
+          "+": "TBA/1",
+          "-": "TBA/2",
+          "pantalla": "TBA/3"
+        },
+        "cable": "LIT160305604J01"
+      },
+      {
+        "tag_io": "HV-160305608-ZSO",
+        "nombre_logico": "ZSO-160305608",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula SEVI – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/3–4 ↔ TS2/3–4",
+        "cable": "HV160305608U02"
+      },
+      {
+        "tag_io": "HV-160305608-ZSC",
+        "nombre_logico": "ZSC-160305608",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula SEVI – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/5–6 ↔ TS2/5–6",
+        "cable": "HV160305608U02"
+      },
+      {
+        "tag_io": "HV-160305608",
+        "nombre_logico": "HY-160305608",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula SEVI – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/1 ↔ TS2/1 / TS1/2 ↔ TS2/2",
+        "cable": "HV160305608U01"
+      },
+      {
+        "tag_io": "HV-160305609-ZSO",
+        "nombre_logico": "ZSO-160305609",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula RI – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/9–10 ↔ TS2/9–10",
+        "cable": "HV160305609U02"
+      },
+      {
+        "tag_io": "HV-160305609-ZSC",
+        "nombre_logico": "ZSC-160305609",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula RI – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/11–12 ↔ TS2/11–12",
+        "cable": "HV160305609U02"
+      },
+      {
+        "tag_io": "HV-160305609",
+        "nombre_logico": "HY-160305609",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula RI – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/7 ↔ TS2/7 / TS1/8 ↔ TS2/8",
+        "cable": "HV160305609U01"
+      },
+      {
+        "tag_io": "HV-160305610-ZSO",
+        "nombre_logico": "ZSO-160305610",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula BWO – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/15–16 ↔ TS2/15–16",
+        "cable": "HV160305610U02"
+      },
+      {
+        "tag_io": "HV-160305610-ZSC",
+        "nombre_logico": "ZSC-160305610",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula BWO – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/17–18 ↔ TS2/17–18",
+        "cable": "HV160305610U02"
+      },
+      {
+        "tag_io": "HV-160305610",
+        "nombre_logico": "HY-160305610",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula BWO – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/13 ↔ TS2/13 / TS1/14 ↔ TS2/14",
+        "cable": "HV160305610U01"
+      },
+      {
+        "tag_io": "HV-160305611-ZSO",
+        "nombre_logico": "ZSO-160305611",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula RO/RW – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/21–22 ↔ TS2/21–22",
+        "cable": "HV160305611U02"
+      },
+      {
+        "tag_io": "HV-160305611-ZSC",
+        "nombre_logico": "ZSC-160305611",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula RO/RW – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/23–24 ↔ TS2/23–24",
+        "cable": "HV160305611U02"
+      },
+      {
+        "tag_io": "HV-160305611",
+        "nombre_logico": "HY-160305611",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula RO/RW – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/19 ↔ TS2/19 / TS1/20 ↔ TS2/20",
+        "cable": "HV160305611U01"
+      },
+      {
+        "tag_io": "HV-160305612-ZSO",
+        "nombre_logico": "ZSO-160305612",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula BWI – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/27–28 ↔ TS2/27–28",
+        "cable": "HV160305612U02"
+      },
+      {
+        "tag_io": "HV-160305612-ZSC",
+        "nombre_logico": "ZSC-160305612",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula BWI – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/29–30 ↔ TS2/29–30",
+        "cable": "HV160305612U02"
+      },
+      {
+        "tag_io": "HV-160305612",
+        "nombre_logico": "HY-160305612",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula BWI – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/25 ↔ TS2/25 / TS1/26 ↔ TS2/26",
+        "cable": "HV160305612U01"
+      },
+      {
+        "tag_io": "HV-160305613-ZSO",
+        "nombre_logico": "ZSO-160305613",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula SEVO – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/33–34 ↔ TS2/33–34",
+        "cable": "HV160305613U02"
+      },
+      {
+        "tag_io": "HV-160305613-ZSC",
+        "nombre_logico": "ZSC-160305613",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula SEVO – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/35–36 ↔ TS2/35–36",
+        "cable": "HV160305613U02"
+      },
+      {
+        "tag_io": "HV-160305613",
+        "nombre_logico": "HY-160305613",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula SEVO – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/31 ↔ TS2/31 / TS1/32 ↔ TS2/32",
+        "cable": "HV160305613U01"
+      },
+      {
+        "tag_io": "HV-160305614-ZSO",
+        "nombre_logico": "ZSO-160305614",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula AIRI – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/39–40 ↔ TS2/39–40",
+        "cable": "HV160305614U02"
+      },
+      {
+        "tag_io": "HV-160305614-ZSC",
+        "nombre_logico": "ZSC-160305614",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula AIRI – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/41–42 ↔ TS2/41–42",
+        "cable": "HV160305614U02"
+      },
+      {
+        "tag_io": "HV-160305614",
+        "nombre_logico": "HY-160305614",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula AIRI – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/37 ↔ TS2/37 / TS1/38 ↔ TS2/38",
+        "cable": "HV160305614U01"
+      }
+    ],
+    "LIT-160305604": [
+      {
+        "tag_io": "LIT-160305604",
+        "nombre_logico": "LIT-160305604",
+        "tipo": "AI",
+        "descripcion": "Nivel filtro A",
+        "rio": "P2",
+        "documentado": true,
+        "rango": [
+          0,
+          2980
+        ],
+        "unidad": "mm",
+        "alarmas": {
+          "HH": 1763,
+          "H": 1613,
+          "L": 280,
+          "LL": 140,
+          "normal": "1100–1500",
+          "retardo_s": {
+            "HH": 3,
+            "H": 5,
+            "L": 5,
+            "LL": 3
+          }
+        },
+        "caja": "16045-FL-30035/36-JB",
+        "bornes": {
+          "+": "TBA/1",
+          "-": "TBA/2",
+          "pantalla": "TBA/3"
+        },
+        "cable": "LIT160305604J01"
+      }
+    ],
+    "HV-160305608": [
+      {
+        "tag_io": "HV-160305608-ZSO",
+        "nombre_logico": "ZSO-160305608",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula SEVI – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/3–4 ↔ TS2/3–4",
+        "cable": "HV160305608U02"
+      },
+      {
+        "tag_io": "HV-160305608-ZSC",
+        "nombre_logico": "ZSC-160305608",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula SEVI – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/5–6 ↔ TS2/5–6",
+        "cable": "HV160305608U02"
+      },
+      {
+        "tag_io": "HV-160305608",
+        "nombre_logico": "HY-160305608",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula SEVI – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/1 ↔ TS2/1 / TS1/2 ↔ TS2/2",
+        "cable": "HV160305608U01"
+      }
+    ],
+    "HV-160305609": [
+      {
+        "tag_io": "HV-160305609-ZSO",
+        "nombre_logico": "ZSO-160305609",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula RI – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/9–10 ↔ TS2/9–10",
+        "cable": "HV160305609U02"
+      },
+      {
+        "tag_io": "HV-160305609-ZSC",
+        "nombre_logico": "ZSC-160305609",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula RI – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/11–12 ↔ TS2/11–12",
+        "cable": "HV160305609U02"
+      },
+      {
+        "tag_io": "HV-160305609",
+        "nombre_logico": "HY-160305609",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula RI – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/7 ↔ TS2/7 / TS1/8 ↔ TS2/8",
+        "cable": "HV160305609U01"
+      }
+    ],
+    "HV-160305610": [
+      {
+        "tag_io": "HV-160305610-ZSO",
+        "nombre_logico": "ZSO-160305610",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula BWO – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/15–16 ↔ TS2/15–16",
+        "cable": "HV160305610U02"
+      },
+      {
+        "tag_io": "HV-160305610-ZSC",
+        "nombre_logico": "ZSC-160305610",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula BWO – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/17–18 ↔ TS2/17–18",
+        "cable": "HV160305610U02"
+      },
+      {
+        "tag_io": "HV-160305610",
+        "nombre_logico": "HY-160305610",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula BWO – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/13 ↔ TS2/13 / TS1/14 ↔ TS2/14",
+        "cable": "HV160305610U01"
+      }
+    ],
+    "HV-160305611": [
+      {
+        "tag_io": "HV-160305611-ZSO",
+        "nombre_logico": "ZSO-160305611",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula RO/RW – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/21–22 ↔ TS2/21–22",
+        "cable": "HV160305611U02"
+      },
+      {
+        "tag_io": "HV-160305611-ZSC",
+        "nombre_logico": "ZSC-160305611",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula RO/RW – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/23–24 ↔ TS2/23–24",
+        "cable": "HV160305611U02"
+      },
+      {
+        "tag_io": "HV-160305611",
+        "nombre_logico": "HY-160305611",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula RO/RW – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/19 ↔ TS2/19 / TS1/20 ↔ TS2/20",
+        "cable": "HV160305611U01"
+      }
+    ],
+    "HV-160305612": [
+      {
+        "tag_io": "HV-160305612-ZSO",
+        "nombre_logico": "ZSO-160305612",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula BWI – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/27–28 ↔ TS2/27–28",
+        "cable": "HV160305612U02"
+      },
+      {
+        "tag_io": "HV-160305612-ZSC",
+        "nombre_logico": "ZSC-160305612",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula BWI – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/29–30 ↔ TS2/29–30",
+        "cable": "HV160305612U02"
+      },
+      {
+        "tag_io": "HV-160305612",
+        "nombre_logico": "HY-160305612",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula BWI – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/25 ↔ TS2/25 / TS1/26 ↔ TS2/26",
+        "cable": "HV160305612U01"
+      }
+    ],
+    "HV-160305613": [
+      {
+        "tag_io": "HV-160305613-ZSO",
+        "nombre_logico": "ZSO-160305613",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula SEVO – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/33–34 ↔ TS2/33–34",
+        "cable": "HV160305613U02"
+      },
+      {
+        "tag_io": "HV-160305613-ZSC",
+        "nombre_logico": "ZSC-160305613",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula SEVO – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/35–36 ↔ TS2/35–36",
+        "cable": "HV160305613U02"
+      },
+      {
+        "tag_io": "HV-160305613",
+        "nombre_logico": "HY-160305613",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula SEVO – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/31 ↔ TS2/31 / TS1/32 ↔ TS2/32",
+        "cable": "HV160305613U01"
+      }
+    ],
+    "HV-160305614": [
+      {
+        "tag_io": "HV-160305614-ZSO",
+        "nombre_logico": "ZSO-160305614",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula AIRI – abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/39–40 ↔ TS2/39–40",
+        "cable": "HV160305614U02"
+      },
+      {
+        "tag_io": "HV-160305614-ZSC",
+        "nombre_logico": "ZSC-160305614",
+        "tipo": "DI",
+        "descripcion": "Filtro A válvula AIRI – cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/41–42 ↔ TS2/41–42",
+        "cable": "HV160305614U02"
+      },
+      {
+        "tag_io": "HV-160305614",
+        "nombre_logico": "HY-160305614",
+        "tipo": "DO",
+        "descripcion": "Filtro A válvula AIRI – comando solenoide (1=abrir)",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30035-VJB",
+        "bornes": "TS1/37 ↔ TS2/37 / TS1/38 ↔ TS2/38",
+        "cable": "HV160305614U01"
+      }
+    ],
+    "16045-FL-30036": [
+      {
+        "tag_io": "LIT-160305615",
+        "nombre_logico": "LIT-160305615",
+        "tipo": "AI",
+        "descripcion": "Nivel filtro B",
+        "rio": "P3",
+        "documentado": true,
+        "rango": [
+          0,
+          2980
+        ],
+        "unidad": "mm",
+        "alarmas": {
+          "HH": 1763,
+          "H": 1613,
+          "L": 280,
+          "LL": 140,
+          "normal": "1100–1500",
+          "retardo_s": {
+            "HH": 3,
+            "H": 5,
+            "L": 5,
+            "LL": 3
+          }
+        },
+        "caja": "16045-FL-30035/36-JB",
+        "bornes": {
+          "+": "TBA/4",
+          "-": "TBA/5",
+          "pantalla": "TBA/6"
+        },
+        "cable": "LIT160305615J01"
+      },
+      {
+        "tag_io": "HV-160305616-ZSO",
+        "nombre_logico": "ZSO-160305616",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula SEVI – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/3–4 ↔ TS2/3–4",
+        "cable": "HV160305616U02"
+      },
+      {
+        "tag_io": "HV-160305616-ZSC",
+        "nombre_logico": "ZSC-160305616",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula SEVI – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/5–6 ↔ TS2/5–6",
+        "cable": "HV160305616U02"
+      },
+      {
+        "tag_io": "HV-160305616",
+        "nombre_logico": "HY-160305616",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula SEVI – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/1 ↔ TS2/1 / TS1/2 ↔ TS2/2",
+        "cable": "HV160305616U01"
+      },
+      {
+        "tag_io": "HV-160305617-ZSO",
+        "nombre_logico": "ZSO-160305617",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula RI – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/9–10 ↔ TS2/9–10",
+        "cable": "HV160305617U02"
+      },
+      {
+        "tag_io": "HV-160305617-ZSC",
+        "nombre_logico": "ZSC-160305617",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula RI – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/11–12 ↔ TS2/11–12",
+        "cable": "HV160305617U02"
+      },
+      {
+        "tag_io": "HV-160305617",
+        "nombre_logico": "HY-160305617",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula RI – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/7 ↔ TS2/7 / TS1/8 ↔ TS2/8",
+        "cable": "HV160305617U01"
+      },
+      {
+        "tag_io": "HV-160305618-ZSO",
+        "nombre_logico": "ZSO-160305618",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula BWO – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/15–16 ↔ TS2/15–16",
+        "cable": "HV160305618U02"
+      },
+      {
+        "tag_io": "HV-160305618-ZSC",
+        "nombre_logico": "ZSC-160305618",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula BWO – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/17–18 ↔ TS2/17–18",
+        "cable": "HV160305618U02"
+      },
+      {
+        "tag_io": "HV-160305618",
+        "nombre_logico": "HY-160305618",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula BWO – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/13 ↔ TS2/13 / TS1/14 ↔ TS2/14",
+        "cable": "HV160305618U01"
+      },
+      {
+        "tag_io": "HV-160305619-ZSO",
+        "nombre_logico": "ZSO-160305619",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula RO/RW – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/21–22 ↔ TS2/21–22",
+        "cable": "HV160305619U02"
+      },
+      {
+        "tag_io": "HV-160305619-ZSC",
+        "nombre_logico": "ZSC-160305619",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula RO/RW – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/23–24 ↔ TS2/23–24",
+        "cable": "HV160305619U02"
+      },
+      {
+        "tag_io": "HV-160305619",
+        "nombre_logico": "HY-160305619",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula RO/RW – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/19 ↔ TS2/19 / TS1/20 ↔ TS2/20",
+        "cable": "HV160305619U01"
+      },
+      {
+        "tag_io": "HV-160305620-ZSO",
+        "nombre_logico": "ZSO-160305620",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula BWI – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/27–28 ↔ TS2/27–28",
+        "cable": "HV160305620U02"
+      },
+      {
+        "tag_io": "HV-160305620-ZSC",
+        "nombre_logico": "ZSC-160305620",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula BWI – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/29–30 ↔ TS2/29–30",
+        "cable": "HV160305620U02"
+      },
+      {
+        "tag_io": "HV-160305620",
+        "nombre_logico": "HY-160305620",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula BWI – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/25 ↔ TS2/25 / TS1/26 ↔ TS2/26",
+        "cable": "HV160305620U01"
+      },
+      {
+        "tag_io": "HV-160305621-ZSO",
+        "nombre_logico": "ZSO-160305621",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula SEVO – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/33–34 ↔ TS2/33–34",
+        "cable": "HV160305621U02"
+      },
+      {
+        "tag_io": "HV-160305621-ZSC",
+        "nombre_logico": "ZSC-160305621",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula SEVO – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/35–36 ↔ TS2/35–36",
+        "cable": "HV160305621U02"
+      },
+      {
+        "tag_io": "HV-160305621",
+        "nombre_logico": "HY-160305621",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula SEVO – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/31 ↔ TS2/31 / TS1/32 ↔ TS2/32",
+        "cable": "HV160305621U01"
+      },
+      {
+        "tag_io": "HV-160305622-ZSO",
+        "nombre_logico": "ZSO-160305622",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula AIRI – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/39–40 ↔ TS2/39–40",
+        "cable": "HV160305622U02"
+      },
+      {
+        "tag_io": "HV-160305622-ZSC",
+        "nombre_logico": "ZSC-160305622",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula AIRI – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/41–42 ↔ TS2/41–42",
+        "cable": "HV160305622U02"
+      },
+      {
+        "tag_io": "HV-160305622",
+        "nombre_logico": "HY-160305622",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula AIRI – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/37 ↔ TS2/37 / TS1/38 ↔ TS2/38",
+        "cable": "HV160305622U01"
+      }
+    ],
+    "LIT-160305615": [
+      {
+        "tag_io": "LIT-160305615",
+        "nombre_logico": "LIT-160305615",
+        "tipo": "AI",
+        "descripcion": "Nivel filtro B",
+        "rio": "P3",
+        "documentado": true,
+        "rango": [
+          0,
+          2980
+        ],
+        "unidad": "mm",
+        "alarmas": {
+          "HH": 1763,
+          "H": 1613,
+          "L": 280,
+          "LL": 140,
+          "normal": "1100–1500",
+          "retardo_s": {
+            "HH": 3,
+            "H": 5,
+            "L": 5,
+            "LL": 3
+          }
+        },
+        "caja": "16045-FL-30035/36-JB",
+        "bornes": {
+          "+": "TBA/4",
+          "-": "TBA/5",
+          "pantalla": "TBA/6"
+        },
+        "cable": "LIT160305615J01"
+      }
+    ],
+    "HV-160305616": [
+      {
+        "tag_io": "HV-160305616-ZSO",
+        "nombre_logico": "ZSO-160305616",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula SEVI – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/3–4 ↔ TS2/3–4",
+        "cable": "HV160305616U02"
+      },
+      {
+        "tag_io": "HV-160305616-ZSC",
+        "nombre_logico": "ZSC-160305616",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula SEVI – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/5–6 ↔ TS2/5–6",
+        "cable": "HV160305616U02"
+      },
+      {
+        "tag_io": "HV-160305616",
+        "nombre_logico": "HY-160305616",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula SEVI – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/1 ↔ TS2/1 / TS1/2 ↔ TS2/2",
+        "cable": "HV160305616U01"
+      }
+    ],
+    "HV-160305617": [
+      {
+        "tag_io": "HV-160305617-ZSO",
+        "nombre_logico": "ZSO-160305617",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula RI – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/9–10 ↔ TS2/9–10",
+        "cable": "HV160305617U02"
+      },
+      {
+        "tag_io": "HV-160305617-ZSC",
+        "nombre_logico": "ZSC-160305617",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula RI – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/11–12 ↔ TS2/11–12",
+        "cable": "HV160305617U02"
+      },
+      {
+        "tag_io": "HV-160305617",
+        "nombre_logico": "HY-160305617",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula RI – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/7 ↔ TS2/7 / TS1/8 ↔ TS2/8",
+        "cable": "HV160305617U01"
+      }
+    ],
+    "HV-160305618": [
+      {
+        "tag_io": "HV-160305618-ZSO",
+        "nombre_logico": "ZSO-160305618",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula BWO – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/15–16 ↔ TS2/15–16",
+        "cable": "HV160305618U02"
+      },
+      {
+        "tag_io": "HV-160305618-ZSC",
+        "nombre_logico": "ZSC-160305618",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula BWO – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/17–18 ↔ TS2/17–18",
+        "cable": "HV160305618U02"
+      },
+      {
+        "tag_io": "HV-160305618",
+        "nombre_logico": "HY-160305618",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula BWO – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/13 ↔ TS2/13 / TS1/14 ↔ TS2/14",
+        "cable": "HV160305618U01"
+      }
+    ],
+    "HV-160305619": [
+      {
+        "tag_io": "HV-160305619-ZSO",
+        "nombre_logico": "ZSO-160305619",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula RO/RW – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/21–22 ↔ TS2/21–22",
+        "cable": "HV160305619U02"
+      },
+      {
+        "tag_io": "HV-160305619-ZSC",
+        "nombre_logico": "ZSC-160305619",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula RO/RW – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/23–24 ↔ TS2/23–24",
+        "cable": "HV160305619U02"
+      },
+      {
+        "tag_io": "HV-160305619",
+        "nombre_logico": "HY-160305619",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula RO/RW – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/19 ↔ TS2/19 / TS1/20 ↔ TS2/20",
+        "cable": "HV160305619U01"
+      }
+    ],
+    "HV-160305620": [
+      {
+        "tag_io": "HV-160305620-ZSO",
+        "nombre_logico": "ZSO-160305620",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula BWI – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/27–28 ↔ TS2/27–28",
+        "cable": "HV160305620U02"
+      },
+      {
+        "tag_io": "HV-160305620-ZSC",
+        "nombre_logico": "ZSC-160305620",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula BWI – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/29–30 ↔ TS2/29–30",
+        "cable": "HV160305620U02"
+      },
+      {
+        "tag_io": "HV-160305620",
+        "nombre_logico": "HY-160305620",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula BWI – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/25 ↔ TS2/25 / TS1/26 ↔ TS2/26",
+        "cable": "HV160305620U01"
+      }
+    ],
+    "HV-160305621": [
+      {
+        "tag_io": "HV-160305621-ZSO",
+        "nombre_logico": "ZSO-160305621",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula SEVO – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/33–34 ↔ TS2/33–34",
+        "cable": "HV160305621U02"
+      },
+      {
+        "tag_io": "HV-160305621-ZSC",
+        "nombre_logico": "ZSC-160305621",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula SEVO – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/35–36 ↔ TS2/35–36",
+        "cable": "HV160305621U02"
+      },
+      {
+        "tag_io": "HV-160305621",
+        "nombre_logico": "HY-160305621",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula SEVO – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/31 ↔ TS2/31 / TS1/32 ↔ TS2/32",
+        "cable": "HV160305621U01"
+      }
+    ],
+    "HV-160305622": [
+      {
+        "tag_io": "HV-160305622-ZSO",
+        "nombre_logico": "ZSO-160305622",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula AIRI – abierta",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/39–40 ↔ TS2/39–40",
+        "cable": "HV160305622U02"
+      },
+      {
+        "tag_io": "HV-160305622-ZSC",
+        "nombre_logico": "ZSC-160305622",
+        "tipo": "DI",
+        "descripcion": "Filtro B válvula AIRI – cerrada",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/41–42 ↔ TS2/41–42",
+        "cable": "HV160305622U02"
+      },
+      {
+        "tag_io": "HV-160305622",
+        "nombre_logico": "HY-160305622",
+        "tipo": "DO",
+        "descripcion": "Filtro B válvula AIRI – comando solenoide (1=abrir)",
+        "rio": "P3",
+        "documentado": true,
+        "caja": "16045-FL-30036-VJB",
+        "bornes": "TS1/37 ↔ TS2/37 / TS1/38 ↔ TS2/38",
+        "cable": "HV160305622U01"
+      }
+    ],
+    "16045-FL-30037": [
+      {
+        "tag_io": "LIT-160305623",
+        "nombre_logico": "LIT-160305623",
+        "tipo": "AI",
+        "descripcion": "Nivel filtro C",
+        "rio": "P4",
+        "documentado": true,
+        "rango": [
+          0,
+          2980
+        ],
+        "unidad": "mm",
+        "alarmas": {
+          "HH": 1763,
+          "H": 1613,
+          "L": 280,
+          "LL": 140,
+          "normal": "1100–1500",
+          "retardo_s": {
+            "HH": 3,
+            "H": 5,
+            "L": 5,
+            "LL": 3
+          }
+        },
+        "caja": "16045-FL-30037/38-JB",
+        "bornes": {
+          "+": "TBA/1",
+          "-": "TBA/2",
+          "pantalla": "TBA/3"
+        },
+        "cable": "LIT160305623J01"
+      },
+      {
+        "tag_io": "HV-160305624-ZSO",
+        "nombre_logico": "ZSO-160305624",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula SEVI – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/3–4 ↔ TS2/3–4",
+        "cable": "HV160305624U02"
+      },
+      {
+        "tag_io": "HV-160305624-ZSC",
+        "nombre_logico": "ZSC-160305624",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula SEVI – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/5–6 ↔ TS2/5–6",
+        "cable": "HV160305624U02"
+      },
+      {
+        "tag_io": "HV-160305624",
+        "nombre_logico": "HY-160305624",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula SEVI – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/1 ↔ TS2/1 / TS1/2 ↔ TS2/2",
+        "cable": "HV160305624U01"
+      },
+      {
+        "tag_io": "HV-160305625-ZSO",
+        "nombre_logico": "ZSO-160305625",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula RI – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/9–10 ↔ TS2/9–10",
+        "cable": "HV160305625U02"
+      },
+      {
+        "tag_io": "HV-160305625-ZSC",
+        "nombre_logico": "ZSC-160305625",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula RI – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/11–12 ↔ TS2/11–12",
+        "cable": "HV160305625U02"
+      },
+      {
+        "tag_io": "HV-160305625",
+        "nombre_logico": "HY-160305625",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula RI – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/7 ↔ TS2/7 / TS1/8 ↔ TS2/8",
+        "cable": "HV160305625U01"
+      },
+      {
+        "tag_io": "HV-160305626-ZSO",
+        "nombre_logico": "ZSO-160305626",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula BWO – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/15–16 ↔ TS2/15–16",
+        "cable": "HV160305626U02"
+      },
+      {
+        "tag_io": "HV-160305626-ZSC",
+        "nombre_logico": "ZSC-160305626",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula BWO – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/17–18 ↔ TS2/17–18",
+        "cable": "HV160305626U02"
+      },
+      {
+        "tag_io": "HV-160305626",
+        "nombre_logico": "HY-160305626",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula BWO – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/13 ↔ TS2/13 / TS1/14 ↔ TS2/14",
+        "cable": "HV160305626U01"
+      },
+      {
+        "tag_io": "HV-160305627-ZSO",
+        "nombre_logico": "ZSO-160305627",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula RO/RW – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/21–22 ↔ TS2/21–22",
+        "cable": "HV160305627U02"
+      },
+      {
+        "tag_io": "HV-160305627-ZSC",
+        "nombre_logico": "ZSC-160305627",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula RO/RW – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/23–24 ↔ TS2/23–24",
+        "cable": "HV160305627U02"
+      },
+      {
+        "tag_io": "HV-160305627",
+        "nombre_logico": "HY-160305627",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula RO/RW – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/19 ↔ TS2/19 / TS1/20 ↔ TS2/20",
+        "cable": "HV160305627U01"
+      },
+      {
+        "tag_io": "HV-160305628-ZSO",
+        "nombre_logico": "ZSO-160305628",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula BWI – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/27–28 ↔ TS2/27–28",
+        "cable": "HV160305628U02"
+      },
+      {
+        "tag_io": "HV-160305628-ZSC",
+        "nombre_logico": "ZSC-160305628",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula BWI – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/29–30 ↔ TS2/29–30",
+        "cable": "HV160305628U02"
+      },
+      {
+        "tag_io": "HV-160305628",
+        "nombre_logico": "HY-160305628",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula BWI – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/25 ↔ TS2/25 / TS1/26 ↔ TS2/26",
+        "cable": "HV160305628U01"
+      },
+      {
+        "tag_io": "HV-160305629-ZSO",
+        "nombre_logico": "ZSO-160305629",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula SEVO – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/33–34 ↔ TS2/33–34",
+        "cable": "HV160305629U02"
+      },
+      {
+        "tag_io": "HV-160305629-ZSC",
+        "nombre_logico": "ZSC-160305629",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula SEVO – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/35–36 ↔ TS2/35–36",
+        "cable": "HV160305629U02"
+      },
+      {
+        "tag_io": "HV-160305629",
+        "nombre_logico": "HY-160305629",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula SEVO – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/31 ↔ TS2/31 / TS1/32 ↔ TS2/32",
+        "cable": "HV160305629U01"
+      },
+      {
+        "tag_io": "HV-160305630-ZSO",
+        "nombre_logico": "ZSO-160305630",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula AIRI – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/39–40 ↔ TS2/39–40",
+        "cable": "HV160305630U02"
+      },
+      {
+        "tag_io": "HV-160305630-ZSC",
+        "nombre_logico": "ZSC-160305630",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula AIRI – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/41–42 ↔ TS2/41–42",
+        "cable": "HV160305630U02"
+      },
+      {
+        "tag_io": "HV-160305630",
+        "nombre_logico": "HY-160305630",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula AIRI – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/37 ↔ TS2/37 / TS1/38 ↔ TS2/38",
+        "cable": "HV160305630U01"
+      }
+    ],
+    "LIT-160305623": [
+      {
+        "tag_io": "LIT-160305623",
+        "nombre_logico": "LIT-160305623",
+        "tipo": "AI",
+        "descripcion": "Nivel filtro C",
+        "rio": "P4",
+        "documentado": true,
+        "rango": [
+          0,
+          2980
+        ],
+        "unidad": "mm",
+        "alarmas": {
+          "HH": 1763,
+          "H": 1613,
+          "L": 280,
+          "LL": 140,
+          "normal": "1100–1500",
+          "retardo_s": {
+            "HH": 3,
+            "H": 5,
+            "L": 5,
+            "LL": 3
+          }
+        },
+        "caja": "16045-FL-30037/38-JB",
+        "bornes": {
+          "+": "TBA/1",
+          "-": "TBA/2",
+          "pantalla": "TBA/3"
+        },
+        "cable": "LIT160305623J01"
+      }
+    ],
+    "HV-160305624": [
+      {
+        "tag_io": "HV-160305624-ZSO",
+        "nombre_logico": "ZSO-160305624",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula SEVI – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/3–4 ↔ TS2/3–4",
+        "cable": "HV160305624U02"
+      },
+      {
+        "tag_io": "HV-160305624-ZSC",
+        "nombre_logico": "ZSC-160305624",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula SEVI – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/5–6 ↔ TS2/5–6",
+        "cable": "HV160305624U02"
+      },
+      {
+        "tag_io": "HV-160305624",
+        "nombre_logico": "HY-160305624",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula SEVI – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/1 ↔ TS2/1 / TS1/2 ↔ TS2/2",
+        "cable": "HV160305624U01"
+      }
+    ],
+    "HV-160305625": [
+      {
+        "tag_io": "HV-160305625-ZSO",
+        "nombre_logico": "ZSO-160305625",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula RI – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/9–10 ↔ TS2/9–10",
+        "cable": "HV160305625U02"
+      },
+      {
+        "tag_io": "HV-160305625-ZSC",
+        "nombre_logico": "ZSC-160305625",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula RI – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/11–12 ↔ TS2/11–12",
+        "cable": "HV160305625U02"
+      },
+      {
+        "tag_io": "HV-160305625",
+        "nombre_logico": "HY-160305625",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula RI – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/7 ↔ TS2/7 / TS1/8 ↔ TS2/8",
+        "cable": "HV160305625U01"
+      }
+    ],
+    "HV-160305626": [
+      {
+        "tag_io": "HV-160305626-ZSO",
+        "nombre_logico": "ZSO-160305626",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula BWO – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/15–16 ↔ TS2/15–16",
+        "cable": "HV160305626U02"
+      },
+      {
+        "tag_io": "HV-160305626-ZSC",
+        "nombre_logico": "ZSC-160305626",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula BWO – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/17–18 ↔ TS2/17–18",
+        "cable": "HV160305626U02"
+      },
+      {
+        "tag_io": "HV-160305626",
+        "nombre_logico": "HY-160305626",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula BWO – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/13 ↔ TS2/13 / TS1/14 ↔ TS2/14",
+        "cable": "HV160305626U01"
+      }
+    ],
+    "HV-160305627": [
+      {
+        "tag_io": "HV-160305627-ZSO",
+        "nombre_logico": "ZSO-160305627",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula RO/RW – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/21–22 ↔ TS2/21–22",
+        "cable": "HV160305627U02"
+      },
+      {
+        "tag_io": "HV-160305627-ZSC",
+        "nombre_logico": "ZSC-160305627",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula RO/RW – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/23–24 ↔ TS2/23–24",
+        "cable": "HV160305627U02"
+      },
+      {
+        "tag_io": "HV-160305627",
+        "nombre_logico": "HY-160305627",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula RO/RW – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/19 ↔ TS2/19 / TS1/20 ↔ TS2/20",
+        "cable": "HV160305627U01"
+      }
+    ],
+    "HV-160305628": [
+      {
+        "tag_io": "HV-160305628-ZSO",
+        "nombre_logico": "ZSO-160305628",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula BWI – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/27–28 ↔ TS2/27–28",
+        "cable": "HV160305628U02"
+      },
+      {
+        "tag_io": "HV-160305628-ZSC",
+        "nombre_logico": "ZSC-160305628",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula BWI – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/29–30 ↔ TS2/29–30",
+        "cable": "HV160305628U02"
+      },
+      {
+        "tag_io": "HV-160305628",
+        "nombre_logico": "HY-160305628",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula BWI – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/25 ↔ TS2/25 / TS1/26 ↔ TS2/26",
+        "cable": "HV160305628U01"
+      }
+    ],
+    "HV-160305629": [
+      {
+        "tag_io": "HV-160305629-ZSO",
+        "nombre_logico": "ZSO-160305629",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula SEVO – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/33–34 ↔ TS2/33–34",
+        "cable": "HV160305629U02"
+      },
+      {
+        "tag_io": "HV-160305629-ZSC",
+        "nombre_logico": "ZSC-160305629",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula SEVO – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/35–36 ↔ TS2/35–36",
+        "cable": "HV160305629U02"
+      },
+      {
+        "tag_io": "HV-160305629",
+        "nombre_logico": "HY-160305629",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula SEVO – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/31 ↔ TS2/31 / TS1/32 ↔ TS2/32",
+        "cable": "HV160305629U01"
+      }
+    ],
+    "HV-160305630": [
+      {
+        "tag_io": "HV-160305630-ZSO",
+        "nombre_logico": "ZSO-160305630",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula AIRI – abierta",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/39–40 ↔ TS2/39–40",
+        "cable": "HV160305630U02"
+      },
+      {
+        "tag_io": "HV-160305630-ZSC",
+        "nombre_logico": "ZSC-160305630",
+        "tipo": "DI",
+        "descripcion": "Filtro C válvula AIRI – cerrada",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/41–42 ↔ TS2/41–42",
+        "cable": "HV160305630U02"
+      },
+      {
+        "tag_io": "HV-160305630",
+        "nombre_logico": "HY-160305630",
+        "tipo": "DO",
+        "descripcion": "Filtro C válvula AIRI – comando solenoide (1=abrir)",
+        "rio": "P4",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/37 ↔ TS2/37 / TS1/38 ↔ TS2/38",
+        "cable": "HV160305630U01"
+      }
+    ],
+    "16045-FL-30038": [
+      {
+        "tag_io": "LIT-160305631",
+        "nombre_logico": "LIT-160305631",
+        "tipo": "AI",
+        "descripcion": "Nivel filtro D",
+        "rio": "P5",
+        "documentado": true,
+        "rango": [
+          0,
+          2980
+        ],
+        "unidad": "mm",
+        "alarmas": {
+          "HH": 1763,
+          "H": 1613,
+          "L": 280,
+          "LL": 140,
+          "normal": "1100–1500",
+          "retardo_s": {
+            "HH": 3,
+            "H": 5,
+            "L": 5,
+            "LL": 3
+          }
+        },
+        "caja": "16045-FL-30037/38-JB",
+        "bornes": {
+          "+": "TBA/4",
+          "-": "TBA/5",
+          "pantalla": "TBA/6"
+        },
+        "cable": "LIT160305631J01"
+      },
+      {
+        "tag_io": "HV-160305632-ZSO",
+        "nombre_logico": "ZSO-160305632",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula SEVI – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/3–4 ↔ TS2/3–4",
+        "cable": "HV160305632U02"
+      },
+      {
+        "tag_io": "HV-160305632-ZSC",
+        "nombre_logico": "ZSC-160305632",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula SEVI – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/5–6 ↔ TS2/5–6",
+        "cable": "HV160305632U02"
+      },
+      {
+        "tag_io": "HV-160305632",
+        "nombre_logico": "HY-160305632",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula SEVI – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/1 ↔ TS2/1 / TS1/2 ↔ TS2/2",
+        "cable": "HV160305632U01"
+      },
+      {
+        "tag_io": "HV-160305633-ZSO",
+        "nombre_logico": "ZSO-160305633",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula RI – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/9–10 ↔ TS2/9–10",
+        "cable": "HV160305633U02"
+      },
+      {
+        "tag_io": "HV-160305633-ZSC",
+        "nombre_logico": "ZSC-160305633",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula RI – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/11–12 ↔ TS2/11–12",
+        "cable": "HV160305633U02"
+      },
+      {
+        "tag_io": "HV-160305633",
+        "nombre_logico": "HY-160305633",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula RI – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/7 ↔ TS2/7 / TS1/8 ↔ TS2/8",
+        "cable": "HV160305633U01"
+      },
+      {
+        "tag_io": "HV-160305634-ZSO",
+        "nombre_logico": "ZSO-160305634",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula BWO – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/15–16 ↔ TS2/15–16",
+        "cable": "HV160305634U02"
+      },
+      {
+        "tag_io": "HV-160305634-ZSC",
+        "nombre_logico": "ZSC-160305634",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula BWO – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/17–18 ↔ TS2/17–18",
+        "cable": "HV160305634U02"
+      },
+      {
+        "tag_io": "HV-160305634",
+        "nombre_logico": "HY-160305634",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula BWO – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/13 ↔ TS2/13 / TS1/14 ↔ TS2/14",
+        "cable": "HV160305634U01"
+      },
+      {
+        "tag_io": "HV-160305635-ZSO",
+        "nombre_logico": "ZSO-160305635",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula RO/RW – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/21–22 ↔ TS2/21–22",
+        "cable": "HV160305635U02"
+      },
+      {
+        "tag_io": "HV-160305635-ZSC",
+        "nombre_logico": "ZSC-160305635",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula RO/RW – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/23–24 ↔ TS2/23–24",
+        "cable": "HV160305635U02"
+      },
+      {
+        "tag_io": "HV-160305635",
+        "nombre_logico": "HY-160305635",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula RO/RW – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/19 ↔ TS2/19 / TS1/20 ↔ TS2/20",
+        "cable": "HV160305635U01"
+      },
+      {
+        "tag_io": "HV-160305636-ZSO",
+        "nombre_logico": "ZSO-160305636",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula BWI – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/27–28 ↔ TS2/27–28",
+        "cable": "HV160305636U02"
+      },
+      {
+        "tag_io": "HV-160305636-ZSC",
+        "nombre_logico": "ZSC-160305636",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula BWI – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/29–30 ↔ TS2/29–30",
+        "cable": "HV160305636U02"
+      },
+      {
+        "tag_io": "HV-160305636",
+        "nombre_logico": "HY-160305636",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula BWI – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/25 ↔ TS2/25 / TS1/26 ↔ TS2/26",
+        "cable": "HV160305636U01"
+      },
+      {
+        "tag_io": "HV-160305637-ZSO",
+        "nombre_logico": "ZSO-160305637",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula SEVO – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/33–34 ↔ TS2/33–34",
+        "cable": "HV160305637U02"
+      },
+      {
+        "tag_io": "HV-160305637-ZSC",
+        "nombre_logico": "ZSC-160305637",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula SEVO – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/35–36 ↔ TS2/35–36",
+        "cable": "HV160305637U02"
+      },
+      {
+        "tag_io": "HV-160305637",
+        "nombre_logico": "HY-160305637",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula SEVO – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/31 ↔ TS2/31 / TS1/32 ↔ TS2/32",
+        "cable": "HV160305637U01"
+      },
+      {
+        "tag_io": "HV-160305638-ZSO",
+        "nombre_logico": "ZSO-160305638",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula AIRI – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/39–40 ↔ TS2/39–40",
+        "cable": "HV160305638U02"
+      },
+      {
+        "tag_io": "HV-160305638-ZSC",
+        "nombre_logico": "ZSC-160305638",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula AIRI – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/41–42 ↔ TS2/41–42",
+        "cable": "HV160305638U02"
+      },
+      {
+        "tag_io": "HV-160305638",
+        "nombre_logico": "HY-160305638",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula AIRI – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/37 ↔ TS2/37 / TS1/38 ↔ TS2/38",
+        "cable": "HV160305638U01"
+      }
+    ],
+    "LIT-160305631": [
+      {
+        "tag_io": "LIT-160305631",
+        "nombre_logico": "LIT-160305631",
+        "tipo": "AI",
+        "descripcion": "Nivel filtro D",
+        "rio": "P5",
+        "documentado": true,
+        "rango": [
+          0,
+          2980
+        ],
+        "unidad": "mm",
+        "alarmas": {
+          "HH": 1763,
+          "H": 1613,
+          "L": 280,
+          "LL": 140,
+          "normal": "1100–1500",
+          "retardo_s": {
+            "HH": 3,
+            "H": 5,
+            "L": 5,
+            "LL": 3
+          }
+        },
+        "caja": "16045-FL-30037/38-JB",
+        "bornes": {
+          "+": "TBA/4",
+          "-": "TBA/5",
+          "pantalla": "TBA/6"
+        },
+        "cable": "LIT160305631J01"
+      }
+    ],
+    "HV-160305632": [
+      {
+        "tag_io": "HV-160305632-ZSO",
+        "nombre_logico": "ZSO-160305632",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula SEVI – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/3–4 ↔ TS2/3–4",
+        "cable": "HV160305632U02"
+      },
+      {
+        "tag_io": "HV-160305632-ZSC",
+        "nombre_logico": "ZSC-160305632",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula SEVI – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/5–6 ↔ TS2/5–6",
+        "cable": "HV160305632U02"
+      },
+      {
+        "tag_io": "HV-160305632",
+        "nombre_logico": "HY-160305632",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula SEVI – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/1 ↔ TS2/1 / TS1/2 ↔ TS2/2",
+        "cable": "HV160305632U01"
+      }
+    ],
+    "HV-160305633": [
+      {
+        "tag_io": "HV-160305633-ZSO",
+        "nombre_logico": "ZSO-160305633",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula RI – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/9–10 ↔ TS2/9–10",
+        "cable": "HV160305633U02"
+      },
+      {
+        "tag_io": "HV-160305633-ZSC",
+        "nombre_logico": "ZSC-160305633",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula RI – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/11–12 ↔ TS2/11–12",
+        "cable": "HV160305633U02"
+      },
+      {
+        "tag_io": "HV-160305633",
+        "nombre_logico": "HY-160305633",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula RI – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/7 ↔ TS2/7 / TS1/8 ↔ TS2/8",
+        "cable": "HV160305633U01"
+      }
+    ],
+    "HV-160305634": [
+      {
+        "tag_io": "HV-160305634-ZSO",
+        "nombre_logico": "ZSO-160305634",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula BWO – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/15–16 ↔ TS2/15–16",
+        "cable": "HV160305634U02"
+      },
+      {
+        "tag_io": "HV-160305634-ZSC",
+        "nombre_logico": "ZSC-160305634",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula BWO – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/17–18 ↔ TS2/17–18",
+        "cable": "HV160305634U02"
+      },
+      {
+        "tag_io": "HV-160305634",
+        "nombre_logico": "HY-160305634",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula BWO – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/13 ↔ TS2/13 / TS1/14 ↔ TS2/14",
+        "cable": "HV160305634U01"
+      }
+    ],
+    "HV-160305635": [
+      {
+        "tag_io": "HV-160305635-ZSO",
+        "nombre_logico": "ZSO-160305635",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula RO/RW – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/21–22 ↔ TS2/21–22",
+        "cable": "HV160305635U02"
+      },
+      {
+        "tag_io": "HV-160305635-ZSC",
+        "nombre_logico": "ZSC-160305635",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula RO/RW – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/23–24 ↔ TS2/23–24",
+        "cable": "HV160305635U02"
+      },
+      {
+        "tag_io": "HV-160305635",
+        "nombre_logico": "HY-160305635",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula RO/RW – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/19 ↔ TS2/19 / TS1/20 ↔ TS2/20",
+        "cable": "HV160305635U01"
+      }
+    ],
+    "HV-160305636": [
+      {
+        "tag_io": "HV-160305636-ZSO",
+        "nombre_logico": "ZSO-160305636",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula BWI – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/27–28 ↔ TS2/27–28",
+        "cable": "HV160305636U02"
+      },
+      {
+        "tag_io": "HV-160305636-ZSC",
+        "nombre_logico": "ZSC-160305636",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula BWI – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/29–30 ↔ TS2/29–30",
+        "cable": "HV160305636U02"
+      },
+      {
+        "tag_io": "HV-160305636",
+        "nombre_logico": "HY-160305636",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula BWI – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/25 ↔ TS2/25 / TS1/26 ↔ TS2/26",
+        "cable": "HV160305636U01"
+      }
+    ],
+    "HV-160305637": [
+      {
+        "tag_io": "HV-160305637-ZSO",
+        "nombre_logico": "ZSO-160305637",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula SEVO – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/33–34 ↔ TS2/33–34",
+        "cable": "HV160305637U02"
+      },
+      {
+        "tag_io": "HV-160305637-ZSC",
+        "nombre_logico": "ZSC-160305637",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula SEVO – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/35–36 ↔ TS2/35–36",
+        "cable": "HV160305637U02"
+      },
+      {
+        "tag_io": "HV-160305637",
+        "nombre_logico": "HY-160305637",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula SEVO – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/31 ↔ TS2/31 / TS1/32 ↔ TS2/32",
+        "cable": "HV160305637U01"
+      }
+    ],
+    "HV-160305638": [
+      {
+        "tag_io": "HV-160305638-ZSO",
+        "nombre_logico": "ZSO-160305638",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula AIRI – abierta",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/39–40 ↔ TS2/39–40",
+        "cable": "HV160305638U02"
+      },
+      {
+        "tag_io": "HV-160305638-ZSC",
+        "nombre_logico": "ZSC-160305638",
+        "tipo": "DI",
+        "descripcion": "Filtro D válvula AIRI – cerrada",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/41–42 ↔ TS2/41–42",
+        "cable": "HV160305638U02"
+      },
+      {
+        "tag_io": "HV-160305638",
+        "nombre_logico": "HY-160305638",
+        "tipo": "DO",
+        "descripcion": "Filtro D válvula AIRI – comando solenoide (1=abrir)",
+        "rio": "P5",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/37 ↔ TS2/37 / TS1/38 ↔ TS2/38",
+        "cable": "HV160305638U01"
+      }
+    ],
+    "16045-CM-30011": [
+      {
+        "tag_io": "FIT-160305602",
+        "nombre_logico": "FIT-160305602",
+        "tipo": "AI",
+        "descripcion": "Caudal aire salida compresores",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          525
+        ],
+        "unidad": "Nm3/h",
+        "alarmas": {
+          "HH": 385,
+          "H": 367,
+          "L": 343,
+          "LL": 315,
+          "normal": "523 Nm3/h (según alarm list – incoherente con 350 de diseño, A CONFIRMAR)",
+          "retardo_s": {
+            "HH": 3,
+            "H": 3,
+            "L": 15,
+            "LL": 15
+          },
+          "activa": "L/LL solo con algún compresor en marcha"
+        }
+      },
+      {
+        "tag_io": "HV-160305646-ZSO",
+        "nombre_logico": "ZSO-160305646",
+        "tipo": "DI",
+        "descripcion": "HV-160305646 abierta",
+        "rio": "P1",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/45–46 ↔ TS2/45–46",
+        "cable": "HV160305646U02"
+      },
+      {
+        "tag_io": "HV-160305646-ZSC",
+        "nombre_logico": "ZSC-160305646",
+        "tipo": "DI",
+        "descripcion": "HV-160305646 cerrada",
+        "rio": "P1",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/47–48 ↔ TS2/47–48",
+        "cable": "HV160305646U02"
+      },
+      {
+        "tag_io": "HV-160305646",
+        "nombre_logico": "HY-160305646",
+        "tipo": "DO",
+        "descripcion": "HV-160305646 comando",
+        "rio": "P1",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/43 ↔ TS2/43 / TS1/44 ↔ TS2/44",
+        "cable": "HV160305646U01"
+      },
+      {
+        "tag_io": "16045-CM-30011-START",
+        "nombre_logico": "16045-CM-30011-M.START",
+        "tipo": "DO",
+        "descripcion": "Comando arranque",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30011-STOP",
+        "nombre_logico": "16045-CM-30011-M.STOP",
+        "tipo": "DO",
+        "descripcion": "Comando parada",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30011-RUN",
+        "nombre_logico": "16045-CM-30011-M.RUN",
+        "tipo": "DI",
+        "descripcion": "En marcha",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30011-AVL",
+        "nombre_logico": "16045-CM-30011-M.AVL",
+        "tipo": "DI",
+        "descripcion": "Disponible",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30011-CP",
+        "nombre_logico": "16045-CM-30011-M.CP",
+        "tipo": "DI(com)",
+        "descripcion": "Tensión de control OK (relé inteligente MPR)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30011-FLT",
+        "nombre_logico": "16045-CM-30011-M.FLT",
+        "tipo": "DI(com)",
+        "descripcion": "Falla: sobrecarga / tierra / desbalance",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30011-LOC",
+        "nombre_logico": "16045-CM-30011-M.LOC",
+        "tipo": "DI(com)",
+        "descripcion": "Marcha/parada local (LCS)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "PT-160305711A",
+        "nombre_logico": "PT-160305711A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "Presión descarga",
+        "documentado": true
+      },
+      {
+        "tag_io": "PDT-160305701A",
+        "nombre_logico": "PDT-160305701A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "ΔP filtro de aire",
+        "documentado": true
+      },
+      {
+        "tag_io": "PT-160305704A",
+        "nombre_logico": "PT-160305704A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "Presión aceite",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305703A",
+        "nombre_logico": "TT-160305703A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T descarga (diseño 86–131 °C)",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305705A",
+        "nombre_logico": "TT-160305705A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T aceite",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305706A",
+        "nombre_logico": "TT-160305706A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T devanado U",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305707A",
+        "nombre_logico": "TT-160305707A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T devanado V",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305708A",
+        "nombre_logico": "TT-160305708A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T devanado W",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305709A",
+        "nombre_logico": "TT-160305709A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T rodamiento LA",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305710A",
+        "nombre_logico": "TT-160305710A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T rodamiento LOA",
+        "documentado": true
+      },
+      {
+        "tag_io": "HY-160305712A",
+        "nombre_logico": "HY-160305712A",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "Solenoide carga/descarga Y1",
+        "documentado": true
+      },
+      {
+        "tag_io": "LG-160305702A",
+        "nombre_logico": "LG-160305702A",
+        "tipo": "Local",
+        "descripcion": "Visor nivel aceite (local)",
+        "documentado": true
+      }
+    ],
+    "16045-CM-30012": [
+      {
+        "tag_io": "FIT-160305602",
+        "nombre_logico": "FIT-160305602",
+        "tipo": "AI",
+        "descripcion": "Caudal aire salida compresores",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          525
+        ],
+        "unidad": "Nm3/h",
+        "alarmas": {
+          "HH": 385,
+          "H": 367,
+          "L": 343,
+          "LL": 315,
+          "normal": "523 Nm3/h (según alarm list – incoherente con 350 de diseño, A CONFIRMAR)",
+          "retardo_s": {
+            "HH": 3,
+            "H": 3,
+            "L": 15,
+            "LL": 15
+          },
+          "activa": "L/LL solo con algún compresor en marcha"
+        }
+      },
+      {
+        "tag_io": "HV-160305646-ZSO",
+        "nombre_logico": "ZSO-160305646",
+        "tipo": "DI",
+        "descripcion": "HV-160305646 abierta",
+        "rio": "P1",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/45–46 ↔ TS2/45–46",
+        "cable": "HV160305646U02"
+      },
+      {
+        "tag_io": "HV-160305646-ZSC",
+        "nombre_logico": "ZSC-160305646",
+        "tipo": "DI",
+        "descripcion": "HV-160305646 cerrada",
+        "rio": "P1",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/47–48 ↔ TS2/47–48",
+        "cable": "HV160305646U02"
+      },
+      {
+        "tag_io": "HV-160305646",
+        "nombre_logico": "HY-160305646",
+        "tipo": "DO",
+        "descripcion": "HV-160305646 comando",
+        "rio": "P1",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/43 ↔ TS2/43 / TS1/44 ↔ TS2/44",
+        "cable": "HV160305646U01"
+      },
+      {
+        "tag_io": "16045-CM-30012-START",
+        "nombre_logico": "16045-CM-30012-M.START",
+        "tipo": "DO",
+        "descripcion": "Comando arranque",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30012-STOP",
+        "nombre_logico": "16045-CM-30012-M.STOP",
+        "tipo": "DO",
+        "descripcion": "Comando parada",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30012-RUN",
+        "nombre_logico": "16045-CM-30012-M.RUN",
+        "tipo": "DI",
+        "descripcion": "En marcha",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30012-AVL",
+        "nombre_logico": "16045-CM-30012-M.AVL",
+        "tipo": "DI",
+        "descripcion": "Disponible",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30012-CP",
+        "nombre_logico": "16045-CM-30012-M.CP",
+        "tipo": "DI(com)",
+        "descripcion": "Tensión de control OK (relé inteligente MPR)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30012-FLT",
+        "nombre_logico": "16045-CM-30012-M.FLT",
+        "tipo": "DI(com)",
+        "descripcion": "Falla: sobrecarga / tierra / desbalance",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-CM-30012-LOC",
+        "nombre_logico": "16045-CM-30012-M.LOC",
+        "tipo": "DI(com)",
+        "descripcion": "Marcha/parada local (LCS)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "PT-160305711B",
+        "nombre_logico": "PT-160305711B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "Presión descarga",
+        "documentado": true
+      },
+      {
+        "tag_io": "PDT-160305701B",
+        "nombre_logico": "PDT-160305701B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "ΔP filtro de aire",
+        "documentado": true
+      },
+      {
+        "tag_io": "PT-160305704B",
+        "nombre_logico": "PT-160305704B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "Presión aceite",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305703B",
+        "nombre_logico": "TT-160305703B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T descarga (diseño 86–131 °C)",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305705B",
+        "nombre_logico": "TT-160305705B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T aceite",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305706B",
+        "nombre_logico": "TT-160305706B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T devanado U",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305707B",
+        "nombre_logico": "TT-160305707B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T devanado V",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305708B",
+        "nombre_logico": "TT-160305708B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T devanado W",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305709B",
+        "nombre_logico": "TT-160305709B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T rodamiento LA",
+        "documentado": true
+      },
+      {
+        "tag_io": "TT-160305710B",
+        "nombre_logico": "TT-160305710B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "T rodamiento LOA",
+        "documentado": true
+      },
+      {
+        "tag_io": "HY-160305712B",
+        "nombre_logico": "HY-160305712B",
+        "tipo": "COM (Modbus TCP)",
+        "descripcion": "Solenoide carga/descarga Y1",
+        "documentado": true
+      },
+      {
+        "tag_io": "LG-160305702B",
+        "nombre_logico": "LG-160305702B",
+        "tipo": "Local",
+        "descripcion": "Visor nivel aceite (local)",
+        "documentado": true
+      }
+    ],
+    "FIT-160305602": [
+      {
+        "tag_io": "FIT-160305602",
+        "nombre_logico": "FIT-160305602",
+        "tipo": "AI",
+        "descripcion": "Caudal aire salida compresores",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          525
+        ],
+        "unidad": "Nm3/h",
+        "alarmas": {
+          "HH": 385,
+          "H": 367,
+          "L": 343,
+          "LL": 315,
+          "normal": "523 Nm3/h (según alarm list – incoherente con 350 de diseño, A CONFIRMAR)",
+          "retardo_s": {
+            "HH": 3,
+            "H": 3,
+            "L": 15,
+            "LL": 15
+          },
+          "activa": "L/LL solo con algún compresor en marcha"
+        }
+      }
+    ],
+    "16045-TK-30015": [
+      {
+        "tag_io": "LIT-160305601",
+        "nombre_logico": "LIT-160305601",
+        "tipo": "AI",
+        "descripcion": "Nivel tanque primario",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          6400
+        ],
+        "unidad": "mm",
+        "alarmas": {
+          "HH": 6080,
+          "H": 5760,
+          "L": 3392,
+          "LL": 1984,
+          "normal": 5536,
+          "retardo_s": {
+            "HH": 3,
+            "H": 5,
+            "L": 5,
+            "LL": 3
+          }
+        }
+      },
+      {
+        "tag_io": "AIT-160305442",
+        "nombre_logico": "AIT-160305442",
+        "tipo": "AI",
+        "descripcion": "Conductividad salida tanque primario",
+        "rio": "P1",
+        "documentado": true,
+        "rango": "A CONFIRMAR",
+        "unidad": "µS/cm",
+        "alarmas": {
+          "HH": "por Bechtel",
+          "H": "por Bechtel",
+          "retardo_s": {
+            "HH": 5,
+            "H": 30
+          },
+          "alcance": "por otros"
+        }
+      },
+      {
+        "tag_io": "AIT-160305600",
+        "nombre_logico": "AIT-160305600",
+        "tipo": "AI",
+        "descripcion": "pH tanque primario",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          14
+        ],
+        "unidad": "pH",
+        "alarmas": {
+          "HH": 7.0,
+          "H": 6.8,
+          "L": 6.3,
+          "LL": 6.0,
+          "normal": 6.5,
+          "retardo_s": 15,
+          "nota": "Índice de instrumentos dice HH 7.2; se usa alarm list (más reciente)"
+        }
+      },
+      {
+        "tag_io": "FIT-160305603",
+        "nombre_logico": "FIT-160305603",
+        "tipo": "AI",
+        "descripcion": "Caudal entrada sumidero agua filtrada (bypass)",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          1280
+        ],
+        "unidad": "m3/h",
+        "alarmas": {
+          "H": 768,
+          "L": 235,
+          "normal": "261–853",
+          "retardo_s": {
+            "H": 10,
+            "L": 30
+          },
+          "nota": "Alarm list rev002 indica FAH 235 / FAL 890 (aparentemente invertido); índice: H 768 / L 235. A CONFIRMAR"
+        }
+      },
+      {
+        "tag_io": "FZI-160305603",
+        "nombre_logico": "FZI-160305603",
+        "tipo": "AI",
+        "descripcion": "Retro posición FCV bypass",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          100
+        ],
+        "unidad": "%",
+        "alarmas": null
+      },
+      {
+        "tag_io": "FCV-160305603",
+        "nombre_logico": "FIC-160305603.OUT → FV-160305603",
+        "tipo": "AO",
+        "descripcion": "Salida control válvula bypass",
+        "rio": "P1",
+        "documentado": true
+      }
+    ],
+    "LIT-160305601": [
+      {
+        "tag_io": "LIT-160305601",
+        "nombre_logico": "LIT-160305601",
+        "tipo": "AI",
+        "descripcion": "Nivel tanque primario",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          6400
+        ],
+        "unidad": "mm",
+        "alarmas": {
+          "HH": 6080,
+          "H": 5760,
+          "L": 3392,
+          "LL": 1984,
+          "normal": 5536,
+          "retardo_s": {
+            "HH": 3,
+            "H": 5,
+            "L": 5,
+            "LL": 3
+          }
+        }
+      }
+    ],
+    "AIT-160305442": [
+      {
+        "tag_io": "AIT-160305442",
+        "nombre_logico": "AIT-160305442",
+        "tipo": "AI",
+        "descripcion": "Conductividad salida tanque primario",
+        "rio": "P1",
+        "documentado": true,
+        "rango": "A CONFIRMAR",
+        "unidad": "µS/cm",
+        "alarmas": {
+          "HH": "por Bechtel",
+          "H": "por Bechtel",
+          "retardo_s": {
+            "HH": 5,
+            "H": 30
+          },
+          "alcance": "por otros"
+        }
+      }
+    ],
+    "AIT-160305600": [
+      {
+        "tag_io": "AIT-160305600",
+        "nombre_logico": "AIT-160305600",
+        "tipo": "AI",
+        "descripcion": "pH tanque primario",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          14
+        ],
+        "unidad": "pH",
+        "alarmas": {
+          "HH": 7.0,
+          "H": 6.8,
+          "L": 6.3,
+          "LL": 6.0,
+          "normal": 6.5,
+          "retardo_s": 15,
+          "nota": "Índice de instrumentos dice HH 7.2; se usa alarm list (más reciente)"
+        }
+      }
+    ],
+    "FIT-160305603": [
+      {
+        "tag_io": "FIT-160305603",
+        "nombre_logico": "FIT-160305603",
+        "tipo": "AI",
+        "descripcion": "Caudal entrada sumidero agua filtrada (bypass)",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          1280
+        ],
+        "unidad": "m3/h",
+        "alarmas": {
+          "H": 768,
+          "L": 235,
+          "normal": "261–853",
+          "retardo_s": {
+            "H": 10,
+            "L": 30
+          },
+          "nota": "Alarm list rev002 indica FAH 235 / FAL 890 (aparentemente invertido); índice: H 768 / L 235. A CONFIRMAR"
+        }
+      },
+      {
+        "tag_io": "DCH-101",
+        "nombre_logico": "PK-30005JB MCB-201",
+        "tipo": "Alimentación 24 VDC",
+        "descripcion": "Alimentación del caudalímetro desde TBP1/1A",
+        "documentado": true
+      }
+    ],
+    "FV-160305603": [
+      {
+        "tag_io": "FIT-160305603",
+        "nombre_logico": "FIT-160305603",
+        "tipo": "AI",
+        "descripcion": "Caudal entrada sumidero agua filtrada (bypass)",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          1280
+        ],
+        "unidad": "m3/h",
+        "alarmas": {
+          "H": 768,
+          "L": 235,
+          "normal": "261–853",
+          "retardo_s": {
+            "H": 10,
+            "L": 30
+          },
+          "nota": "Alarm list rev002 indica FAH 235 / FAL 890 (aparentemente invertido); índice: H 768 / L 235. A CONFIRMAR"
+        }
+      },
+      {
+        "tag_io": "FZI-160305603",
+        "nombre_logico": "FZI-160305603",
+        "tipo": "AI",
+        "descripcion": "Retro posición FCV bypass",
+        "rio": "P1",
+        "documentado": true,
+        "rango": [
+          0,
+          100
+        ],
+        "unidad": "%",
+        "alarmas": null
+      },
+      {
+        "tag_io": "FCV-160305603",
+        "nombre_logico": "FIC-160305603.OUT → FV-160305603",
+        "tipo": "AO",
+        "descripcion": "Salida control válvula bypass",
+        "rio": "P1",
+        "documentado": true
+      }
+    ],
+    "16045-BL-30008": [
+      {
+        "tag_io": "FIT-160305607",
+        "nombre_logico": "FIT-160305607",
+        "tipo": "AI",
+        "descripcion": "Caudal aire salida soplantes",
+        "rio": "P2",
+        "documentado": true,
+        "rango": [
+          0,
+          4000
+        ],
+        "unidad": "Nm3/h",
+        "alarmas": {
+          "HH": 3000,
+          "H": 2900,
+          "L": 2000,
+          "LL": 1500,
+          "normal": 2688,
+          "retardo_s": {
+            "HH": 10,
+            "H": 10,
+            "L": 30,
+            "LL": 30
+          },
+          "activa": "L/LL solo con algún soplante en marcha"
+        }
+      },
+      {
+        "tag_io": "HV-160305639-ZSO",
+        "nombre_logico": "ZSO-160305639",
+        "tipo": "DI",
+        "descripcion": "HV-160305639 abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/45–46 ↔ TS2/45–46",
+        "cable": "HV160305639U02"
+      },
+      {
+        "tag_io": "HV-160305639-ZSC",
+        "nombre_logico": "ZSC-160305639",
+        "tipo": "DI",
+        "descripcion": "HV-160305639 cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/47–48 ↔ TS2/47–48",
+        "cable": "HV160305639U02"
+      },
+      {
+        "tag_io": "HV-160305639",
+        "nombre_logico": "HY-160305639",
+        "tipo": "DO",
+        "descripcion": "HV-160305639 comando",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/43 ↔ TS2/43 / TS1/44 ↔ TS2/44",
+        "cable": "HV160305639U01"
+      },
+      {
+        "tag_io": "16045-BL-30008-START",
+        "nombre_logico": "16045-BL-30008-M.START",
+        "tipo": "DO",
+        "descripcion": "Comando arranque",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30008-STOP",
+        "nombre_logico": "16045-BL-30008-M.STOP",
+        "tipo": "DO",
+        "descripcion": "Comando parada",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30008-RUN",
+        "nombre_logico": "16045-BL-30008-M.RUN",
+        "tipo": "DI",
+        "descripcion": "En marcha",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30008-AVL",
+        "nombre_logico": "16045-BL-30008-M.AVL",
+        "tipo": "DI",
+        "descripcion": "Disponible",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30008-CP",
+        "nombre_logico": "16045-BL-30008-M.CP",
+        "tipo": "DI(com)",
+        "descripcion": "Tensión de control OK (relé inteligente MPR)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30008-FLT",
+        "nombre_logico": "16045-BL-30008-M.FLT",
+        "tipo": "DI(com)",
+        "descripcion": "Falla: sobrecarga / tierra / desbalance",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30008-LOC",
+        "nombre_logico": "16045-BL-30008-M.LOC",
+        "tipo": "DI(com)",
+        "descripcion": "Marcha/parada local (LCS)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      }
+    ],
+    "16045-BL-30009": [
+      {
+        "tag_io": "FIT-160305607",
+        "nombre_logico": "FIT-160305607",
+        "tipo": "AI",
+        "descripcion": "Caudal aire salida soplantes",
+        "rio": "P2",
+        "documentado": true,
+        "rango": [
+          0,
+          4000
+        ],
+        "unidad": "Nm3/h",
+        "alarmas": {
+          "HH": 3000,
+          "H": 2900,
+          "L": 2000,
+          "LL": 1500,
+          "normal": 2688,
+          "retardo_s": {
+            "HH": 10,
+            "H": 10,
+            "L": 30,
+            "LL": 30
+          },
+          "activa": "L/LL solo con algún soplante en marcha"
+        }
+      },
+      {
+        "tag_io": "HV-160305639-ZSO",
+        "nombre_logico": "ZSO-160305639",
+        "tipo": "DI",
+        "descripcion": "HV-160305639 abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/45–46 ↔ TS2/45–46",
+        "cable": "HV160305639U02"
+      },
+      {
+        "tag_io": "HV-160305639-ZSC",
+        "nombre_logico": "ZSC-160305639",
+        "tipo": "DI",
+        "descripcion": "HV-160305639 cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/47–48 ↔ TS2/47–48",
+        "cable": "HV160305639U02"
+      },
+      {
+        "tag_io": "HV-160305639",
+        "nombre_logico": "HY-160305639",
+        "tipo": "DO",
+        "descripcion": "HV-160305639 comando",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/43 ↔ TS2/43 / TS1/44 ↔ TS2/44",
+        "cable": "HV160305639U01"
+      },
+      {
+        "tag_io": "16045-BL-30009-START",
+        "nombre_logico": "16045-BL-30009-M.START",
+        "tipo": "DO",
+        "descripcion": "Comando arranque",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30009-STOP",
+        "nombre_logico": "16045-BL-30009-M.STOP",
+        "tipo": "DO",
+        "descripcion": "Comando parada",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30009-RUN",
+        "nombre_logico": "16045-BL-30009-M.RUN",
+        "tipo": "DI",
+        "descripcion": "En marcha",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30009-AVL",
+        "nombre_logico": "16045-BL-30009-M.AVL",
+        "tipo": "DI",
+        "descripcion": "Disponible",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30009-CP",
+        "nombre_logico": "16045-BL-30009-M.CP",
+        "tipo": "DI(com)",
+        "descripcion": "Tensión de control OK (relé inteligente MPR)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30009-FLT",
+        "nombre_logico": "16045-BL-30009-M.FLT",
+        "tipo": "DI(com)",
+        "descripcion": "Falla: sobrecarga / tierra / desbalance",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-BL-30009-LOC",
+        "nombre_logico": "16045-BL-30009-M.LOC",
+        "tipo": "DI(com)",
+        "descripcion": "Marcha/parada local (LCS)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      }
+    ],
+    "FIT-160305607": [
+      {
+        "tag_io": "FIT-160305607",
+        "nombre_logico": "FIT-160305607",
+        "tipo": "AI",
+        "descripcion": "Caudal aire salida soplantes",
+        "rio": "P2",
+        "documentado": true,
+        "rango": [
+          0,
+          4000
+        ],
+        "unidad": "Nm3/h",
+        "alarmas": {
+          "HH": 3000,
+          "H": 2900,
+          "L": 2000,
+          "LL": 1500,
+          "normal": 2688,
+          "retardo_s": {
+            "HH": 10,
+            "H": 10,
+            "L": 30,
+            "LL": 30
+          },
+          "activa": "L/LL solo con algún soplante en marcha"
+        }
+      }
+    ],
+    "HV-160305646": [
+      {
+        "tag_io": "HV-160305646-ZSO",
+        "nombre_logico": "ZSO-160305646",
+        "tipo": "DI",
+        "descripcion": "HV-160305646 abierta",
+        "rio": "P1",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/45–46 ↔ TS2/45–46",
+        "cable": "HV160305646U02"
+      },
+      {
+        "tag_io": "HV-160305646-ZSC",
+        "nombre_logico": "ZSC-160305646",
+        "tipo": "DI",
+        "descripcion": "HV-160305646 cerrada",
+        "rio": "P1",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/47–48 ↔ TS2/47–48",
+        "cable": "HV160305646U02"
+      },
+      {
+        "tag_io": "HV-160305646",
+        "nombre_logico": "HY-160305646",
+        "tipo": "DO",
+        "descripcion": "HV-160305646 comando",
+        "rio": "P1",
+        "documentado": true,
+        "caja": "16045-FL-30038-VJB",
+        "bornes": "TS1/43 ↔ TS2/43 / TS1/44 ↔ TS2/44",
+        "cable": "HV160305646U01"
+      }
+    ],
+    "HV-160305639": [
+      {
+        "tag_io": "HV-160305639-ZSO",
+        "nombre_logico": "ZSO-160305639",
+        "tipo": "DI",
+        "descripcion": "HV-160305639 abierta",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/45–46 ↔ TS2/45–46",
+        "cable": "HV160305639U02"
+      },
+      {
+        "tag_io": "HV-160305639-ZSC",
+        "nombre_logico": "ZSC-160305639",
+        "tipo": "DI",
+        "descripcion": "HV-160305639 cerrada",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/47–48 ↔ TS2/47–48",
+        "cable": "HV160305639U02"
+      },
+      {
+        "tag_io": "HV-160305639",
+        "nombre_logico": "HY-160305639",
+        "tipo": "DO",
+        "descripcion": "HV-160305639 comando",
+        "rio": "P2",
+        "documentado": true,
+        "caja": "16045-FL-30037-VJB",
+        "bornes": "TS1/43 ↔ TS2/43 / TS1/44 ↔ TS2/44",
+        "cable": "HV160305639U01"
+      }
+    ],
+    "16045-AG-30006": [
+      {
+        "tag_io": "16045-AG-30006-START",
+        "nombre_logico": "16045-AG-30006-M.START",
+        "tipo": "DO",
+        "descripcion": "Comando arranque",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30006-STOP",
+        "nombre_logico": "16045-AG-30006-M.STOP",
+        "tipo": "DO",
+        "descripcion": "Comando parada",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30006-RUN",
+        "nombre_logico": "16045-AG-30006-M.RUN",
+        "tipo": "DI",
+        "descripcion": "En marcha",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30006-AVL",
+        "nombre_logico": "16045-AG-30006-M.AVL",
+        "tipo": "DI",
+        "descripcion": "Disponible",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30006-CP",
+        "nombre_logico": "16045-AG-30006-M.CP",
+        "tipo": "DI(com)",
+        "descripcion": "Tensión de control OK (relé inteligente MPR)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30006-FLT",
+        "nombre_logico": "16045-AG-30006-M.FLT",
+        "tipo": "DI(com)",
+        "descripcion": "Falla: sobrecarga / tierra / desbalance",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30006-LOC",
+        "nombre_logico": "16045-AG-30006-M.LOC",
+        "tipo": "DI(com)",
+        "descripcion": "Marcha/parada local (LCS)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      }
+    ],
+    "16045-AG-30007": [
+      {
+        "tag_io": "16045-AG-30007-START",
+        "nombre_logico": "16045-AG-30007-M.START",
+        "tipo": "DO",
+        "descripcion": "Comando arranque",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30007-STOP",
+        "nombre_logico": "16045-AG-30007-M.STOP",
+        "tipo": "DO",
+        "descripcion": "Comando parada",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30007-RUN",
+        "nombre_logico": "16045-AG-30007-M.RUN",
+        "tipo": "DI",
+        "descripcion": "En marcha",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30007-AVL",
+        "nombre_logico": "16045-AG-30007-M.AVL",
+        "tipo": "DI",
+        "descripcion": "Disponible",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30007-CP",
+        "nombre_logico": "16045-AG-30007-M.CP",
+        "tipo": "DI(com)",
+        "descripcion": "Tensión de control OK (relé inteligente MPR)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30007-FLT",
+        "nombre_logico": "16045-AG-30007-M.FLT",
+        "tipo": "DI(com)",
+        "descripcion": "Falla: sobrecarga / tierra / desbalance",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      },
+      {
+        "tag_io": "16045-AG-30007-LOC",
+        "nombre_logico": "16045-AG-30007-M.LOC",
+        "tipo": "DI(com)",
+        "descripcion": "Marcha/parada local (LCS)",
+        "documentado": "Funciones según filosofía/P&ID; nombre propuesto"
+      }
+    ]
+  }
+}

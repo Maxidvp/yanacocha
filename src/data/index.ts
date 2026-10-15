@@ -9,6 +9,7 @@ import alarmasRaw from '../../data/alarmas.json';
 import causaEfectoRaw from '../../data/causa_efecto.json';
 import layoutRaw from '../../data/layout.json';
 import soeRaw from '../../data/soe.json';
+import senalesPorEquipoRaw from '../../data/senales_por_equipo.json';
 
 export type Json = string | number | boolean | null | Json[] | { [k: string]: Json };
 
@@ -256,6 +257,27 @@ export const soe = soeRaw as unknown as {
   diferencias_con_filosofia: string[];
 };
 export const layout = layoutRaw as unknown as { _fuente: string; _nota: string; cota_planta_m: number; ancho_m: number; alto_m: number; areas: LayoutArea[] };
+
+/** Señal de un equipo/instrumento/válvula (senales_por_equipo.json → mapa[tag]). */
+export interface SenalEquipo {
+  tag_io: string;
+  nombre_logico?: string;
+  /** solo señales de motor: nombre a confirmar con el programador del PCS */
+  nombre_logico_propuesto?: string;
+  tipo: string;
+  descripcion: string;
+  rio?: string;
+  documentado?: boolean | string;
+  rango?: [number, number] | string;
+  unidad?: string;
+  alarmas?: Record<string, Json> | null;
+  caja?: string;
+  bornes?: string | Record<string, string>;
+  cable?: string;
+  [k: string]: Json | undefined;
+}
+export const senalesPorEquipo = senalesPorEquipoRaw as unknown as { _uso: string; _fuentes: string[]; mapa: Record<string, SenalEquipo[]> };
+export const senalesDe = (tag: string): SenalEquipo[] => senalesPorEquipo.mapa[tag] ?? [];
 
 export const instrumentoPorTag = (tag: string) => instrumentos.find((i) => i.tag === tag);
 export const equipoPorTag = (tag: string) => equipos.find((e) => e.tag === tag);

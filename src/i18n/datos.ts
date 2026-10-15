@@ -4,11 +4,13 @@
 // - FRASES_EN: fragmentos dentro de referencias documentales.
 // - CAMPOS_EN: nombres de las claves de los JSON para las fichas técnicas.
 import { DATOS_GEN_EN } from './datos_gen';
+import { DATOS_V3_EN } from './datos_v3';
 
 type Patron = [RegExp, string | ((...m: string[]) => string)];
 
 export const DATOS_EN: Record<string, string> = {
   ...DATOS_GEN_EN,
+  ...DATOS_V3_EN,
   'Presión descarga BL-30008': 'BL-30008 discharge pressure',
   'Presión descarga BL-30009': 'BL-30009 discharge pressure',
   '127 (138 en PRV)': '127 (138 at PRV)',
@@ -50,7 +52,7 @@ const SERV_CM: Record<string, string> = {
 const ESTADO_DI: Record<string, string> = { abierta: 'open', cerrada: 'closed', 'comando solenoide (1=abrir)': 'solenoid command (1=open)', comando: 'command' };
 
 export const PATRONES_DATOS: Patron[] = [
-  [/^Filtro ([A-D]) válvula (\w+) – (abierta|cerrada|comando solenoide \(1=abrir\))$/, (_, l, v, e) => `Filter ${l} ${v} valve – ${ESTADO_DI[e]}`],
+  [/^Filtro ([A-D]) válvula ([\w/]+) – (abierta|cerrada|comando solenoide \(1=abrir\))$/, (_, l, v, e) => `Filter ${l} ${v} valve – ${ESTADO_DI[e]}`],
   [/^Nivel filtro ([A-D])$/, (_, l) => `Filter ${l} level`],
   [/^Nivel filtro ([A-D]) \((16045-FL-\d+)\)$/, (_, l, tag) => `Filter ${l} level (${tag})`],
   [/^Filtro ([A-D]): (.+)$/, (m, l, d) => (VALV_FILTRO[d] ? `Filter ${l}: ${VALV_FILTRO[d]}` : m)],
@@ -58,6 +60,7 @@ export const PATRONES_DATOS: Patron[] = [
   [/^Filtro de medio activo \(gravedad\) ([A-D])$/, (_, l) => `Active media filter (gravity) ${l}`],
   [/^(HV-\d+) falla al (abrir|cerrar)$/, (_, tag, a) => `${tag} failed to ${a === 'abrir' ? 'open' : 'close'}`],
   [/^(16045-\w+-\d+) falla al arrancar$/, (_, tag) => `${tag} failed to start`],
+  [/^Secuenciador (16045-FL-\d+) \(pasos 0–16 \+ HOLD\)$/, (_, tag) => `${tag} sequencer (steps 0–16 + HOLD)`],
   [/^(LAHH-\d+) nivel filtro (\d+)$/, (_, a, f) => `${a} filter ${f} level`],
   [/^(HV-\d+) (abierta|cerrada|comando)$/, (_, tag, e) => `${tag} ${ESTADO_DI[e]}`],
   [/^(Aislamiento|Drenaje) (PI-\d+)$/, (_, a, tag) => `${tag} ${a === 'Aislamiento' ? 'isolation' : 'drain'}`],

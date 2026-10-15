@@ -40,6 +40,11 @@
       "optimista": 2386,
       "minimo": 410,
       "promedio_anual": 1472
+    },
+    "senales_logicas": {
+      "nivel": "LIT-160305601 → LI-160305601, LAHH/LAH/LAL/LALL-160305601 (señal también a bombas RO y HDS TW1, por otros)",
+      "pH": "AIT-160305600 → AI/AIC-160305600, AAHH/AAH/AAL/AALL-160305600",
+      "conductividad": "AIT-160305442 → AI-160305442, AAHH/AAH-160305442"
     }
   },
   {
@@ -55,7 +60,57 @@
     "interlock": "Para por LAL-160305601 (3392 mm) [C&E]. Datasheet: no operar < 2794 mm.",
     "lcs": "16045-AG-30006-M-HS (pulsador START/JOG verde + E-STOP)",
     "fuente": "P-00260-SP-BE-tankmixer-C(EAST), loadlist, LCS",
-    "control": "Solo arranque manual desde PCS; parada manual, E-Stop local o LAL-601 [CP 3.1.2]"
+    "control": "Solo arranque manual desde PCS; parada manual, E-Stop local o LAL-601 [CP 3.1.2]",
+    "motor_ficha": {
+      "fabricante": "WEG",
+      "linea": "W22 IEEE 841 NEMA Premium (derrateado de 15 HP)",
+      "potencia": "10 HP (7.5 kW)",
+      "tension": "460 V 3F 60 Hz",
+      "FLA_A": 13.5,
+      "corriente_vacio_A": 7.0,
+      "rpm": 1780,
+      "carcasa": "254/6TC",
+      "eficiencia_100": 91.7,
+      "fp_100": 0.76,
+      "par_arranque_pct": 360,
+      "t_rotor_bloqueado_s": "31 caliente / 56 frío",
+      "aislacion": "F, ΔT 80 K",
+      "FS": 1.25,
+      "proteccion": "IP65",
+      "altitud": "4500 m",
+      "arranque": "DOL",
+      "peso_lb": 251,
+      "datasheet": "P-00260-SP-BE-Motor-C(EAST Agitator) (26443-220-V1A-MLF0-00120)"
+    },
+    "senales_logicas": {
+      "motor": "16045-AG-30006-M",
+      "estacion_local": "16045-AG-30006-M-HS (pulsador START/JOG verde 800HC-AR1A + hongo E-STOP 800HC-TFRXT6A, caja Saginaw SCE-10086ELJSS6)",
+      "documentado": {
+        "DO_start": "Start command",
+        "DO_stop": "Stop command",
+        "DI_running": "Running",
+        "DI_available": "Available",
+        "alarma": "16045-AG-30006 Failed to Start (alarm list)",
+        "MPR_com": [
+          "Running",
+          "Control power",
+          "Fail (sobrecarga, tierra, desbalance)",
+          "Start/Stop local"
+        ]
+      },
+      "tags_PCS_propuestos": {
+        "DO_start": "16045-AG-30006-M.START",
+        "DO_stop": "16045-AG-30006-M.STOP",
+        "DI_running": "16045-AG-30006-M.RUN",
+        "DI_available": "16045-AG-30006-M.AVL",
+        "COM_ctrl_power": "16045-AG-30006-M.CP",
+        "COM_fail": "16045-AG-30006-M.FLT",
+        "COM_local": "16045-AG-30006-M.LOC",
+        "selector": "16045-AG-30006-M.L/O/R",
+        "alarma": "16045-AG-30006-M.FTS"
+      },
+      "nota": "Los nombres de las señales de motor NO están en los documentos (el MCC es del cliente): los 'propuestos' siguen la convención del P&ID (tag de equipo + '-M') y deben confirmarse con el programador del PCS."
+    }
   },
   {
     "tag": "16045-CM-30011",
@@ -71,8 +126,9 @@
     "calefactor": "60 W 115V (cubículo)",
     "controlador": "Atlas Copco MK5, Modbus TCP/IP + cableado de interlocks",
     "alimentaciones": [
-      "460V 3F motor principal",
-      "460V 3F gabinete de control (3.5 kW)"
+      "460 V 3F motor principal (37 kW, 55.9 A)",
+      "460 V 3F gabinete de control 3.5 kW",
+      "Cable Modbus TCP + cable de interlocks cableados"
     ],
     "servicio": "C (continuo) / redundancia 2x100%",
     "logica_vendor": [
@@ -84,7 +140,66 @@
     "psv": "PSV-160305642 (tarado: 0.45 MPa según P&ID compresor; 2 barg datasheet; 123 kPag índice – A CONFIRMAR)",
     "fuente": "P-00260-SP-BE-aircompressor-C(EAST), AirCompressor-PID-C(EAST), loadlist",
     "control": "Duty/standby. Auto: arranca si habilitado; para por FAHH-160305602 (385) o FALL-160305602 (315 Nm3/h) [CP 3.1.3, C&E]",
-    "aireacion": "Aire a eductores/difusor en el fondo de TK-30015"
+    "aireacion": "Aire a eductores/difusor en el fondo de TK-30015",
+    "motor_ficha": {
+      "fabricante": "TECO",
+      "tipo": "AEHH8N 2 polos",
+      "potencia": "50 HP (37 kW)",
+      "tension": "460 V 3F 60 Hz",
+      "FLA_A": 55.9,
+      "corriente_arranque": "925 % FLA",
+      "rpm": 3555,
+      "carcasa": "365TSD",
+      "FS": 1.15,
+      "proteccion": "TEFC IP65",
+      "calefactor": "60 W 115 V",
+      "arranque": "DOL",
+      "ventilador": "TECO 1.1 kW 3465 rpm 145T",
+      "datasheet": "P-00260-SP-BE-Motor-C(EAST Air Compressor) (26443-220-V1A-MLF0-00118/00254)"
+    },
+    "senales_logicas": {
+      "motor": "16045-CM-30011-M",
+      "estacion_local": "16045-CM-30011-M-HS (pulsador START/JOG verde 800HC-AR1A + hongo E-STOP 800HC-TFRXT6A, caja Saginaw SCE-10086ELJSS6)",
+      "documentado": {
+        "DO_start": "Start command",
+        "DO_stop": "Stop command",
+        "DI_running": "Running",
+        "DI_available": "Available",
+        "alarma": "16045-CM-30011 Failed to Start (alarm list)",
+        "MPR_com": [
+          "Running",
+          "Control power",
+          "Fail (sobrecarga, tierra, desbalance)",
+          "Start/Stop local"
+        ]
+      },
+      "tags_PCS_propuestos": {
+        "DO_start": "16045-CM-30011-M.START",
+        "DO_stop": "16045-CM-30011-M.STOP",
+        "DI_running": "16045-CM-30011-M.RUN",
+        "DI_available": "16045-CM-30011-M.AVL",
+        "COM_ctrl_power": "16045-CM-30011-M.CP",
+        "COM_fail": "16045-CM-30011-M.FLT",
+        "COM_local": "16045-CM-30011-M.LOC",
+        "selector": "16045-CM-30011-M.L/O/R",
+        "alarma": "16045-CM-30011-M.FTS"
+      },
+      "nota": "Los nombres de las señales de motor NO están en los documentos (el MCC es del cliente): los 'propuestos' siguen la convención del P&ID (tag de equipo + '-M') y deben confirmarse con el programador del PCS.",
+      "modbus_MK5": {
+        "PT-160305711A": "Presión descarga",
+        "PDT-160305701A": "ΔP filtro de aire",
+        "PT-160305704A": "Presión aceite",
+        "TT-160305703A": "T descarga (diseño 86–131 °C)",
+        "TT-160305705A": "T aceite",
+        "TT-160305706A": "T devanado U",
+        "TT-160305707A": "T devanado V",
+        "TT-160305708A": "T devanado W",
+        "TT-160305709A": "T rodamiento LA",
+        "TT-160305710A": "T rodamiento LOA",
+        "HY-160305712A": "Solenoide carga/descarga Y1",
+        "LG-160305702A": "Visor nivel aceite (local)"
+      }
+    }
   },
   {
     "tag": "16045-CM-30012",
@@ -95,7 +210,71 @@
     "psv": "PSV-160305643",
     "fuente": "idem",
     "control": "Duty/standby. Auto: arranca si habilitado; para por FAHH-160305602 (385) o FALL-160305602 (315 Nm3/h) [CP 3.1.3, C&E]",
-    "aireacion": "Aire a eductores/difusor en el fondo de TK-30015"
+    "aireacion": "Aire a eductores/difusor en el fondo de TK-30015",
+    "motor_ficha": {
+      "fabricante": "TECO",
+      "tipo": "AEHH8N 2 polos",
+      "potencia": "50 HP (37 kW)",
+      "tension": "460 V 3F 60 Hz",
+      "FLA_A": 55.9,
+      "corriente_arranque": "925 % FLA",
+      "rpm": 3555,
+      "carcasa": "365TSD",
+      "FS": 1.15,
+      "proteccion": "TEFC IP65",
+      "calefactor": "60 W 115 V",
+      "arranque": "DOL",
+      "ventilador": "TECO 1.1 kW 3465 rpm 145T",
+      "datasheet": "P-00260-SP-BE-Motor-C(EAST Air Compressor) (26443-220-V1A-MLF0-00118/00254)"
+    },
+    "senales_logicas": {
+      "motor": "16045-CM-30012-M",
+      "estacion_local": "16045-CM-30012-M-HS (pulsador START/JOG verde 800HC-AR1A + hongo E-STOP 800HC-TFRXT6A, caja Saginaw SCE-10086ELJSS6)",
+      "documentado": {
+        "DO_start": "Start command",
+        "DO_stop": "Stop command",
+        "DI_running": "Running",
+        "DI_available": "Available",
+        "alarma": "16045-CM-30012 Failed to Start (alarm list)",
+        "MPR_com": [
+          "Running",
+          "Control power",
+          "Fail (sobrecarga, tierra, desbalance)",
+          "Start/Stop local"
+        ]
+      },
+      "tags_PCS_propuestos": {
+        "DO_start": "16045-CM-30012-M.START",
+        "DO_stop": "16045-CM-30012-M.STOP",
+        "DI_running": "16045-CM-30012-M.RUN",
+        "DI_available": "16045-CM-30012-M.AVL",
+        "COM_ctrl_power": "16045-CM-30012-M.CP",
+        "COM_fail": "16045-CM-30012-M.FLT",
+        "COM_local": "16045-CM-30012-M.LOC",
+        "selector": "16045-CM-30012-M.L/O/R",
+        "alarma": "16045-CM-30012-M.FTS"
+      },
+      "nota": "Los nombres de las señales de motor NO están en los documentos (el MCC es del cliente): los 'propuestos' siguen la convención del P&ID (tag de equipo + '-M') y deben confirmarse con el programador del PCS.",
+      "modbus_MK5": {
+        "PT-160305711B": "Presión descarga",
+        "PDT-160305701B": "ΔP filtro de aire",
+        "PT-160305704B": "Presión aceite",
+        "TT-160305703B": "T descarga (diseño 86–131 °C)",
+        "TT-160305705B": "T aceite",
+        "TT-160305706B": "T devanado U",
+        "TT-160305707B": "T devanado V",
+        "TT-160305708B": "T devanado W",
+        "TT-160305709B": "T rodamiento LA",
+        "TT-160305710B": "T rodamiento LOA",
+        "HY-160305712B": "Solenoide carga/descarga Y1",
+        "LG-160305702B": "Visor nivel aceite (local)"
+      }
+    },
+    "alimentaciones": [
+      "460 V 3F motor principal (37 kW, 55.9 A)",
+      "460 V 3F gabinete de control 3.5 kW",
+      "Cable Modbus TCP + cable de interlocks cableados"
+    ]
   },
   {
     "tag": "16045-BL-30008",
@@ -117,7 +296,58 @@
     "lcs": "16045-BL-30008-M-HS",
     "fuente": "airblowers-C(EAST), Blowerperformancecurve, loadlist",
     "control": "Ambos en Auto; arranca el duty a pedido de la secuencia del filtro (paso 7), para en paso 8 o por FAHH-160305607 (3000) / FALL-160305607 (1500 Nm3/h). Standby arranca por falla del duty [CP 3.2.1]",
-    "interlock_PID": "No arrancar con HV-160305639 abierta (P&ID nota 9)"
+    "interlock_PID": "No arrancar con HV-160305639 abierta (P&ID nota 9)",
+    "motor_ficha": {
+      "fabricante": "WEG",
+      "linea": "W22 IEEE 841",
+      "potencia": "200 HP (150 kW)",
+      "tension": "460 V 3F 60 Hz",
+      "FLA_A": 225,
+      "corriente_vacio_A": 57.8,
+      "rpm": 1788,
+      "carcasa": "504/5T",
+      "eficiencia_100": 96.2,
+      "fp_100": 0.87,
+      "par_arranque_pct": 240,
+      "t_rotor_bloqueado_s": "44 caliente / 79 frío",
+      "aislacion": "F, ΔT 80 K",
+      "FS": 1.15,
+      "proteccion": "IPW65",
+      "altitud": "4100 m",
+      "calefactor": "120 VAC 1F",
+      "arranque": "DOL (lista de cargas) – la hoja del motor dice VFD: A CONFIRMAR",
+      "peso_lb": 2414,
+      "datasheet": "P-00260-SP-BE-Motor-C(EAST Blower) (26443-220-V1A-MLF0-00119)"
+    },
+    "senales_logicas": {
+      "motor": "16045-BL-30008-M",
+      "estacion_local": "16045-BL-30008-M-HS (pulsador START/JOG verde 800HC-AR1A + hongo E-STOP 800HC-TFRXT6A, caja Saginaw SCE-10086ELJSS6)",
+      "documentado": {
+        "DO_start": "Start command",
+        "DO_stop": "Stop command",
+        "DI_running": "Running",
+        "DI_available": "Available",
+        "alarma": "16045-BL-30008 Failed to Start (alarm list)",
+        "MPR_com": [
+          "Running",
+          "Control power",
+          "Fail (sobrecarga, tierra, desbalance)",
+          "Start/Stop local"
+        ]
+      },
+      "tags_PCS_propuestos": {
+        "DO_start": "16045-BL-30008-M.START",
+        "DO_stop": "16045-BL-30008-M.STOP",
+        "DI_running": "16045-BL-30008-M.RUN",
+        "DI_available": "16045-BL-30008-M.AVL",
+        "COM_ctrl_power": "16045-BL-30008-M.CP",
+        "COM_fail": "16045-BL-30008-M.FLT",
+        "COM_local": "16045-BL-30008-M.LOC",
+        "selector": "16045-BL-30008-M.L/O/R",
+        "alarma": "16045-BL-30008-M.FTS"
+      },
+      "nota": "Los nombres de las señales de motor NO están en los documentos (el MCC es del cliente): los 'propuestos' siguen la convención del P&ID (tag de equipo + '-M') y deben confirmarse con el programador del PCS."
+    }
   },
   {
     "tag": "16045-BL-30009",
@@ -127,7 +357,58 @@
     "psv": "PSV-160305622 tarado 64 kPag",
     "lcs": "16045-BL-30009-M-HS",
     "control": "Ambos en Auto; arranca el duty a pedido de la secuencia del filtro (paso 7), para en paso 8 o por FAHH-160305607 (3000) / FALL-160305607 (1500 Nm3/h). Standby arranca por falla del duty [CP 3.2.1]",
-    "interlock_PID": "No arrancar con HV-160305639 abierta (P&ID nota 9)"
+    "interlock_PID": "No arrancar con HV-160305639 abierta (P&ID nota 9)",
+    "motor_ficha": {
+      "fabricante": "WEG",
+      "linea": "W22 IEEE 841",
+      "potencia": "200 HP (150 kW)",
+      "tension": "460 V 3F 60 Hz",
+      "FLA_A": 225,
+      "corriente_vacio_A": 57.8,
+      "rpm": 1788,
+      "carcasa": "504/5T",
+      "eficiencia_100": 96.2,
+      "fp_100": 0.87,
+      "par_arranque_pct": 240,
+      "t_rotor_bloqueado_s": "44 caliente / 79 frío",
+      "aislacion": "F, ΔT 80 K",
+      "FS": 1.15,
+      "proteccion": "IPW65",
+      "altitud": "4100 m",
+      "calefactor": "120 VAC 1F",
+      "arranque": "DOL (lista de cargas) – la hoja del motor dice VFD: A CONFIRMAR",
+      "peso_lb": 2414,
+      "datasheet": "P-00260-SP-BE-Motor-C(EAST Blower) (26443-220-V1A-MLF0-00119)"
+    },
+    "senales_logicas": {
+      "motor": "16045-BL-30009-M",
+      "estacion_local": "16045-BL-30009-M-HS (pulsador START/JOG verde 800HC-AR1A + hongo E-STOP 800HC-TFRXT6A, caja Saginaw SCE-10086ELJSS6)",
+      "documentado": {
+        "DO_start": "Start command",
+        "DO_stop": "Stop command",
+        "DI_running": "Running",
+        "DI_available": "Available",
+        "alarma": "16045-BL-30009 Failed to Start (alarm list)",
+        "MPR_com": [
+          "Running",
+          "Control power",
+          "Fail (sobrecarga, tierra, desbalance)",
+          "Start/Stop local"
+        ]
+      },
+      "tags_PCS_propuestos": {
+        "DO_start": "16045-BL-30009-M.START",
+        "DO_stop": "16045-BL-30009-M.STOP",
+        "DI_running": "16045-BL-30009-M.RUN",
+        "DI_available": "16045-BL-30009-M.AVL",
+        "COM_ctrl_power": "16045-BL-30009-M.CP",
+        "COM_fail": "16045-BL-30009-M.FLT",
+        "COM_local": "16045-BL-30009-M.LOC",
+        "selector": "16045-BL-30009-M.L/O/R",
+        "alarma": "16045-BL-30009-M.FTS"
+      },
+      "nota": "Los nombres de las señales de motor NO están en los documentos (el MCC es del cliente): los 'propuestos' siguen la convención del P&ID (tag de equipo + '-M') y deben confirmarse con el programador del PCS."
+    }
   },
   {
     "tag": "16045-TK-30016",
@@ -156,7 +437,52 @@
     "arranque": "DOL",
     "interlock": "Para por nivel bajo en TK-30016 (LAL-160305276) [CP 3.3.2, C&E]. Datasheet: no operar < 4064 mm.",
     "lcs": "16045-AG-30007-M-HS",
-    "fuente": "tankmixersecondary-C(EAST), loadlist"
+    "fuente": "tankmixersecondary-C(EAST), loadlist",
+    "motor_ficha": {
+      "fabricante": "WEG",
+      "linea": "W22 IEEE 841 NEMA Premium (derrateado)",
+      "potencia": "25 HP (18.5 kW)",
+      "tension": "460 V 3F 60 Hz",
+      "FLA_A": 32.1,
+      "rpm": 1785,
+      "carcasa": "324/6TC",
+      "eficiencia_100": 94.0,
+      "fp_100": 0.77,
+      "aislacion": "F",
+      "FS": 1.25,
+      "proteccion": "IP65",
+      "arranque": "DOL",
+      "datasheet": "P-00260-SP-BE-Motor-C(EAST Agitator) (26443-220-V1A-MLF0-00120)"
+    },
+    "senales_logicas": {
+      "motor": "16045-AG-30007-M",
+      "estacion_local": "16045-AG-30007-M-HS (pulsador START/JOG verde 800HC-AR1A + hongo E-STOP 800HC-TFRXT6A, caja Saginaw SCE-10086ELJSS6)",
+      "documentado": {
+        "DO_start": "Start command",
+        "DO_stop": "Stop command",
+        "DI_running": "Running",
+        "DI_available": "Available",
+        "alarma": "16045-AG-30007 Failed to Start (alarm list)",
+        "MPR_com": [
+          "Running",
+          "Control power",
+          "Fail (sobrecarga, tierra, desbalance)",
+          "Start/Stop local"
+        ]
+      },
+      "tags_PCS_propuestos": {
+        "DO_start": "16045-AG-30007-M.START",
+        "DO_stop": "16045-AG-30007-M.STOP",
+        "DI_running": "16045-AG-30007-M.RUN",
+        "DI_available": "16045-AG-30007-M.AVL",
+        "COM_ctrl_power": "16045-AG-30007-M.CP",
+        "COM_fail": "16045-AG-30007-M.FLT",
+        "COM_local": "16045-AG-30007-M.LOC",
+        "selector": "16045-AG-30007-M.L/O/R",
+        "alarma": "16045-AG-30007-M.FTS"
+      },
+      "nota": "Los nombres de las señales de motor NO están en los documentos (el MCC es del cliente): los 'propuestos' siguen la convención del P&ID (tag de equipo + '-M') y deben confirmarse con el programador del PCS."
+    }
   },
   {
     "tag": "FILTERED-WATER-SUMP",
@@ -225,6 +551,40 @@
       "H": 1613,
       "L": 280,
       "LL": 140
+    },
+    "senales_logicas": {
+      "tiempo_servicio": "TQI-FL-30035",
+      "secuenciador": "Secuenciador 16045-FL-30035 (pasos 0–16 + HOLD)",
+      "parametros": [
+        "T03",
+        "K03",
+        "T06",
+        "K06",
+        "T07",
+        "T08",
+        "T09",
+        "K09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "botones_PCS": [
+        "Offline",
+        "Standby",
+        "Service",
+        "Backwash",
+        "Regeneration",
+        "Normal/Prolong",
+        "Step Advance",
+        "Hold",
+        "Resume",
+        "Auto",
+        "Semiauto"
+      ]
     }
   },
   {
@@ -287,6 +647,40 @@
       "H": 1613,
       "L": 280,
       "LL": 140
+    },
+    "senales_logicas": {
+      "tiempo_servicio": "TQI-FL-30036",
+      "secuenciador": "Secuenciador 16045-FL-30036 (pasos 0–16 + HOLD)",
+      "parametros": [
+        "T03",
+        "K03",
+        "T06",
+        "K06",
+        "T07",
+        "T08",
+        "T09",
+        "K09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "botones_PCS": [
+        "Offline",
+        "Standby",
+        "Service",
+        "Backwash",
+        "Regeneration",
+        "Normal/Prolong",
+        "Step Advance",
+        "Hold",
+        "Resume",
+        "Auto",
+        "Semiauto"
+      ]
     }
   },
   {
@@ -349,6 +743,40 @@
       "H": 1613,
       "L": 280,
       "LL": 140
+    },
+    "senales_logicas": {
+      "tiempo_servicio": "TQI-FL-30037",
+      "secuenciador": "Secuenciador 16045-FL-30037 (pasos 0–16 + HOLD)",
+      "parametros": [
+        "T03",
+        "K03",
+        "T06",
+        "K06",
+        "T07",
+        "T08",
+        "T09",
+        "K09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "botones_PCS": [
+        "Offline",
+        "Standby",
+        "Service",
+        "Backwash",
+        "Regeneration",
+        "Normal/Prolong",
+        "Step Advance",
+        "Hold",
+        "Resume",
+        "Auto",
+        "Semiauto"
+      ]
     }
   },
   {
@@ -411,6 +839,40 @@
       "H": 1613,
       "L": 280,
       "LL": 140
+    },
+    "senales_logicas": {
+      "tiempo_servicio": "TQI-FL-30038",
+      "secuenciador": "Secuenciador 16045-FL-30038 (pasos 0–16 + HOLD)",
+      "parametros": [
+        "T03",
+        "K03",
+        "T06",
+        "K06",
+        "T07",
+        "T08",
+        "T09",
+        "K09",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "botones_PCS": [
+        "Offline",
+        "Standby",
+        "Service",
+        "Backwash",
+        "Regeneration",
+        "Normal/Prolong",
+        "Step Advance",
+        "Hold",
+        "Resume",
+        "Auto",
+        "Semiauto"
+      ]
     }
   },
   {

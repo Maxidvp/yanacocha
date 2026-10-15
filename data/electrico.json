@@ -171,48 +171,78 @@
   },
   "tablero_instrumentos": {
     "tag": "16045-PK-30005JB",
-    "entrada": "120VAC UPS cliente con descargador DEHN BCO ML2 B 180",
-    "fuente_24VDC": "Phoenix QUINT4-PS/1AC/24DC/1.3",
-    "protecciones": [
-      "CB 3A 120VAC 1P (entrada)",
-      "CB 3A 24VDC 2P",
-      "CB 1A 24VDC 1P x2 (circuitos de instrumentos)"
+    "plano": "P-00260-DW-EC-003J5-P(EAST) rev002 (26443-220-V1A-MLF0-00212)",
+    "caja": "Saginaw SCE-1614ELJSS6 16×14×6\" NEMA 4X SS316 (SAP JB05)",
+    "entrada": "120 VAC 1F 60 Hz 0.37 A desde UPS del cliente → TBP 1(HOT)/2(N) → descargador DEHN BCO ML2 B 180 → MCB-100 3 A",
+    "fuente_24VDC": "Phoenix QUINT4-PS/1AC/24DC/1.3 (2904597)",
+    "salidas": [
+      {
+        "borne": "TBP1/1A MCB-201 1 A",
+        "cable": "DCH-101",
+        "carga": "FIT-160305603 (Promag W 400, 4 hilos)"
+      },
+      {
+        "borne": "TBP1/1A MCB-202 1 A",
+        "carga": "RESERVA"
+      }
     ],
-    "alimenta": "Instrumentos de filtros y caudalímetros (lazo 24VDC). Solenoides/finales de carrera e instrumentos del TK son cableados directo al sistema de control del cliente.",
-    "fuente": "P-00260-DW-EC-003J5-P(EAST)"
+    "protecciones": [
+      "MCB-100 3 A 120 VAC 1P",
+      "MCB-200 3 A 24 VDC 2P",
+      "MCB-201/202 1 A 24 VDC 1P"
+    ],
+    "NO_alimenta": [
+      "LIT-160305604/615/623/631 (lazo desde la AI del PLC del cliente, TBA 24 VDC)",
+      "FIT-160305602/607 (loop powered desde el RIO)",
+      "LIT-601, AIT-600, AIT-442 (por otros, directo al RIO)",
+      "Solenoides y finales de carrera (24 VDC del panel de I/O del cliente vía VJB)"
+    ]
   },
   "cajas_conexion": [
     {
-      "tag": "16045-JB001",
-      "servicio": "TK mezcla primario",
-      "clase": "U"
+      "tag": "16045-FL-30035/36-JB",
+      "sap": "JB01",
+      "contenido": "TBA 1–15: LIT-604 (1-2-3), LIT-615 (4-5-6), resto reserva",
+      "plano": "P-00260-DW-EC-003J1-P(EAST) rev004 (26443-220-V1A-MLF0-00101)"
     },
     {
-      "tag": "16045-JB002",
-      "servicio": "Filtro 30035",
-      "clase": "E"
+      "tag": "16045-FL-30037/38-JB",
+      "sap": "JB03",
+      "contenido": "TBA 1–15: LIT-623 (1-2-3), LIT-631 (4-5-6), resto reserva",
+      "plano": "P-00260-DW-EC-003J3-P(EAST) rev004 (26443-220-V1A-MLF0-00103)"
     },
     {
-      "tag": "16045-JB003",
-      "servicio": "Filtro 30036",
-      "clase": "E"
+      "tag": "16045-FL-30035-VJB",
+      "sap": "JB15",
+      "contenido": "TS1/TS2 1–42: HV-608…614 (6 bornes c/u), 24 LPD DEHN BCO ML2 BE 24",
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
     },
     {
-      "tag": "16045-JB004",
-      "servicio": "Filtro 30037",
-      "clase": "E"
+      "tag": "16045-FL-30036-VJB",
+      "sap": "JB16",
+      "contenido": "TS1/TS2 1–42: HV-616…622",
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
     },
     {
-      "tag": "16045-JB005",
-      "servicio": "Filtro 30038",
-      "clase": "E"
+      "tag": "16045-FL-30037-VJB",
+      "sap": "JB17",
+      "contenido": "TS1/TS2 1–48: HV-624…630 + HV-639 (43–48)",
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
     },
     {
-      "tag": "16045-FL-30035..38-VJB",
-      "servicio": "Cajas de válvulas por filtro (conduits a válvulas on/off)"
+      "tag": "16045-FL-30038-VJB",
+      "sap": "JB18",
+      "contenido": "TS1/TS2 1–48: HV-632…638 + HV-646 (43–48)",
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
     },
     {
-      "nota": "Plano 003J1 indica UNA JB común para LIT de filtros 30035/36 (y 003J? para 30037/38) – A CONFIRMAR vs load list"
+      "tag": "16045-PK-30005JB",
+      "sap": "JB05",
+      "contenido": "Tablero 120 VAC / 24 VDC (solo FIT-603)",
+      "plano": "P-00260-DW-EC-003J5-P(EAST) rev002 (26443-220-V1A-MLF0-00212)"
+    },
+    {
+      "nota": "La lista de cargas menciona 16045-JB001…JB005; los planos as-built usan las cajas de arriba. Usar los planos."
     }
   ],
   "estaciones_locales": {
@@ -239,5 +269,11 @@
     "consumo_prom_Nm3h": 82,
     "consumo_pico_Nm3h": 98,
     "fuente": "utilityconsumptionlist-C(EAST)"
+  },
+  "fallas_correctas": {
+    "perdida_24VDC_PK-30005JB": "Solo FIT-160305603 sin alimentación → AI a 0 mA (falla de lazo NE43) → FIC-603 sin PV (pasar a Manual / mantener salida). Nada más se afecta.",
+    "perdida_120VAC_UPS": "Mismo efecto que la anterior (alimenta solo PK-30005JB).",
+    "perdida_24VDC_panel_IO_cliente": "Solenoides desenergizados → las on/off van a CERRADA (con aire); ZSO/ZSC sin tensión → ambas en 0 → ZAO/ZAC; lazos LIT de filtros caen a 0 mA.",
+    "perdida_aire_instrumentos": "On/off quedan en última posición; FV-603 cierra por resorte."
   }
 }

@@ -14,7 +14,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "LIT-160305604",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "HV-160305608-ZSO",
@@ -23,7 +25,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305608",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305608-ZSC",
@@ -32,7 +36,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305608",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305608",
@@ -41,7 +47,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305608",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305609-ZSO",
@@ -50,7 +58,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305609",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305609-ZSC",
@@ -59,7 +69,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305609",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305609",
@@ -68,7 +80,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305609",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305610-ZSO",
@@ -77,7 +91,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305610",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305610-ZSC",
@@ -86,7 +102,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305610",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305610",
@@ -95,34 +113,42 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305610",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305611-ZSO",
-      "descripcion": "Filtro A válvula FRO – abierta",
+      "descripcion": "Filtro A válvula RO/RW – abierta",
       "tipo_senal": "DI",
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305611",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305611-ZSC",
-      "descripcion": "Filtro A válvula FRO – cerrada",
+      "descripcion": "Filtro A válvula RO/RW – cerrada",
       "tipo_senal": "DI",
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305611",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305611",
-      "descripcion": "Filtro A válvula FRO – comando solenoide (1=abrir)",
+      "descripcion": "Filtro A válvula RO/RW – comando solenoide (1=abrir)",
       "tipo_senal": "DO",
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305611",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305612-ZSO",
@@ -131,7 +157,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305612",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305612-ZSC",
@@ -140,7 +168,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305612",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305612",
@@ -149,7 +179,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305612",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305613-ZSO",
@@ -158,7 +190,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305613",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305613-ZSC",
@@ -167,7 +201,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305613",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305613",
@@ -176,7 +212,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305613",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305614-ZSO",
@@ -185,7 +223,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305614",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305614-ZSC",
@@ -194,7 +234,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305614",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305614",
@@ -203,7 +245,9 @@
       "modulo_rio": "P2",
       "servicio": "ACTIVE MEDIA FILTER-A",
       "equipo": "16045-FL-30035",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305614",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "LIT-160305615",
@@ -212,7 +256,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "LIT-160305615",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "HV-160305616-ZSO",
@@ -221,7 +267,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305616",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305616-ZSC",
@@ -230,7 +278,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305616",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305616",
@@ -239,7 +289,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305616",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305617-ZSO",
@@ -248,7 +300,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305617",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305617-ZSC",
@@ -257,7 +311,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305617",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305617",
@@ -266,7 +322,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305617",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305618-ZSO",
@@ -275,7 +333,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305618",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305618-ZSC",
@@ -284,7 +344,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305618",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305618",
@@ -293,34 +355,42 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305618",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305619-ZSO",
-      "descripcion": "Filtro B válvula FRO – abierta",
+      "descripcion": "Filtro B válvula RO/RW – abierta",
       "tipo_senal": "DI",
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305619",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305619-ZSC",
-      "descripcion": "Filtro B válvula FRO – cerrada",
+      "descripcion": "Filtro B válvula RO/RW – cerrada",
       "tipo_senal": "DI",
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305619",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305619",
-      "descripcion": "Filtro B válvula FRO – comando solenoide (1=abrir)",
+      "descripcion": "Filtro B válvula RO/RW – comando solenoide (1=abrir)",
       "tipo_senal": "DO",
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305619",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305620-ZSO",
@@ -329,7 +399,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305620",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305620-ZSC",
@@ -338,7 +410,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305620",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305620",
@@ -347,7 +421,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305620",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305621-ZSO",
@@ -356,7 +432,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305621",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305621-ZSC",
@@ -365,7 +443,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305621",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305621",
@@ -374,7 +454,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305621",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305622-ZSO",
@@ -383,7 +465,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305622",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305622-ZSC",
@@ -392,7 +476,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305622",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305622",
@@ -401,7 +487,9 @@
       "modulo_rio": "P3",
       "servicio": "ACTIVE MEDIA FILTER-B",
       "equipo": "16045-FL-30036",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305622",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "LIT-160305623",
@@ -410,7 +498,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "LIT-160305623",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "HV-160305624-ZSO",
@@ -419,7 +509,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305624",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305624-ZSC",
@@ -428,7 +520,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305624",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305624",
@@ -437,7 +531,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305624",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305625-ZSO",
@@ -446,7 +542,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305625",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305625-ZSC",
@@ -455,7 +553,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305625",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305625",
@@ -464,7 +564,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305625",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305626-ZSO",
@@ -473,7 +575,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305626",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305626-ZSC",
@@ -482,7 +586,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305626",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305626",
@@ -491,34 +597,42 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305626",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305627-ZSO",
-      "descripcion": "Filtro C válvula FRO – abierta",
+      "descripcion": "Filtro C válvula RO/RW – abierta",
       "tipo_senal": "DI",
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305627",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305627-ZSC",
-      "descripcion": "Filtro C válvula FRO – cerrada",
+      "descripcion": "Filtro C válvula RO/RW – cerrada",
       "tipo_senal": "DI",
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305627",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305627",
-      "descripcion": "Filtro C válvula FRO – comando solenoide (1=abrir)",
+      "descripcion": "Filtro C válvula RO/RW – comando solenoide (1=abrir)",
       "tipo_senal": "DO",
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305627",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305628-ZSO",
@@ -527,7 +641,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305628",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305628-ZSC",
@@ -536,7 +652,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305628",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305628",
@@ -545,7 +663,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305628",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305629-ZSO",
@@ -554,7 +674,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305629",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305629-ZSC",
@@ -563,7 +685,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305629",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305629",
@@ -572,7 +696,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305629",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305630-ZSO",
@@ -581,7 +707,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305630",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305630-ZSC",
@@ -590,7 +718,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305630",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305630",
@@ -599,7 +729,9 @@
       "modulo_rio": "P4",
       "servicio": "ACTIVE MEDIA FILTER-C",
       "equipo": "16045-FL-30037",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305630",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "LIT-160305631",
@@ -608,7 +740,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "LIT-160305631",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "HV-160305632-ZSO",
@@ -617,7 +751,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305632",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305632-ZSC",
@@ -626,7 +762,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305632",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305632",
@@ -635,7 +773,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305632",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305633-ZSO",
@@ -644,7 +784,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305633",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305633-ZSC",
@@ -653,7 +795,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305633",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305633",
@@ -662,7 +806,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305633",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305634-ZSO",
@@ -671,7 +817,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305634",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305634-ZSC",
@@ -680,7 +828,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305634",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305634",
@@ -689,34 +839,42 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305634",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305635-ZSO",
-      "descripcion": "Filtro D válvula FRO – abierta",
+      "descripcion": "Filtro D válvula RO/RW – abierta",
       "tipo_senal": "DI",
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305635",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305635-ZSC",
-      "descripcion": "Filtro D válvula FRO – cerrada",
+      "descripcion": "Filtro D válvula RO/RW – cerrada",
       "tipo_senal": "DI",
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305635",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305635",
-      "descripcion": "Filtro D válvula FRO – comando solenoide (1=abrir)",
+      "descripcion": "Filtro D válvula RO/RW – comando solenoide (1=abrir)",
       "tipo_senal": "DO",
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305635",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305636-ZSO",
@@ -725,7 +883,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305636",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305636-ZSC",
@@ -734,7 +894,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305636",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305636",
@@ -743,7 +905,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305636",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305637-ZSO",
@@ -752,7 +916,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305637",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305637-ZSC",
@@ -761,7 +927,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305637",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305637",
@@ -770,7 +938,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305637",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305638-ZSO",
@@ -779,7 +949,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305638",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305638-ZSC",
@@ -788,7 +960,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305638",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305638",
@@ -797,7 +971,9 @@
       "modulo_rio": "P5",
       "servicio": "ACTIVE MEDIA FILTER-D",
       "equipo": "16045-FL-30038",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305638",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "FIT-160305602",
@@ -806,7 +982,9 @@
       "modulo_rio": "P1",
       "servicio": "PRI. TW MIXING TANK COMPRESSOR",
       "equipo": "16045-CM-30011/12",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "FIT-160305602",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "LIT-160305601",
@@ -815,7 +993,9 @@
       "modulo_rio": "P1",
       "servicio": "PRI. TW MIXING TANK",
       "equipo": "16045-TK-30015",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "LIT-160305601",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "AIT-160305442",
@@ -824,7 +1004,9 @@
       "modulo_rio": "P1",
       "servicio": "PRI. TW MIXING TANK",
       "equipo": "16045-TK-30015",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "AIT-160305442",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "AIT-160305600",
@@ -833,7 +1015,9 @@
       "modulo_rio": "P1",
       "servicio": "PRI. TW MIXING TANK",
       "equipo": "16045-TK-30015",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "AIT-160305600",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "FIT-160305603",
@@ -842,7 +1026,9 @@
       "modulo_rio": "P1",
       "servicio": "FILTERED WATER SUMP",
       "equipo": "FV-160305603",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "FIT-160305603",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "FIT-160305607",
@@ -851,7 +1037,9 @@
       "modulo_rio": "P2",
       "servicio": "AIR BLOWER",
       "equipo": "16045-BL-30008/09",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "FIT-160305607",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "FZI-160305603",
@@ -860,7 +1048,9 @@
       "modulo_rio": "P1",
       "servicio": "FILTERED WATER SUMP",
       "equipo": "FV-160305603",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "FZI-160305603",
+      "fuente_nombre_logico": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003 (26443-220-V1A-MLF0-00263)"
     },
     {
       "tag": "FCV-160305603",
@@ -869,7 +1059,9 @@
       "modulo_rio": "P1",
       "servicio": "FILTERED WATER SUMP",
       "equipo": "FV-160305603",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "FIC-160305603.OUT → FV-160305603",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305646-ZSO",
@@ -878,7 +1070,9 @@
       "modulo_rio": "P1",
       "servicio": "PRI. TW MIXING TANK COMPRESSOR",
       "equipo": "HV-160305646",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305646",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305646-ZSC",
@@ -887,7 +1081,9 @@
       "modulo_rio": "P1",
       "servicio": "PRI. TW MIXING TANK COMPRESSOR",
       "equipo": "HV-160305646",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305646",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305646",
@@ -896,7 +1092,9 @@
       "modulo_rio": "P1",
       "servicio": "PRI. TW MIXING TANK COMPRESSOR",
       "equipo": "HV-160305646",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305646",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305639-ZSO",
@@ -905,7 +1103,9 @@
       "modulo_rio": "P2",
       "servicio": "AIR BLOWER",
       "equipo": "HV-160305639",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSO-160305639",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305639-ZSC",
@@ -914,7 +1114,9 @@
       "modulo_rio": "P2",
       "servicio": "AIR BLOWER",
       "equipo": "HV-160305639",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "ZSC-160305639",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     },
     {
       "tag": "HV-160305639",
@@ -923,7 +1125,9 @@
       "modulo_rio": "P2",
       "servicio": "AIR BLOWER",
       "equipo": "HV-160305639",
-      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003"
+      "fuente": "P-00260-PD-EC-inputoutputlist-P(EAST) rev003",
+      "nombre_logico": "HY-160305639",
+      "fuente_nombre_logico": "J6 / filosofía rev005"
     }
   ],
   "io_motores": [
@@ -932,294 +1136,336 @@
       "descripcion": "Comando arranque",
       "tipo_senal": "DO",
       "equipo": "16045-AG-30006",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30006-M.START"
     },
     {
       "tag": "16045-AG-30006-STOP",
       "descripcion": "Comando parada",
       "tipo_senal": "DO",
       "equipo": "16045-AG-30006",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30006-M.STOP"
     },
     {
       "tag": "16045-AG-30006-RUN",
       "descripcion": "En marcha",
       "tipo_senal": "DI",
       "equipo": "16045-AG-30006",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30006-M.RUN"
     },
     {
       "tag": "16045-AG-30006-AVL",
       "descripcion": "Disponible",
       "tipo_senal": "DI",
       "equipo": "16045-AG-30006",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30006-M.AVL"
     },
     {
       "tag": "16045-AG-30006-CP",
       "descripcion": "Tensión de control OK (relé inteligente MPR)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-AG-30006",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30006-M.CP"
     },
     {
       "tag": "16045-AG-30006-FLT",
       "descripcion": "Falla: sobrecarga / tierra / desbalance",
       "tipo_senal": "DI(com)",
       "equipo": "16045-AG-30006",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30006-M.FLT"
     },
     {
       "tag": "16045-AG-30006-LOC",
       "descripcion": "Marcha/parada local (LCS)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-AG-30006",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30006-M.LOC"
     },
     {
       "tag": "16045-AG-30007-START",
       "descripcion": "Comando arranque",
       "tipo_senal": "DO",
       "equipo": "16045-AG-30007",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30007-M.START"
     },
     {
       "tag": "16045-AG-30007-STOP",
       "descripcion": "Comando parada",
       "tipo_senal": "DO",
       "equipo": "16045-AG-30007",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30007-M.STOP"
     },
     {
       "tag": "16045-AG-30007-RUN",
       "descripcion": "En marcha",
       "tipo_senal": "DI",
       "equipo": "16045-AG-30007",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30007-M.RUN"
     },
     {
       "tag": "16045-AG-30007-AVL",
       "descripcion": "Disponible",
       "tipo_senal": "DI",
       "equipo": "16045-AG-30007",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30007-M.AVL"
     },
     {
       "tag": "16045-AG-30007-CP",
       "descripcion": "Tensión de control OK (relé inteligente MPR)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-AG-30007",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30007-M.CP"
     },
     {
       "tag": "16045-AG-30007-FLT",
       "descripcion": "Falla: sobrecarga / tierra / desbalance",
       "tipo_senal": "DI(com)",
       "equipo": "16045-AG-30007",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30007-M.FLT"
     },
     {
       "tag": "16045-AG-30007-LOC",
       "descripcion": "Marcha/parada local (LCS)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-AG-30007",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-AG-30007-M.LOC"
     },
     {
       "tag": "16045-BL-30008-START",
       "descripcion": "Comando arranque",
       "tipo_senal": "DO",
       "equipo": "16045-BL-30008",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30008-M.START"
     },
     {
       "tag": "16045-BL-30008-STOP",
       "descripcion": "Comando parada",
       "tipo_senal": "DO",
       "equipo": "16045-BL-30008",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30008-M.STOP"
     },
     {
       "tag": "16045-BL-30008-RUN",
       "descripcion": "En marcha",
       "tipo_senal": "DI",
       "equipo": "16045-BL-30008",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30008-M.RUN"
     },
     {
       "tag": "16045-BL-30008-AVL",
       "descripcion": "Disponible",
       "tipo_senal": "DI",
       "equipo": "16045-BL-30008",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30008-M.AVL"
     },
     {
       "tag": "16045-BL-30008-CP",
       "descripcion": "Tensión de control OK (relé inteligente MPR)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-BL-30008",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30008-M.CP"
     },
     {
       "tag": "16045-BL-30008-FLT",
       "descripcion": "Falla: sobrecarga / tierra / desbalance",
       "tipo_senal": "DI(com)",
       "equipo": "16045-BL-30008",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30008-M.FLT"
     },
     {
       "tag": "16045-BL-30008-LOC",
       "descripcion": "Marcha/parada local (LCS)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-BL-30008",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30008-M.LOC"
     },
     {
       "tag": "16045-BL-30009-START",
       "descripcion": "Comando arranque",
       "tipo_senal": "DO",
       "equipo": "16045-BL-30009",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30009-M.START"
     },
     {
       "tag": "16045-BL-30009-STOP",
       "descripcion": "Comando parada",
       "tipo_senal": "DO",
       "equipo": "16045-BL-30009",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30009-M.STOP"
     },
     {
       "tag": "16045-BL-30009-RUN",
       "descripcion": "En marcha",
       "tipo_senal": "DI",
       "equipo": "16045-BL-30009",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30009-M.RUN"
     },
     {
       "tag": "16045-BL-30009-AVL",
       "descripcion": "Disponible",
       "tipo_senal": "DI",
       "equipo": "16045-BL-30009",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30009-M.AVL"
     },
     {
       "tag": "16045-BL-30009-CP",
       "descripcion": "Tensión de control OK (relé inteligente MPR)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-BL-30009",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30009-M.CP"
     },
     {
       "tag": "16045-BL-30009-FLT",
       "descripcion": "Falla: sobrecarga / tierra / desbalance",
       "tipo_senal": "DI(com)",
       "equipo": "16045-BL-30009",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30009-M.FLT"
     },
     {
       "tag": "16045-BL-30009-LOC",
       "descripcion": "Marcha/parada local (LCS)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-BL-30009",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-BL-30009-M.LOC"
     },
     {
       "tag": "16045-CM-30011-START",
       "descripcion": "Comando arranque",
       "tipo_senal": "DO",
       "equipo": "16045-CM-30011",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30011-M.START"
     },
     {
       "tag": "16045-CM-30011-STOP",
       "descripcion": "Comando parada",
       "tipo_senal": "DO",
       "equipo": "16045-CM-30011",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30011-M.STOP"
     },
     {
       "tag": "16045-CM-30011-RUN",
       "descripcion": "En marcha",
       "tipo_senal": "DI",
       "equipo": "16045-CM-30011",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30011-M.RUN"
     },
     {
       "tag": "16045-CM-30011-AVL",
       "descripcion": "Disponible",
       "tipo_senal": "DI",
       "equipo": "16045-CM-30011",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30011-M.AVL"
     },
     {
       "tag": "16045-CM-30011-CP",
       "descripcion": "Tensión de control OK (relé inteligente MPR)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-CM-30011",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30011-M.CP"
     },
     {
       "tag": "16045-CM-30011-FLT",
       "descripcion": "Falla: sobrecarga / tierra / desbalance",
       "tipo_senal": "DI(com)",
       "equipo": "16045-CM-30011",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30011-M.FLT"
     },
     {
       "tag": "16045-CM-30011-LOC",
       "descripcion": "Marcha/parada local (LCS)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-CM-30011",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30011-M.LOC"
     },
     {
       "tag": "16045-CM-30012-START",
       "descripcion": "Comando arranque",
       "tipo_senal": "DO",
       "equipo": "16045-CM-30012",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30012-M.START"
     },
     {
       "tag": "16045-CM-30012-STOP",
       "descripcion": "Comando parada",
       "tipo_senal": "DO",
       "equipo": "16045-CM-30012",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30012-M.STOP"
     },
     {
       "tag": "16045-CM-30012-RUN",
       "descripcion": "En marcha",
       "tipo_senal": "DI",
       "equipo": "16045-CM-30012",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30012-M.RUN"
     },
     {
       "tag": "16045-CM-30012-AVL",
       "descripcion": "Disponible",
       "tipo_senal": "DI",
       "equipo": "16045-CM-30012",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30012-M.AVL"
     },
     {
       "tag": "16045-CM-30012-CP",
       "descripcion": "Tensión de control OK (relé inteligente MPR)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-CM-30012",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30012-M.CP"
     },
     {
       "tag": "16045-CM-30012-FLT",
       "descripcion": "Falla: sobrecarga / tierra / desbalance",
       "tipo_senal": "DI(com)",
       "equipo": "16045-CM-30012",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30012-M.FLT"
     },
     {
       "tag": "16045-CM-30012-LOC",
       "descripcion": "Marcha/parada local (LCS)",
       "tipo_senal": "DI(com)",
       "equipo": "16045-CM-30012",
-      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)"
+      "fuente": "P-00260-PD-PCE-controlphilosophy-C(EAST) rev005 (en Training Manual) (Start/Stop/Running/Available); P-00260-DW-AE-001P-C(EAST) rev005 notas motores 1-5 (resto vía comunicación MPR)",
+      "nombre_logico_propuesto": "16045-CM-30012-M.LOC"
     }
   ],
   "modos_motor": {

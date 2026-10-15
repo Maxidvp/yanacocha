@@ -9,7 +9,7 @@
     "fluido": "RAW water",
     "modelo": "Bray Trilok T1 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305608",
@@ -18,9 +18,50 @@
     },
     "rio": "P2",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305608",
+      "abierta_DI": "ZSO-160305608",
+      "cerrada_DI": "ZSC-160305608",
+      "alarma_falla_abrir": "ZAO-160305608",
+      "alarma_falla_cerrar": "ZAC-160305608",
+      "selector_PCS": "HIS-160305608 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305608",
+        "DI_abierta": "HV-160305608-ZSO",
+        "DI_cerrada": "HV-160305608-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30035-VJB",
+      "sap_caja": "JB15",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/1 ↔ TS2/1",
+        "HY−": "TS1/2 ↔ TS2/2",
+        "ZSO": "TS1/3–4 ↔ TS2/3–4",
+        "ZSC": "TS1/5–6 ↔ TS2/5–6"
+      },
+      "protectores": "LPD1–LPD3 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305608U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 108
+        },
+        {
+          "tag": "HV160305608U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 108
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305609",
@@ -32,7 +73,7 @@
     "fluido": "Regeneración NaOCl 5%",
     "modelo": "Bray Trilok F0 + Rack&Pinion S.92-1280",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305609",
@@ -41,9 +82,50 @@
     },
     "rio": "P2",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305609",
+      "abierta_DI": "ZSO-160305609",
+      "cerrada_DI": "ZSC-160305609",
+      "alarma_falla_abrir": "ZAO-160305609",
+      "alarma_falla_cerrar": "ZAC-160305609",
+      "selector_PCS": "HIS-160305609 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305609",
+        "DI_abierta": "HV-160305609-ZSO",
+        "DI_cerrada": "HV-160305609-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30035-VJB",
+      "sap_caja": "JB15",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/7 ↔ TS2/7",
+        "HY−": "TS1/8 ↔ TS2/8",
+        "ZSO": "TS1/9–10 ↔ TS2/9–10",
+        "ZSC": "TS1/11–12 ↔ TS2/11–12"
+      },
+      "protectores": "LPD4–LPD6 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305609U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 108
+        },
+        {
+          "tag": "HV160305609U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 108
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305610",
@@ -55,7 +137,7 @@
     "fluido": "Agua de desecho",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98-45E2-09",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305610",
@@ -64,9 +146,50 @@
     },
     "rio": "P2",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305610",
+      "abierta_DI": "ZSO-160305610",
+      "cerrada_DI": "ZSC-160305610",
+      "alarma_falla_abrir": "ZAO-160305610",
+      "alarma_falla_cerrar": "ZAC-160305610",
+      "selector_PCS": "HIS-160305610 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305610",
+        "DI_abierta": "HV-160305610-ZSO",
+        "DI_cerrada": "HV-160305610-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30035-VJB",
+      "sap_caja": "JB15",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/13 ↔ TS2/13",
+        "HY−": "TS1/14 ↔ TS2/14",
+        "ZSO": "TS1/15–16 ↔ TS2/15–16",
+        "ZSC": "TS1/17–18 ↔ TS2/17–18"
+      },
+      "protectores": "LPD7–LPD9 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305610U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 85
+        },
+        {
+          "tag": "HV160305610U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 85
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305611",
@@ -78,7 +201,7 @@
     "fluido": "Agua de enjuague",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305611",
@@ -87,9 +210,50 @@
     },
     "rio": "P2",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305611",
+      "abierta_DI": "ZSO-160305611",
+      "cerrada_DI": "ZSC-160305611",
+      "alarma_falla_abrir": "ZAO-160305611",
+      "alarma_falla_cerrar": "ZAC-160305611",
+      "selector_PCS": "HIS-160305611 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305611",
+        "DI_abierta": "HV-160305611-ZSO",
+        "DI_cerrada": "HV-160305611-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30035-VJB",
+      "sap_caja": "JB15",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/19 ↔ TS2/19",
+        "HY−": "TS1/20 ↔ TS2/20",
+        "ZSO": "TS1/21–22 ↔ TS2/21–22",
+        "ZSC": "TS1/23–24 ↔ TS2/23–24"
+      },
+      "protectores": "LPD10–LPD12 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305611U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 85
+        },
+        {
+          "tag": "HV160305611U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 85
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305612",
@@ -101,7 +265,7 @@
     "fluido": "Agua tratada",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305612",
@@ -110,9 +274,50 @@
     },
     "rio": "P2",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305612",
+      "abierta_DI": "ZSO-160305612",
+      "cerrada_DI": "ZSC-160305612",
+      "alarma_falla_abrir": "ZAO-160305612",
+      "alarma_falla_cerrar": "ZAC-160305612",
+      "selector_PCS": "HIS-160305612 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305612",
+        "DI_abierta": "HV-160305612-ZSO",
+        "DI_cerrada": "HV-160305612-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30035-VJB",
+      "sap_caja": "JB15",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/25 ↔ TS2/25",
+        "HY−": "TS1/26 ↔ TS2/26",
+        "ZSO": "TS1/27–28 ↔ TS2/27–28",
+        "ZSC": "TS1/29–30 ↔ TS2/29–30"
+      },
+      "protectores": "LPD13–LPD15 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305612U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 108
+        },
+        {
+          "tag": "HV160305612U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 108
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305613",
@@ -124,7 +329,7 @@
     "fluido": "Agua filtrada",
     "modelo": "Bray Trilok T1 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305613",
@@ -133,9 +338,50 @@
     },
     "rio": "P2",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305613",
+      "abierta_DI": "ZSO-160305613",
+      "cerrada_DI": "ZSC-160305613",
+      "alarma_falla_abrir": "ZAO-160305613",
+      "alarma_falla_cerrar": "ZAC-160305613",
+      "selector_PCS": "HIS-160305613 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305613",
+        "DI_abierta": "HV-160305613-ZSO",
+        "DI_cerrada": "HV-160305613-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30035-VJB",
+      "sap_caja": "JB15",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/31 ↔ TS2/31",
+        "HY−": "TS1/32 ↔ TS2/32",
+        "ZSO": "TS1/33–34 ↔ TS2/33–34",
+        "ZSC": "TS1/35–36 ↔ TS2/35–36"
+      },
+      "protectores": "LPD16–LPD18 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305613U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 85
+        },
+        {
+          "tag": "HV160305613U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 85
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305614",
@@ -147,7 +393,7 @@
     "fluido": "Aire",
     "modelo": "Bray Trilok F0 + Rack&Pinion S.92-1600",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305614",
@@ -156,9 +402,50 @@
     },
     "rio": "P2",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305614",
+      "abierta_DI": "ZSO-160305614",
+      "cerrada_DI": "ZSC-160305614",
+      "alarma_falla_abrir": "ZAO-160305614",
+      "alarma_falla_cerrar": "ZAC-160305614",
+      "selector_PCS": "HIS-160305614 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305614",
+        "DI_abierta": "HV-160305614-ZSO",
+        "DI_cerrada": "HV-160305614-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30035-VJB",
+      "sap_caja": "JB15",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/37 ↔ TS2/37",
+        "HY−": "TS1/38 ↔ TS2/38",
+        "ZSO": "TS1/39–40 ↔ TS2/39–40",
+        "ZSC": "TS1/41–42 ↔ TS2/41–42"
+      },
+      "protectores": "LPD19–LPD21 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305614U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 53
+        },
+        {
+          "tag": "HV160305614U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 53
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305616",
@@ -170,7 +457,7 @@
     "fluido": "RAW water",
     "modelo": "Bray Trilok T1 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305616",
@@ -179,9 +466,50 @@
     },
     "rio": "P3",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305616",
+      "abierta_DI": "ZSO-160305616",
+      "cerrada_DI": "ZSC-160305616",
+      "alarma_falla_abrir": "ZAO-160305616",
+      "alarma_falla_cerrar": "ZAC-160305616",
+      "selector_PCS": "HIS-160305616 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305616",
+        "DI_abierta": "HV-160305616-ZSO",
+        "DI_cerrada": "HV-160305616-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30036-VJB",
+      "sap_caja": "JB16",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/1 ↔ TS2/1",
+        "HY−": "TS1/2 ↔ TS2/2",
+        "ZSO": "TS1/3–4 ↔ TS2/3–4",
+        "ZSC": "TS1/5–6 ↔ TS2/5–6"
+      },
+      "protectores": "LPD1–LPD3 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305616U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 79
+        },
+        {
+          "tag": "HV160305616U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 79
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305617",
@@ -193,7 +521,7 @@
     "fluido": "Regeneración NaOCl 5%",
     "modelo": "Bray Trilok F0 + Rack&Pinion S.92-1280",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305617",
@@ -202,9 +530,50 @@
     },
     "rio": "P3",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305617",
+      "abierta_DI": "ZSO-160305617",
+      "cerrada_DI": "ZSC-160305617",
+      "alarma_falla_abrir": "ZAO-160305617",
+      "alarma_falla_cerrar": "ZAC-160305617",
+      "selector_PCS": "HIS-160305617 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305617",
+        "DI_abierta": "HV-160305617-ZSO",
+        "DI_cerrada": "HV-160305617-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30036-VJB",
+      "sap_caja": "JB16",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/7 ↔ TS2/7",
+        "HY−": "TS1/8 ↔ TS2/8",
+        "ZSO": "TS1/9–10 ↔ TS2/9–10",
+        "ZSC": "TS1/11–12 ↔ TS2/11–12"
+      },
+      "protectores": "LPD4–LPD6 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305617U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 79
+        },
+        {
+          "tag": "HV160305617U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 79
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305618",
@@ -216,7 +585,7 @@
     "fluido": "Agua de desecho",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98-45E2-09",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305618",
@@ -225,9 +594,50 @@
     },
     "rio": "P3",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305618",
+      "abierta_DI": "ZSO-160305618",
+      "cerrada_DI": "ZSC-160305618",
+      "alarma_falla_abrir": "ZAO-160305618",
+      "alarma_falla_cerrar": "ZAC-160305618",
+      "selector_PCS": "HIS-160305618 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305618",
+        "DI_abierta": "HV-160305618-ZSO",
+        "DI_cerrada": "HV-160305618-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30036-VJB",
+      "sap_caja": "JB16",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/13 ↔ TS2/13",
+        "HY−": "TS1/14 ↔ TS2/14",
+        "ZSO": "TS1/15–16 ↔ TS2/15–16",
+        "ZSC": "TS1/17–18 ↔ TS2/17–18"
+      },
+      "protectores": "LPD7–LPD9 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305618U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 56
+        },
+        {
+          "tag": "HV160305618U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 56
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305619",
@@ -239,7 +649,7 @@
     "fluido": "Agua de enjuague",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305619",
@@ -248,9 +658,50 @@
     },
     "rio": "P3",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305619",
+      "abierta_DI": "ZSO-160305619",
+      "cerrada_DI": "ZSC-160305619",
+      "alarma_falla_abrir": "ZAO-160305619",
+      "alarma_falla_cerrar": "ZAC-160305619",
+      "selector_PCS": "HIS-160305619 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305619",
+        "DI_abierta": "HV-160305619-ZSO",
+        "DI_cerrada": "HV-160305619-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30036-VJB",
+      "sap_caja": "JB16",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/19 ↔ TS2/19",
+        "HY−": "TS1/20 ↔ TS2/20",
+        "ZSO": "TS1/21–22 ↔ TS2/21–22",
+        "ZSC": "TS1/23–24 ↔ TS2/23–24"
+      },
+      "protectores": "LPD10–LPD12 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305619U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 56
+        },
+        {
+          "tag": "HV160305619U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 56
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305620",
@@ -262,7 +713,7 @@
     "fluido": "Agua tratada",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305620",
@@ -271,9 +722,50 @@
     },
     "rio": "P3",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305620",
+      "abierta_DI": "ZSO-160305620",
+      "cerrada_DI": "ZSC-160305620",
+      "alarma_falla_abrir": "ZAO-160305620",
+      "alarma_falla_cerrar": "ZAC-160305620",
+      "selector_PCS": "HIS-160305620 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305620",
+        "DI_abierta": "HV-160305620-ZSO",
+        "DI_cerrada": "HV-160305620-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30036-VJB",
+      "sap_caja": "JB16",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/25 ↔ TS2/25",
+        "HY−": "TS1/26 ↔ TS2/26",
+        "ZSO": "TS1/27–28 ↔ TS2/27–28",
+        "ZSC": "TS1/29–30 ↔ TS2/29–30"
+      },
+      "protectores": "LPD13–LPD15 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305620U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 79
+        },
+        {
+          "tag": "HV160305620U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 79
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305621",
@@ -285,7 +777,7 @@
     "fluido": "Agua filtrada",
     "modelo": "Bray Trilok T1 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305621",
@@ -294,9 +786,50 @@
     },
     "rio": "P3",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305621",
+      "abierta_DI": "ZSO-160305621",
+      "cerrada_DI": "ZSC-160305621",
+      "alarma_falla_abrir": "ZAO-160305621",
+      "alarma_falla_cerrar": "ZAC-160305621",
+      "selector_PCS": "HIS-160305621 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305621",
+        "DI_abierta": "HV-160305621-ZSO",
+        "DI_cerrada": "HV-160305621-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30036-VJB",
+      "sap_caja": "JB16",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/31 ↔ TS2/31",
+        "HY−": "TS1/32 ↔ TS2/32",
+        "ZSO": "TS1/33–34 ↔ TS2/33–34",
+        "ZSC": "TS1/35–36 ↔ TS2/35–36"
+      },
+      "protectores": "LPD16–LPD18 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305621U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 56
+        },
+        {
+          "tag": "HV160305621U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 56
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305622",
@@ -308,7 +841,7 @@
     "fluido": "Aire",
     "modelo": "Bray Trilok F0 + Rack&Pinion S.92-1600",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305622",
@@ -317,9 +850,50 @@
     },
     "rio": "P3",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305622",
+      "abierta_DI": "ZSO-160305622",
+      "cerrada_DI": "ZSC-160305622",
+      "alarma_falla_abrir": "ZAO-160305622",
+      "alarma_falla_cerrar": "ZAC-160305622",
+      "selector_PCS": "HIS-160305622 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305622",
+        "DI_abierta": "HV-160305622-ZSO",
+        "DI_cerrada": "HV-160305622-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30036-VJB",
+      "sap_caja": "JB16",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/37 ↔ TS2/37",
+        "HY−": "TS1/38 ↔ TS2/38",
+        "ZSO": "TS1/39–40 ↔ TS2/39–40",
+        "ZSC": "TS1/41–42 ↔ TS2/41–42"
+      },
+      "protectores": "LPD19–LPD21 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305622U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 76
+        },
+        {
+          "tag": "HV160305622U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 76
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305624",
@@ -331,7 +905,7 @@
     "fluido": "RAW water",
     "modelo": "Bray Trilok T1 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305624",
@@ -340,9 +914,50 @@
     },
     "rio": "P4",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305624",
+      "abierta_DI": "ZSO-160305624",
+      "cerrada_DI": "ZSC-160305624",
+      "alarma_falla_abrir": "ZAO-160305624",
+      "alarma_falla_cerrar": "ZAC-160305624",
+      "selector_PCS": "HIS-160305624 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305624",
+        "DI_abierta": "HV-160305624-ZSO",
+        "DI_cerrada": "HV-160305624-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30037-VJB",
+      "sap_caja": "JB17",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/1 ↔ TS2/1",
+        "HY−": "TS1/2 ↔ TS2/2",
+        "ZSO": "TS1/3–4 ↔ TS2/3–4",
+        "ZSC": "TS1/5–6 ↔ TS2/5–6"
+      },
+      "protectores": "LPD1–LPD3 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305624U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 108
+        },
+        {
+          "tag": "HV160305624U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 108
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305625",
@@ -354,7 +969,7 @@
     "fluido": "Regeneración NaOCl 5%",
     "modelo": "Bray Trilok F0 + Rack&Pinion S.92-1280",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305625",
@@ -363,9 +978,50 @@
     },
     "rio": "P4",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305625",
+      "abierta_DI": "ZSO-160305625",
+      "cerrada_DI": "ZSC-160305625",
+      "alarma_falla_abrir": "ZAO-160305625",
+      "alarma_falla_cerrar": "ZAC-160305625",
+      "selector_PCS": "HIS-160305625 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305625",
+        "DI_abierta": "HV-160305625-ZSO",
+        "DI_cerrada": "HV-160305625-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30037-VJB",
+      "sap_caja": "JB17",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/7 ↔ TS2/7",
+        "HY−": "TS1/8 ↔ TS2/8",
+        "ZSO": "TS1/9–10 ↔ TS2/9–10",
+        "ZSC": "TS1/11–12 ↔ TS2/11–12"
+      },
+      "protectores": "LPD4–LPD6 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305625U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 108
+        },
+        {
+          "tag": "HV160305625U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 108
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305626",
@@ -377,7 +1033,7 @@
     "fluido": "Agua de desecho",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98-45E2-09",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305626",
@@ -386,9 +1042,50 @@
     },
     "rio": "P4",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305626",
+      "abierta_DI": "ZSO-160305626",
+      "cerrada_DI": "ZSC-160305626",
+      "alarma_falla_abrir": "ZAO-160305626",
+      "alarma_falla_cerrar": "ZAC-160305626",
+      "selector_PCS": "HIS-160305626 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305626",
+        "DI_abierta": "HV-160305626-ZSO",
+        "DI_cerrada": "HV-160305626-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30037-VJB",
+      "sap_caja": "JB17",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/13 ↔ TS2/13",
+        "HY−": "TS1/14 ↔ TS2/14",
+        "ZSO": "TS1/15–16 ↔ TS2/15–16",
+        "ZSC": "TS1/17–18 ↔ TS2/17–18"
+      },
+      "protectores": "LPD7–LPD9 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305626U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 85
+        },
+        {
+          "tag": "HV160305626U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 85
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305627",
@@ -400,7 +1097,7 @@
     "fluido": "Agua de enjuague",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305627",
@@ -409,9 +1106,50 @@
     },
     "rio": "P4",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305627",
+      "abierta_DI": "ZSO-160305627",
+      "cerrada_DI": "ZSC-160305627",
+      "alarma_falla_abrir": "ZAO-160305627",
+      "alarma_falla_cerrar": "ZAC-160305627",
+      "selector_PCS": "HIS-160305627 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305627",
+        "DI_abierta": "HV-160305627-ZSO",
+        "DI_cerrada": "HV-160305627-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30037-VJB",
+      "sap_caja": "JB17",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/19 ↔ TS2/19",
+        "HY−": "TS1/20 ↔ TS2/20",
+        "ZSO": "TS1/21–22 ↔ TS2/21–22",
+        "ZSC": "TS1/23–24 ↔ TS2/23–24"
+      },
+      "protectores": "LPD10–LPD12 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305627U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 85
+        },
+        {
+          "tag": "HV160305627U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 85
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305628",
@@ -423,7 +1161,7 @@
     "fluido": "Agua tratada",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305628",
@@ -432,9 +1170,50 @@
     },
     "rio": "P4",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305628",
+      "abierta_DI": "ZSO-160305628",
+      "cerrada_DI": "ZSC-160305628",
+      "alarma_falla_abrir": "ZAO-160305628",
+      "alarma_falla_cerrar": "ZAC-160305628",
+      "selector_PCS": "HIS-160305628 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305628",
+        "DI_abierta": "HV-160305628-ZSO",
+        "DI_cerrada": "HV-160305628-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30037-VJB",
+      "sap_caja": "JB17",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/25 ↔ TS2/25",
+        "HY−": "TS1/26 ↔ TS2/26",
+        "ZSO": "TS1/27–28 ↔ TS2/27–28",
+        "ZSC": "TS1/29–30 ↔ TS2/29–30"
+      },
+      "protectores": "LPD13–LPD15 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305628U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 108
+        },
+        {
+          "tag": "HV160305628U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 108
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305629",
@@ -446,7 +1225,7 @@
     "fluido": "Agua filtrada",
     "modelo": "Bray Trilok T1 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305629",
@@ -455,9 +1234,50 @@
     },
     "rio": "P4",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305629",
+      "abierta_DI": "ZSO-160305629",
+      "cerrada_DI": "ZSC-160305629",
+      "alarma_falla_abrir": "ZAO-160305629",
+      "alarma_falla_cerrar": "ZAC-160305629",
+      "selector_PCS": "HIS-160305629 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305629",
+        "DI_abierta": "HV-160305629-ZSO",
+        "DI_cerrada": "HV-160305629-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30037-VJB",
+      "sap_caja": "JB17",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/31 ↔ TS2/31",
+        "HY−": "TS1/32 ↔ TS2/32",
+        "ZSO": "TS1/33–34 ↔ TS2/33–34",
+        "ZSC": "TS1/35–36 ↔ TS2/35–36"
+      },
+      "protectores": "LPD16–LPD18 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305629U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 85
+        },
+        {
+          "tag": "HV160305629U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 85
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305630",
@@ -469,7 +1289,7 @@
     "fluido": "Aire",
     "modelo": "Bray Trilok F0 + Rack&Pinion S.92-1600",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305630",
@@ -478,9 +1298,50 @@
     },
     "rio": "P4",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305630",
+      "abierta_DI": "ZSO-160305630",
+      "cerrada_DI": "ZSC-160305630",
+      "alarma_falla_abrir": "ZAO-160305630",
+      "alarma_falla_cerrar": "ZAC-160305630",
+      "selector_PCS": "HIS-160305630 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305630",
+        "DI_abierta": "HV-160305630-ZSO",
+        "DI_cerrada": "HV-160305630-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30037-VJB",
+      "sap_caja": "JB17",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/37 ↔ TS2/37",
+        "HY−": "TS1/38 ↔ TS2/38",
+        "ZSO": "TS1/39–40 ↔ TS2/39–40",
+        "ZSC": "TS1/41–42 ↔ TS2/41–42"
+      },
+      "protectores": "LPD19–LPD21 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305630U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 53
+        },
+        {
+          "tag": "HV160305630U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 53
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305632",
@@ -492,7 +1353,7 @@
     "fluido": "RAW water",
     "modelo": "Bray Trilok T1 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305632",
@@ -501,9 +1362,50 @@
     },
     "rio": "P5",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305632",
+      "abierta_DI": "ZSO-160305632",
+      "cerrada_DI": "ZSC-160305632",
+      "alarma_falla_abrir": "ZAO-160305632",
+      "alarma_falla_cerrar": "ZAC-160305632",
+      "selector_PCS": "HIS-160305632 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305632",
+        "DI_abierta": "HV-160305632-ZSO",
+        "DI_cerrada": "HV-160305632-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30038-VJB",
+      "sap_caja": "JB18",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/1 ↔ TS2/1",
+        "HY−": "TS1/2 ↔ TS2/2",
+        "ZSO": "TS1/3–4 ↔ TS2/3–4",
+        "ZSC": "TS1/5–6 ↔ TS2/5–6"
+      },
+      "protectores": "LPD1–LPD3 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305632U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 79
+        },
+        {
+          "tag": "HV160305632U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 79
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305633",
@@ -515,7 +1417,7 @@
     "fluido": "Regeneración NaOCl 5%",
     "modelo": "Bray Trilok F0 + Rack&Pinion S.92-1280",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305633",
@@ -524,9 +1426,50 @@
     },
     "rio": "P5",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305633",
+      "abierta_DI": "ZSO-160305633",
+      "cerrada_DI": "ZSC-160305633",
+      "alarma_falla_abrir": "ZAO-160305633",
+      "alarma_falla_cerrar": "ZAC-160305633",
+      "selector_PCS": "HIS-160305633 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305633",
+        "DI_abierta": "HV-160305633-ZSO",
+        "DI_cerrada": "HV-160305633-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30038-VJB",
+      "sap_caja": "JB18",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/7 ↔ TS2/7",
+        "HY−": "TS1/8 ↔ TS2/8",
+        "ZSO": "TS1/9–10 ↔ TS2/9–10",
+        "ZSC": "TS1/11–12 ↔ TS2/11–12"
+      },
+      "protectores": "LPD4–LPD6 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305633U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 79
+        },
+        {
+          "tag": "HV160305633U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 79
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305634",
@@ -538,7 +1481,7 @@
     "fluido": "Agua de desecho",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98-45E2-09",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305634",
@@ -547,9 +1490,50 @@
     },
     "rio": "P5",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305634",
+      "abierta_DI": "ZSO-160305634",
+      "cerrada_DI": "ZSC-160305634",
+      "alarma_falla_abrir": "ZAO-160305634",
+      "alarma_falla_cerrar": "ZAC-160305634",
+      "selector_PCS": "HIS-160305634 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305634",
+        "DI_abierta": "HV-160305634-ZSO",
+        "DI_cerrada": "HV-160305634-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30038-VJB",
+      "sap_caja": "JB18",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/13 ↔ TS2/13",
+        "HY−": "TS1/14 ↔ TS2/14",
+        "ZSO": "TS1/15–16 ↔ TS2/15–16",
+        "ZSC": "TS1/17–18 ↔ TS2/17–18"
+      },
+      "protectores": "LPD7–LPD9 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305634U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 56
+        },
+        {
+          "tag": "HV160305634U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 56
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305635",
@@ -561,7 +1545,7 @@
     "fluido": "Agua de enjuague",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305635",
@@ -570,9 +1554,50 @@
     },
     "rio": "P5",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305635",
+      "abierta_DI": "ZSO-160305635",
+      "cerrada_DI": "ZSC-160305635",
+      "alarma_falla_abrir": "ZAO-160305635",
+      "alarma_falla_cerrar": "ZAC-160305635",
+      "selector_PCS": "HIS-160305635 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305635",
+        "DI_abierta": "HV-160305635-ZSO",
+        "DI_cerrada": "HV-160305635-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30038-VJB",
+      "sap_caja": "JB18",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/19 ↔ TS2/19",
+        "HY−": "TS1/20 ↔ TS2/20",
+        "ZSO": "TS1/21–22 ↔ TS2/21–22",
+        "ZSC": "TS1/23–24 ↔ TS2/23–24"
+      },
+      "protectores": "LPD10–LPD12 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305635U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 56
+        },
+        {
+          "tag": "HV160305635U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 56
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305636",
@@ -584,7 +1609,7 @@
     "fluido": "Agua tratada",
     "modelo": "Bray Trilok F0 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305636",
@@ -593,9 +1618,50 @@
     },
     "rio": "P5",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305636",
+      "abierta_DI": "ZSO-160305636",
+      "cerrada_DI": "ZSC-160305636",
+      "alarma_falla_abrir": "ZAO-160305636",
+      "alarma_falla_cerrar": "ZAC-160305636",
+      "selector_PCS": "HIS-160305636 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305636",
+        "DI_abierta": "HV-160305636-ZSO",
+        "DI_cerrada": "HV-160305636-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30038-VJB",
+      "sap_caja": "JB18",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/25 ↔ TS2/25",
+        "HY−": "TS1/26 ↔ TS2/26",
+        "ZSO": "TS1/27–28 ↔ TS2/27–28",
+        "ZSC": "TS1/29–30 ↔ TS2/29–30"
+      },
+      "protectores": "LPD13–LPD15 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305636U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 79
+        },
+        {
+          "tag": "HV160305636U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 79
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305637",
@@ -607,7 +1673,7 @@
     "fluido": "Agua filtrada",
     "modelo": "Bray Trilok T1 + Scotch Yoke S.98",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305637",
@@ -616,9 +1682,50 @@
     },
     "rio": "P5",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305637",
+      "abierta_DI": "ZSO-160305637",
+      "cerrada_DI": "ZSC-160305637",
+      "alarma_falla_abrir": "ZAO-160305637",
+      "alarma_falla_cerrar": "ZAC-160305637",
+      "selector_PCS": "HIS-160305637 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305637",
+        "DI_abierta": "HV-160305637-ZSO",
+        "DI_cerrada": "HV-160305637-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30038-VJB",
+      "sap_caja": "JB18",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/31 ↔ TS2/31",
+        "HY−": "TS1/32 ↔ TS2/32",
+        "ZSO": "TS1/33–34 ↔ TS2/33–34",
+        "ZSC": "TS1/35–36 ↔ TS2/35–36"
+      },
+      "protectores": "LPD16–LPD18 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305637U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 56
+        },
+        {
+          "tag": "HV160305637U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 56
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305638",
@@ -630,7 +1737,7 @@
     "fluido": "Aire",
     "modelo": "Bray Trilok F0 + Rack&Pinion S.92-1600",
     "accesorios": "Indicador de posición, finales de carrera abierto/cerrado, solenoide 24VDC, AFR, override manual",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
+    "falla_aire": "Última posición (FL) – Tipo V5",
     "tiempo_carrera_s": "A CONFIRMAR (sugerido 10–30 s)",
     "senales": {
       "DO_cmd": "HV-160305638",
@@ -639,9 +1746,50 @@
     },
     "rio": "P5",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002 / P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305638",
+      "abierta_DI": "ZSO-160305638",
+      "cerrada_DI": "ZSC-160305638",
+      "alarma_falla_abrir": "ZAO-160305638",
+      "alarma_falla_cerrar": "ZAC-160305638",
+      "selector_PCS": "HIS-160305638 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305638",
+        "DI_abierta": "HV-160305638-ZSO",
+        "DI_cerrada": "HV-160305638-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30038-VJB",
+      "sap_caja": "JB18",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/37 ↔ TS2/37",
+        "HY−": "TS1/38 ↔ TS2/38",
+        "ZSO": "TS1/39–40 ↔ TS2/39–40",
+        "ZSC": "TS1/41–42 ↔ TS2/41–42"
+      },
+      "protectores": "LPD19–LPD21 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305638U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 76
+        },
+        {
+          "tag": "HV160305638U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 76
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "FV-160305603",
@@ -669,12 +1817,37 @@
     "rio": "P1",
     "fuente": "butterflycontrolvalve-C(EAST), cvcalcs-C(EAST), I/O list",
     "nota_caudal": "Filosofía/P&ID: 261–853 m3/h; datasheet: 230 mín.",
-    "falla": "FC – cierra por falla de aire/señal"
+    "falla": "FC – cierra por falla de aire/señal",
+    "nombres_logicos": {
+      "controlador": "FIC-160305603",
+      "salida_AO": "FCV-160305603 (I/O list) / FV-160305603 (P&ID)",
+      "posicion_AI": "FZI-160305603",
+      "calculo_SP": "FY-160305603",
+      "PV": "FIT-160305603",
+      "alarmas": [
+        "FAH-160305603",
+        "FAL-160305603"
+      ]
+    },
+    "ficha": {
+      "fabricante": "Flowserve",
+      "valvula": "Valtek TX3 triple excéntrica 12\" 150# RF, cuerpo A216 WCB, disco CF8M, asiento Alloy 21",
+      "actuador": "Flowserve RG109 scotch-yoke, aire abre / resorte cierra, 482.5 cm²",
+      "posicionador": "Logix 3822-14EA-D33R-1020-00 (SS), 4–20 mA HART",
+      "AFR": "Norgren B38P-254-B1MA SS, 4.14 barg",
+      "caracteristica": "lineal modificada",
+      "Cv_nominal": 3808,
+      "volante": "sí, jackscrew; tope mecánico 853 m³/h",
+      "fuga": "ANSI Clase V",
+      "proteccion_rayo": "TP48-3-N (vendor)",
+      "datasheet": "P-00260-SP-BE-butterflycontrolvalve-C(EAST) rev004 (26443-220-V1A-MLF0-00132)",
+      "calculos": "P-00260-VD-BE-cvcalcs-C(EAST) rev003 (26443-220-V1A-MLF0-00200)"
+    }
   },
   {
     "tag": "HV-160305646",
     "funcion": "DRAIN",
-    "descripcion": "Válvula de bola 2\" drenaje descarga común compresores",
+    "descripcion": "Drenaje de la descarga común de compresores del TK primario",
     "tipo": "Bola on/off neumática",
     "senales": {
       "DO_cmd": "HV-160305646",
@@ -683,15 +1856,56 @@
     },
     "rio": "P1",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "falla_aire": "Última posición (FL) – Tipo V5",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
-    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]"
+    "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305646",
+      "abierta_DI": "ZSO-160305646",
+      "cerrada_DI": "ZSC-160305646",
+      "alarma_falla_abrir": "ZAO-160305646",
+      "alarma_falla_cerrar": "ZAC-160305646",
+      "selector_PCS": "HIS-160305646 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305646",
+        "DI_abierta": "HV-160305646-ZSO",
+        "DI_cerrada": "HV-160305646-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30038-VJB",
+      "sap_caja": "JB18",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/43 ↔ TS2/43",
+        "HY−": "TS1/44 ↔ TS2/44",
+        "ZSO": "TS1/45–46 ↔ TS2/45–46",
+        "ZSC": "TS1/47–48 ↔ TS2/47–48"
+      },
+      "protectores": "LPD22–LPD24 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305646U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 108
+        },
+        {
+          "tag": "HV160305646U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 108
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "HV-160305639",
     "funcion": "FLUSH",
-    "descripcion": "Válvula de drenaje de condensado/venteo descarga común soplantes (abre en paso 8 Dwell según SOE)",
+    "descripcion": "AIR BLOWER FLUSH VALVE – venteo/drenaje de la descarga común de soplantes (J6 la llama 'flush valve'; la alarm list 'condensate drain')",
     "tipo": "Bola on/off neumática",
     "senales": {
       "DO_cmd": "HV-160305639",
@@ -700,11 +1914,52 @@
     },
     "rio": "P2",
     "fuente": "P-00260-SP-ME-Valve_List-P(EAST) rev002",
-    "falla_aire": "ÚLTIMA POSICIÓN (FL) – Tipo V5 del P&ID rev005",
-    "solenoide": "4 vías 5 puertos, bobina simple NAMUR, 24VDC; escape con silenciador ajustable (velocidad de carrera)",
+    "falla_aire": "Última posición (FL) – Tipo V5",
+    "solenoide": "Bobina simple 24 VDC, 4 vías / 5 puertos (NAMUR), escape con silenciador regulable; sin bobina → la válvula va a CERRADA si hay aire",
     "alarma_discrepancia": "ZAO (falla al abrir) / ZAC (falla al cerrar), retardo 15 s [alarm list]; en filtros 639: 10 s",
     "modos": "A/M en PCS; con indicación O/C [P&ID nota 7-8]",
-    "interlock": "Soplantes no arrancan con esta válvula abierta (P&ID nota 9)"
+    "interlock": "Soplantes no arrancan con esta válvula abierta (P&ID nota 9)",
+    "nombres_logicos": {
+      "comando_solenoide_DO": "HY-160305639",
+      "abierta_DI": "ZSO-160305639",
+      "cerrada_DI": "ZSC-160305639",
+      "alarma_falla_abrir": "ZAO-160305639",
+      "alarma_falla_cerrar": "ZAC-160305639",
+      "selector_PCS": "HIS-160305639 (A/M, O/C)",
+      "tag_IO_list": {
+        "DO": "HV-160305639",
+        "DI_abierta": "HV-160305639-ZSO",
+        "DI_cerrada": "HV-160305639-ZSC"
+      }
+    },
+    "conexionado": {
+      "caja": "16045-FL-30037-VJB",
+      "sap_caja": "JB17",
+      "alimentacion": "24 VDC desde el panel de I/O del cliente (no desde PK-30005JB)",
+      "bornes": {
+        "HY+": "TS1/43 ↔ TS2/43",
+        "HY−": "TS1/44 ↔ TS2/44",
+        "ZSO": "TS1/45–46 ↔ TS2/45–46",
+        "ZSC": "TS1/47–48 ↔ TS2/47–48"
+      },
+      "protectores": "LPD22–LPD24 DEHN BCO ML2 BE 24 (927224)",
+      "cables": [
+        {
+          "tag": "HV160305639U01",
+          "tipo": "2C × 14 AWG",
+          "uso": "solenoide",
+          "largo_ft": 108
+        },
+        {
+          "tag": "HV160305639U02",
+          "tipo": "4C × 14 AWG",
+          "uso": "finales de carrera NA",
+          "largo_ft": 108
+        }
+      ],
+      "plano": "P-00260-DW-EC-003J6-P(EAST) rev006 As-built (26443-220-V1A-MLF0-00230)"
+    },
+    "finales_carrera": "Interruptores NA (cerrados en la posición), cableados a 24 VDC del cliente"
   },
   {
     "tag": "16045-VBF-309726",

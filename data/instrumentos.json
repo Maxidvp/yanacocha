@@ -1,8 +1,8 @@
 [
   {
     "tag": "LIT-160305604",
-    "tipo": "Transmisor de nivel radar",
-    "modelo": "E+H FMR60B",
+    "tipo": "Radar sin contacto 80 GHz, antena horn 1½\" PVDF, haz 8°",
+    "modelo": "Micropilot FMR60B",
     "servicio": "Nivel filtro A (16045-FL-30035)",
     "rango_cal": [
       0,
@@ -23,14 +23,38 @@
         "LL": 3
       }
     },
-    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "proteccion_rayo": "Weidmuller TP48NNDI integral al transmisor (no va en la JB)",
     "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "fabricante": "Endress+Hauser",
+    "codigo": "FMR60B-AABAEJHFBSJCRCFA+F2Z1",
+    "rango_instrumento": "0–40 m",
+    "precision": "±1 mm",
+    "conexion_proceso": "4\" 150# UNI flange",
+    "alimentacion": "24 VDC desde la tarjeta AI del PLC del cliente (lazo 2 hilos)",
+    "salida": "4–20 mA HART",
+    "carcasa": "Doble compartimiento, aluminio recubierto, IP66/68 NEMA 4X/6P",
+    "opciones": "Parasol, cert. calibración y 3.1",
+    "datasheet": "P-00260-SP-BE-radarlit-C(EAST) rev005 (26443-220-V1A-MLF0-00196)",
+    "jb": "16045-FL-30035/36-JB",
+    "bornes": {
+      "+": "TBA/1",
+      "-": "TBA/2",
+      "pantalla": "TBA/3"
+    },
+    "cable": {
+      "tag": "LIT160305604J01",
+      "tipo": "1P × 16 AWG apantallado",
+      "largo_ft": 25
+    },
+    "bornes_transmisor": "1 (+) / 2 (−)",
+    "plano": "P-00260-DW-EC-003J1-P(EAST) rev004 (26443-220-V1A-MLF0-00101)",
+    "ficha": "completa"
   },
   {
     "tag": "LIT-160305615",
-    "tipo": "Transmisor de nivel radar",
-    "modelo": "E+H FMR60B",
+    "tipo": "Radar sin contacto 80 GHz, antena horn 1½\" PVDF, haz 8°",
+    "modelo": "Micropilot FMR60B",
     "servicio": "Nivel filtro B (16045-FL-30036)",
     "rango_cal": [
       0,
@@ -51,14 +75,38 @@
         "LL": 3
       }
     },
-    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "proteccion_rayo": "Weidmuller TP48NNDI integral al transmisor (no va en la JB)",
     "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "fabricante": "Endress+Hauser",
+    "codigo": "FMR60B-AABAEJHFBSJCRCFA+F2Z1",
+    "rango_instrumento": "0–40 m",
+    "precision": "±1 mm",
+    "conexion_proceso": "4\" 150# UNI flange",
+    "alimentacion": "24 VDC desde la tarjeta AI del PLC del cliente (lazo 2 hilos)",
+    "salida": "4–20 mA HART",
+    "carcasa": "Doble compartimiento, aluminio recubierto, IP66/68 NEMA 4X/6P",
+    "opciones": "Parasol, cert. calibración y 3.1",
+    "datasheet": "P-00260-SP-BE-radarlit-C(EAST) rev005 (26443-220-V1A-MLF0-00196)",
+    "jb": "16045-FL-30035/36-JB",
+    "bornes": {
+      "+": "TBA/4",
+      "-": "TBA/5",
+      "pantalla": "TBA/6"
+    },
+    "cable": {
+      "tag": "LIT160305615J01",
+      "tipo": "1P × 16 AWG apantallado",
+      "largo_ft": 25
+    },
+    "bornes_transmisor": "1 (+) / 2 (−)",
+    "plano": "P-00260-DW-EC-003J1-P(EAST) rev004 (26443-220-V1A-MLF0-00101)",
+    "ficha": "completa"
   },
   {
     "tag": "LIT-160305623",
-    "tipo": "Transmisor de nivel radar",
-    "modelo": "E+H FMR60B",
+    "tipo": "Radar sin contacto 80 GHz, antena horn 1½\" PVDF, haz 8°",
+    "modelo": "Micropilot FMR60B",
     "servicio": "Nivel filtro C (16045-FL-30037)",
     "rango_cal": [
       0,
@@ -79,14 +127,38 @@
         "LL": 3
       }
     },
-    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "proteccion_rayo": "Weidmuller TP48NNDI integral al transmisor (no va en la JB)",
     "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "fabricante": "Endress+Hauser",
+    "codigo": "FMR60B-AABAEJHFBSJCRCFA+F2Z1",
+    "rango_instrumento": "0–40 m",
+    "precision": "±1 mm",
+    "conexion_proceso": "4\" 150# UNI flange",
+    "alimentacion": "24 VDC desde la tarjeta AI del PLC del cliente (lazo 2 hilos)",
+    "salida": "4–20 mA HART",
+    "carcasa": "Doble compartimiento, aluminio recubierto, IP66/68 NEMA 4X/6P",
+    "opciones": "Parasol, cert. calibración y 3.1",
+    "datasheet": "P-00260-SP-BE-radarlit-C(EAST) rev005 (26443-220-V1A-MLF0-00196)",
+    "jb": "16045-FL-30037/38-JB",
+    "bornes": {
+      "+": "TBA/1",
+      "-": "TBA/2",
+      "pantalla": "TBA/3"
+    },
+    "cable": {
+      "tag": "LIT160305623J01",
+      "tipo": "1P × 16 AWG apantallado",
+      "largo_ft": 25
+    },
+    "bornes_transmisor": "1 (+) / 2 (−)",
+    "plano": "P-00260-DW-EC-003J3-P(EAST) rev004 (26443-220-V1A-MLF0-00103)",
+    "ficha": "completa"
   },
   {
     "tag": "LIT-160305631",
-    "tipo": "Transmisor de nivel radar",
-    "modelo": "E+H FMR60B",
+    "tipo": "Radar sin contacto 80 GHz, antena horn 1½\" PVDF, haz 8°",
+    "modelo": "Micropilot FMR60B",
     "servicio": "Nivel filtro D (16045-FL-30038)",
     "rango_cal": [
       0,
@@ -107,14 +179,38 @@
         "LL": 3
       }
     },
-    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "proteccion_rayo": "Weidmuller TP48NNDI integral al transmisor (no va en la JB)",
     "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "fabricante": "Endress+Hauser",
+    "codigo": "FMR60B-AABAEJHFBSJCRCFA+F2Z1",
+    "rango_instrumento": "0–40 m",
+    "precision": "±1 mm",
+    "conexion_proceso": "4\" 150# UNI flange",
+    "alimentacion": "24 VDC desde la tarjeta AI del PLC del cliente (lazo 2 hilos)",
+    "salida": "4–20 mA HART",
+    "carcasa": "Doble compartimiento, aluminio recubierto, IP66/68 NEMA 4X/6P",
+    "opciones": "Parasol, cert. calibración y 3.1",
+    "datasheet": "P-00260-SP-BE-radarlit-C(EAST) rev005 (26443-220-V1A-MLF0-00196)",
+    "jb": "16045-FL-30037/38-JB",
+    "bornes": {
+      "+": "TBA/4",
+      "-": "TBA/5",
+      "pantalla": "TBA/6"
+    },
+    "cable": {
+      "tag": "LIT160305631J01",
+      "tipo": "1P × 16 AWG apantallado",
+      "largo_ft": 25
+    },
+    "bornes_transmisor": "1 (+) / 2 (−)",
+    "plano": "P-00260-DW-EC-003J3-P(EAST) rev004 (26443-220-V1A-MLF0-00103)",
+    "ficha": "completa"
   },
   {
     "tag": "LIT-160305601",
-    "tipo": "Transmisor de nivel radar",
-    "modelo": "E+H FMR60B + display remoto RIA15",
+    "tipo": "Radar sin contacto 80 GHz, antena horn 1½\" PVDF, haz 8°",
+    "modelo": "Micropilot FMR60B",
     "servicio": "Nivel TK-30015",
     "rango_cal": [
       0,
@@ -136,12 +232,28 @@
       }
     },
     "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "fabricante": "Endress+Hauser",
+    "codigo": "FMR60B-AABAEJHFBSJCRCFA+F2Z1",
+    "rango_instrumento": "0–20 m",
+    "precision": "±1 mm",
+    "conexion_proceso": "4\" 150# UNI flange (boquilla N9)",
+    "alimentacion": "24 VDC lazo (2 hilos)",
+    "salida": "4–20 mA HART",
+    "carcasa": "Doble compartimiento, aluminio recubierto, IP66/68 NEMA 4X/6P",
+    "display": "Gráfico táctil + display remoto RIA15-AAC2+F1PBPEZ1",
+    "opciones": "Parasol, cert. calibración y 3.1",
+    "proteccion_rayo": "Weidmuller TP48NNDI (SAP 152212), en entrada de conduit libre",
+    "datasheet": "P-00260-SP-BE-radarlit-C(EAST) rev005 (26443-220-V1A-MLF0-00196)",
+    "pid": "P-00260-DW-AE-001P1-C hoja 7",
+    "cableado": "Por otros, directo a RIO de Bechtel (P&ID nota 7)",
+    "rio": "P1",
+    "ficha": "completa"
   },
   {
     "tag": "AIT-160305600",
-    "tipo": "Analizador pH",
-    "modelo": "Rosemount 1066-P + sensor 396P (jet spray)",
+    "tipo": "Analizador de pH de un parámetro, sensor sumergido con limpieza jet spray 12707-00",
+    "modelo": "1066 transmisor + 396P sensor",
     "servicio": "pH TK-30015",
     "rango_cal": [
       0,
@@ -159,11 +271,27 @@
       "nota": "Índice de instrumentos dice HH 7.2; se usa alarm list (más reciente)"
     },
     "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "fabricante": "Rosemount",
+    "codigo": "Transmisor 1066-P-HT-60-CC · sensor AE-160305600 396P-04-10-55-CC",
+    "rango_instrumento": "0–14 pH",
+    "precision": "±0.01 pH",
+    "conexion_proceso": "Sensor 1\" MNPT, soporte en baranda 11275-01 (boquilla N8 2\")",
+    "alimentacion": "24 VDC lazo (2 hilos)",
+    "salida": "4–20 mA HART",
+    "carcasa": "Policarbonato NEMA 4X, montaje en caño 2\" 23820-00",
+    "cable_sensor": "50 ft integral",
+    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "datasheet": "P-00260-SP-BE-pHanalyzer-C(EAST) rev005 (26443-220-V1A-MLF0-00137)",
+    "pid": "P-00260-DW-AE-001P1-C hoja 7",
+    "cableado": "Por otros, directo a RIO de Bechtel",
+    "rio": "P1",
+    "control": "AIC-160305600 (por otros) → dosificación de ácido/soda",
+    "ficha": "completa"
   },
   {
     "tag": "AIT-160305442",
-    "tipo": "Analizador conductividad",
+    "tipo": "Analizador de conductividad (muestra 3/4\" desde salida TK)",
     "servicio": "Conductividad salida TK-30015",
     "rango_cal": "A CONFIRMAR",
     "unidad": "µS/cm",
@@ -178,12 +306,19 @@
       },
       "alcance": "por otros"
     },
-    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "fabricante": "Por otros",
+    "modelo": "A CONFIRMAR",
+    "alimentacion": "Por otros",
+    "salida": "4–20 mA",
+    "datasheet": "No disponible (alcance Bechtel)",
+    "rio": "P1",
+    "ficha": "parcial (por otros / A CONFIRMAR)"
   },
   {
     "tag": "FIT-160305602",
-    "tipo": "Caudalímetro vórtex",
-    "modelo": "E+H Prowirl F200",
+    "tipo": "Vórtex con RTD y sensor de presión integrados (compensación a Nm³/h)",
+    "modelo": "Prowirl F200 3\"",
     "servicio": "Caudal aire descarga común compresores",
     "rango_cal": [
       0,
@@ -206,12 +341,28 @@
       "activa": "L/LL solo con algún compresor en marcha"
     },
     "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "fabricante": "Endress+Hauser",
+    "codigo": "7F2C80-AAACCADDAABAASKA1+DMJAPBZ1",
+    "rango_instrumento": "11–1800 m³/h",
+    "proceso": "350 Nm³/h · 102 kPa · 127–141 °C · ΔP 0.5 kPa",
+    "linea": "4\" reducida a 3\"",
+    "conexion_proceso": "3\" 150# RF Sch 40",
+    "alimentacion": "12–35 VDC lazo (2 hilos)",
+    "salida": "4–20 mA HART",
+    "carcasa": "Aluminio recubierto NEMA 4X, sensor 316L",
+    "opciones": "Parasol, certificado de calibración",
+    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "datasheet": "P-00260-SP-BE-vortexfit-C(EAST) rev004 (26443-220-V1A-MLF0-00135/00268)",
+    "pid": "P-00260-DW-AE-001P1-C hoja 7",
+    "cableado": "Por otros, directo a RIO (loop powered, sin fuente del tablero – respuesta CRS J5)",
+    "rio": "P1",
+    "ficha": "completa"
   },
   {
     "tag": "FIT-160305607",
-    "tipo": "Caudalímetro vórtex",
-    "modelo": "E+H Prowirl F200 6\"",
+    "tipo": "Vórtex con RTD y sensor de presión integrados",
+    "modelo": "Prowirl F200 6\"",
     "servicio": "Caudal aire descarga común soplantes",
     "rango_cal": [
       0,
@@ -233,14 +384,29 @@
       },
       "activa": "L/LL solo con algún soplante en marcha"
     },
-    "proceso": "2688 Nm3/h @ 58.3 kPa, 61–127 °C",
+    "proceso": "2688 Nm³/h · 58.3 kPa · 61–127 °C · ΔP 2.37 kPa",
     "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002, vortexfit-C(EAST)",
-    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "fabricante": "Endress+Hauser",
+    "codigo": "7F2C1F-AAACCADDAABAASKA1+DMJAPBZ1",
+    "rango_instrumento": "43–7300 m³/h",
+    "linea": "8\" reducida a 6\"",
+    "conexion_proceso": "6\" 150# RF Sch 40",
+    "alimentacion": "12–35 VDC lazo (2 hilos)",
+    "salida": "4–20 mA HART",
+    "carcasa": "Aluminio recubierto NEMA 4X, sensor 316L",
+    "opciones": "Parasol, certificado de calibración",
+    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "datasheet": "P-00260-SP-BE-vortexfit-C(EAST) rev004 (26443-220-V1A-MLF0-00135/00268)",
+    "pid": "P-00260-DW-AE-001P2-C hoja 8",
+    "cableado": "Por otros, directo a RIO (loop powered)",
+    "rio": "P2",
+    "ficha": "completa"
   },
   {
     "tag": "FIT-160305603",
-    "tipo": "Caudalímetro magnético",
-    "modelo": "E+H Promag W 400 12\"",
+    "tipo": "Electromagnético, revestimiento poliuretano, electrodos 316L",
+    "modelo": "Promag W 400 12\"",
     "servicio": "Caudal bypass TK-30015 → sumidero agua filtrada",
     "rango_cal": [
       0,
@@ -258,9 +424,24 @@
       },
       "nota": "Alarm list rev002 indica FAH 235 / FAL 890 (aparentemente invertido); índice: H 768 / L 235. A CONFIRMAR"
     },
-    "proceso": "230–853 m3/h, 90 kPag",
+    "proceso": "230–853 m³/h · 0.88–3.25 m/s · 90 kPag · 7–20 °C",
     "fuente": "magfit-C(EAST), P-00260-SP-BE-instrumentindex-C(EAST) rev002",
-    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)"
+    "fuente_alarmas": "P-00260-PD-PCE-alarmlist-C(EAST) rev002 (en Training Manual)",
+    "fabricante": "Endress+Hauser",
+    "codigo": "5W4C3H-AAELHA0DUA1K0A+JAPAZ1 (datasheet) / 5W4C5H-AAFLHA0DUA1K0A+JAPAZ1 (índice) – A CONFIRMAR",
+    "rango_instrumento": "80–2400 m³/h",
+    "precision": "0.5 %",
+    "linea": "24\" reducida a 12\"",
+    "conexion_proceso": "12\" 150# RF ASME B16.5, acero al carbono",
+    "alimentacion": "24 VDC desde 16045-PK-30005JB (MCB-201, cable DCH-101, TBP1)",
+    "salida": "4–20 mA HART (4 hilos)",
+    "carcasa": "Aluminio recubierto NEMA 4X, display 4 líneas iluminado",
+    "proteccion_rayo": "Weidmuller TP48NNDI",
+    "datasheet": "P-00260-SP-BE-magfit-C(EAST) rev004 (26443-220-V1A-MLF0-00136)",
+    "pid": "P-00260-DW-AE-001P1-C hoja 7",
+    "cableado": "Señal por otros a RIO; alimentación desde PK-30005JB",
+    "rio": "P1",
+    "ficha": "completa"
   },
   {
     "tag": "FZI-160305603",
@@ -275,59 +456,89 @@
   },
   {
     "tag": "PI-160305605",
-    "tipo": "Manómetro local",
-    "modelo": "Ashcroft 45-1279",
-    "servicio": "Presión descarga BL-30008",
+    "tipo": "Manómetro 4½\" lleno de silicona, caja fenólica",
+    "modelo": "45-1259-SL-04-L-XGVSG 15#/KP",
+    "servicio": "Descarga BL-30008",
     "rango_cal": [
       0,
       100
     ],
     "unidad": "kPag",
-    "senal": "local (sin I/O)",
-    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+    "senal": "Local, sin I/O",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fabricante": "Ashcroft",
+    "escala": "Doble: 0–15 psi / 0–100 kPa",
+    "precision": "0.5 % del span",
+    "conexion_proceso": "½\" MNPT inferior",
+    "accesorio": "Sifón C1198B-S-50-04 316SS",
+    "aislacion": "Válvulas 16045-VBA-309711 (aislamiento) / 309712 (drenaje)",
+    "datasheet": "P-00260-SP-BE-pi-C(EAST) rev003 (26443-220-V1A-MLF0-00133)",
+    "ficha": "completa"
   },
   {
     "tag": "PI-160305606",
-    "tipo": "Manómetro local",
-    "modelo": "Ashcroft 45-1279",
-    "servicio": "Presión descarga BL-30009",
+    "tipo": "Manómetro 4½\" lleno de silicona, caja fenólica",
+    "modelo": "45-1259-SL-04-L-XGVSG 15#/KP",
+    "servicio": "Descarga BL-30009",
     "rango_cal": [
       0,
       100
     ],
     "unidad": "kPag",
-    "senal": "local (sin I/O)",
-    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+    "senal": "Local, sin I/O",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fabricante": "Ashcroft",
+    "escala": "Doble: 0–15 psi / 0–100 kPa",
+    "precision": "0.5 % del span",
+    "conexion_proceso": "½\" MNPT inferior",
+    "accesorio": "Sifón C1198B-S-50-04 316SS",
+    "aislacion": "Válvulas 16045-VBA-309715 (aislamiento) / 309716 (drenaje)",
+    "datasheet": "P-00260-SP-BE-pi-C(EAST) rev003 (26443-220-V1A-MLF0-00133)",
+    "ficha": "completa"
   },
   {
     "tag": "PSV-160305618",
     "tipo": "Válvula de alivio",
-    "modelo": "Kunkle #3",
+    "modelo": "#3",
     "servicio": "BL-30008",
     "tarado_kPag": 64,
-    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fabricante": "Kunkle",
+    "linea": "10\"",
+    "datasheet": "26443-220-V1A-MLF0-00182 (soplantes)",
+    "ficha": "completa"
   },
   {
     "tag": "PSV-160305622",
     "tipo": "Válvula de alivio",
-    "modelo": "Kunkle #3",
+    "modelo": "#3",
     "servicio": "BL-30009",
     "tarado_kPag": 64,
-    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fabricante": "Kunkle",
+    "linea": "10\"",
+    "datasheet": "26443-220-V1A-MLF0-00182 (soplantes)",
+    "ficha": "completa"
   },
   {
     "tag": "PSV-160305642",
     "tipo": "Válvula de alivio",
     "servicio": "CM-30011",
-    "tarado": "A CONFIRMAR (123 kPag índice / 2 barg datasheet / 0.45 MPa P&ID)",
-    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+    "tarado": "A CONFIRMAR: 0.45 MPa (P&ID vendor) / 2 barg (datasheet) / 123 kPag (índice)",
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fabricante": "Atlas Copco (incluida)",
+    "modelo": "Latón HPb59-1, 1½\"",
+    "ficha": "parcial (por otros / A CONFIRMAR)"
   },
   {
     "tag": "PSV-160305643",
     "tipo": "Válvula de alivio",
     "servicio": "CM-30012",
     "tarado": "A CONFIRMAR",
-    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002"
+    "fuente": "P-00260-SP-BE-instrumentindex-C(EAST) rev002",
+    "fabricante": "Atlas Copco (incluida)",
+    "modelo": "Latón HPb59-1, 1½\"",
+    "ficha": "parcial (por otros / A CONFIRMAR)"
   },
   {
     "tag": "PT-160305711A",
