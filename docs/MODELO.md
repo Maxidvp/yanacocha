@@ -16,7 +16,7 @@ Resumen de las ecuaciones y supuestos del modelo (`src/sim/process/`). Los coefi
 ## Filtros (4 × 25 %)
 - Área 39.04 m², alto 4938 mm. Nivel h sobre el fondo; el LIT mide h − z0 con z0 = 1830 mm (tope del medio, A CONFIRMAR). La lectura NE43 llega hasta 3.8 mA (≈ −37 mm), así el drenaje puede alcanzar K06 (LIT ≈ −5 mm).
 - La entrada SEVI reparte el caudal del colector por igual entre los filtros con SEVI abierta.
-- Salida SEVO por gravedad sobre la cota de agua filtrada: Q = apertura·(h − z_salida)/R, con z_salida = 1430 mm y R = R₀·(1 + α·M), donde M son los sólidos retenidos (kg). R₀ = 3.39 mm/(m³/h) y α = 0.005 1/kg (SUPUESTO) dan LIT ≈ 1100 mm limpio a 443 m³/h, ≈ 1600 mm a 590 m³/h y LAHH a ~26 h con 5 NTU. El drenaje del paso 6 (por SEVO) llega a K06 en 520–600 s, dentro de T06.
+- Salida SEVO por gravedad sobre la cota de agua filtrada: Q = apertura·(h − z_salida)/R, con z_salida = 500 mm y R = R₀·(1 + α·M), donde M son los sólidos retenidos (kg). R₀ = 4.8 mm/(m³/h) y α = 0.0052 1/kg (SUPUESTO) dan LIT ≈ 800 mm limpio a 443 m³/h, ≈ 1500 mm a 590 m³/h y LAHH a ~26 h con 5 NTU. El drenaje del paso 6 (por SEVO) llega a K06 en 300–550 s según la suciedad (T06 = 900 s). La suciedad inicial de los escenarios se limita para arrancar por debajo de LAH.
 - Salida RO/RW hacia el sumidero (cota ≈ fondo) por su línea: Q = apertura·h/(R + R_línea), con R_línea = 3.2 mm/(m³/h) (≈ 443 m³/h de enjuague a nivel normal).
 - Captura de sólidos: SST = 1.5·NTU + 1.91·Fe + 1.58·Mn; eficiencia 94 % × maduración, con caída por ruptura cuando R/R₀ > 1.9.
 - Air scour "afloja" el lecho; el retrolavado desprende sólidos con un volumen característico de 220 m³ sin aire y 90 m³ con lecho aflojado. Los sólidos salen por BWO o vuelven a sedimentar en reposo.

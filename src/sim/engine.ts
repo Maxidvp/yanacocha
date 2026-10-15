@@ -1,5 +1,5 @@
 // Motor de simulación: integra Planta (proceso) → TablaIO → PLC a paso fijo de 0.5 s.
-import { filtrosEquipo, LETRA_FILTRO } from '../data';
+import { alarmas, filtrosEquipo, LETRA_FILTRO } from '../data';
 import { defaultParams, type Params } from './params';
 import { TablaIO } from './io/iotable';
 import { Planta, CONST_PLANTA, type FallaTransmisor } from './process/plant';
@@ -98,7 +98,10 @@ export class Engine {
     pl.filtros.forEach((f, i) => {
       const s = plc.filtros[i];
       const fueraServicio = arranque || (this.escenario === 'mantenimiento' && i === 3);
-      f.suciedad = arranque ? 2 : horas[i] * 2.8 * (qFiltro / 368);
+      // suciedad inicial escalonada, limitada para arrancar por debajo de LAH (sin lavados durante el precalentamiento)
+      const litObjetivo = alarmas.filtros_nivel_mm.H - 150;
+      const mMax = qFiltro > 0 ? Math.max(0, ((litObjetivo + p.z0_LIT_mm - p.z_salida_filtrada_mm) / qFiltro / p.R_limpio - 1) / p.alfa_colmatacion) : Infinity;
+      f.suciedad = arranque ? 2 : Math.min(horas[i] * 2.8 * (qFiltro / 368), mMax);
       const R = p.R_limpio * (1 + p.alfa_colmatacion * f.suciedad);
       f.h = fueraServicio ? p.z0_LIT_mm + 1100 : p.z_salida_filtrada_mm + R * qFiltro;
       s.tServicioLavado = horas[i] * 3600;

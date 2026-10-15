@@ -88,4 +88,24 @@ describe('Revisión del sitio', () => {
     expect(max).toBeCloseTo(1350, -1);
     expect(e.planta.I460).toBeLessThan(400); // ya en régimen
   });
+
+  test('los 4 filtros lavan con lecho sucio de fin de carrera (T03 / LAHH) sin HOLD por T06', { timeout: 120000 }, () => {
+    for (const esc of ['normal', 'optimista', 'diseno']) {
+      const e = new Engine(esc);
+      const lavaron = new Set<number>();
+      const holds: string[] = [];
+      for (let k = 0; k < (28 * 3600) / 10; k++) {
+        e.avanzar(10);
+        e.plc.filtros.forEach((f, i) => {
+          if (f.paso === 7) lavaron.add(i);
+          if (f.hold) holds.push(`${esc} ${i}: ${f.holdCausa}`);
+          // tras una regeneración el enjuague espera el Step Advance del operador (verificación de Cl/ORP)
+          if (f.paso === 15 && f.esperandoStepAdvance) e.cmd({ tipo: 'filtro', filtro: i, boton: 'STEP_ADVANCE' });
+        });
+        if (holds.length) break;
+      }
+      expect(holds).toEqual([]);
+      expect([...lavaron].sort()).toEqual([0, 1, 2, 3]);
+    }
+  });
 });
