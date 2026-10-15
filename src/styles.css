@@ -394,7 +394,7 @@ input[type='range'] { accent-color: var(--accent); }
 .agit-remolino { fill: none; stroke: var(--panel); stroke-width: 1.6; stroke-dasharray: 7 9; opacity: 0.75; animation: flow 1.2s linear infinite; }
 .agit-top { transform-box: fill-box; transform-origin: center; animation: agit-planta 1.4s linear infinite; }
 @keyframes agit-planta { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .flow, .agit-rotor, .agit-remolino, .agit-top { animation: none; } .bubbles circle { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .flow, .agit-rotor, .agit-remolino, .agit-top { animation: none; } .bubbles circle, .burbujas-aire circle { animation: none !important; } }
 .st-on { fill: var(--on); }
 .st-off { fill: var(--off); }
 .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: middle; }
@@ -410,6 +410,9 @@ input[type='range'] { accent-color: var(--accent); }
 .water-fill { fill: var(--water-fill); }
 .bubbles circle { fill: var(--panel); opacity: 0.85; animation: rise 1.6s linear infinite; }
 @keyframes rise { from { transform: translateY(0); opacity: 0.9; } to { transform: translateY(-60px); opacity: 0; } }
+/* aire de lavado en los filtros: visibles sobre agua y medios en ambos temas; --sube = recorrido hasta la superficie */
+.burbujas-aire circle { fill: #f2f9ff; fill-opacity: 0.85; stroke: var(--air); stroke-width: 0.7; animation: sube-aire 1.8s linear infinite; }
+@keyframes sube-aire { 0% { transform: translateY(0); opacity: 0; } 12% { opacity: 0.95; } 88% { opacity: 0.95; } 100% { transform: translateY(var(--sube, -60px)); opacity: 0; } }
 
 /* ---------- faceplate ---------- */
 .drawer {

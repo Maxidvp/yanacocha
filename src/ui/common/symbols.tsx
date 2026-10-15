@@ -1,5 +1,5 @@
 // Símbolos SVG del mímico (ISA 5.1 simplificado) con estado por color.
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { useSim, type Seleccion } from '../../store/sim';
 import type { EstadoVisual } from './util';
 import { t } from '../../i18n';
@@ -197,6 +197,20 @@ export function InstrumentoSym({ x, y, tag, valor, unidad, alarma, mala, forzado
         )}
       </g>
     </Clic>
+  );
+}
+
+/** Aire de lavado: burbujas que suben desde los difusores del fondo, atraviesan el lecho y salen en la superficie del agua. */
+export function BurbujasAire({ x, w, yFondo, ySup, n = 14, r = 2.4 }: { x: number; w: number; yFondo: number; ySup: number; n?: number; r?: number }) {
+  const sube = Math.max(10, yFondo - ySup);
+  return (
+    <g className="burbujas-aire" style={{ '--sube': `${-sube}px` } as CSSProperties} aria-hidden="true">
+      {Array.from({ length: n }, (_, k) => {
+        const fx = (k * 0.618034) % 1; // reparto uniforme sin patrón visible
+        const dur = 1.4 + ((k * 0.37) % 1) * 0.9;
+        return <circle key={k} cx={x + r + 3 + fx * (w - 2 * r - 6)} cy={yFondo} r={r * (0.75 + ((k * 0.29) % 1) * 0.5)} style={{ animationDuration: `${dur}s`, animationDelay: `${-((k * 0.53) % dur)}s` }} />;
+      })}
+    </g>
   );
 }
 

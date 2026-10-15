@@ -1,7 +1,7 @@
 import { filtrosEquipo, type FuncionValvula } from '../../data';
 import { useEngine, useSim } from '../../store/sim';
 import { CONST_PLANTA } from '../../sim/process/plant';
-import { AgitadorSym, BombaExtSym, CaudalimetroSym, EquipoRotSym, Frontera, InstrumentoSym, Pipe, ReduccionSym, TanqueSym, ValvulaControlSym, ValvulaManualSym, ValvulaSym } from '../common/symbols';
+import { AgitadorSym, BombaExtSym, BurbujasAire, CaudalimetroSym, EquipoRotSym, Frontera, InstrumentoSym, Pipe, ReduccionSym, TanqueSym, ValvulaControlSym, ValvulaManualSym, ValvulaSym } from '../common/symbols';
 import { MimicoZoom } from '../common/MimicoZoom';
 import { estadoMotor, estadoValvula, fmt, LETRAS, lecturaLocal, manualAbierta } from '../common/util';
 import type { Engine } from '../../sim/engine';
@@ -71,13 +71,7 @@ function Filtro({ e, i }: { e: Engine; i: number }) {
         <rect x={x0} y={FY + FH - hMedio} width={FW} height={hMedio * 0.17} fill="#3a3a3a" opacity={0.75} />
         <rect x={x0} y={FY + FH - hMedio * 0.83} width={FW} height={hMedio * 0.5} fill="#3f5a3c" opacity={0.75 + 0.25 * sucio} />
         <rect x={x0} y={FY + FH - hMedio * 0.33} width={FW} height={hMedio * 0.33} fill="#8b8579" opacity={0.75} />
-        {f.qAire > 100 && (
-          <g className="bubbles">
-            {Array.from({ length: 10 }, (_, k) => (
-              <circle key={k} cx={x0 + 10 + k * 12} cy={FY + FH - hMedio - 4} r={2.4} style={{ animationDelay: `${(k % 5) * 0.3}s` }} />
-            ))}
-          </g>
-        )}
+        {f.qAire > 50 && <BurbujasAire x={x0} w={FW} yFondo={FY + FH - 6} ySup={FY + FH * (1 - Math.min(1, frac))} n={12} />}
         <path d={`M ${x0} ${FY} V ${FY + FH} H ${x0 + FW} V ${FY}`} className="tank-wall hl" />
         <text className="t-tag" x={x0 + 6} y={FY + 15}>{`${LETRAS[i]} · ${fe.tag.replace('16045-', '')}`}</text>
         <rect x={x0 + 5} y={FY + 21} width={FW - 10} height={17} rx={3} fill={colorPaso} opacity={0.95} />

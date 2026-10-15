@@ -4,13 +4,30 @@ import type { Engine } from '../../sim/engine';
 import { CONST_PLANTA } from '../../sim/process/plant';
 import { SECUENCIA, type BotonFiltro } from '../../sim/plc/filterSeq';
 import { Inst } from './Resumen';
-import { Pipe, ValvulaSym } from '../common/symbols';
+import { BurbujasAire, Pipe, ValvulaSym } from '../common/symbols';
 import { TrendPane } from '../common/Trend';
 import { PanelSenales } from '../common/PanelSenales';
 import { duracion, estadoValvula, fmt, LETRAS, tiempoSim } from '../common/util';
 import { t, td, ts } from '../../i18n';
 
 const NOMBRE_FN: Record<FuncionValvula, string> = { SEVI: 'Entrada de servicio', RI: 'Entrada regeneración', BWO: 'Salida retrolavado', FRO: 'Salida enjuague/regen. (RO/RW)', BWI: 'Entrada retrolavado', SEVO: 'Salida de servicio', AIRI: 'Entrada aire (air scour)' };
+
+/** Reparte etiquetas en vertical para que queden al menos `min` separadas, centradas donde estaban. */
+function repartir(ys: number[], min = 11): number[] {
+  const orden = ys.map((y, k) => ({ y, k })).sort((a, b) => a.y - b.y);
+  const grupos: { y: number; k: number }[][] = [];
+  for (const it of orden) {
+    const g = grupos[grupos.length - 1];
+    if (g && it.y - g[g.length - 1].y < min) g.push(it);
+    else grupos.push([it]);
+  }
+  const out = [...ys];
+  for (const g of grupos) {
+    const centro = g.reduce((acc, it) => acc + it.y, 0) / g.length;
+    g.forEach((it, j) => { out[it.k] = centro + (j - (g.length - 1) / 2) * min; });
+  }
+  return out;
+}
 
 function Corte({ e, i }: { e: Engine; i: number }) {
   const f = e.planta.filtros[i];
@@ -28,13 +45,24 @@ function Corte({ e, i }: { e: Engine; i: number }) {
   const grava = medios[2].espesor_m * 1000;
   const gs = medios[1].espesor_m * 1000;
   const an = medios[0].espesor_m * 1000;
-  const lin = (mm: number, txt: string, color = 'var(--ink-3)', izq = false) => (
-    <g>
-      <line x1={X0} x2={X0 + W} y1={y(mm)} y2={y(mm)} stroke={color} strokeDasharray="5 4" strokeWidth={1} />
-      {txt && <text className="t-xs" x={izq ? X0 - 5 : X0 + W + 5} y={y(mm) + 4} textAnchor={izq ? 'end' : 'start'} style={{ fill: color }}>{txt}</text>}
-    </g>
-  );
   const z0 = p.z0_LIT_mm;
+  // referencias de nivel: líneas dentro del tanque, etiquetas afuera (a la izquierda las del fondo, a la derecha las del LIT)
+  const refs: { mm: number; txt: string; color: string; lado: 'izq' | 'der' }[] = [
+    { mm: z0 + 1763, txt: 'HH/H 1763/1613', color: 'var(--ink-3)', lado: 'der' },
+    { mm: z0 + 1613, txt: '', color: 'var(--ink-3)', lado: 'der' },
+    { mm: z0 + 280, txt: 'L/LL 280/140', color: 'var(--ink-3)', lado: 'der' },
+    { mm: z0 + 140, txt: '', color: 'var(--ink-3)', lado: 'der' },
+    { mm: p.K06_mm, txt: `K06 ${p.K06_mm} (LIT ${p.K06_mm - z0})`, color: 'var(--accent)', lado: 'izq' },
+    { mm: p.K09_mm, txt: `K09 ${p.K09_mm} (LIT ${p.K09_mm - z0})`, color: 'var(--accent)', lado: 'izq' },
+    { mm: z0, txt: t('cero LIT {z}', { z: z0 }), color: 'var(--ink-2)', lado: 'izq' },
+  ];
+  const etiquetas = (['izq', 'der'] as const).flatMap((lado) => {
+    const rs = refs.filter((r) => r.txt && r.lado === lado);
+    const ys = repartir(rs.map((r) => y(r.mm) + 4));
+    return rs.map((r, n) => (
+      <text key={`${lado}${n}`} className="t-xs" x={lado === 'izq' ? X0 - 31 : X0 + W + 34} y={ys[n]} textAnchor={lado === 'izq' ? 'end' : 'start'} style={{ fill: r.color }}>{r.txt}</text>
+    ));
+  });
   const sucio = Math.min(1, f.suciedad / 120);
   return (
     <svg className="mimic" viewBox="0 0 560 440" role="img" aria-label={t('Corte del filtro {f}', { f: LETRAS[i] })}>
@@ -48,31 +76,21 @@ function Corte({ e, i }: { e: Engine; i: number }) {
       <text className="t-xs" x={X0 + 6} y={y(grava + gs + an) + an * k - 3} style={{ fill: '#e0e0e0' }}>{t('Antracita {e} mm', { e: an })}</text>
       <text className="t-xs" x={X0 + 6} y={y(grava + gs) + gs * k / 2 + 3} style={{ fill: '#e0e0e0' }}>Greensand {gs} mm</text>
       <text className="t-xs" x={X0 + 6} y={y(grava) + grava * k / 2 + 3} style={{ fill: '#1b1b1b' }}>{t('Grava {e} mm', { e: grava })}</text>
-      {f.qAire > 100 && (
-        <g className="bubbles">
-          {Array.from({ length: 14 }, (_, n) => <circle key={n} cx={X0 + 12 + n * 16} cy={y(grava + gs + an) - 4} r={2.6} style={{ animationDelay: `${(n % 7) * 0.2}s` }} />)}
-        </g>
-      )}
+      {f.qAire > 50 && <BurbujasAire x={X0} w={W} yFondo={y(150)} ySup={y(Math.min(f.h, CONST_PLANTA.ALTO_FILTRO_MM))} n={18} r={2.6} />}
       <path d={`M ${X0} ${Y0} V ${Y0 + H} H ${X0 + W} V ${Y0}`} className="tank-wall" />
-      {/* referencias de nivel (escala del LIT = fondo − z0) */}
-      {lin(z0 + 1763, 'HH/H 1763/1613')}
-      {lin(z0 + 1613, '')}
-      {lin(z0 + 280, 'L/LL 280/140')}
-      {lin(z0 + 140, '')}
-      {lin(p.K06_mm, `K06 ${p.K06_mm} (LIT ${p.K06_mm - z0})`, 'var(--accent)', true)}
-      {lin(p.K09_mm, `K09 ${p.K09_mm} (LIT ${p.K09_mm - z0})`, 'var(--accent)', true)}
-      {lin(z0, t('cero LIT {z}', { z: z0 }), 'var(--ink-2)', true)}
-      {/* dos escalas: izquierda sobre el fondo, derecha LIT (fondo − cero del LIT) */}
-      {[0, 1000, 2000, 3000, 4000].map((mm) => (
+      {refs.map((r, n) => <line key={n} x1={X0} x2={X0 + W} y1={y(r.mm)} y2={y(r.mm)} stroke={r.color} strokeDasharray="5 4" strokeWidth={1} />)}
+      {etiquetas}
+      {/* dos escalas fuera del tanque: izquierda sobre el fondo, derecha LIT (fondo − cero del LIT) */}
+      {[1000, 2000, 3000, 4000].map((mm) => (
         <g key={`f${mm}`}>
-          <line x1={X0} x2={X0 + 7} y1={y(mm)} y2={y(mm)} stroke="var(--ink-2)" strokeWidth={1} />
-          <text className="t-xs halo" x={X0 + 9} y={y(mm) + 3}>{mm}</text>
+          <line x1={X0 - 6} x2={X0} y1={y(mm)} y2={y(mm)} stroke="var(--ink-2)" strokeWidth={1} />
+          <text className="t-xs" x={X0 - 8} y={y(mm) + 3} textAnchor="end">{mm}</text>
         </g>
       ))}
       {[0, 500, 1000, 1500, 2000, 2500].filter((l) => z0 + l <= CONST_PLANTA.ALTO_FILTRO_MM).map((l) => (
         <g key={`l${l}`}>
-          <line x1={X0 + W - 7} x2={X0 + W} y1={y(z0 + l)} y2={y(z0 + l)} stroke="var(--accent)" strokeWidth={1} />
-          <text className="t-xs halo" x={X0 + W - 9} y={y(z0 + l) + 3} textAnchor="end" style={{ fill: 'var(--accent)' }}>{l}</text>
+          <line x1={X0 + W} x2={X0 + W + 6} y1={y(z0 + l)} y2={y(z0 + l)} stroke="var(--accent)" strokeWidth={1} />
+          <text className="t-xs" x={X0 + W + 8} y={y(z0 + l) + 3} style={{ fill: 'var(--accent)' }}>{l}</text>
         </g>
       ))}
       <text className="t-xs" x={X0} y={Y0 + H + 16}>{t('Escalas en mm: izquierda sobre el fondo · derecha LIT (cero a {z} mm) · alto 4938 mm · área 39.04 m²', { z: z0 })}</text>
@@ -99,7 +117,7 @@ function Corte({ e, i }: { e: Engine; i: number }) {
       <text className="t-val" x={12} y={y(110) - 8}>{fmt(f.qBWI, 0)}</text>
       <text className="t-val" x={490} y={y(110) - 8}>{fmt(f.qSEVO, 0)}</text>
       <text className="t-val" x={490} y={393}>{fmt(f.qRW, 0)}</text>
-      <text className="t-xs" x={300} y={8}>{f.qAire > 1 ? `${fmt(f.qAire, 0)} Nm³/h` : ''}</text>
+      <text className="t-xs" x={244} y={50} textAnchor="end">{f.qAire > 1 ? `${fmt(f.qAire, 0)} Nm³/h` : ''}</text>
     </svg>
   );
 }
